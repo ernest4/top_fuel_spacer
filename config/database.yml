@@ -19,6 +19,9 @@ default: &default
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
+  # As we're using Puma, it's threads per process that the pool needs to match as each process gets
+  # it's own pool of threads. So 3 puma processes, 5 threads each just needs the pool to be 5 threads
+  # for total concurrent connections for DB being 15.
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
@@ -80,6 +83,4 @@ test:
 #
 production:
   <<: *default
-  database: top_fuel_spacer_production
-  username: top_fuel_spacer
-  password: <%= ENV['TOP_FUEL_SPACER_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
