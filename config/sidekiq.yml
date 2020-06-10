@@ -1,0 +1,27 @@
+---
+:concurrency: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+:queues:
+# sidekiq uses polling of queues to check for jobs. queues with higher number get polled more often
+# in proportion to the number.
+# A queue with a weight of 2 will be checked twice as often as a queue with a weight of 1 etc...
+
+# as both have priority of 1, they both have equal chance of being polled
+  - [priority, 2]
+  - [default, 1]
+  - [mailers, 1]
+
+# with no priorities set, ordering matters, mailers queue will only be checked after default is empty!
+  # - default
+  # - mailers
+
+# high priority will be polled 3 times as often as a queue with priority of 1 for e.g.
+  # - [example_queue, 3]
+
+# https://github.com/mperham/sidekiq/wiki/Advanced-Options
+# random sample snippets here...
+# :verbose: false
+# :timeout: 30
+# staging:
+#   :concurrency: 10
+# production:
+#   :concurrency: 20
