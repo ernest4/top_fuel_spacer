@@ -57,7 +57,10 @@ export default memo(Spacing);
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${({ justify, center }) => (justify || center ? "center" : "space-between")};
+  align-items: ${({ align }) => align || "center"};
+  height: ${({ height }) => height || "auto"};
+  width: ${({ width }) => width || "auto"};
   flex-direction: ${({ horizontal }) => (horizontal ? "row" : "column")};
   ${({ background }) => background && `background: ${background};`}
 
