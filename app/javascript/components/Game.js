@@ -11,10 +11,15 @@ const Game = ({ debug }) => {
 
   return (
     <div>
-      <Spacing horizontal onClick={() => dispatch(gameActions.showUI(!showUi))}>
-        <Section>section 1: {showUi ? 1 : 2}</Section>
-        <Section>section 2</Section>
-        <Section>section 3</Section>
+      <Spacing horizontal background="yellow" onClick={() => dispatch(gameActions.showUI(!showUi))}>
+        <Spacing background="orange">section 1: {showUi ? 1 : 2}</Spacing>
+        <Spacing background="blue">
+          <Spacing>
+            <div style={{ background: "green" }}>spacing_test</div>
+          </Spacing>
+        </Spacing>
+        <Spacing background="red">section 2</Spacing>
+        <Spacing background="cyan">section 3</Spacing>
       </Spacing>
       {debug && <Debug />}
     </div>
