@@ -1,8 +1,8 @@
 import React, { forwardRef, memo } from "react";
 import styled, { css } from "styled-components";
 
-const Spacing = forwardRef(({ children, ...props }, ref) => {
-  return <Container {...{ children, ...props, ref }} />;
+const Spacing = forwardRef(({ ...props }, ref) => {
+  return <Container {...{ ...props, ref }} />;
 });
 
 export default memo(Spacing);

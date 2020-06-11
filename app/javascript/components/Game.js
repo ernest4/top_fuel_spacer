@@ -3,6 +3,7 @@ import Debug from "./Debug";
 import Spacing from "./layout/Spacing";
 import * as gameActions from "./store/actions/game";
 import { useSelector, useDispatch } from "react-redux";
+import Text from "./layout/Text";
 
 const Game = ({ debug }) => {
   const dispatch = useDispatch();
@@ -14,9 +15,7 @@ const Game = ({ debug }) => {
       <Spacing horizontal background="yellow" onClick={() => dispatch(gameActions.showUI(!showUi))}>
         <Spacing background="orange">section 1: {showUi ? 1 : 2}</Spacing>
         <Spacing background="blue">
-          <Spacing>
-            <div style={{ background: "green" }}>spacing_test</div>
-          </Spacing>
+          <Text>spacing_test</Text>
         </Spacing>
         <Spacing background="red">section 2</Spacing>
         <Spacing background="cyan">section 3</Spacing>
