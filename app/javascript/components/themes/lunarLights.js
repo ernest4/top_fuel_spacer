@@ -1,4 +1,5 @@
 export default {
+  name: "lunar_lights",
   color: {
     primary: "", // main actions
     secondary: "", // everywhere else (accents)

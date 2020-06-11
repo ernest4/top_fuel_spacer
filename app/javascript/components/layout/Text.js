@@ -1,5 +1,5 @@
 import React, { forwardRef, memo } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const Text = forwardRef(({ ...props }, ref) => {
   return <Container {...{ ...props, ref }} />;
