@@ -1,59 +1,13 @@
-import React, { forwardRef, useState, useEffect, memo } from "react";
+import React, { forwardRef, memo } from "react";
 import styled, { css } from "styled-components";
 
-const Spacing = forwardRef(
-  (
-    {
-      // vertical,
-      // horizontal,
-      // left,
-      // top,
-      // right,
-      // bottom,
-      // all,
-      // full,                  <-- ...props
-      // half,
-      // fitContent,
-      // maxContent,
-      // center,
-      // wrap,
-      // overflow,
-      // width,
-      // fixed,
-      // pointer,
-      // z,
-      // className,
-      // breakpoint: initialBreakpoint,   <-- unused for now??
-      children,
-      ...props
-    },
-    ref
-  ) => {
-    // const [className, setClassName] = useState();
-    // const breakpoint = useBreakpoint(initialBreakpoint);
-
-    // old style stuff was here
-
-    // useEffect(() => {
-    //   if (!breakpoint) return;
-
-    //   if (typeof vertical == "string" && vertical != breakpoint)
-    //     setClassName(`${className} sv-horizontal`.replace("sv-vertical", ""));
-
-    //   if (typeof horizontal == "string" && horizontal != breakpoint)
-    //     setClassName(`${className} sv-vertical`.replace("sv-horizontal", ""));
-    // }, [breakpoint]);
-
-    return <Container {...{ children, ...props, ref }} />;
-  }
-);
+const Spacing = forwardRef(({ children, ...props }, ref) => {
+  return <Container {...{ children, ...props, ref }} />;
+});
 
 export default memo(Spacing);
 
-// const classNameFor = (type, value) => {
-//   if (value === true) return `sv-spacing-${type}`;
-//   return `sv-spacing-${type}-${value}`;
-// };
+const SPACING = 8;
 
 const Container = styled.div`
   display: flex;
@@ -66,6 +20,15 @@ const Container = styled.div`
   ${({ wrap }) => wrap && `flex-wrap: wrap;`}
   ${({ z }) => z && `z-index: ${z};`}
 
+  ${({ top, right, bottom, left, all }) =>
+    css`
+      ${top && `padding-top: ${top * SPACING}px;`}
+      ${right && `padding-right: ${right * SPACING}px;`}
+      ${bottom && `padding-bottom: ${bottom * SPACING}px;`}
+      ${left && `padding-left: ${left * SPACING}px;`}
+      ${all && `padding: ${all * SPACING}px;`}
+    `};
+
   ${({ pointer }) =>
     pointer &&
     css`
@@ -73,10 +36,4 @@ const Container = styled.div`
         cursor: pointer;
       }
     `};
-
-  /* ${props =>
-    props.vertical &&
-    css`
-      flex-direction: column;
-    `}; */
 `;

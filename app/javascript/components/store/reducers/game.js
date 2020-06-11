@@ -4,6 +4,7 @@ import produce from "immer";
 
 const initialState = {
   showUi: false,
+  theme: "lunar light", // 'dark matter', 'martian maroon', 'sun'?, 'europa'(ice)?
 };
 
 // const otherReducer = handleActions({
