@@ -63,6 +63,16 @@ const Container = styled.div`
   width: ${({ width }) => width || "auto"};
   flex-direction: ${({ horizontal }) => (horizontal ? "row" : "column")};
   ${({ background }) => background && `background: ${background};`}
+  ${({ wrap }) => wrap && `flex-wrap: wrap;`}
+  ${({ z }) => z && `z-index: ${z};`}
+
+  ${({ pointer }) =>
+    pointer &&
+    css`
+      &:hover {
+        cursor: pointer;
+      }
+    `};
 
   /* ${props =>
     props.vertical &&
