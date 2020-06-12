@@ -1,5 +1,5 @@
 export default {
-  name: "lunar_lights",
+  name: "lunarLights",
   color: {
     primary: "", // main actions
     secondary: "", // everywhere else (accents)
@@ -9,6 +9,7 @@ export default {
     closest: "#fefefe", // top ui container (main controls)
     black: "#494949", // darkest color
     white: "#fefefe", // lightest color
+    fontDefault: "#494949", // default text color
   },
   font: {
     muted: "#6c757d", // for tertiary text
