@@ -11,8 +11,9 @@ const SPACING = 8;
 
 const Container = styled.div`
   display: flex;
+  ${({ position }) => position && `position: ${position};`}
   justify-content: ${({ justify, center }) => (justify || center ? "center" : "space-between")};
-  align-items: ${({ align }) => align || "center"};
+  ${({ align }) => align && `align-items: ${align};`}
   height: ${({ height }) => height || "auto"};
   width: ${({ width }) => width || "auto"};
   flex-direction: ${({ horizontal }) => (horizontal ? "row" : "column")};

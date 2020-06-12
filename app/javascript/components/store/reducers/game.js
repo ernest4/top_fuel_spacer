@@ -3,6 +3,7 @@ import reduceReducers from "reduce-reducers";
 import produce from "immer";
 
 const initialState = {
+  version: "0.1.0", // keep this value up to date as features and patches come !!
   showUi: false,
 };
 
