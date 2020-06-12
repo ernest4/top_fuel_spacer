@@ -1,21 +1,12 @@
 import React, { forwardRef, memo } from "react";
 import styled, { css } from "styled-components";
 
+// TODO: need to pick font for the game, just get boldness for 400,500,600
 const Text = forwardRef(({ ...props }, ref) => {
   return <Container {...{ ...props, ref }} />;
 });
 
 export default memo(Text);
-
-const SIZES = {
-  extraSmall: 12,
-  small: 14,
-  medium: 16,
-  large: 20,
-  extraLarge: 24,
-  megaLarge: 30,
-  jumbotron: 36,
-};
 
 const getSizeAndLineHeight = ({
   extraSmall,
@@ -37,6 +28,13 @@ const getSizeAndLineHeight = ({
   return { size: 16, lineHeight: 1.25 }; // default, medium
 };
 
+const getFontWeight = ({ light, bold }) => {
+  if (light) return 400;
+  if (bold) return 600;
+
+  return 500; // default, medium
+};
+
 const Container = styled.div`
   margin: 0px;
   padding: 0px;
@@ -51,6 +49,19 @@ const Container = styled.div`
     `;
   }}
 
+  ${props => {
+    const fontWeight = getFontWeight(props);
+    return css`
+      font-weight: ${fontWeight};
+
+      * {
+        font-weight: ${fontWeight};
+      }
+    `;
+  }};
+
+
+
   /* ${({ large }) =>
     large &&
     css`
@@ -61,9 +72,7 @@ const Container = styled.div`
 
 //   if (error) classNames.push("sv-text-error");
 
-//   if (light) classNames.push("sv-text-light");
 //   if (muted) classNames.push("sv-text-muted");
-//   if (bold) classNames.push("sv-text-bold");
 
 //   if (primary) classNames.push("sv-text-primary");
 //   if (secondary) classNames.push("sv-text-secondary");
