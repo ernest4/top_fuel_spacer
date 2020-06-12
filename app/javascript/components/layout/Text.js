@@ -2,7 +2,6 @@ import React, { forwardRef, memo } from "react";
 import styled, { css } from "styled-components";
 import { useSelector } from "react-redux";
 
-// TODO: need to pick font for the game, just get boldness for 400,500,600
 const Text = forwardRef(({ ...props }, ref) => {
   const { theme } = useSelector(state => state.theme);
 
@@ -38,8 +37,12 @@ const getFontWeight = ({ light, bold }) => {
   return 500; // default, medium
 };
 
-const getColor = ({ muted, theme: { color, font } }) => {
+const getColor = ({ muted, primary, secondary, error, white, theme: { color, font } }) => {
   if (muted) return font.muted;
+  if (primary) return color.primary;
+  if (secondary) return color.secondary;
+  if (white) return color.white;
+  // if (error) return // TODO: decide what to do here...
 
   return color.fontDefault;
 };
@@ -71,6 +74,8 @@ const Container = styled.div`
 
   color: ${props => getColor(props)};
 
+  ${({ center }) => center && `text-align: center;`}
+  ${({ initial }) => initial && `text-transform: initial;`}
 
   /* ${({ large }) =>
     large &&
@@ -79,12 +84,3 @@ const Container = styled.div`
       line-height: 1.25;
     `}; */
 `;
-
-//   if (error) classNames.push("sv-text-error");
-
-//   if (primary) classNames.push("sv-text-primary");
-//   if (secondary) classNames.push("sv-text-secondary");
-//   if (white) classNames.push("sv-text-white");
-
-//   if (center) classNames.push("sv-text-center");
-//   if (initial) classNames.push("sv-text-initial");
