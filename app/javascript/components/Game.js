@@ -14,7 +14,7 @@ const Game = ({ debug }) => {
     <div>
       <Spacing horizontal background="yellow" onClick={() => dispatch(gameActions.showUI(!showUi))}>
         <Spacing background="orange">section 1: {showUi ? 1 : 2}</Spacing>
-        <Spacing background="blue">
+        <Spacing background="white">
           <Text>
             spacing_test The quick brown fox jumps over the lazy dog. The quick brown fox jumped
             over the lazy dog.

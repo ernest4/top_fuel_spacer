@@ -1,5 +1,5 @@
-import reduceReducers from "reduce-reducers";
+import { combineReducers } from "redux";
 import game from "./game";
 import theme from "./theme";
 
-export default reduceReducers(game, theme);
+export default combineReducers({ game, theme });

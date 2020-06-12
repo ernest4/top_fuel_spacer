@@ -1,9 +1,12 @@
 import React, { forwardRef, memo } from "react";
 import styled, { css } from "styled-components";
+import { useSelector } from "react-redux";
 
 // TODO: need to pick font for the game, just get boldness for 400,500,600
 const Text = forwardRef(({ ...props }, ref) => {
-  return <Container {...{ ...props, ref }} />;
+  const { theme } = useSelector(state => state.theme);
+
+  return <Container {...{ ...props, theme, ref }} />;
 });
 
 export default memo(Text);
@@ -35,6 +38,12 @@ const getFontWeight = ({ light, bold }) => {
   return 500; // default, medium
 };
 
+const getColor = ({ muted, theme: { color, font } }) => {
+  if (muted) return font.muted;
+
+  return color.fontDefault;
+};
+
 const Container = styled.div`
   margin: 0px;
   padding: 0px;
@@ -60,6 +69,7 @@ const Container = styled.div`
     `;
   }};
 
+  color: ${props => getColor(props)};
 
 
   /* ${({ large }) =>
@@ -71,8 +81,6 @@ const Container = styled.div`
 `;
 
 //   if (error) classNames.push("sv-text-error");
-
-//   if (muted) classNames.push("sv-text-muted");
 
 //   if (primary) classNames.push("sv-text-primary");
 //   if (secondary) classNames.push("sv-text-secondary");
