@@ -2,6 +2,7 @@ import React, { forwardRef, memo, useEffect, useRef, useState } from "react";
 import _ from "lodash";
 import Spacing from "./Spacing";
 import { useSelector } from "react-redux";
+import Text from "./Text";
 
 // Normal ref wont work as i've hijacked it for the draggable purposes. Callback returns the ref
 // if the component needs it.
@@ -78,7 +79,7 @@ const DraggableButton = forwardRef(({ ...props }, ref) => {
     height: "50%",
     borderRadius: "4px",
     border: `1px solid ${secondary}`,
-    boxShadow: `inset 0px 0px 0px 1px ${furthest};`,
+    boxShadow: `inset 0px 0px 0px 1px ${furthest}`,
   };
 
   // TODO: need on hover tooltip! (time for hover module... part of Spacing likely as a prop)
@@ -95,7 +96,7 @@ const DraggableButton = forwardRef(({ ...props }, ref) => {
         width: "32px",
         height: "32px",
         all: 0.5,
-        hover: <DraggableButtonHover {...{ secondary, furthest }} />,
+        hover: <DraggableButtonHover {...{ secondary, furthest, closest }} />,
       }}
     >
       <Spacing {...{ background: middle, ...COMMON_RECT }} />
@@ -111,12 +112,18 @@ const DraggableButton = forwardRef(({ ...props }, ref) => {
   );
 });
 
-const DraggableButtonHover = ({ secondary, furthest }) => {
+const DraggableButtonHover = ({ secondary, furthest, closest }) => {
   return (
     <Spacing
-      {...{ border: `1px solid ${secondary}`, boxShadow: `inset 0px 0px 0px 1px ${furthest};` }}
+      {...{
+        border: `2px solid ${secondary}`,
+        boxShadow: `inset 0px 0px 0px 2px ${furthest}`,
+        borderRadius: "4px",
+        background: closest,
+        all: 1,
+      }}
     >
-      testy hover
+      <Text extraSmall>Click and drag this button to move around the Debugger</Text>
     </Spacing>
   );
 };
