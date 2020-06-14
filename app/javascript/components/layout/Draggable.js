@@ -95,6 +95,7 @@ const DraggableButton = forwardRef(({ ...props }, ref) => {
         width: "32px",
         height: "32px",
         all: 0.5,
+        hover: <DraggableButtonHover {...{ secondary, furthest }} />,
       }}
     >
       <Spacing {...{ background: middle, ...COMMON_RECT }} />
@@ -109,3 +110,13 @@ const DraggableButton = forwardRef(({ ...props }, ref) => {
     </Spacing>
   );
 });
+
+const DraggableButtonHover = ({ secondary, furthest }) => {
+  return (
+    <Spacing
+      {...{ border: `1px solid ${secondary}`, boxShadow: `inset 0px 0px 0px 1px ${furthest};` }}
+    >
+      testy hover
+    </Spacing>
+  );
+};

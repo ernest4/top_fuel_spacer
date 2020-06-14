@@ -1,7 +1,28 @@
 import React, { forwardRef, memo } from "react";
 import styled, { css } from "styled-components";
+import Tippy from "@tippyjs/react";
 
-const Spacing = forwardRef(({ ...props }, ref) => {
+const Spacing = forwardRef(({ hover, ...props }, ref) => {
+  if (hover) {
+    return (
+      <Tippy
+        interactive
+        placement="top"
+        trigger="mouseenter" // 'for more options: https://atomiks.github.io/tippyjs/v6/all-props/#trigger'
+        duration={0}
+        // className="sv-navbar-menu"
+        arrow={false}
+        // distance={33}
+        // offset={100}
+        // maxWidth={1000}
+        appendTo={window.document.body}
+        content={hover}
+      >
+        <Container {...{ ...props, ref }} />
+      </Tippy>
+    );
+  }
+
   return <Container {...{ ...props, ref }} />;
 });
 
