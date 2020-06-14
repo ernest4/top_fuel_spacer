@@ -45,6 +45,7 @@ const Container = styled.div`
   ${({ borderRadius }) => borderRadius && `border-radius: ${borderRadius};`}
   ${({ border }) => border && `border: ${border};`}
   ${({ boxShadow }) => boxShadow && `box-shadow: ${boxShadow};`}
+  ${({ opacity }) => opacity && `opacity: ${opacity};`}
 
   ${({ top, right, bottom, left, all }) =>
     css`

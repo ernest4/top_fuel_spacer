@@ -69,7 +69,7 @@ export default memo(Draggable);
 const DraggableButton = forwardRef(({ ...props }, ref) => {
   const {
     theme: {
-      color: { furthest, middle, closest, secondary },
+      color: { furthest, closest, secondary },
     },
   } = useSelector(state => state.theme);
 
@@ -91,7 +91,7 @@ const DraggableButton = forwardRef(({ ...props }, ref) => {
       pointer
       {...{
         ref,
-        background: furthest,
+        background: "transparent",
         borderRadius: "4px",
         width: "32px",
         height: "32px",
@@ -99,7 +99,7 @@ const DraggableButton = forwardRef(({ ...props }, ref) => {
         hover: <DraggableButtonHover {...{ secondary, furthest, closest }} />,
       }}
     >
-      <Spacing {...{ background: middle, ...COMMON_RECT }} />
+      <Spacing {...{ background: furthest, ...COMMON_RECT }} />
       <Spacing
         {...{
           background: closest,
@@ -121,6 +121,7 @@ const DraggableButtonHover = ({ secondary, furthest, closest }) => {
         borderRadius: "4px",
         background: closest,
         all: 1,
+        opacity: "0.9",
       }}
     >
       <Text extraSmall>Click and drag this button to move around the Debugger</Text>
