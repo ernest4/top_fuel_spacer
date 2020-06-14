@@ -31,7 +31,8 @@ export default memo(Spacing);
 const SPACING = 8;
 
 const Container = styled.div`
-  display: flex;
+  display: ${({ scroll }) => (scroll ? "block" : "flex")};
+  ${({ scroll }) => scroll && `overflow-y: scroll;`}
   ${({ position }) => position && `position: ${position};`}
   justify-content: ${({ justify, center }) => justify || (center ? "center" : "space-between")};
   ${({ align }) => align && `align-items: ${align};`}
