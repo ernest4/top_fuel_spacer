@@ -1,6 +1,7 @@
 import React, { forwardRef, memo, useEffect, useRef, useState } from "react";
 import _ from "lodash";
 import Spacing from "./Spacing";
+import { useSelector } from "react-redux";
 
 // Normal ref wont work as i've hijacked it for the draggable purposes. Callback returns the ref
 // if the component needs it.
@@ -53,10 +54,9 @@ const Draggable = forwardRef(
 
     return (
       <Spacing {...{ ...props, position: "absolute", z: "9999", ref: draggableRef }}>
-        <div ref={draggableButtonRef}>
-          TODO: draggable icon here (design in copy, circle plus squares...) TODO: need on hover
-          tooltip! (time for hover module... part of Spacing likely as a prop)
-        </div>
+        <Spacing {...{ position: "absolute", absoluteLeft: "100%" }}>
+          {useButton && <DraggableButton ref={draggableButtonRef} />}
+        </Spacing>
         {children}
       </Spacing>
     );
@@ -64,3 +64,19 @@ const Draggable = forwardRef(
 );
 
 export default memo(Draggable);
+
+const DraggableButton = forwardRef(({ ...props }, ref) => {
+  const {
+    theme: {
+      color: { furthest, middle, closest },
+    },
+  } = useSelector(state => state.theme);
+
+  // TODO: need on hover tooltip! (time for hover module... part of Spacing likely as a prop)
+  // TODO: draggable icon here (design in copy, circle plus squares...)
+  return (
+    <Spacing {...{ ref, background: furthest, borderRadius: "4px", width: "fit-content" }}>
+      <Spacing all={0.5}>T</Spacing>
+    </Spacing>
+  );
+});

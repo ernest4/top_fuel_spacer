@@ -6,7 +6,7 @@ import Draggable from "./layout/Draggable";
 // TODO: add debug overlay controls
 const Debug = () => {
   return (
-    <Draggable useButton background="#f1f1f1">
+    <Draggable useButton background="#f1f1f1" width="50%">
       <Spacing background="#2196F3">
         <Text>Debug Controls</Text>
       </Spacing>
