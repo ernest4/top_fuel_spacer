@@ -14,9 +14,15 @@ const BottomBar = () => {
       horizontal
       {...{ background: closest, all: 1, position: "fixed", absoluteBottom: "0px", width: "100%" }}
     >
-      BottomBar
+      <div>player avatar info</div>
+      <MoralityBar />
     </Spacing>
   );
 };
 
 export default BottomBar;
+
+// TODO: time to implement the commonly to be used bars component https://codepen.io/xgundam05/pen/ihDep
+const MoralityBar = () => {
+  return <div>paragon/ranegade bar</div>;
+};
