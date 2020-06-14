@@ -4,8 +4,9 @@ import produce from "immer";
 import themes from "../../themes";
 
 const initialState = {
-  // theme: "lunar_lights", // 'dark_matter', 'martian_maroon', 'sun'?, 'europa'(ice)?
+  // theme: "lunarLights", // 'darkMatter', 'martianMaroon', 'sun'?, 'europa'(ice)?
   theme: themes.lunarLights,
+  // theme: themes.darkMatter,
 };
 
 // const otherReducer = handleActions({

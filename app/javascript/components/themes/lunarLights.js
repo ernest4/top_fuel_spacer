@@ -1,17 +1,17 @@
 export default {
   name: "lunarLights",
   color: {
-    primary: "", // main actions
-    secondary: "", // everywhere else (accents)
-    background: "#cbd6df", // global background, darkest
-    furthest: "#e2e8f1", // darkest ui container
-    middle: "#f8fafb", // main ui container
-    closest: "#fefefe", // top ui container (main controls)
-    black: "#494949", // darkest color
-    white: "#fefefe", // lightest color
-    fontDefault: "#494949", // default text color
+    primary: "hsl(20, 75%, 58%)", // main actions
+    secondary: "hsl(200, 75%, 58%)", // everywhere else (accents)
+    background: "hsl(207, 24%, 84%)", // global background, darkest
+    furthest: "hsl(216, 35%, 92%)", // darkest ui container
+    middle: "hsl(200, 27%, 98%)", // main ui container
+    closest: "hsl(0, 0%, 100%)", // top ui container (main controls)
+    black: "hsl(0, 0%, 29%)", // darkest color
+    white: "hsl(0, 0%, 100%)", // lightest color
+    fontDefault: "hsl(0, 0%, 29%)", // default text color
   },
   font: {
-    muted: "#6c757d", // for tertiary text
+    muted: "hsl(208, 7%, 46%)", // for tertiary text
   },
 };

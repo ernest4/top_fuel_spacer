@@ -22,6 +22,7 @@ const Container = styled.div`
   ${({ z }) => z && `z-index: ${z};`}
   ${({ borderRadius }) => borderRadius && `border-radius: ${borderRadius};`}
   ${({ border }) => border && `border: ${border};`}
+  ${({ boxShadow }) => boxShadow && `box-shadow: ${boxShadow};`}
 
   ${({ top, right, bottom, left, all }) =>
     css`
