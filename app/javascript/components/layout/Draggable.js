@@ -65,6 +65,8 @@ const Draggable = forwardRef(
 
 export default memo(Draggable);
 
+const COMMON_RECT = { position: "absolute", width: "50%", height: "50%", borderRadius: "4px" };
+
 const DraggableButton = forwardRef(({ ...props }, ref) => {
   const {
     theme: {
@@ -73,10 +75,30 @@ const DraggableButton = forwardRef(({ ...props }, ref) => {
   } = useSelector(state => state.theme);
 
   // TODO: need on hover tooltip! (time for hover module... part of Spacing likely as a prop)
+  // TODO: this should pop out on hover!!!
   // TODO: draggable icon here (design in copy, circle plus squares...)
+
+  // TODO: color choice seems not contrasty enough! Update themes using HSL and tweak those params!
   return (
-    <Spacing {...{ ref, background: furthest, borderRadius: "4px", width: "fit-content" }}>
-      <Spacing all={0.5}>T</Spacing>
+    <Spacing
+      {...{
+        ref,
+        background: furthest,
+        borderRadius: "4px",
+        width: "32px",
+        height: "32px",
+        all: 0.5,
+      }}
+    >
+      <Spacing {...{ background: middle, ...COMMON_RECT }} />
+      <Spacing
+        {...{
+          background: closest,
+          ...COMMON_RECT,
+          absoluteLeft: "calc(50% - 4px)",
+          absoluteTop: "calc(50% - 4px)",
+        }}
+      />
     </Spacing>
   );
 });
