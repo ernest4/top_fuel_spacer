@@ -32,7 +32,7 @@ const getSizeAndLineHeight = ({
 
 const getFontWeight = ({ light, bold }) => {
   if (light) return 400;
-  if (bold) return 600;
+  if (bold) return 900;
 
   return 500; // default, medium
 };
@@ -42,12 +42,12 @@ const getColor = ({ muted, primary, secondary, error, white, theme: { color, fon
   if (primary) return color.primary;
   if (secondary) return color.secondary;
   if (white) return color.white;
-  // if (error) return // TODO: decide what to do here...
+  if (error) return color.error;
 
   return color.fontDefault;
 };
 
-const Container = styled.div`
+const Container = styled.span`
   margin: 0px;
   padding: 0px;
 

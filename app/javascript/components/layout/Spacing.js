@@ -52,11 +52,11 @@ const Container = styled.div`
 
   ${({ top, right, bottom, left, all }) =>
     css`
+      ${all && `padding: ${all * SPACING}px;`}
       ${top && `padding-top: ${top * SPACING}px;`}
       ${right && `padding-right: ${right * SPACING}px;`}
       ${bottom && `padding-bottom: ${bottom * SPACING}px;`}
       ${left && `padding-left: ${left * SPACING}px;`}
-      ${all && `padding: ${all * SPACING}px;`}
     `};
 
   ${({ absoluteTop, absoluteRight, absoluteBottom, absoluteLeft }) =>

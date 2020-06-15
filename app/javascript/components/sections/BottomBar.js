@@ -66,14 +66,26 @@ const ProgressBar = ({ value, range, resolution, discrete, background, height, h
           height,
           width: "100%",
           hover: {
-            header: <div>testy header</div>,
-            body: (
-              <Text extraSmall>
-                This is your 'morality' bar. Red indicates leaning towards 'renegade'. Blue
-                indicates leaning towards 'paragon'.
+            right: true,
+            header: (
+              <Text small>
+                <Text primary small bold children="Morality" /> bar
               </Text>
             ),
-            footer: <div>footer testy</div>,
+            body: (
+              <Text extraSmall>
+                You accumulate <Text error extraSmall bold children="renegade points" /> when
+                interacting with others in a threatening, apathetic, ruthless way. Infamy will make
+                the smaller pirates fear you. However, larger sharks will have you on their radar!
+                <br />
+                <br />
+                You accumulate <Text secondary extraSmall bold children="paragon points" /> when
+                helping others, being sympathetic and keeping your nose clean. Renown will make you
+                a target to all pirates who want to make a name for themselves. However, trading
+                outpost will give you more favourable rates!
+              </Text>
+            ),
+            footer: <Text extraSmall>- [somy funny remark here - wip]</Text>,
           },
         }}
       >
