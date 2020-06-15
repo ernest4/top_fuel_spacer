@@ -3,6 +3,7 @@ import _ from "lodash";
 import Spacing from "./Spacing";
 import { useSelector } from "react-redux";
 import Text from "./Text";
+import Hover from "./Hover";
 
 // Normal ref wont work as i've hijacked it for the draggable purposes. Callback returns the ref
 // if the component needs it.
@@ -96,7 +97,9 @@ const DraggableButton = forwardRef(({ ...props }, ref) => {
         width: "32px",
         height: "32px",
         all: 0.5,
-        hover: <DraggableButtonHover {...{ secondary, furthest, closest }} />,
+        hover: {
+          body: <Text extraSmall>Click and drag this button to move around the Debugger</Text>,
+        },
       }}
     >
       <Spacing {...{ background: furthest, ...COMMON_RECT }} />
@@ -111,20 +114,3 @@ const DraggableButton = forwardRef(({ ...props }, ref) => {
     </Spacing>
   );
 });
-
-const DraggableButtonHover = ({ secondary, furthest, closest }) => {
-  return (
-    <Spacing
-      {...{
-        border: `2px solid ${secondary}`,
-        boxShadow: `inset 0px 0px 0px 2px ${furthest}`,
-        borderRadius: "4px",
-        background: closest,
-        all: 1,
-        opacity: "0.9",
-      }}
-    >
-      <Text extraSmall>Click and drag this button to move around the Debugger</Text>
-    </Spacing>
-  );
-};

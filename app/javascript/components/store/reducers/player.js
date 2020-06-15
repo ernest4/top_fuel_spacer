@@ -3,7 +3,11 @@ import reduceReducers from "reduce-reducers";
 import produce from "immer";
 
 const initialState = {
-  morality: 0, // the renegade (negative) / paragon (positive) score
+  // TODO: there two places to store this, localStore for guest players and back end DB for logged in
+  // users. For players who wish to do guest session only, they will need to be warned that once
+  // they wish to join multiplayer, they will have to start from scratch (to prevent cheating)!
+  // morality: 0, // the renegade (negative) / paragon (positive) score
+  morality: 30, // the renegade (negative) / paragon (positive) score
 };
 
 // const otherReducer = handleActions({
@@ -14,9 +18,9 @@ const initialState = {
 
 const playerReducer = handleActions(
   {
-    // SHOW_UI: produce((state, { payload }) => {
-    //   state.showUi = payload;
-    // }),
+    SET_MORALITY: produce((state, { payload }) => {
+      state.morality = payload;
+    }),
   },
   initialState
 );
