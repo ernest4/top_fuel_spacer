@@ -10,6 +10,8 @@ export default {
     black: "hsl(0, 0%, 29%)", // darkest color
     white: "hsl(0, 0%, 100%)", // lightest color
     fontDefault: "hsl(0, 0%, 29%)", // default text color
+    error: "hsl(5, 75%, 58%)", // general red
+    warning: "hsl(35, 75%, 58%)", // general orange
   },
   font: {
     muted: "hsl(208, 7%, 46%)", // for tertiary text

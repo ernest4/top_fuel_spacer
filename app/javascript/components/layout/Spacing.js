@@ -31,7 +31,7 @@ export default memo(Spacing);
 const SPACING = 8;
 
 const Container = styled.div`
-  display: ${({ scroll }) => (scroll ? "block" : "flex")};
+  display: ${({ scroll, overflow }) => (scroll || overflow ? "block" : "flex")};
   ${({ scroll }) => scroll && `overflow-y: scroll;`}
   ${({ position }) => position && `position: ${position};`}
   justify-content: ${({ justify, center }) => justify || (center ? "center" : "space-between")};
@@ -46,6 +46,7 @@ const Container = styled.div`
   ${({ border }) => border && `border: ${border};`}
   ${({ boxShadow }) => boxShadow && `box-shadow: ${boxShadow};`}
   ${({ opacity }) => opacity && `opacity: ${opacity};`}
+  ${({ overflow }) => overflow && `overflow: ${overflow};`}
 
   ${({ top, right, bottom, left, all }) =>
     css`

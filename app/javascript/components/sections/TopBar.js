@@ -21,7 +21,10 @@ const TopBar = () => {
         <Text extraSmall>Patreon</Text>
         <Text extraSmall>Luminaries</Text>
       </Spacing>
-      <Text extraSmall>Version {version}</Text>
+      <Spacing horizontal>
+        <Text extraSmall>Theme: Lunar Lights</Text>
+        <Text extraSmall>Version {version}</Text>
+      </Spacing>
     </Spacing>
   );
 };
