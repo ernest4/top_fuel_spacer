@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Container from "./Container";
 import Line from "./Line";
 
+// TODO: react memo?
 const Card = ({ children, header, body, footer, right, fillColor }) => {
   const {
     theme: {
