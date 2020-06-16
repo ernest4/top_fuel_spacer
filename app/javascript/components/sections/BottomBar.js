@@ -36,6 +36,18 @@ const BottomBar = () => {
 
 export default BottomBar;
 
+const MORALITY_LEVEL_TEXT = {
+  "0": "Infamous", // final
+  "5": "Renegade 3",
+  "10": "Scoundrel",
+  "15": "Renegade 1",
+  "20": "On the fence", // neutral
+  "25": "Goody two shoes",
+  "30": "Paragon 2",
+  "35": "Ghandi",
+  "40": "Renown", // final
+};
+
 // TODO: time to implement the commonly to be used bars component https://codepen.io/xgundam05/pen/ihDep
 const MoralityBar = () => {
   // const { morality: value } = useSelector(state => state.player);
@@ -47,18 +59,7 @@ const MoralityBar = () => {
 
   const { morality: value } = useSelector(state => state.player);
 
-  const range = 40;
-
-  return <ProgressBar discrete {...{ value, range, resolution: 40, background, height: "24px" }} />;
-};
-
-const ProgressBar = ({ value, range, resolution, discrete, background, height, pointer }) => {
-  const progress = value / range;
-  const barWidth = 100 / resolution;
-
-  console.log(`value: ${value}`);
-  console.log(`range: ${range}`);
-  console.log(`progress: ${progress}`);
+  const isParagon = 20 < value;
 
   const hover = (
     <Card
@@ -66,7 +67,11 @@ const ProgressBar = ({ value, range, resolution, discrete, background, height, p
       {...{
         header: (
           <Text small>
-            <Text primary small bold children="Morality" />
+            <Text primary medium bold uppercase children="Morality" />
+            <Spacing top={0.5} />
+            <Text small light {...{ error: !isParagon, secondary: isParagon }}>
+              [{MORALITY_LEVEL_TEXT[value]}:{value}]
+            </Text>
           </Text>
         ),
         body: (
@@ -85,6 +90,31 @@ const ProgressBar = ({ value, range, resolution, discrete, background, height, p
       }}
     />
   );
+
+  return (
+    <ProgressBar
+      discrete
+      {...{ value, range: 40, resolution: 40, background, height: "24px", hover }}
+    />
+  );
+};
+
+const ProgressBar = ({
+  value,
+  range,
+  resolution,
+  discrete,
+  background,
+  height,
+  pointer,
+  hover,
+}) => {
+  const progress = value / range;
+  const barWidth = 100 / resolution;
+
+  console.log(`value: ${value}`);
+  console.log(`range: ${range}`);
+  console.log(`progress: ${progress}`);
 
   // TODO: https://www.google.com/search?q=sci+fi+ui+font+quote&tbm=isch&ved=2ahUKEwjAoIi39YbqAhXDXhUIHackBoUQ2-cCegQIABAA&oq=sci+fi+ui+font+quote&gs_lcp=CgNpbWcQA1C0M1i5PGC9PWgAcAB4AIABVYgB9AOSAQE4mAEAoAEBqgELZ3dzLXdpei1pbWc&sclient=img&ei=FQnpXoDCNcO91fAPp8mYqAg&bih=789&biw=1440&rlz=1C5CHFA_enIE838IE838#imgrc=Ec9YjAmUpGnlvM
   // implement this style          ///////////////(middle)\\\\\\\\\\\\\\
