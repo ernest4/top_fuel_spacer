@@ -1,27 +1,27 @@
 import React, { forwardRef, memo } from "react";
 import styled, { css } from "styled-components";
 import Tippy from "@tippyjs/react";
-import Hover from "./Hover";
 
 const Spacing = forwardRef(({ hover, ...props }, ref) => {
   if (hover) {
     return (
       <Tippy
         interactive
-        placement="top"
-        trigger="mouseenter" // 'for more options: https://atomiks.github.io/tippyjs/v6/all-props/#trigger'
-        // followCursor="horizontal" // doesnt work...
-        duration={0}
         // className="sv-navbar-menu"
-        arrow={false}
+        // followCursor="horizontal" // doesnt work...
         // distance={33}
         // offset={100}
         // maxWidth={1000}
-        appendTo={window.document.body}
-        content={<Hover {...hover} />}
-      >
-        <Container {...{ ...props, ref }} />
-      </Tippy>
+        {...{
+          placement: "top",
+          trigger: "mouseenter", // 'for more options: https://atomiks.github.io/tippyjs/v6/all-props/#trigger'
+          duration: 0,
+          arrow: false,
+          appendTo: window.document.body,
+          content: hover,
+          children: <Container {...{ ...props, ref }} />,
+        }}
+      />
     );
   }
 
@@ -49,6 +49,7 @@ const Container = styled.div`
   ${({ boxShadow }) => boxShadow && `box-shadow: ${boxShadow};`}
   ${({ opacity }) => opacity && `opacity: ${opacity};`}
   ${({ overflow }) => overflow && `overflow: ${overflow};`}
+  ${({ margin }) => margin && `margin: ${margin};`}
 
   ${({ top, right, bottom, left, all }) =>
     css`

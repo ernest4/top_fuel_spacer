@@ -5,12 +5,12 @@ import { useSelector } from "react-redux";
 const Container = ({ children, items, right, borderColor, fillColor }) => {
   const {
     theme: {
-      color: { secondary },
+      color: { secondary, furthest },
     },
   } = useSelector(state => state.theme);
 
   const COMMON_INNER_PROPS = {
-    background: fillColor || secondary,
+    background: fillColor || furthest,
     borderRadius: `${right ? "" : "2px"} 15px 2px 15px ${right ? "2px" : ""}`,
     all: 1,
   };

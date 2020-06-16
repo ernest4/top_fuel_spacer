@@ -39,7 +39,7 @@ const ThemeSelect = () => {
 
   return (
     <>
-      <label for="themes" children="Theme:" />
+      <label htmlFor="themes" children="Theme:" />
       <select
         {...{ name: "themes", id: "themes", value: currentThemeName, onChange: onThemeSelect }}
       >

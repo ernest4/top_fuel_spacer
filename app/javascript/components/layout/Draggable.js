@@ -3,7 +3,7 @@ import _ from "lodash";
 import Spacing from "./Spacing";
 import { useSelector } from "react-redux";
 import Text from "./Text";
-import Hover from "./Hover";
+import Container from "./Container";
 
 // Normal ref wont work as i've hijacked it for the draggable purposes. Callback returns the ref
 // if the component needs it.
@@ -87,6 +87,13 @@ const DraggableButton = forwardRef(({ ...props }, ref) => {
   // TODO: this should pop out on hover!!!
 
   // TODO: color choice seems not contrasty enough! Update themes using HSL and tweak those params!
+
+  const hover = (
+    <Container fillColor={closest}>
+      <Text extraSmall>Click and drag this button to move around the Debugger</Text>
+    </Container>
+  );
+
   return (
     <Spacing
       pointer
@@ -97,9 +104,7 @@ const DraggableButton = forwardRef(({ ...props }, ref) => {
         width: "32px",
         height: "32px",
         all: 0.5,
-        hover: {
-          body: <Text extraSmall>Click and drag this button to move around the Debugger</Text>,
-        },
+        hover,
       }}
     >
       <Spacing {...{ background: furthest, ...COMMON_RECT }} />
