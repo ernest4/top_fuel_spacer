@@ -53,6 +53,7 @@ const Container = styled.div`
   ${({ opacity }) => opacity && `opacity: ${opacity};`}
   ${({ overflow }) => overflow && `overflow: ${overflow};`}
   ${({ margin }) => margin && `margin: ${margin};`}
+  ${({ transform }) => transform && `transform: ${transform};`}
 
   ${({ top, right, bottom, left, all }) =>
     css`

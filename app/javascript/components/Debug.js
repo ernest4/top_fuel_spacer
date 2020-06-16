@@ -5,7 +5,6 @@ import Draggable from "./layout/Draggable";
 import themes from "./themes/index";
 import { useSelector, useDispatch } from "react-redux";
 import * as themeActions from "./store/actions/theme";
-import * as debugActions from "./store/actions/debug";
 
 // TODO: add debug overlay controls
 const Debug = () => {

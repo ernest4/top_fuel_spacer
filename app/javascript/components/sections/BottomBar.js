@@ -19,15 +19,7 @@ const BottomBar = () => {
       {...{ background: closest, all: 1, position: "fixed", absoluteBottom: "0px", width: "100%" }}
     >
       <div>player avatar info</div>
-      <Spacing
-        {...{
-          width: "80%",
-          height: "fit-content",
-          border: `2px solid ${secondary}`,
-          borderRadius: "4px",
-          background: furthest,
-        }}
-      >
+      <Spacing {...{ width: "80%" }}>
         <MoralityBar />
       </Spacing>
     </Spacing>
@@ -41,7 +33,7 @@ const MORALITY_LEVEL_TEXT = {
   "5": "Renegade 3",
   "10": "Scoundrel",
   "15": "Renegade 1",
-  "20": "On the fence", // neutral
+  "20": "Neutral", // neutral
   "25": "Goody two shoes",
   "30": "Paragon 2",
   "35": "Ghandi",
@@ -50,16 +42,15 @@ const MORALITY_LEVEL_TEXT = {
 
 // TODO: time to implement the commonly to be used bars component https://codepen.io/xgundam05/pen/ihDep
 const MoralityBar = () => {
-  // const { morality: value } = useSelector(state => state.player);
   const {
     theme: {
-      color: { secondary: background },
+      color: { secondary: barBackground, furthest: containerBackground },
     },
   } = useSelector(state => state.theme);
 
   const { morality: value } = useSelector(state => state.player);
 
-  const isParagon = 20 < value;
+  const isParagon = 20 <= value;
 
   const hover = (
     <Card
@@ -69,7 +60,7 @@ const MoralityBar = () => {
           <Text small>
             <Text primary medium bold uppercase children="Morality" />
             <Spacing top={0.5} />
-            <Text small light {...{ error: !isParagon, secondary: isParagon }}>
+            <Text extraSmall light {...{ error: !isParagon, secondary: isParagon }}>
               [{MORALITY_LEVEL_TEXT[value]}:{value}]
             </Text>
           </Text>
@@ -91,10 +82,23 @@ const MoralityBar = () => {
     />
   );
 
+  // TODO: https://www.google.com/search?q=sci+fi+ui+font+quote&tbm=isch&ved=2ahUKEwjAoIi39YbqAhXDXhUIHackBoUQ2-cCegQIABAA&oq=sci+fi+ui+font+quote&gs_lcp=CgNpbWcQA1C0M1i5PGC9PWgAcAB4AIABVYgB9AOSAQE4mAEAoAEBqgELZ3dzLXdpei1pbWc&sclient=img&ei=FQnpXoDCNcO91fAPp8mYqAg&bih=789&biw=1440&rlz=1C5CHFA_enIE838IE838#imgrc=Ec9YjAmUpGnlvM
+  // implement this style          ///////////////(middle)\\\\\\\\\\\\\\
+
   return (
     <ProgressBar
       discrete
-      {...{ value, range: 40, resolution: 40, background, height: "24px", hover }}
+      // skewRight
+      outline
+      {...{
+        value,
+        range: 40,
+        resolution: 40,
+        barBackground,
+        containerBackground,
+        height: "24px",
+        hover,
+      }}
     />
   );
 };
@@ -103,12 +107,23 @@ const ProgressBar = ({
   value,
   range,
   resolution,
-  discrete,
-  background,
+  discrete, // TODO: implement discrete v.s. continuos ? will we ever need continuos?
+  barBackground,
+  containerBackground,
   height,
   pointer,
   hover,
+  outline,
+  outlineColor,
+  skewRight,
+  skewLeft,
 }) => {
+  const {
+    theme: {
+      color: { secondary, furthest },
+    },
+  } = useSelector(state => state.theme);
+
   const progress = value / range;
   const barWidth = 100 / resolution;
 
@@ -116,14 +131,32 @@ const ProgressBar = ({
   console.log(`range: ${range}`);
   console.log(`progress: ${progress}`);
 
-  // TODO: https://www.google.com/search?q=sci+fi+ui+font+quote&tbm=isch&ved=2ahUKEwjAoIi39YbqAhXDXhUIHackBoUQ2-cCegQIABAA&oq=sci+fi+ui+font+quote&gs_lcp=CgNpbWcQA1C0M1i5PGC9PWgAcAB4AIABVYgB9AOSAQE4mAEAoAEBqgELZ3dzLXdpei1pbWc&sclient=img&ei=FQnpXoDCNcO91fAPp8mYqAg&bih=789&biw=1440&rlz=1C5CHFA_enIE838IE838#imgrc=Ec9YjAmUpGnlvM
-  // implement this style          ///////////////(middle)\\\\\\\\\\\\\\
+  let transform = "";
+
+  if (skewRight) transform = `skew(-30deg, 0deg);`;
+  if (skewLeft) transform = `skew(30deg, 0deg);`;
+
+  const outlineProps = outline
+    ? { border: `2px solid ${outlineColor || secondary}`, borderRadius: "4px" }
+    : {};
+
+    // TODO: implement 'shadow bars' like here https://www.google.com/search?q=sci+fi+futuristic+progress+bar&rlz=1C5CHFA_enIE838IE838&sxsrf=ALeKk03rIJAhvp_WGvvzI4r2Mpdr-uPaBQ:1592346394510&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiJu9DJsIfqAhUjQhUIHb5dC3AQ_AUoAXoECAsQAw&biw=1440&bih=789#imgrc=0W5WOpM2i3KeEM
+    // i.e. option (3) on sketch!!
   return (
-    <Spacing {...{ width: "100%", pointer }}>
+    <Spacing
+      {...{
+        height: "fit-content",
+        width: "100%",
+        pointer,
+        transform,
+        background: containerBackground || "transparent",
+        ...outlineProps,
+      }}
+    >
       <Spacing horizontal {...{ height, width: "100%", hover }}>
         {Array.from(Array(resolution)).map((x, key) => (
           <Spacing {...{ all: barWidth / 10, width: `${barWidth}%`, key }}>
-            <Bar {...{ show: key / resolution <= progress, background }} />
+            <Bar {...{ show: key / resolution <= progress, background: barBackground }} />
           </Spacing>
         ))}
       </Spacing>
