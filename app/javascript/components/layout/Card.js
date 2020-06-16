@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Container from "./Container";
 import Line from "./Line";
 
-const Card = ({ children, headerItems, bodyItems, footerItems, right, fillColor }) => {
+const Card = ({ children, header, body, footer, right, fillColor }) => {
   const {
     theme: {
       color: { secondary, furthest, closest },
@@ -12,10 +12,16 @@ const Card = ({ children, headerItems, bodyItems, footerItems, right, fillColor 
 
   // TODO: follow style [header(s) (name), body(s) (explanation), footer(s) (funny line)]
 
-  // const items = [...headerItems, <Line />, ...bodyItems, <Line />, ...footerItems];
-  const items = [...headerItems, ...bodyItems, ...footerItems];
+  // const items = [...header, <Line />, ...body, <Line />, ...footer];
+  // const items = [...header, ...body, ...footer];
 
-  return <Container {...{ fillColor: fillColor || closest, right, items }} />;
+  // return (
+  //   <Container {...{ fillColor: fillColor || closest, right, items: [header, body, footer] }} />
+  // );
+
+  return (
+    <Container {...{ fillColor: fillColor || closest, right, children: [header, body, footer] }} />
+  );
 };
 
 export default Card;

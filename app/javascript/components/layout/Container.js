@@ -1,6 +1,7 @@
 import React from "react";
 import Spacing from "./Spacing";
 import { useSelector } from "react-redux";
+import Line from "./Line";
 
 const Container = ({ children, items, right, borderColor, fillColor }) => {
   const {
@@ -16,11 +17,15 @@ const Container = ({ children, items, right, borderColor, fillColor }) => {
   };
 
   // TODO: fix the bottom border issue !!!
-  const innerContent = items ? (
-    items.map((item, key) => (
-      <Spacing {...{ key, bottom: key < items.length + 1 ? 1 : 0 }}>
+
+  const innerContent = children.length ? (
+    children.map((item, key) => (
+      <>
         <Spacing {...{ ...COMMON_INNER_PROPS, children: item }} />
-      </Spacing>
+        <Spacing {...{ key, bottom: key < children.length + 1 ? 0.5 : 0 }}>
+          <Line />
+        </Spacing>
+      </>
     ))
   ) : (
     <Spacing {...{ ...COMMON_INNER_PROPS, children }} />
