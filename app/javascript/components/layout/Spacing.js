@@ -1,24 +1,27 @@
 import React, { forwardRef, memo } from "react";
 import styled, { css } from "styled-components";
 import Tippy from "@tippyjs/react";
+import { followCursor } from "tippy.js";
 
-const Spacing = forwardRef(({ hover, ...props }, ref) => {
-  if (hover) {
+const Spacing = forwardRef(({ hover, interactiveHover, ...props }, ref) => {
+  if (hover || interactiveHover) {
     return (
       <Tippy
-        interactive
+        // interactiveBorder: 30,
         // className="sv-navbar-menu"
-        // followCursor="horizontal" // doesnt work...
         // distance={33}
         // offset={100}
         // maxWidth={1000}
+        followCursor
         {...{
+          plugins: [followCursor],
+          interactive: !!interactiveHover,
           placement: "top",
           trigger: "mouseenter", // 'for more options: https://atomiks.github.io/tippyjs/v6/all-props/#trigger'
           duration: 0,
           arrow: false,
           appendTo: window.document.body,
-          content: hover,
+          content: hover || interactiveHover,
           children: <Container {...{ ...props, ref }} />,
         }}
       />

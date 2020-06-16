@@ -12,7 +12,8 @@ const Card = ({ children, headerItems, bodyItems, footerItems, right, fillColor 
 
   // TODO: follow style [header(s) (name), body(s) (explanation), footer(s) (funny line)]
 
-  const items = [...headerItems, <Line />, ...bodyItems, <Line />, ...footerItems];
+  // const items = [...headerItems, <Line />, ...bodyItems, <Line />, ...footerItems];
+  const items = [...headerItems, ...bodyItems, ...footerItems];
 
   return <Container {...{ fillColor: fillColor || closest, right, items }} />;
 };

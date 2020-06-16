@@ -15,6 +15,7 @@ const Container = ({ children, items, right, borderColor, fillColor }) => {
     all: 1,
   };
 
+  // TODO: fix the bottom border issue !!!
   const innerContent = items ? (
     items.map((item, key) => (
       <Spacing {...{ key, bottom: key < items.length + 1 ? 1 : 0 }}>
