@@ -2,8 +2,15 @@ import React, { forwardRef, memo } from "react";
 import styled, { css } from "styled-components";
 import Tippy from "@tippyjs/react";
 import { followCursor } from "tippy.js";
+import { useSelector } from "react-redux";
 
 const Spacing = forwardRef(({ hover, interactiveHover, ...props }, ref) => {
+  const {
+    graphics: {
+      hover: { followCursor: canFollowCursor },
+    },
+  } = useSelector(state => state.settings);
+
   if (hover || interactiveHover) {
     return (
       <Tippy
@@ -12,8 +19,8 @@ const Spacing = forwardRef(({ hover, interactiveHover, ...props }, ref) => {
         // distance={33}
         // offset={100}
         // maxWidth={1000}
-        followCursor
         {...{
+          followCursor: canFollowCursor,
           plugins: [followCursor],
           interactive: !!interactiveHover,
           placement: "top",

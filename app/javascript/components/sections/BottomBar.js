@@ -60,9 +60,11 @@ const MoralityBar = () => {
           <Text small>
             <Text primary medium bold uppercase children="Morality" />
             <Spacing top={0.5} />
-            <Text extraSmall light {...{ error: !isParagon, secondary: isParagon }}>
-              [{MORALITY_LEVEL_TEXT[value]}:{value}]
-            </Text>
+            <i>
+              <Text extraSmall light {...{ error: !isParagon, secondary: isParagon }}>
+                "[{MORALITY_LEVEL_TEXT[value]}:{value}]"
+              </Text>
+            </i>
           </Text>
         ),
         body: (
@@ -77,7 +79,15 @@ const MoralityBar = () => {
             you more favourable rates!
           </Text>
         ),
-        footer: <Text extraSmall>- [somy funny remark here - wip]</Text>,
+        footer: (
+          <>
+            <Text extraSmall>- [somy funny remark here - wip]</Text>
+            <Spacing top={0.5} bottom={0.5}>
+              <Line />
+            </Spacing>
+            <Text extraSmall>click for morer info</Text>
+          </>
+        ),
       }}
     />
   );
@@ -140,8 +150,8 @@ const ProgressBar = ({
     ? { border: `2px solid ${outlineColor || secondary}`, borderRadius: "4px" }
     : {};
 
-    // TODO: implement 'shadow bars' like here https://www.google.com/search?q=sci+fi+futuristic+progress+bar&rlz=1C5CHFA_enIE838IE838&sxsrf=ALeKk03rIJAhvp_WGvvzI4r2Mpdr-uPaBQ:1592346394510&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiJu9DJsIfqAhUjQhUIHb5dC3AQ_AUoAXoECAsQAw&biw=1440&bih=789#imgrc=0W5WOpM2i3KeEM
-    // i.e. option (3) on sketch!!
+  // TODO: implement 'shadow bars' like here https://www.google.com/search?q=sci+fi+futuristic+progress+bar&rlz=1C5CHFA_enIE838IE838&sxsrf=ALeKk03rIJAhvp_WGvvzI4r2Mpdr-uPaBQ:1592346394510&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiJu9DJsIfqAhUjQhUIHb5dC3AQ_AUoAXoECAsQAw&biw=1440&bih=789#imgrc=0W5WOpM2i3KeEM
+  // i.e. option (3) on sketch!!
   return (
     <Spacing
       {...{
