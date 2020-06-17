@@ -20,7 +20,6 @@ const BottomBar = () => {
       {...{ background: closest, all: 1, position: "fixed", absoluteBottom: "0px", width: "100%" }}
     >
       <div>player avatar info</div>
-      <SVG {...{ name: "GoodAndEvil" }} />
       <Spacing {...{ width: "80%" }}>
         <MoralityBar />
       </Spacing>
@@ -53,7 +52,7 @@ const MORALITY_LEVEL_TEXT = {
 const MoralityBar = () => {
   const {
     theme: {
-      color: { secondary: barBackground, furthest: containerBackground },
+      color: { secondary: barBackground, furthest: containerBackground, fontDefault },
     },
   } = useSelector(state => state.theme);
 
@@ -74,7 +73,7 @@ const MoralityBar = () => {
                 [{MORALITY_LEVEL_TEXT[value]}:{value}]
               </Text>
             </Text>
-            <SVG {...{ name: "GoodAndEvil" }} />
+            <SVG {...{ name: "GoodAndEvil", size: 6 }} />
           </Spacing>
         ),
         body: (
@@ -90,17 +89,9 @@ const MoralityBar = () => {
           </Text>
         ),
         footer: (
-          <>
-            <i>
-              <Text extraSmall muted>
-                - "somy funny remark here - wip"
-              </Text>
-            </i>
-            <Spacing top={0.5} bottom={0.5}>
-              <Line />
-            </Spacing>
-            <Text extraSmall>click for morer info</Text>
-          </>
+          <Text extraSmall muted italics>
+            "somy funny moorality score dependenent remark here - [wip]"
+          </Text>
         ),
       }}
     />

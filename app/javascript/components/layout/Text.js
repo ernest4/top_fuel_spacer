@@ -2,8 +2,15 @@ import React, { forwardRef, memo } from "react";
 import styled, { css } from "styled-components";
 import { useSelector } from "react-redux";
 
-const Text = forwardRef(({ ...props }, ref) => {
+const Text = forwardRef(({ italics, ...props }, ref) => {
   const { theme } = useSelector(state => state.theme);
+
+  if (italics)
+    return (
+      <i>
+        <Container {...{ ...props, theme, ref }} />
+      </i>
+    );
 
   return <Container {...{ ...props, theme, ref }} />;
 });
