@@ -3,10 +3,10 @@ import Spacing from "../layout/Spacing";
 import { useSelector } from "react-redux";
 
 const ProgressBar = ({
-  value,
-  range,
-  resolution,
-  discrete, // TODO: implement discrete v.s. continuos ? will we ever need continuos?
+  value, // current value
+  range, // max possible value
+  resolution, // how many data points to split the bar into, if not defined, use range
+  continuos, // TODO: implement discrete v.s. continuos ? will we ever need continuos?
   barBackground,
   containerBackground,
   height,
@@ -16,6 +16,7 @@ const ProgressBar = ({
   outlineColor,
   skewRight,
   skewLeft,
+  transform: transformOverride, // used in one specific case so far in morality rengedate bar...
 }) => {
   const {
     theme: {
@@ -24,7 +25,6 @@ const ProgressBar = ({
   } = useSelector(state => state.theme);
 
   const progress = value / range;
-  const barWidth = 100 / resolution;
 
   console.log(`value: ${value}`);
   console.log(`range: ${range}`);
@@ -39,6 +39,8 @@ const ProgressBar = ({
     ? { border: `2px solid ${outlineColor || secondary}`, borderRadius: "4px" }
     : {};
 
+  const dataPoints = resolution || range;
+
   // NOTE: bizzare way react works on line 176. I want to send the value 0, but react treats that as
   // no argument. Thus need to send string "0" event though the value will be used in a calculation,
   // so it's less than ideal.
@@ -48,15 +50,15 @@ const ProgressBar = ({
         height: "fit-content",
         width: "100%",
         pointer,
-        transform,
+        transform: transformOverride || transform,
         background: containerBackground || "transparent",
         ...outlineProps,
       }}
     >
       <Spacing horizontal {...{ height, width: "100%", hover }}>
-        {Array.from(Array(resolution)).map((x, key) => (
+        {Array.from(Array(dataPoints)).map((x, key) => (
           <Spacing {...{ key, width: `100%`, all: 0.375, left: 0 < key ? "0" : 0.375 }}>
-            <Bar {...{ show: key / resolution <= progress, background: barBackground }} />
+            <Bar {...{ show: key / dataPoints <= progress, background: barBackground }} />
           </Spacing>
         ))}
       </Spacing>

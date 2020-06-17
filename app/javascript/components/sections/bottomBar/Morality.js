@@ -9,7 +9,12 @@ import { useSelector } from "react-redux";
 const Morality = () => {
   const {
     theme: {
-      color: { secondary: barBackground, middle: containerBackground, fontDefault },
+      color: {
+        error: renegadeBarBackground,
+        secondary: paragonBarBackground,
+        middle: containerBackground,
+        fontDefault,
+      },
     },
   } = useSelector(state => state.theme);
 
@@ -55,22 +60,46 @@ const Morality = () => {
   // TODO: https://www.google.com/search?q=sci+fi+ui+font+quote&tbm=isch&ved=2ahUKEwjAoIi39YbqAhXDXhUIHackBoUQ2-cCegQIABAA&oq=sci+fi+ui+font+quote&gs_lcp=CgNpbWcQA1C0M1i5PGC9PWgAcAB4AIABVYgB9AOSAQE4mAEAoAEBqgELZ3dzLXdpei1pbWc&sclient=img&ei=FQnpXoDCNcO91fAPp8mYqAg&bih=789&biw=1440&rlz=1C5CHFA_enIE838IE838#imgrc=Ec9YjAmUpGnlvM
   // implement this style          ///////////////(middle)\\\\\\\\\\\\\\
 
+  const progressBarParams = { outline: true, range: 20, containerBackground, height: "24px" };
+
+  const renegadeMorality = 0 < morality - 20 ? Math.abs(morality - 20) : 0;
+  const paragonMorality = 0 < morality - 20 ? 0 : morality - 20;
+
   return (
-    <ProgressBar
-      discrete
-      // skewRight
-      outline
-      {...{
-        value: morality,
-        range: 40,
-        resolution: 40,
-        barBackground,
-        containerBackground,
-        height: "24px",
-        hover,
-      }}
-    />
+    <Spacing horizontal hover={hover}>
+      <ProgressBar
+        {...{
+          transform: `scale(-1) skew(-30deg, 0deg)`, // custom skew here as we want to mirror flip this using scale(-1) trick
+          value: renegadeMorality,
+          barBackground: renegadeBarBackground,
+          outlineColor: renegadeBarBackground,
+          ...progressBarParams,
+        }}
+      />
+      <div>middle</div>
+      <ProgressBar
+        skewLeft
+        {...{ value: paragonMorality, barBackground: paragonBarBackground, ...progressBarParams }}
+      />
+    </Spacing>
   );
+
+  // return (
+  //   <ProgressBar
+  //     discrete
+  //     // skewRight
+  //     outline
+  //     {...{
+  //       value: morality,
+  //       range: 40,
+  //       resolution: 40,
+  //       barBackground,
+  //       containerBackground,
+  //       height: "24px",
+  //       hover,
+  //     }}
+  //   />
+  // );
 };
 
 export default Morality;
