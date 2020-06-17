@@ -6,25 +6,6 @@ import Spacing from "../../layout/Spacing";
 import ProgressBar from "../../misc/ProgressBar";
 import { useSelector } from "react-redux";
 
-// other suggestions:
-// paragon:
-// - nobel peace prize winner
-// - beacon of hope
-// renegade:
-// - the feared
-// - the dreaded
-const MORALITY_LEVEL_TEXT = {
-  "0": "Infamous", // end of line
-  "5": "Bad Ass",
-  "10": "Scoundrel",
-  "15": "Renegade 1",
-  "20": "Neutral", // neutral
-  "25": "Goody Two Shoes",
-  "30": "Paragon 2",
-  "35": "Ghandi",
-  "40": "Renown", // end of line
-};
-
 const Morality = () => {
   const {
     theme: {
@@ -32,9 +13,11 @@ const Morality = () => {
     },
   } = useSelector(state => state.theme);
 
-  const { morality: value } = useSelector(state => state.player);
+  const { morality } = useSelector(state => state.player);
 
-  const isParagon = 20 <= value;
+  const isParagon = 20 <= morality;
+
+  const { moralityLevelText, moralityLevelQuote } = getMoralityText(morality);
 
   const hover = (
     <Card
@@ -46,7 +29,7 @@ const Morality = () => {
               <Text primary medium bold uppercase children="Morality" />
               <Spacing top={0.5} />
               <Text extraSmall light {...{ error: !isParagon, secondary: isParagon }}>
-                [{MORALITY_LEVEL_TEXT[value]}:{value}]
+                [{moralityLevelText} : {morality}]
               </Text>
             </Text>
             <SVG {...{ name: "GoodAndEvil", size: 6 }} />
@@ -64,11 +47,7 @@ const Morality = () => {
             you more favourable rates!
           </Text>
         ),
-        footer: (
-          <Text extraSmall muted italics>
-            "somy funny moorality score dependenent remark here - [wip]"
-          </Text>
-        ),
+        footer: <Text extraSmall muted italics children={`"${moralityLevelQuote}"`} />,
       }}
     />
   );
@@ -82,7 +61,7 @@ const Morality = () => {
       // skewRight
       outline
       {...{
-        value,
+        value: morality,
         range: 40,
         resolution: 40,
         barBackground,
@@ -95,3 +74,64 @@ const Morality = () => {
 };
 
 export default Morality;
+
+// const getMoralityQuote = morality => {
+//   const moralityQoutes = MORALITY_QOUTES[morality];
+
+//   return moralityQoutes[Math.round(Math.random() * (moralityQoutes.length - 1))];
+// };
+
+// other suggestions:
+// paragon:
+// - nobel peace prize winner
+// - beacon of hope
+// renegade:
+// - the feared
+// - the dreaded
+const getMoralityText = morality => {
+  if (morality === 0)
+    return {
+      moralityLevelText: "Infamous",
+      moralityLevelQuote: "some funny quote coming soon [WIP]...",
+    };
+  else if (morality < 5)
+    return {
+      moralityLevelText: "Bad Ass",
+      moralityLevelQuote: "some funny quote coming soon [WIP]...",
+    };
+  else if (morality < 10)
+    return {
+      moralityLevelText: "Scoundrel",
+      moralityLevelQuote: "some funny quote coming soon [WIP]...",
+    };
+  else if (morality < 15)
+    return {
+      moralityLevelText: "Renegade 1",
+      moralityLevelQuote: "some funny quote coming soon [WIP]...",
+    };
+  else if (morality === 20)
+    return {
+      moralityLevelText: "Neutral",
+      moralityLevelQuote: "I used to be indecisive, now I'm not so sure.",
+    };
+  else if (morality < 25)
+    return {
+      moralityLevelText: "Goody Two Shoes",
+      moralityLevelQuote: "I saved a Nyan Cat stuck in a space tree yesterday.",
+    };
+  else if (morality < 30)
+    return {
+      moralityLevelText: "Paragon 2",
+      moralityLevelQuote: "some funny quote coming soon [WIP]...",
+    };
+  else if (morality < 35)
+    return {
+      moralityLevelText: "Ghandi",
+      moralityLevelQuote: "some funny quote coming soon [WIP]...",
+    };
+  else if (morality < 40)
+    return {
+      moralityLevelText: "Renown",
+      moralityLevelQuote: "some funny quote coming soon [WIP]...",
+    };
+};

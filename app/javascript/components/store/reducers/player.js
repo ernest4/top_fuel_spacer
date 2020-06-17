@@ -7,7 +7,7 @@ const initialState = {
   // users. For players who wish to do guest session only, they will need to be warned that once
   // they wish to join multiplayer, they will have to start from scratch (to prevent cheating)!
   // morality: 0, // the renegade (negative) / paragon (positive) score
-  morality: 20, // the renegade (negative) / paragon (positive) score
+  morality: 21, // the renegade (negative) / paragon (positive) score
 };
 
 // const otherReducer = handleActions({
