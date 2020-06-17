@@ -5,11 +5,13 @@ import SVG from "../../svg/SVG";
 import Spacing from "../../layout/Spacing";
 import ProgressBar from "../../misc/ProgressBar";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
 
 const Morality = () => {
   const {
     theme: {
       color: {
+        primary,
         error: renegadeBarBackground,
         secondary: paragonBarBackground,
         middle: containerBackground,
@@ -72,40 +74,73 @@ const Morality = () => {
     <Spacing horizontal hover={hover}>
       <ProgressBar
         {...{
-          transform: `scale(-1) skew(-30deg, 0deg)`, // custom skew here as we want to mirror flip this using scale(-1) trick
+          transform: `scale(-1) skew(30deg, 0deg)`, // custom skew here as we want to mirror flip this using scale(-1) trick
           value: renegadeMorality,
           barBackground: renegadeBarBackground,
           outlineColor: renegadeBarBackground,
           ...progressBarParams,
         }}
       />
-      <div>middle</div>
+      <Triangle background={primary} />
       <ProgressBar
-        skewLeft
+        skewRight
         {...{ value: paragonMorality, barBackground: paragonBarBackground, ...progressBarParams }}
       />
     </Spacing>
   );
-
-  // return (
-  //   <ProgressBar
-  //     discrete
-  //     // skewRight
-  //     outline
-  //     {...{
-  //       value: morality,
-  //       range: 40,
-  //       resolution: 40,
-  //       barBackground,
-  //       containerBackground,
-  //       height: "24px",
-  //       hover,
-  //     }}
-  //   />
-  // );
 };
 
 export default Morality;
+
+const Triangle = ({ background }) => {
+  return <Container {...{ background }} />;
+};
+
+const Container = styled.div`
+  width: 0px;
+  height: 0px;
+
+  border-left: 24px solid transparent;
+  border-right: 24px solid transparent;
+  border-top: 25px solid ${({ background }) => background || "purple"};
+
+  transform: scale(0.6, 1);
+`;
+
+// TODO: figure out if you can have rounded corner triangle like below  https://dabblet.com/gist/4592062
+
+// const Container = styled.div`
+//   /* position: relative; */
+//   background-color: orange;
+//   /* text-align: left; */
+
+//   :before,
+//   :after {
+//     content: "";
+//     position: absolute;
+//     background-color: inherit;
+//   }
+
+//   width: 40px;
+//   height: 40px;
+//   border-top-right-radius: 30%;
+
+//   :before,
+//   :after {
+//     width: 40px;
+//     height: 40px;
+//     border-top-right-radius: 30%;
+//   }
+
+//   transform: rotate(-60deg) skewX(-30deg) scale(1, 0.866);
+
+//   :before {
+//     transform: rotate(-135deg) skewX(-45deg) scale(1.414, 0.707) translate(0, -50%);
+//   }
+//   :after {
+//     transform: rotate(135deg) skewY(-45deg) scale(0.707, 1.414) translate(50%);
+//   }
+// `;
 
 const MORALITY_RANGE = 20;
 
