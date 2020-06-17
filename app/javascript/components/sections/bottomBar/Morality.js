@@ -20,9 +20,13 @@ const Morality = () => {
 
   const { morality } = useSelector(state => state.player);
 
-  const isParagon = 20 <= morality;
+  const isParagon = MORALITY_RANGE <= morality;
 
   const { moralityLevelText, moralityLevelQuote } = getMoralityText(morality);
+
+  const normalizedMorality = morality - MORALITY_RANGE;
+  const renegadeMorality = 0 < normalizedMorality ? 0 : Math.abs(normalizedMorality);
+  const paragonMorality = 0 < normalizedMorality ? normalizedMorality : 0;
 
   const hover = (
     <Card
@@ -34,7 +38,7 @@ const Morality = () => {
               <Text primary medium bold uppercase children="Morality" />
               <Spacing top={0.5} />
               <Text extraSmall light {...{ error: !isParagon, secondary: isParagon }}>
-                [{moralityLevelText} : {morality}]
+                [{moralityLevelText} : {Math.abs(normalizedMorality)}]
               </Text>
             </Text>
             <SVG {...{ name: "GoodAndEvil", size: 6 }} />
@@ -57,13 +61,12 @@ const Morality = () => {
     />
   );
 
-  // TODO: https://www.google.com/search?q=sci+fi+ui+font+quote&tbm=isch&ved=2ahUKEwjAoIi39YbqAhXDXhUIHackBoUQ2-cCegQIABAA&oq=sci+fi+ui+font+quote&gs_lcp=CgNpbWcQA1C0M1i5PGC9PWgAcAB4AIABVYgB9AOSAQE4mAEAoAEBqgELZ3dzLXdpei1pbWc&sclient=img&ei=FQnpXoDCNcO91fAPp8mYqAg&bih=789&biw=1440&rlz=1C5CHFA_enIE838IE838#imgrc=Ec9YjAmUpGnlvM
-  // implement this style          ///////////////(middle)\\\\\\\\\\\\\\
-
-  const progressBarParams = { outline: true, range: 20, containerBackground, height: "24px" };
-
-  const renegadeMorality = 0 < morality - 20 ? Math.abs(morality - 20) : 0;
-  const paragonMorality = 0 < morality - 20 ? 0 : morality - 20;
+  const progressBarParams = {
+    outline: true,
+    range: MORALITY_RANGE,
+    containerBackground,
+    height: "24px",
+  };
 
   return (
     <Spacing horizontal hover={hover}>
@@ -104,6 +107,8 @@ const Morality = () => {
 
 export default Morality;
 
+const MORALITY_RANGE = 20;
+
 // const getMoralityQuote = morality => {
 //   const moralityQoutes = MORALITY_QOUTES[morality];
 
@@ -138,7 +143,7 @@ const getMoralityText = morality => {
       moralityLevelText: "Renegade 1",
       moralityLevelQuote: "some funny quote coming soon [WIP]...",
     };
-  else if (morality === 20)
+  else if (morality === MORALITY_RANGE)
     return {
       moralityLevelText: "Neutral",
       moralityLevelQuote: "I used to be indecisive, now I'm not so sure.",
@@ -158,7 +163,7 @@ const getMoralityText = morality => {
       moralityLevelText: "Ghandi",
       moralityLevelQuote: "some funny quote coming soon [WIP]...",
     };
-  else if (morality < 40)
+  else if (morality <= 40)
     return {
       moralityLevelText: "Renown",
       moralityLevelQuote: "some funny quote coming soon [WIP]...",

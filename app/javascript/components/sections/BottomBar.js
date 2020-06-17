@@ -16,7 +16,7 @@ const BottomBar = () => {
       {...{ background: closest, all: 1, position: "fixed", absoluteBottom: "0px", width: "100%" }}
     >
       <div>player avatar info</div>
-      <Spacing {...{ width: "80%" }}>
+      <Spacing {...{ width: "80%", right: 2 }}>
         <Morality />
       </Spacing>
     </Spacing>

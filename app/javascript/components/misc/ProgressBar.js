@@ -58,7 +58,12 @@ const ProgressBar = ({
       <Spacing horizontal {...{ height, width: "100%", hover }}>
         {Array.from(Array(dataPoints)).map((x, key) => (
           <Spacing {...{ key, width: `100%`, all: 0.375, left: 0 < key ? "0" : 0.375 }}>
-            <Bar {...{ show: key / dataPoints <= progress, background: barBackground }} />
+            <Bar
+              {...{
+                show: progress !== 0 && key / dataPoints <= progress,
+                background: barBackground,
+              }}
+            />
           </Spacing>
         ))}
       </Spacing>
