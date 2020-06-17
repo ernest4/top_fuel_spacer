@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Text from "../layout/Text";
 import Card from "../layout/Card";
 import Line from "../layout/Line";
+import SVG from "../svg/SVG";
 
 const BottomBar = () => {
   const {
@@ -19,6 +20,7 @@ const BottomBar = () => {
       {...{ background: closest, all: 1, position: "fixed", absoluteBottom: "0px", width: "100%" }}
     >
       <div>player avatar info</div>
+      <SVG {...{ name: "GoodAndEvil" }} />
       <Spacing {...{ width: "80%" }}>
         <MoralityBar />
       </Spacing>
@@ -28,13 +30,20 @@ const BottomBar = () => {
 
 export default BottomBar;
 
+// other suggestions:
+// paragon:
+// - nobel peace prize winner
+// - beacon of hope
+// renegade:
+// - the feared
+// - the dreaded
 const MORALITY_LEVEL_TEXT = {
   "0": "Infamous", // final
-  "5": "Renegade 3",
+  "5": "Bad Ass",
   "10": "Scoundrel",
   "15": "Renegade 1",
   "20": "Neutral", // neutral
-  "25": "Goody two shoes",
+  "25": "Goody Two Shoes",
   "30": "Paragon 2",
   "35": "Ghandi",
   "40": "Renown", // final
@@ -57,15 +66,16 @@ const MoralityBar = () => {
       right
       {...{
         header: (
-          <Text small>
-            <Text primary medium bold uppercase children="Morality" />
-            <Spacing top={0.5} />
-            <i>
+          <Spacing horizontal>
+            <Text small>
+              <Text primary medium bold uppercase children="Morality" />
+              <Spacing top={0.5} />
               <Text extraSmall light {...{ error: !isParagon, secondary: isParagon }}>
-                "[{MORALITY_LEVEL_TEXT[value]}:{value}]"
+                [{MORALITY_LEVEL_TEXT[value]}:{value}]
               </Text>
-            </i>
-          </Text>
+            </Text>
+            <SVG {...{ name: "GoodAndEvil" }} />
+          </Spacing>
         ),
         body: (
           <Text extraSmall>
@@ -81,7 +91,11 @@ const MoralityBar = () => {
         ),
         footer: (
           <>
-            <Text extraSmall>- [somy funny remark here - wip]</Text>
+            <i>
+              <Text extraSmall muted>
+                - "somy funny remark here - wip"
+              </Text>
+            </i>
             <Spacing top={0.5} bottom={0.5}>
               <Line />
             </Spacing>

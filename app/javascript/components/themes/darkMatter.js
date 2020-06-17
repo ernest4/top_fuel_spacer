@@ -14,6 +14,6 @@ export default {
     warning: "hsl(35, 75%, 58%)", // general orange
   },
   font: {
-    muted: "hsl(208, 7%, 46%)", // for tertiary text
+    muted: "hsl(208, 7%, 56%)", // for tertiary text
   },
 };
