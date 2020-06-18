@@ -15,6 +15,7 @@ const PlayerAvatarInfo = () => {
     >
       <Spacing horizontal {...{ align: "flex-end", bottom: 1 }}>
         <Player />
+        <Spacing width={`${12 * SPACING}px`} />
         <Prestige />
       </Spacing>
       <PlayerXpBar />
@@ -26,18 +27,33 @@ export default PlayerAvatarInfo;
 
 const Player = () => {
   const secondary = useSelector(state => state.theme.theme.color.secondary);
+  const background = useSelector(state => state.theme.theme.color.closest);
 
   return (
     <Spacing
+      center
       {...{
-        width: `${12 * SPACING}px`,
-        height: `${12 * SPACING}px`,
+        width: `${14 * SPACING}px`,
+        height: `${14 * SPACING}px`,
         borderRadius: "100%",
-        background: "transparent",
-        border: `6px solid ${secondary}`,
+        background,
+        position: "fixed",
+        absoluteBottom: `${3 * SPACING}px`,
+        absoluteLeft: `${1 * SPACING}px`,
       }}
     >
-      player
+      <Spacing
+        center
+        {...{
+          width: `${12 * SPACING}px`,
+          height: `${12 * SPACING}px`,
+          borderRadius: "100%",
+          background: "transparent",
+          border: `6px solid ${secondary}`,
+        }}
+      >
+        player
+      </Spacing>
     </Spacing>
   );
 };
@@ -55,6 +71,7 @@ const Prestige = () => {
         borderRadius: "100%",
         background: "red",
         border: `4px solid ${secondary}`,
+        z: "1",
       }}
     >
       <div>{prestige}</div>
