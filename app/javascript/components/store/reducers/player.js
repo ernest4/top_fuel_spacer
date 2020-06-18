@@ -8,6 +8,10 @@ const initialState = {
   // they wish to join multiplayer, they will have to start from scratch (to prevent cheating)!
   // morality: 0, // the renegade (negative) / paragon (positive) score
   morality: 5, // the renegade (negative) / paragon (positive) score
+  xp: 30,
+  levelUpXp: 100,
+  level: 1,
+  prestige: 0,
 };
 
 // const otherReducer = handleActions({

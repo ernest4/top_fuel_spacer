@@ -40,7 +40,7 @@ const Spacing = forwardRef(({ hover, interactiveHover, ...props }, ref) => {
 
 export default memo(Spacing);
 
-const SPACING = 8;
+export const SPACING = 8;
 
 const Container = styled.div`
   display: ${({ scroll, overflow }) => (scroll || overflow ? "block" : "flex")};

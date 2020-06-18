@@ -1,7 +1,8 @@
 import React from "react";
-import Spacing from "../layout/Spacing";
+import Spacing, { SPACING } from "../layout/Spacing";
 import { useSelector } from "react-redux";
 import Morality from "./bottomBar/Morality";
+import PlayerAvatarInfo from "./bottomBar/PlayerAvatarInfo";
 
 const BottomBar = () => {
   const {
@@ -15,7 +16,8 @@ const BottomBar = () => {
       horizontal
       {...{ background: closest, all: 1, position: "fixed", absoluteBottom: "0px", width: "100%" }}
     >
-      <div>player avatar info</div>
+      <PlayerAvatarInfo />
+      <div /> {/* dummy for auto spacing */}
       <Spacing {...{ width: "80%", right: 2 }}>
         <Morality />
       </Spacing>
