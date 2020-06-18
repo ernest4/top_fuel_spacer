@@ -3,9 +3,9 @@ export default {
   color: {
     primary: "hsl(20, 75%, 58%)", // main actions
     secondary: "hsl(200, 75%, 58%)", // everywhere else (accents)
-    background: "hsl(207, 24%, 84%)", // global background, darkest
-    furthest: "hsl(216, 35%, 92%)", // darkest ui container
-    middle: "hsl(200, 27%, 98%)", // main ui container
+    background: "hsl(207, 24%, 78%)", // global background, darkest
+    furthest: "hsl(216, 35%, 86%)", // darkest ui container
+    middle: "hsl(200, 27%, 92%)", // main ui container
     closest: "hsl(0, 0%, 100%)", // top ui container (main controls)
     black: "hsl(0, 0%, 29%)", // darkest color
     white: "hsl(0, 0%, 100%)", // lightest color
