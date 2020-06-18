@@ -44,9 +44,11 @@ const Player = () => {
 
 const Prestige = () => {
   const secondary = useSelector(state => state.theme.theme.color.secondary);
+  const prestige = useSelector(state => state.player.prestige);
 
   return (
     <Spacing
+      center
       {...{
         width: `${4 * SPACING}px`,
         height: `${4 * SPACING}px`,
@@ -55,7 +57,7 @@ const Prestige = () => {
         border: `4px solid ${secondary}`,
       }}
     >
-      prestige
+      <div>{prestige}</div>
     </Spacing>
   );
 };

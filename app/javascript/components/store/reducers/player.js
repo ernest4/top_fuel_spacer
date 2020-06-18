@@ -11,7 +11,7 @@ const initialState = {
   xp: 30,
   levelUpXp: 100,
   level: 1,
-  prestige: 0,
+  prestige: 2,
 };
 
 // const otherReducer = handleActions({
