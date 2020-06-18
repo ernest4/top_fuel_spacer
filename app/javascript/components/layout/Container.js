@@ -7,8 +7,8 @@ import Line from "./Line";
 const Container = ({ children, items, right, borderColor, fillColor, separator }) => {
   // NOTE: the separator is unlikely to ever be used. But migth be repurposed? so keeping it around.
 
-  const secondary = useSelector(state => state.theme.color.secondary);
-  const furthest = useSelector(state => state.theme.color.furthest);
+  const secondary = useSelector(state => state.theme.theme.color.secondary);
+  const furthest = useSelector(state => state.theme.theme.color.furthest);
 
   const COMMON_INNER_PROPS = {
     background: fillColor || furthest,

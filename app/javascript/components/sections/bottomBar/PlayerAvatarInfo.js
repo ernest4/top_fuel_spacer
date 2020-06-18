@@ -23,7 +23,10 @@ const PlayerAvatarInfo = () => {
         <Player />
         <Prestige />
       </Spacing>
-      <ProgressBar outline {...{ value: xp, range: levelUpXp, resolution: 10 }} />
+      <ProgressBar
+        outline
+        {...{ value: xp, range: levelUpXp, resolution: 10, height: `${2 * SPACING}px` }}
+      />
     </Spacing>
   );
 };

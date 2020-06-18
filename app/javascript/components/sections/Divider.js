@@ -5,7 +5,7 @@ import Spacing from "../layout/Spacing";
 const CONSTRUCTION_YELLOW = "#f8c602";
 
 const Divider = () => {
-  const black = useSelector(state => state.theme.color.black);
+  const black = useSelector(state => state.theme.theme.color.black);
 
   const background = `repeating-linear-gradient(
     -55deg,

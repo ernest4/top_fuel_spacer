@@ -5,7 +5,7 @@ import Morality from "./bottomBar/Morality";
 import PlayerAvatarInfo from "./bottomBar/PlayerAvatarInfo";
 
 const BottomBar = () => {
-  const closest = useSelector(state => state.theme.color.closest);
+  const closest = useSelector(state => state.theme.theme.color.closest);
 
   return (
     <Spacing

@@ -4,7 +4,7 @@ import Container from "./Container";
 
 // TODO: react memo?
 const Card = ({ children, header, body, footer, right, fillColor }) => {
-  const closest = useSelector(state => state.theme.color.closest);
+  const closest = useSelector(state => state.theme.theme.color.closest);
 
   // TODO: follow style [header(s) (name), body(s) (explanation), footer(s) (funny line)]
 

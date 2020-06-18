@@ -68,9 +68,9 @@ const Draggable = forwardRef(
 export default memo(Draggable);
 
 const DraggableButton = forwardRef(({ ...props }, ref) => {
-  const furthest = useSelector(state => state.theme.color.furthest);
-  const closest = useSelector(state => state.theme.color.closest);
-  const secondary = useSelector(state => state.theme.color.secondary);
+  const furthest = useSelector(state => state.theme.theme.color.furthest);
+  const closest = useSelector(state => state.theme.theme.color.closest);
+  const secondary = useSelector(state => state.theme.theme.color.secondary);
 
   const COMMON_RECT = {
     position: "absolute",
