@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const SCALE = 8;
 
 // TODO: add wrapper settings and controlls for the wrapped svg
-const SVG = ({ name, size, fill }) => {
+const SVG = ({ name, size, width, height, fill }) => {
   const {
     theme: {
       color: { white },
@@ -14,7 +14,7 @@ const SVG = ({ name, size, fill }) => {
 
   const sizing = `${(size || 1) * SCALE}`;
 
-  return svgs[name]({ fill: fill || white, width: sizing, height: sizing });
+  return svgs[name]({ fill: fill || white, width: width || sizing, height: height || sizing });
 };
 
 export default SVG;

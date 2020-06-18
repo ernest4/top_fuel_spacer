@@ -20,7 +20,7 @@ const ProgressBar = ({
 }) => {
   const {
     theme: {
-      color: { secondary, furthest },
+      color: { secondary, furthest, middle },
     },
   } = useSelector(state => state.theme);
 
@@ -51,7 +51,8 @@ const ProgressBar = ({
         width: "100%",
         pointer,
         transform: transformOverride || transform,
-        background: containerBackground || "transparent",
+        // background: containerBackground || "transparent",
+        background: containerBackground || middle,
         ...outlineProps,
       }}
     >
