@@ -11,7 +11,7 @@ const Debug = () => {
   const state = useSelector(state => state);
 
   return (
-    <Draggable useButton background="#f1f1f1" width="25%">
+    <Draggable useButton {...{ background: "#f1f1f1", width: "25%", absoluteTop: "0px" }}>
       <Spacing background="#2196F3">
         <Text>Debug Controls</Text>
       </Spacing>

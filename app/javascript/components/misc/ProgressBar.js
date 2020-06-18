@@ -20,15 +20,11 @@ const ProgressBar = ({
 }) => {
   const {
     theme: {
-      color: { secondary, furthest, middle },
+      color: { secondary, middle },
     },
   } = useSelector(state => state.theme);
 
   const progress = value / range;
-
-  console.log(`value: ${value}`);
-  console.log(`range: ${range}`);
-  console.log(`progress: ${progress}`);
 
   let transform = "";
 

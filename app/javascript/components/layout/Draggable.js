@@ -83,11 +83,6 @@ const DraggableButton = forwardRef(({ ...props }, ref) => {
     boxShadow: `inset 0px 0px 0px 1px ${furthest}`,
   };
 
-  // TODO: need on hover tooltip! (time for hover module... part of Spacing likely as a prop)
-  // TODO: this should pop out on hover!!!
-
-  // TODO: color choice seems not contrasty enough! Update themes using HSL and tweak those params!
-
   const hover = (
     <Container fillColor={closest}>
       <Text extraSmall>Click and drag this button to move around the Debugger</Text>

@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 const SCALE = 8;
 
-// TODO: add wrapper settings and controlls for the wrapped svg
 const SVG = ({ name, size, width, height, fill }) => {
   const {
     theme: {

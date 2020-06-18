@@ -1,8 +1,6 @@
 import React from "react";
 import Debug from "./Debug";
 import Spacing from "./layout/Spacing";
-// import * as gameActions from "./store/actions/game";
-// import { useSelector, useDispatch } from "react-redux";
 import Flying from "./sections/Flying";
 import AntFarm from "./sections/AntFarm";
 import Info from "./sections/Info";
@@ -11,8 +9,6 @@ import BottomBar from "./sections/BottomBar";
 import Divider from "./sections/Divider";
 
 const Game = ({ debug }) => {
-  // const dispatch = useDispatch();
-
   return (
     <div>
       <Spacing>

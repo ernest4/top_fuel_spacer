@@ -5,17 +5,11 @@ import SVG from "../../svg/SVG";
 import Spacing from "../../layout/Spacing";
 import ProgressBar from "../../misc/ProgressBar";
 import { useSelector } from "react-redux";
-import styled from "styled-components";
 
 const Morality = () => {
   const {
     theme: {
-      color: {
-        primary,
-        error: renegadeBarBackground,
-        secondary: paragonBarBackground,
-        fontDefault,
-      },
+      color: { primary, error: renegadeBarBackground, secondary: paragonBarBackground },
     },
   } = useSelector(state => state.theme);
 
