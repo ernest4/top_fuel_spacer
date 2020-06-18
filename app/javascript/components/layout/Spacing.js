@@ -5,11 +5,7 @@ import { followCursor } from "tippy.js";
 import { useSelector } from "react-redux";
 
 const Spacing = forwardRef(({ hover, interactiveHover, ...props }, ref) => {
-  const {
-    graphics: {
-      hover: { followCursor: canFollowCursor },
-    },
-  } = useSelector(state => state.settings);
+  const canFollowCursor = useSelector(state => state.settings.graphics.hover.followCursor);
 
   if (hover || interactiveHover) {
     return (

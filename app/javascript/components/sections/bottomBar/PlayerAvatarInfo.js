@@ -1,8 +1,15 @@
 import React from "react";
 import Spacing, { SPACING } from "../../layout/Spacing";
 import ProgressBar from "../../misc/ProgressBar";
+import { useSelector } from "react-redux";
 
 const PlayerAvatarInfo = () => {
+  const xp = useSelector(state => state.player.xp);
+  const levelUpXp = useSelector(state => state.player.levelUpXp);
+
+  console.log(xp);
+  console.log(levelUpXp);
+
   return (
     <Spacing
       vertical
@@ -16,8 +23,7 @@ const PlayerAvatarInfo = () => {
         <Player />
         <Prestige />
       </Spacing>
-      {/* <ProgressBar /> */}
-      <div>progress</div>
+      <ProgressBar outline {...{ value: xp, range: levelUpXp, resolution: 10 }} />
     </Spacing>
   );
 };

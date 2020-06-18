@@ -18,11 +18,8 @@ const ProgressBar = ({
   skewLeft,
   transform: transformOverride, // used in one specific case so far in morality rengedate bar...
 }) => {
-  const {
-    theme: {
-      color: { secondary, middle },
-    },
-  } = useSelector(state => state.theme);
+  const secondary = useSelector(state => state.theme.color.secondary);
+  const middle = useSelector(state => state.theme.color.middle);
 
   const progress = value / range;
 
@@ -58,7 +55,7 @@ const ProgressBar = ({
             <Bar
               {...{
                 show: progress !== 0 && key / dataPoints <= progress,
-                background: barBackground,
+                background: barBackground || "purple",
               }}
             />
           </Spacing>
@@ -71,11 +68,7 @@ const ProgressBar = ({
 export default ProgressBar;
 
 const Bar = ({ show, background }) => {
-  const {
-    theme: {
-      color: { black },
-    },
-  } = useSelector(state => state.theme);
+  const black = useSelector(state => state.theme.color.black);
 
   return (
     <Spacing

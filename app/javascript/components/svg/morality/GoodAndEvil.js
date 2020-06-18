@@ -2,11 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 export default ({ fill, width, height }) => {
-  const {
-    theme: {
-      color: { error, secondary },
-    },
-  } = useSelector(state => state.theme);
+  const error = useSelector(state => state.theme.color.error);
+  const secondary = useSelector(state => state.theme.color.secondary);
 
   return (
     <svg

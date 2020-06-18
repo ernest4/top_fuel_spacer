@@ -7,13 +7,11 @@ import ProgressBar from "../../misc/ProgressBar";
 import { useSelector } from "react-redux";
 
 const Morality = () => {
-  const {
-    theme: {
-      color: { primary, error: renegadeBarBackground, secondary: paragonBarBackground },
-    },
-  } = useSelector(state => state.theme);
+  const primary = useSelector(state => state.theme.color.primary);
+  const renegadeBarBackground = useSelector(state => state.theme.color.error);
+  const paragonBarBackground = useSelector(state => state.theme.color.secondary);
 
-  const { morality } = useSelector(state => state.player);
+  const morality = useSelector(state => state.player.morality);
 
   const isParagon = MORALITY_RANGE <= morality;
 

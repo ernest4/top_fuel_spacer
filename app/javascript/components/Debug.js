@@ -30,9 +30,7 @@ export default Debug;
 const ThemeSelect = () => {
   const dispatch = useDispatch();
 
-  const {
-    theme: { name: currentThemeName },
-  } = useSelector(state => state.theme);
+  const currentThemeName = useSelector(state => state.theme.name);
 
   const onThemeSelect = ({ target: { value } }) => dispatch(themeActions.setTheme(value));
 

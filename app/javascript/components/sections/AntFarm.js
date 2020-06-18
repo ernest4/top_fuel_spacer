@@ -3,11 +3,7 @@ import Spacing from "../layout/Spacing";
 import { useSelector } from "react-redux";
 
 const AntFarm = () => {
-  const {
-    theme: {
-      color: { background },
-    },
-  } = useSelector(state => state.theme);
+  const background = useSelector(state => state.theme.color.background);
 
   return (
     <Spacing scroll {...{ height: "100vh", width: "100%", background }}>

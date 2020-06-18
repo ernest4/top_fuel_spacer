@@ -3,11 +3,7 @@ import Spacing from "./Spacing";
 import { useSelector } from "react-redux";
 
 const Line = () => {
-  const {
-    theme: {
-      color: { secondary: background },
-    },
-  } = useSelector(state => state.theme);
+  const background = useSelector(state => state.theme.color.secondary);
 
   return <Spacing {...{ background, height: "2px", width: "100%" }} />;
 };
