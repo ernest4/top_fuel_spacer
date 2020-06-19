@@ -3,7 +3,7 @@
     "browser": true,
     "es6": true
   },
-  "extends": ["plugin:react/recommended", "airbnb"],
+  "extends": ["plugin:react/recommended", "plugin:react-hooks/recommended"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -38,6 +38,8 @@
     "yoda": "off",
     "consistent-return": "off",
     "no-use-before-define": ["error", { "variables": false }],
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "react/display-name": "off",
+    "react/jsx-key": "off"
   }
 }

@@ -94,6 +94,7 @@ const Level = () => {
 
 // TODO: this needs outline white background like the other two circles above!
 const Prestige = () => {
+  const background = useSelector(state => state.theme.theme.color.closest);
   const secondary = useSelector(state => state.theme.theme.color.secondary);
   const prestige = useSelector(state => state.player.prestige);
 
@@ -101,18 +102,28 @@ const Prestige = () => {
     <Spacing
       center
       {...{
-        position: "absolute",
-        absoluteBottom: `${12 * SPACING}px`,
-        absoluteLeft: `-${SPACING}px`,
-        width: `${6 * SPACING}px`,
-        height: `${6 * SPACING}px`,
+        width: `${8 * SPACING}px`,
+        height: `${8 * SPACING}px`,
         borderRadius: "100%",
-        background: "aqua",
-        border: `4px solid ${secondary}`,
-        z: "1",
-        children: <div>{prestige}</div>,
+        background,
+        position: "absolute",
+        absoluteLeft: `-${SPACING}px`,
+        absoluteBottom: `${12 * SPACING}px`,
       }}
-    />
+    >
+      <Spacing
+        center
+        {...{
+          width: `${6 * SPACING}px`,
+          height: `${6 * SPACING}px`,
+          borderRadius: "100%",
+          background: "aqua",
+          border: `4px solid ${secondary}`,
+          z: "1",
+          children: <div>{prestige}</div>,
+        }}
+      />
+    </Spacing>
   );
 };
 

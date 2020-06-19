@@ -1,4 +1,4 @@
-import React, { forwardRef, memo, useEffect, useRef, useState } from "react";
+import React, { forwardRef, memo, useEffect, useRef } from "react";
 import _ from "lodash";
 import Spacing from "./Spacing";
 import { useSelector } from "react-redux";
@@ -14,45 +14,13 @@ const Draggable = forwardRef(
 
     useEffect(() => {
       if (draggableRef && draggableRefCallback) draggableRefCallback(draggableRef);
-    }, [draggableRef, draggableRefCallback]);
+    }, [draggableRefCallback]);
 
     useEffect(() => {
-      if (useButton) draggableButtonRef.current.onmousedown = dragMouseDown;
-      else draggableRef.current.onmousedown = dragMouseDown;
+      if (useButton)
+        draggableButtonRef.current.onmousedown = createDragMouseDownCallback(draggableRef);
+      else draggableRef.current.onmousedown = createDragMouseDownCallback(draggableRef);
     }, [useButton]);
-
-    const dragMouseDown = event => {
-      const _event = event || window.event;
-      _event.preventDefault();
-
-      // get the mouse cursor position at startup:
-      let pos3 = _event.clientX;
-      let pos4 = _event.clientY;
-
-      // call a function whenever the cursor moves:
-      document.onmousemove = _.throttle(mouseMoveEvent => {
-        const _mouseMoveEvent = mouseMoveEvent || window.event;
-        _mouseMoveEvent.preventDefault();
-
-        // calculate the new cursor position:
-        const pos1 = pos3 - _mouseMoveEvent.clientX;
-        const pos2 = pos4 - _mouseMoveEvent.clientY;
-        pos3 = _mouseMoveEvent.clientX;
-        pos4 = _mouseMoveEvent.clientY;
-
-        // set the element's new position:
-        draggableRef.current.style.top = `${draggableRef.current.offsetTop - pos2}px`;
-        draggableRef.current.style.left = `${draggableRef.current.offsetLeft - pos1}px`;
-      }, 32);
-
-      document.onmouseup = closeDragElement;
-    };
-
-    const closeDragElement = () => {
-      /* stop moving when mouse button is released:*/
-      document.onmouseup = null;
-      document.onmousemove = null;
-    };
 
     return (
       <Spacing {...{ ...props, position: "absolute", z: "9999", ref: draggableRef }}>
@@ -66,6 +34,39 @@ const Draggable = forwardRef(
 );
 
 export default memo(Draggable);
+
+const createDragMouseDownCallback = draggableRef => {
+  return event => {
+    const _event = event || window.event;
+    _event.preventDefault();
+
+    // get the mouse cursor position at startup:
+    let pos3 = _event.clientX;
+    let pos4 = _event.clientY;
+
+    // call a function whenever the cursor moves:
+    document.onmousemove = _.throttle(mouseMoveEvent => {
+      const _mouseMoveEvent = mouseMoveEvent || window.event;
+      _mouseMoveEvent.preventDefault();
+
+      // calculate the new cursor position:
+      const pos1 = pos3 - _mouseMoveEvent.clientX;
+      const pos2 = pos4 - _mouseMoveEvent.clientY;
+      pos3 = _mouseMoveEvent.clientX;
+      pos4 = _mouseMoveEvent.clientY;
+
+      // set the element's new position:
+      draggableRef.current.style.top = `${draggableRef.current.offsetTop - pos2}px`;
+      draggableRef.current.style.left = `${draggableRef.current.offsetLeft - pos1}px`;
+    }, 32);
+
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = () => {
+      document.onmouseup = null;
+      document.onmousemove = null;
+    };
+  };
+};
 
 const DraggableButton = forwardRef(({ ...props }, ref) => {
   const furthest = useSelector(state => state.theme.theme.color.furthest);
