@@ -31,7 +31,7 @@ const Morality = () => {
               <Text primary medium bold uppercase children="Morality" />
               <Spacing top={0.5} />
               <Text extraSmall light {...{ error: !isParagon, secondary: isParagon }}>
-                [{moralityLevelText} : {normalizedMorality}]
+                [{moralityLevelText} : {normalizedMorality}/{MORALITY_RANGE}]
               </Text>
             </Text>
             <SVG {...{ name: "GoodAndEvil", size: 6 }} />

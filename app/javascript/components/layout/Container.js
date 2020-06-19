@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Line from "./Line";
 
 // TODO: react memo?
-const Container = ({ children, items, right, borderColor, fillColor, separator }) => {
+const Container = ({ children, items, right, borderColor, fillColor, separator, ...props }) => {
   // NOTE: the separator is unlikely to ever be used. But migth be repurposed? so keeping it around.
 
   const secondary = useSelector(state => state.theme.theme.color.secondary);
@@ -53,6 +53,7 @@ const Container = ({ children, items, right, borderColor, fillColor, separator }
         border: `2px solid ${borderColor || secondary}`,
         opacity: "0.9",
         children: innerContent,
+        ...props,
       }}
     />
   );

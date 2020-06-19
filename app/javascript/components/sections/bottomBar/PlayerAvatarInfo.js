@@ -14,9 +14,10 @@ const PlayerAvatarInfo = () => {
       }}
     >
       <Spacing horizontal {...{ align: "flex-end", bottom: 1 }}>
+        <Prestige />
         <Player />
         <Spacing width={`${12 * SPACING}px`} />
-        <Prestige />
+        <Level />
       </Spacing>
       <PlayerXpBar />
     </Spacing>
@@ -50,14 +51,48 @@ const Player = () => {
           borderRadius: "100%",
           background: "transparent",
           border: `6px solid ${secondary}`,
+          children: <div>player</div>,
         }}
-      >
-        player
-      </Spacing>
+      />
     </Spacing>
   );
 };
 
+const Level = () => {
+  const background = useSelector(state => state.theme.theme.color.closest);
+  const secondary = useSelector(state => state.theme.theme.color.secondary);
+  const level = useSelector(state => state.player.level);
+
+  return (
+    <Spacing
+      center
+      {...{
+        width: `${8 * SPACING}px`,
+        height: `${8 * SPACING}px`,
+        borderRadius: "100%",
+        background,
+        position: "absolute",
+        absoluteLeft: `${11 * SPACING}px`,
+        absoluteBottom: `0px`,
+      }}
+    >
+      <Spacing
+        center
+        {...{
+          width: `${6 * SPACING}px`,
+          height: `${6 * SPACING}px`,
+          borderRadius: "100%",
+          background: "red",
+          border: `4px solid ${secondary}`,
+          z: "1",
+          children: <div>{level}</div>,
+        }}
+      />
+    </Spacing>
+  );
+};
+
+// TODO: this needs outline white background like the other two circles above!
 const Prestige = () => {
   const secondary = useSelector(state => state.theme.theme.color.secondary);
   const prestige = useSelector(state => state.player.prestige);
@@ -66,16 +101,18 @@ const Prestige = () => {
     <Spacing
       center
       {...{
-        width: `${4 * SPACING}px`,
-        height: `${4 * SPACING}px`,
+        position: "absolute",
+        absoluteBottom: `${12 * SPACING}px`,
+        absoluteLeft: `-${SPACING}px`,
+        width: `${6 * SPACING}px`,
+        height: `${6 * SPACING}px`,
         borderRadius: "100%",
-        background: "red",
+        background: "aqua",
         border: `4px solid ${secondary}`,
         z: "1",
+        children: <div>{prestige}</div>,
       }}
-    >
-      <div>{prestige}</div>
-    </Spacing>
+    />
   );
 };
 
