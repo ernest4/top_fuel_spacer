@@ -18,9 +18,9 @@ const Debug = () => {
       <Spacing horizontal justify="flex-start">
         <ThemeSelect />
       </Spacing>
-      <Spacing scroll height="300px">
+      {/* <Spacing scroll height="300px">
         {buildStateTreeInputs(state)}
-      </Spacing>
+      </Spacing> */}
     </Draggable>
   );
 };

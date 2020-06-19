@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 
 const Spacing = forwardRef(({ hover, interactiveHover, ...props }, ref) => {
   const canFollowCursor = useSelector(state => state.settings.graphics.hover.followCursor);
+  const primary = useSelector(state => state.theme.theme.color.primary);
 
   if (hover || interactiveHover) {
     return (
@@ -25,7 +26,7 @@ const Spacing = forwardRef(({ hover, interactiveHover, ...props }, ref) => {
           arrow: false,
           appendTo: window.document.body,
           content: hover || interactiveHover,
-          children: <Container {...{ ...props, ref }} />,
+          children: <Container {...{ primary, ...props, ref }} />,
         }}
       />
     );
@@ -57,6 +58,7 @@ const Container = styled.div`
   ${({ overflow }) => overflow && `overflow: ${overflow};`}
   ${({ margin }) => margin && `margin: ${margin};`}
   ${({ transform }) => transform && `transform: ${transform};`}
+  ${({ transition }) => transition && `transition: ${transition};`}
 
   ${({ top, right, bottom, left, all }) =>
     css`
@@ -75,11 +77,14 @@ const Container = styled.div`
       ${absoluteLeft && `left: ${absoluteLeft};`}
     `};
 
-  ${({ pointer }) =>
+  ${({ pointer, primary }) =>
     pointer &&
     css`
       &:hover {
         cursor: pointer;
+        /* ${
+          primary && `box-shadow: 0px 0px 0px 4px ${primary};`
+        } decided against this for now, pointer should be enough... */
       }
     `};
 `;

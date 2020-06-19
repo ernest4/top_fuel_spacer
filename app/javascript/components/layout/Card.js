@@ -9,7 +9,13 @@ const Card = ({ children, header, body, footer, right, fillColor }) => {
   // TODO: follow style [header(s) (name), body(s) (explanation), footer(s) (funny line)]
 
   return (
-    <Container {...{ fillColor: fillColor || closest, right, children: [header, body, footer] }} />
+    <Container
+      {...{
+        fillColor: fillColor || closest,
+        right,
+        children: [header, body, footer].filter(component => component),
+      }}
+    />
   );
 };
 

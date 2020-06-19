@@ -13,15 +13,44 @@ const Morality = () => {
 
   const morality = useSelector(state => state.player.morality);
 
-  const isParagon = MORALITY_RANGE <= morality;
-
-  const { moralityLevelText, moralityLevelQuote } = getMoralityText(morality);
-
   const normalizedMorality = morality - MORALITY_RANGE;
   const renegadeMorality = 0 < normalizedMorality ? 0 : Math.abs(normalizedMorality);
   const paragonMorality = 0 < normalizedMorality ? normalizedMorality : 0;
 
-  const hover = (
+  const progressBarParams = { outline: true, range: MORALITY_RANGE, height: "24px" };
+
+  return (
+    <Spacing horizontal hover={<Hover {...{ morality }} />}>
+      <ProgressBar
+        {...{
+          transform: `scale(-1) skew(30deg, 0deg)`, // custom skew here as we want to mirror flip this using scale(-1) trick
+          value: renegadeMorality,
+          barBackground: renegadeBarBackground,
+          outlineColor: renegadeBarBackground,
+          ...progressBarParams,
+        }}
+      />
+      <Spacing {...{ transform: "scale(1, -1)", height: "fit-content" }}>
+        <SVG {...{ name: "TriangleOutlineWithContent", width: 28, height: 24, fill: primary }} />
+      </Spacing>
+      <ProgressBar
+        skewRight
+        {...{ value: paragonMorality, barBackground: paragonBarBackground, ...progressBarParams }}
+      />
+    </Spacing>
+  );
+};
+
+export default Morality;
+
+const Hover = ({ morality }) => {
+  const normalizedMorality = morality - MORALITY_RANGE;
+
+  const { moralityLevelText, moralityLevelQuote } = getMoralityText(morality);
+
+  const isParagon = MORALITY_RANGE <= morality;
+
+  return (
     <Card
       right
       {...{
@@ -53,36 +82,7 @@ const Morality = () => {
       }}
     />
   );
-
-  const progressBarParams = {
-    outline: true,
-    range: MORALITY_RANGE,
-    height: "24px",
-  };
-
-  return (
-    <Spacing horizontal hover={hover}>
-      <ProgressBar
-        {...{
-          transform: `scale(-1) skew(30deg, 0deg)`, // custom skew here as we want to mirror flip this using scale(-1) trick
-          value: renegadeMorality,
-          barBackground: renegadeBarBackground,
-          outlineColor: renegadeBarBackground,
-          ...progressBarParams,
-        }}
-      />
-      <Spacing {...{ transform: "scale(1, -1)", height: "fit-content" }}>
-        <SVG {...{ name: "TriangleOutlineWithContent", width: 28, height: 24, fill: primary }} />
-      </Spacing>
-      <ProgressBar
-        skewRight
-        {...{ value: paragonMorality, barBackground: paragonBarBackground, ...progressBarParams }}
-      />
-    </Spacing>
-  );
 };
-
-export default Morality;
 
 const MORALITY_RANGE = 20;
 

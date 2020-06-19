@@ -51,7 +51,7 @@ const Container = ({ children, items, right, borderColor, fillColor, separator, 
         background: "transparent",
         borderRadius: `${right ? "" : "5px"} 20px 5px 20px ${right ? "5px" : ""}`,
         border: `2px solid ${borderColor || secondary}`,
-        opacity: "0.9",
+        opacity: "0.95",
         children: innerContent,
         ...props,
       }}

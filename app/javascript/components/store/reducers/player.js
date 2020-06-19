@@ -12,6 +12,8 @@ const initialState = {
   levelUpXp: 100,
   level: 1,
   prestige: 2,
+  name: "Ernest",
+  avatar: null,
 };
 
 // const otherReducer = handleActions({
