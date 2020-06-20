@@ -3,11 +3,12 @@ import Spacing, { SPACING } from "../../../layout/Spacing";
 import { useSelector } from "react-redux";
 import Text from "../../../layout/Text";
 import Card from "../../../layout/Card";
-import Line from "../../../layout/Line";
 
 const Player = () => {
   const secondary = useSelector(state => state.theme.theme.color.secondary);
   const background = useSelector(state => state.theme.theme.color.closest);
+
+  // TODO: onclick, take to player stats / player creations
 
   return (
     <Spacing

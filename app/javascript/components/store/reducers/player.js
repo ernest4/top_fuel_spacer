@@ -14,6 +14,12 @@ const initialState = {
   prestige: 2,
   name: "Ernest",
   avatar: null,
+  skills: {
+    luck: 4,
+    strength: 7,
+    charisma: 3,
+    intelligence: 9,
+  },
 };
 
 // const otherReducer = handleActions({

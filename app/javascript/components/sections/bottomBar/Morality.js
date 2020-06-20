@@ -49,6 +49,7 @@ const Hover = ({ morality }) => {
   const { moralityLevelText, moralityLevelQuote } = getMoralityText(morality);
 
   const isParagon = MORALITY_RANGE <= morality;
+  const textColorProps = { error: !isParagon, secondary: isParagon };
 
   return (
     <Card
@@ -59,9 +60,13 @@ const Hover = ({ morality }) => {
             <Text small>
               <Text primary medium bold uppercase children="Morality" />
               <Spacing top={0.5} />
-              <Text extraSmall light {...{ error: !isParagon, secondary: isParagon }}>
-                [{moralityLevelText} : {normalizedMorality}/{MORALITY_RANGE}]
-              </Text>
+              <Text bold extraSmall {...{ children: moralityLevelText, ...textColorProps }} />{" "}
+              <Text extraSmall light {...{ children: "|", ...textColorProps }} />{" "}
+              <Text
+                bold
+                extraSmall
+                {...{ children: `${normalizedMorality}/${MORALITY_RANGE}`, ...textColorProps }}
+              />
             </Text>
             <SVG {...{ name: "GoodAndEvil", size: 6 }} />
           </Spacing>
@@ -69,13 +74,17 @@ const Hover = ({ morality }) => {
         body: (
           <Text extraSmall>
             You accumulate <Text error extraSmall bold children="renegade points" /> when
-            interacting with others in a threatening, apathetic, ruthless way. Infamy will make the
-            smaller pirates fear you. However, larger sharks will have you on their radar!
+            interacting with others in a{" "}
+            <Text error extraSmall bold children="threatening, apathetic, ruthless" /> way. Infamy
+            will make the smaller pirates fear you. However, larger sharks will have you on their
+            radar!
             <Spacing top={1} />
-            You accumulate <Text secondary extraSmall bold children="paragon points" /> when helping
-            others, being sympathetic and keeping your nose clean. Renown will make you a target to
-            all pirates who want to make a name for themselves. However, trading outpost will give
-            you more favourable rates!
+            You accumulate <Text secondary extraSmall bold children="paragon points" /> when{" "}
+            <Text secondary extraSmall bold children="helping" /> others,{" "}
+            <Text secondary extraSmall bold children="sympathizing" /> and choosing{" "}
+            <Text secondary extraSmall bold children="diplomacy" /> over fighting. Renown will make
+            you a target to all pirates who want to make a name for themselves! However, trading
+            outpost will give you more favourable rates!
           </Text>
         ),
         footer: <Text extraSmall muted italics children={`"${moralityLevelQuote}"`} />,

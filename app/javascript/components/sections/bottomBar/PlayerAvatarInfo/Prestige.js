@@ -9,6 +9,8 @@ const Prestige = () => {
   const secondary = useSelector(state => state.theme.theme.color.secondary);
   const prestige = useSelector(state => state.player.prestige);
 
+  // TODO: onclick, take to prestige upgrades when time is right
+
   return (
     <Spacing
       center
@@ -52,9 +54,9 @@ const Hover = ({ prestige }) => {
             <Text small>
               <Text primary medium bold uppercase children="Prestige" />
               <Spacing top={0.5} />
-              <Text extraSmall light secondary>
-                [{levelText} : {prestige}/{PRESTIGE_RANGE}]
-              </Text>
+              <Text bold extraSmall secondary children={levelText} />{" "}
+              <Text extraSmall light secondary children="|" />{" "}
+              <Text bold extraSmall secondary children={`${prestige}/${PRESTIGE_RANGE}`} />
             </Text>
             <div>wip</div> {/* TODO: prestige icon wip */}
             {/* <SVG {...{ name: "GoodAndEvil", size: 6 }} /> */}
