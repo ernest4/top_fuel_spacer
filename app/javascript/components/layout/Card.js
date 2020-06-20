@@ -6,8 +6,6 @@ import Container from "./Container";
 const Card = ({ children, header, body, footer, right, fillColor }) => {
   const closest = useSelector(state => state.theme.theme.color.closest);
 
-  // TODO: follow style [header(s) (name), body(s) (explanation), footer(s) (funny line)]
-
   return (
     <Container
       {...{

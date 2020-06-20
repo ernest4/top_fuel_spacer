@@ -44,6 +44,7 @@ const Container = ({ children, items, right, borderColor, fillColor, separator, 
     <Spacing {...{ ...COMMON_INNER_PROPS, children }} />
   );
 
+  // TODO: make border optional!! then can use this for content in the info section
   return (
     <Spacing
       {...{
