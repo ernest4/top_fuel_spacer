@@ -7,13 +7,13 @@ const MusicPlayer = () => {
   const furthest = useSelector(state => state.theme.theme.color.furthest);
 
   return (
-    <Draggable useButton
+    <Draggable
       {...{
         all: 4,
         borderRadius: "100%",
         position: "absolute",
-        absoluteBottom: `${22 * SPACING}px`,
         absoluteLeft: `-${4 * SPACING}px`,
+        absoluteTop: `-${22 * SPACING}px`,
         background: furthest,
         z: 2,
       }}

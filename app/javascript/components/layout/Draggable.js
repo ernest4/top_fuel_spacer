@@ -9,7 +9,6 @@ import Container from "./Container";
 // if the component needs it.
 const Draggable = forwardRef(
   ({ children, useButton, draggableRef: draggableRefCallback, ...props }, ref) => {
-    const [mouseOver, setMouseOver] = useState(false);
     const draggableRef = useRef(null);
     const draggableButtonRef = useRef(null);
 
@@ -23,14 +22,10 @@ const Draggable = forwardRef(
       else draggableRef.current.onmousedown = createDragMouseDownCallback(draggableRef);
     }, [useButton, draggableButtonRef]);
 
-    // const interactiveHover = useButton ? <DraggableButton ref={draggableButtonRef} /> : null;
-
-    const onMouseOver = ({ target: { value: hovering } }) => setMouseOver(hovering);
-
     return (
-      <Spacing {...{ ...props, position: "absolute", z: "9999", ref: draggableRef, onMouseOver }}>
+      <Spacing {...{ ...props, position: "absolute", z: "9999", ref: draggableRef }}>
         <Spacing {...{ position: "absolute", absoluteLeft: "100%" }}>
-          {useButton && mouseOver && <DraggableButton ref={draggableButtonRef} />}
+          {useButton && <DraggableButton ref={draggableButtonRef} />}
         </Spacing>
         {children}
       </Spacing>
