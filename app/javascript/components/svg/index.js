@@ -4,6 +4,7 @@ import EvilFace from "./morality/EvilFace";
 import Triangle from "./Triangle";
 import TriangleOutline from "./TriangleOutline";
 import TriangleOutlineWithContent from "./TriangleOutlineWithContent";
+import Note from "./Note";
 
 export default {
   GoodAndEvil,
@@ -12,4 +13,5 @@ export default {
   Triangle,
   TriangleOutline,
   TriangleOutlineWithContent,
+  Note,
 };
