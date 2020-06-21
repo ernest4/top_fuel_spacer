@@ -2,6 +2,7 @@ import React from "react";
 import Spacing, { SPACING } from "../../../layout/Spacing";
 import { useSelector } from "react-redux";
 import { Hover } from "./PlayerXpBar";
+import Text from "../../../layout/Text";
 
 const Level = () => {
   const background = useSelector(state => state.theme.theme.color.closest);
@@ -35,7 +36,7 @@ const Level = () => {
           background,
           border: `4px solid ${secondary}`,
           z: "1",
-          children: <div>{level}</div>,
+          children: <Text primary bold {...{ children: level }} />,
           hover: <Hover {...{ xp, levelUpXp, level }} />,
         }}
       />

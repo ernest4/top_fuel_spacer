@@ -8,7 +8,10 @@ import Container from "./Container";
 // Normal ref wont work as i've hijacked it for the draggable purposes. Callback returns the ref
 // if the component needs it.
 const Draggable = forwardRef(
-  ({ children, useButton, draggableRef: draggableRefCallback, ...props }, ref) => {
+  (
+    { children, useButton, draggableRef: draggableRefCallback, onDrag: onDragCallback, ...props },
+    ref
+  ) => {
     const draggableRef = useRef(null);
     const draggableButtonRef = useRef(null);
 
@@ -18,9 +21,16 @@ const Draggable = forwardRef(
 
     useEffect(() => {
       if (useButton && draggableButtonRef.current)
-        draggableButtonRef.current.onmousedown = createDragMouseDownCallback(draggableRef);
-      else draggableRef.current.onmousedown = createDragMouseDownCallback(draggableRef);
-    }, [useButton, draggableButtonRef]);
+        draggableButtonRef.current.onmousedown = createDragMouseDownCallback({
+          draggableRef,
+          onDragCallback,
+        });
+      else
+        draggableRef.current.onmousedown = createDragMouseDownCallback({
+          draggableRef,
+          onDragCallback,
+        });
+    }, [useButton, draggableButtonRef, onDragCallback]);
 
     return (
       <Spacing {...{ ...props, position: "absolute", z: "9999", ref: draggableRef }}>
@@ -35,7 +45,7 @@ const Draggable = forwardRef(
 
 export default memo(Draggable);
 
-const createDragMouseDownCallback = draggableRef => {
+const createDragMouseDownCallback = ({ draggableRef, onDragCallback }) => {
   return event => {
     const _event = event || window.event;
     _event.preventDefault();
@@ -56,8 +66,15 @@ const createDragMouseDownCallback = draggableRef => {
       pos4 = _mouseMoveEvent.clientY;
 
       // set the element's new position:
-      draggableRef.current.style.top = `${draggableRef.current.offsetTop - pos2}px`;
-      draggableRef.current.style.left = `${draggableRef.current.offsetLeft - pos1}px`;
+      const newTop = `${draggableRef.current.offsetTop - pos2}px`;
+      const newLeft = `${draggableRef.current.offsetLeft - pos1}px`;
+
+      draggableRef.current.style.top = newTop;
+      draggableRef.current.style.left = newLeft;
+
+      onDragCallback({ newTop, newLeft });
+      // draggableRef.current.style.top = `${draggableRef.current.offsetTop - pos2}px`;
+      // draggableRef.current.style.left = `${draggableRef.current.offsetLeft - pos1}px`;
     }, 32);
 
     /* stop moving when mouse button is released:*/

@@ -53,6 +53,7 @@ const Container = styled.div`
   ${({ z }) => z && `z-index: ${z};`}
   ${({ borderRadius }) => borderRadius && `border-radius: ${borderRadius};`}
   ${({ border }) => border && `border: ${border};`}
+  ${({ borderWidth }) => borderWidth && `border-width: ${borderWidth};`}
   ${({ boxShadow }) => boxShadow && `box-shadow: ${boxShadow};`}
   ${({ opacity }) => opacity && `opacity: ${opacity};`}
   ${({ overflow }) => overflow && `overflow: ${overflow};`}

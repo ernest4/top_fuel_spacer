@@ -1,16 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Spacing, { SPACING } from "../../layout/Spacing";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Draggable from "../../layout/Draggable";
 import Container from "../../layout/Container";
 import Text from "../../layout/Text";
 import SVG from "../../svg/SVG";
 import Title from "../../layout/pane/Title";
 import Line from "../../layout/Line";
+import DockButton from "./musicPlayer/DockButton";
+import * as musicActions from "../../store/actions/music";
+
+const defaultPlayerPosition = {
+  absoluteLeft: `-${4 * SPACING}px`,
+  absoluteTop: `-${22 * SPACING}px`,
+};
 
 const MusicPlayer = () => {
+  const dispatch = useDispatch();
+
+  const docked = useSelector(state => state.music.docked);
+  const dock = useSelector(state => state.music.dock);
   const furthest = useSelector(state => state.theme.theme.color.furthest);
   const closest = useSelector(state => state.theme.theme.color.closest);
+
+  const [playerPosition, setPlayerPosition] = useState(defaultPlayerPosition);
+
+  useEffect(() => {
+    console.log(`docked: ${docked}`);
+    console.log(`dock: ${dock}`);
+    if (docked || !dock || dispatch) return;
+
+    dispatch(musicActions.setDocked(true));
+    setPlayerPosition({ ...defaultPlayerPosition }); // setting new object will cause rerender
+
+    console.log(`docked: ${docked}`);
+    console.log(`dock: ${dock}`);
+  }, [docked, dock, dispatch]);
+
+  const onDrag = ({ newTop, newLeft }) => {
+    console.log("dragged");
+    console.log(`newTop: ${newTop}, newLeft: ${newLeft}`);
+
+    dispatch(musicActions.setDocked(false));
+  };
 
   return (
     <Draggable
@@ -18,10 +50,12 @@ const MusicPlayer = () => {
         all: 1,
         borderRadius: "100px",
         position: "absolute",
-        absoluteLeft: `-${4 * SPACING}px`,
-        absoluteTop: `-${22 * SPACING}px`,
+        // absoluteLeft: `-${4 * SPACING}px`,
+        // absoluteTop: `-${22 * SPACING}px`,
         background: closest,
         z: 2,
+        onDrag,
+        ...playerPosition,
       }}
     >
       <Player />
@@ -57,10 +91,6 @@ const Player = () => {
       />
     </Spacing>
   );
-};
-
-const DockButton = () => {
-  return <Spacing>dock icon</Spacing>;
 };
 
 const Hover = () => {
