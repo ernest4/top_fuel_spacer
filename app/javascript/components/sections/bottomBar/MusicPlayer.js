@@ -6,6 +6,7 @@ import Container from "../../layout/Container";
 import Text from "../../layout/Text";
 import SVG from "../../svg/SVG";
 import Title from "../../layout/pane/Title";
+import Line from "../../layout/Line";
 
 const MusicPlayer = () => {
   const furthest = useSelector(state => state.theme.theme.color.furthest);
@@ -42,18 +43,24 @@ const Player = () => {
 
   return (
     <Spacing horizontal>
-      <Spacing>dock icon</Spacing>
-      {/* <Spacing> */}
-      <Title
-        {...{ title: artist, subtitles: [title, `${playTime}s`, `-${songLength - playTime}s`] }}
-      />
-      {/* </Spacing> */}
+      <DockButton />
+      <Line vertical />
+      <Spacing {...{ left: 1, right: 1 }}>
+        <Title
+          {...{ title: artist, subtitles: [title, `${playTime}s`, `-${songLength - playTime}s`] }}
+        />
+      </Spacing>
+      <Line vertical />
       <Spacing
         pointer
         {...{ hover: <Hover />, children: <SVG {...{ name: "Note", size: 6 }} /> }}
       />
     </Spacing>
   );
+};
+
+const DockButton = () => {
+  return <Spacing>dock icon</Spacing>;
 };
 
 const Hover = () => {
