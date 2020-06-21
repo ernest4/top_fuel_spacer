@@ -1,19 +1,19 @@
 export default {
   name: "lunarLights",
   color: {
-    primary: "hsl(20, 75%, 58%)", // main actions
-    secondary: "hsl(200, 75%, 58%)", // everywhere else (accents)
-    background: "hsl(207, 24%, 78%)", // global background, darkest
-    furthest: "hsl(216, 35%, 86%)", // darkest ui container
-    middle: "hsl(200, 27%, 92%)", // main ui container
-    closest: "hsl(0, 0%, 100%)", // top ui container (main controls)
-    black: "hsl(0, 0%, 29%)", // darkest color
-    white: "hsl(0, 0%, 100%)", // lightest color
-    fontDefault: "hsl(0, 0%, 29%)", // default text color
-    error: "hsl(5, 75%, 58%)", // general red
-    warning: "hsl(35, 75%, 58%)", // general orange
+    primary: "hsla(20, 75%, 58%, 1)", // main actions
+    secondary: "hsla(200, 75%, 58%, 1)", // everywhere else (accents, 1)
+    background: "hsla(207, 24%, 78%, 1)", // global background, darkest
+    furthest: "hsla(216, 35%, 86%, 1)", // darkest ui container
+    middle: "hsla(200, 27%, 92%, 1)", // main ui container
+    closest: "hsla(0, 0%, 100%, 1)", // top ui container (main controls, 1)
+    black: "hsla(0, 0%, 29%, 1)", // darkest color
+    white: "hsla(0, 0%, 100%, 1)", // lightest color
+    fontDefault: "hsla(0, 0%, 29%, 1)", // default text color
+    error: "hsla(5, 75%, 58%, 1)", // general red
+    warning: "hsla(35, 75%, 58%, 1)", // general orange
   },
   font: {
-    muted: "hsl(208, 7%, 46%)", // for tertiary text
+    muted: "hsla(208, 7%, 46%, 1)", // for tertiary text
   },
 };

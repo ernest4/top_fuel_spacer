@@ -5,6 +5,7 @@ import SVG from "../../svg/SVG";
 import Spacing from "../../layout/Spacing";
 import ProgressBar from "../../misc/ProgressBar";
 import { useSelector } from "react-redux";
+import Container from "../../layout/Container";
 
 const Morality = () => {
   const primary = useSelector(state => state.theme.theme.color.primary);
@@ -54,8 +55,9 @@ const Hover = ({ morality }) => {
   return (
     <Card
       right
+      border
       {...{
-        header: (
+        customHeader: (
           <Spacing horizontal>
             <Text small>
               <Text primary medium bold uppercase children="Morality" />

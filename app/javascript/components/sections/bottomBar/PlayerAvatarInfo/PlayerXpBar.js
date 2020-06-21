@@ -34,19 +34,13 @@ export default PlayerXpBar;
 export const Hover = ({ xp, levelUpXp, level }) => {
   return (
     <Card
+      border
       {...{
-        header: (
-          <Spacing horizontal>
-            <Text small>
-              <Text primary medium bold uppercase children="Level" />
-              <Spacing top={0.5} />
-              <Text bold extraSmall secondary children="XP" />{" "}
-              <Text extraSmall light secondary children="|" />{" "}
-              <Text bold extraSmall secondary children={`${xp}/${levelUpXp}`} />
-            </Text>
-            <Text primary bold uppercase children={level} />
-          </Spacing>
-        ),
+        header: {
+          title: "Level",
+          subtitles: ["XP", `${xp}/${levelUpXp}`],
+          icon: <Text primary bold uppercase children={level} />,
+        },
         body: (
           <Text extraSmall>
             This is your <Text secondary extraSmall bold children="personal experience" />{" "}

@@ -1,5 +1,5 @@
 import React from "react";
-import Spacing, { SPACING } from "../layout/Spacing";
+import Spacing from "../layout/Spacing";
 import { useSelector } from "react-redux";
 import Morality from "./bottomBar/Morality";
 import PlayerAvatarInfo from "./bottomBar/PlayerAvatarInfo";

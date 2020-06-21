@@ -43,32 +43,24 @@ const Prestige = () => {
 
 export default Prestige;
 
-  // TODO: create a HeaderPane (or TitlePane) component that has the structure of current hover headers.
-  // and can be used to compose the card. This will be separate importable component!
-  // - title
-  // - subtitle [optinal] (that should auto format to include pipe '|' when more than one item is present)
-  // - right item [optional], can be anything but generally icon or something...
+// TODO: create a HeaderPane (or TitlePane) component that has the structure of current hover headers.
+// and can be used to compose the card. This will be separate importable component!
+// - title
+// - subtitle [optinal] (that should auto format to include pipe '|' when more than one item is present)
+// - right item [optional], can be anything but generally icon or something...
 
 const Hover = ({ prestige }) => {
   const { levelText, quote } = prestigeTexts[prestige];
 
   return (
     <Card
+      border
       {...{
-        header: (
-          <Spacing horizontal>
-            <Title {...{title: '', subtitle: ['', ''], icon: ''}}/> {/* imported from ../pane/Title or w.e.*/}
-            {/* <Text small>
-              <Text primary medium bold uppercase children="Prestige" />
-              <Spacing top={0.5} />
-              <Text bold extraSmall secondary children={levelText} />{" "}
-              <Text extraSmall light secondary children="|" />{" "}
-              <Text bold extraSmall secondary children={`${prestige}/${PRESTIGE_RANGE}`} />
-            </Text> */}
-            <div>wip</div> {/* TODO: prestige icon wip */}
-            {/* <SVG {...{ name: "GoodAndEvil", size: 6 }} /> */}
-          </Spacing>
-        ),
+        header: {
+          title: "Prestige",
+          subtitles: [levelText, `${prestige}/${PRESTIGE_RANGE}`],
+          icon: <div>wip</div>,
+        },
         body: (
           <Text extraSmall>
             Prestige a.k.a ascension is a step in evolution once you reach a certain level towards

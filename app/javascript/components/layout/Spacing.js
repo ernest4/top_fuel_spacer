@@ -59,6 +59,7 @@ const Container = styled.div`
   ${({ margin }) => margin && `margin: ${margin};`}
   ${({ transform }) => transform && `transform: ${transform};`}
   ${({ transition }) => transition && `transition: ${transition};`}
+  ${({ filter }) => filter && `filter: ${filter};`}
 
   ${({ top, right, bottom, left, all }) =>
     css`

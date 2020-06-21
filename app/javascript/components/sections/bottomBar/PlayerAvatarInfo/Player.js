@@ -48,8 +48,9 @@ const Hover = () => {
 
   return (
     <Card
+      border
       {...{
-        header: <Text small primary medium bold uppercase children={name} />,
+        header: { title: name },
         body: (
           <Text extraSmall>
             This is you <Text secondary extraSmall bold children={name} />! Or rather the virtual
