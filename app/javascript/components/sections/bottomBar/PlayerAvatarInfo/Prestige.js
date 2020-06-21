@@ -30,7 +30,7 @@ const Prestige = () => {
           width: `${6 * SPACING}px`,
           height: `${6 * SPACING}px`,
           borderRadius: "100%",
-          background: "aqua",
+          background,
           border: `4px solid ${secondary}`,
           z: "1",
           children: <div>{prestige}</div>, // TODO: prestige icon wip

@@ -1,4 +1,4 @@
-import React, { forwardRef, memo, useEffect, useRef } from "react";
+import React, { forwardRef, memo, useEffect, useRef, useState } from "react";
 import _ from "lodash";
 import Spacing from "./Spacing";
 import { useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import Container from "./Container";
 // if the component needs it.
 const Draggable = forwardRef(
   ({ children, useButton, draggableRef: draggableRefCallback, ...props }, ref) => {
+    const [mouseOver, setMouseOver] = useState(false);
     const draggableRef = useRef(null);
     const draggableButtonRef = useRef(null);
 
@@ -17,15 +18,19 @@ const Draggable = forwardRef(
     }, [draggableRefCallback]);
 
     useEffect(() => {
-      if (useButton)
+      if (useButton && draggableButtonRef.current)
         draggableButtonRef.current.onmousedown = createDragMouseDownCallback(draggableRef);
       else draggableRef.current.onmousedown = createDragMouseDownCallback(draggableRef);
-    }, [useButton]);
+    }, [useButton, draggableButtonRef]);
+
+    // const interactiveHover = useButton ? <DraggableButton ref={draggableButtonRef} /> : null;
+
+    const onMouseOver = ({ target: { value: hovering } }) => setMouseOver(hovering);
 
     return (
-      <Spacing {...{ ...props, position: "absolute", z: "9999", ref: draggableRef }}>
+      <Spacing {...{ ...props, position: "absolute", z: "9999", ref: draggableRef, onMouseOver }}>
         <Spacing {...{ position: "absolute", absoluteLeft: "100%" }}>
-          {useButton && <DraggableButton ref={draggableButtonRef} />}
+          {useButton && mouseOver && <DraggableButton ref={draggableButtonRef} />}
         </Spacing>
         {children}
       </Spacing>

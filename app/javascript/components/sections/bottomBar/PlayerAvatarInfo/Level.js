@@ -32,7 +32,7 @@ const Level = () => {
           width: `${6 * SPACING}px`,
           height: `${6 * SPACING}px`,
           borderRadius: "100%",
-          background: "red",
+          background,
           border: `4px solid ${secondary}`,
           z: "1",
           children: <div>{level}</div>,

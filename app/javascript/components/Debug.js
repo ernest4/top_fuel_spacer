@@ -8,7 +8,7 @@ import * as themeActions from "./store/actions/theme";
 
 // TODO: add debug overlay controls
 const Debug = () => {
-  const state = useSelector(state => state);
+  // const state = useSelector(state => state);
 
   return (
     <Draggable useButton {...{ background: "#f1f1f1", width: "25%", absoluteTop: "0px" }}>
