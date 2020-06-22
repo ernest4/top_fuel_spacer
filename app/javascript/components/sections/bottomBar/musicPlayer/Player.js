@@ -37,6 +37,10 @@ const Player = () => {
       </Spacing>
       <Line vertical />
       <NoteButton />
+      <audio controls>
+        {/* <source src="horse.ogg" type="audio/ogg" /> */}
+        <source src={"music/We_Are_Already_Dead_(instrumental).mp3"} />
+      </audio>
     </Spacing>
   );
 };

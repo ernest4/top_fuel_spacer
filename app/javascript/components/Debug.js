@@ -7,8 +7,11 @@ import { useSelector, useDispatch } from "react-redux";
 import * as themeActions from "./store/actions/theme";
 
 // TODO: add debug overlay controls
-const Debug = () => {
+const Debug = ({ ...props }) => {
   // const state = useSelector(state => state);
+
+  console.log("Debug: all props");
+  console.log(props);
 
   return (
     <Draggable useButton {...{ background: "#f1f1f1", width: "25%", absoluteTop: "0px" }}>

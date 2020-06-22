@@ -8,7 +8,7 @@ import TopBar from "./sections/TopBar";
 import BottomBar from "./sections/BottomBar";
 import Divider from "./sections/Divider";
 
-const Game = ({ debug }) => {
+const Game = ({ debug, ...props }) => {
   return (
     <div>
       <Spacing>
@@ -22,7 +22,7 @@ const Game = ({ debug }) => {
         </Spacing>
         <BottomBar />
       </Spacing>
-      {debug && <Debug />}
+      {debug && <Debug {...props} />}
     </div>
   );
 };
