@@ -15,7 +15,7 @@ const DockButton = () => {
 
   return (
     <Spacing horizontal pointer {...{ all: 1, right: 2, hover: <Hover />, onClick: onDock }}>
-      <Spacing vertical>
+      <Spacing vertical center>
         <Spacing
           {...{
             transform: "skewX(-30deg)",

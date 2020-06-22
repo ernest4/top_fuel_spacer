@@ -9,6 +9,9 @@ const initialState = {
     title: "We Are Already Dead (instrumental)",
     filename: "We_Are_Already_Dead_(instrumental).mp3",
     position: 0,
+    progress: 0,
+    songLength: 500, // TESTING VALUE
+    time: 50, // TESTING VALUE
   },
   playing: false,
   volume: 4,

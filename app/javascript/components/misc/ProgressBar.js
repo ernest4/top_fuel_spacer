@@ -17,6 +17,7 @@ const ProgressBar = ({
   skewRight,
   skewLeft,
   onClick: onClickCallback,
+  onBarHover,
   transform: transformOverride, // used in one specific case so far in morality rengedate bar...
 }) => {
   const secondary = useSelector(state => state.theme.theme.color.secondary);
@@ -50,7 +51,15 @@ const ProgressBar = ({
         ...outlineProps,
       }}
     >
-      <Spacing horizontal {...{ height: height || `${1 * SPACING}px`, width: "100%", hover }}>
+      <Spacing
+        horizontal
+        {...{
+          height: height || `${2 * SPACING}px`,
+          width: "100%",
+          hover,
+          pointer: onClickCallback,
+        }}
+      >
         {Array.from(Array(dataPoints)).map((x, key) => (
           <Spacing
             {...{
@@ -59,13 +68,13 @@ const ProgressBar = ({
               all: 0.375,
               left: 0 < key ? "0" : 0.375,
               onClick: onClickCallback ? () => onClickCallback({ index: key }) : undefined,
+              onMouseOver: onBarHover ? () => onBarHover({ index: key }) : undefined,
             }}
           >
             <Bar
               {...{
-                // show: progress !== 0 && key / dataPoints <= progress, // TODO: solve the +1 issue
-                show: key / dataPoints <= progress,
-                background: barBackground || "purple",
+                show: (key + 1) / dataPoints <= progress,
+                background: barBackground || secondary,
               }}
             />
           </Spacing>

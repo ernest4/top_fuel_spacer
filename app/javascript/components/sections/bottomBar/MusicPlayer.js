@@ -16,6 +16,7 @@ const MusicPlayer = () => {
   const dock = useSelector(state => state.music.dock);
   // const furthest = useSelector(state => state.theme.theme.color.furthest);
   const closest = useSelector(state => state.theme.theme.color.closest);
+  const secondary = useSelector(state => state.theme.theme.color.secondary);
 
   const onDrag = ({ newTop, newLeft }) => {
     const { absoluteTop, absoluteLeft } = initialPlayerPosition;
@@ -33,6 +34,8 @@ const MusicPlayer = () => {
         absoluteTop: `-${22 * SPACING}px`,
         resetPosition: dock,
         background: closest,
+        border: `4px solid ${closest}`,
+        boxShadow: `inset 0px 0px 0px 3px ${secondary}`,
         z: 2,
         onDrag,
         children: <Player />,

@@ -17,7 +17,6 @@ const Spacing = forwardRef(({ hover, interactiveHover, hoverProps, ...props }, r
         // offset={100}
         // maxWidth={1000}
         {...{
-          followCursor: canFollowCursor,
           plugins: [followCursor],
           interactive: !!interactiveHover,
           placement: "top",
@@ -28,6 +27,7 @@ const Spacing = forwardRef(({ hover, interactiveHover, hoverProps, ...props }, r
           content: hover || interactiveHover,
           children: <Container {...{ primary, ...props, ref }} />,
           ...hoverProps,
+          followCursor: canFollowCursor ? checkHoverProps(hoverProps) : false,
         }}
       />
     );
@@ -37,6 +37,12 @@ const Spacing = forwardRef(({ hover, interactiveHover, hoverProps, ...props }, r
 });
 
 export default memo(Spacing);
+
+const checkHoverProps = hoverProps => {
+  if (hoverProps && hoverProps.hasOwnProperty("followCursor")) return hoverProps.followCursor;
+
+  return true;
+};
 
 export const SPACING = 8;
 

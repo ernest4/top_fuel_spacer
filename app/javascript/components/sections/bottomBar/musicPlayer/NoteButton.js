@@ -6,7 +6,7 @@ import SVG from "../../../svg/SVG";
 
 const NoteButton = () => {
   return (
-    <Spacing pointer {...{ hover: <Hover />, children: <SVG {...{ name: "Note", size: 6 }} /> }} />
+    <Spacing pointer center {...{ hover: <Hover />, children: <SVG {...{ name: "Note", size: 6 }} /> }} />
   );
 };
 
