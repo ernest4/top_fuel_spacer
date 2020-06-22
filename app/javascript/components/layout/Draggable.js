@@ -1,5 +1,5 @@
 import React, { forwardRef, memo, useEffect, useRef, useState } from "react";
-import _ from "lodash";
+import _, { initial } from "lodash";
 import Spacing from "./Spacing";
 import { useSelector } from "react-redux";
 import Text from "./Text";
@@ -9,9 +9,26 @@ import Container from "./Container";
 // if the component needs it.
 const Draggable = forwardRef(
   (
-    { children, useButton, draggableRef: draggableRefCallback, onDrag: onDragCallback, ...props },
+    {
+      children,
+      useButton,
+      draggableRef: draggableRefCallback,
+      onDrag: onDragCallback,
+      resetPosition,
+      absoluteTop,
+      absoluteRight,
+      absoluteBottom,
+      absoluteLeft,
+      ...props
+    },
     ref
   ) => {
+    const [initialPosition] = useState({
+      absoluteTop,
+      absoluteRight,
+      absoluteBottom,
+      absoluteLeft,
+    });
     const draggableRef = useRef(null);
     const draggableButtonRef = useRef(null);
 
@@ -25,15 +42,42 @@ const Draggable = forwardRef(
           draggableRef,
           onDragCallback,
         });
-      else
+      else if (draggableRef.current)
         draggableRef.current.onmousedown = createDragMouseDownCallback({
           draggableRef,
           onDragCallback,
         });
     }, [useButton, draggableButtonRef, onDragCallback]);
 
+    useEffect(() => {
+      if (!resetPosition || !initialPosition || !onDragCallback) return;
+
+      const {
+        absoluteTop: newTop,
+        absoluteRight: newRight,
+        absoluteBottom: newBottom,
+        absoluteLeft: newLeft,
+      } = initialPosition;
+
+      if (useButton && draggableButtonRef.current) {
+        draggableButtonRef.current.style.top = newTop;
+        draggableButtonRef.current.style.right = newRight;
+        draggableButtonRef.current.style.bottom = newBottom;
+        draggableButtonRef.current.style.left = newLeft;
+        onDragCallback({ newTop, newLeft });
+      } else if (draggableRef.current) {
+        draggableRef.current.style.top = newTop;
+        draggableRef.current.style.right = newRight;
+        draggableRef.current.style.bottom = newBottom;
+        draggableRef.current.style.left = newLeft;
+        onDragCallback({ newTop, newLeft });
+      }
+    }, [useButton, resetPosition, initialPosition, onDragCallback]);
+
     return (
-      <Spacing {...{ ...props, position: "absolute", z: "9999", ref: draggableRef }}>
+      <Spacing
+        {...{ ...props, position: "absolute", z: "9999", ref: draggableRef, ...initialPosition }}
+      >
         <Spacing {...{ position: "absolute", absoluteLeft: "100%" }}>
           {useButton && <DraggableButton ref={draggableButtonRef} />}
         </Spacing>

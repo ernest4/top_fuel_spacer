@@ -10,7 +10,7 @@ import Line from "../../layout/Line";
 import DockButton from "./musicPlayer/DockButton";
 import * as musicActions from "../../store/actions/music";
 
-const defaultPlayerPosition = {
+const initialPlayerPosition = {
   absoluteLeft: `-${4 * SPACING}px`,
   absoluteTop: `-${22 * SPACING}px`,
 };
@@ -18,30 +18,17 @@ const defaultPlayerPosition = {
 const MusicPlayer = () => {
   const dispatch = useDispatch();
 
-  const docked = useSelector(state => state.music.docked);
   const dock = useSelector(state => state.music.dock);
   const furthest = useSelector(state => state.theme.theme.color.furthest);
   const closest = useSelector(state => state.theme.theme.color.closest);
-
-  const [playerPosition, setPlayerPosition] = useState(defaultPlayerPosition);
-
-  useEffect(() => {
-    console.log(`docked: ${docked}`);
-    console.log(`dock: ${dock}`);
-    if (docked || !dock || dispatch) return;
-
-    dispatch(musicActions.setDocked(true));
-    setPlayerPosition({ ...defaultPlayerPosition }); // setting new object will cause rerender
-
-    console.log(`docked: ${docked}`);
-    console.log(`dock: ${dock}`);
-  }, [docked, dock, dispatch]);
 
   const onDrag = ({ newTop, newLeft }) => {
     console.log("dragged");
     console.log(`newTop: ${newTop}, newLeft: ${newLeft}`);
 
-    dispatch(musicActions.setDocked(false));
+    const { absoluteTop, absoluteLeft } = initialPlayerPosition;
+
+    if (newTop === absoluteTop && newLeft === absoluteLeft) dispatch(musicActions.setDock(false));
   };
 
   return (
@@ -50,12 +37,12 @@ const MusicPlayer = () => {
         all: 1,
         borderRadius: "100px",
         position: "absolute",
-        // absoluteLeft: `-${4 * SPACING}px`,
-        // absoluteTop: `-${22 * SPACING}px`,
+        absoluteLeft: `-${4 * SPACING}px`,
+        absoluteTop: `-${22 * SPACING}px`,
+        resetPosition: dock,
         background: closest,
         z: 2,
         onDrag,
-        ...playerPosition,
       }}
     >
       <Player />

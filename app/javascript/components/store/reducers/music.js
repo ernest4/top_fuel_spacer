@@ -3,7 +3,6 @@ import reduceReducers from "reduce-reducers";
 import produce from "immer";
 
 const initialState = {
-  docked: true,
   dock: false,
   currentSong: {
     artist: "Nihilore",
@@ -31,11 +30,8 @@ const musicReducer = handleActions(
     SET_SONG: produce((state, { payload }) => {
       state.theme = songs[payload];
     }),
-    SET_DOCKED: produce((state, { payload }) => {
-      state.docked = payload;
-    }),
     SET_DOCK: produce((state, { payload }) => {
-      state.docked = payload;
+      state.dock = payload;
     }),
   },
   initialState
