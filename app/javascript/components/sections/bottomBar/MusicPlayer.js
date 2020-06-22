@@ -14,7 +14,6 @@ const MusicPlayer = () => {
   const dispatch = useDispatch();
 
   const dock = useSelector(state => state.music.dock);
-  // const furthest = useSelector(state => state.theme.theme.color.furthest);
   const closest = useSelector(state => state.theme.theme.color.closest);
   const secondary = useSelector(state => state.theme.theme.color.secondary);
 
@@ -24,14 +23,15 @@ const MusicPlayer = () => {
     if (newTop === absoluteTop && newLeft === absoluteLeft) dispatch(musicActions.setDock(false));
   };
 
+  // TODO: bug. Docking only works the first time ?!?!?
   return (
     <Draggable
       {...{
         all: 1,
         borderRadius: "100px",
         position: "absolute",
-        absoluteLeft: `-${4 * SPACING}px`,
-        absoluteTop: `-${22 * SPACING}px`,
+        absoluteLeft: `-${62 * SPACING}px`,
+        absoluteTop: `-${28 * SPACING}px`,
         resetPosition: dock,
         background: closest,
         border: `4px solid ${closest}`,
