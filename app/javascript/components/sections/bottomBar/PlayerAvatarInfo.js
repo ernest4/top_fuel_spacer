@@ -1,9 +1,9 @@
 import React from "react";
 import Spacing, { SPACING } from "../../layout/Spacing";
-import Prestige from "./PlayerAvatarInfo/Prestige";
-import Player from "./PlayerAvatarInfo/Player";
-import Level from "./PlayerAvatarInfo/Level";
-import PlayerXpBar from "./PlayerAvatarInfo/PlayerXpBar";
+import Prestige from "./playerAvatarInfo/Prestige";
+import Player from "./playerAvatarInfo/Player";
+import Level from "./playerAvatarInfo/Level";
+import PlayerXpBar from "./playerAvatarInfo/PlayerXpBar";
 
 const PlayerAvatarInfo = () => {
   return (

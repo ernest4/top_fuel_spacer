@@ -11,6 +11,7 @@ const initialState = {
     position: 0,
   },
   playing: false,
+  volume: 4,
   songs: [
     // TODO: populate the full list here
     {
@@ -35,6 +36,9 @@ const musicReducer = handleActions(
     }),
     SET_DOCK: produce((state, { payload }) => {
       state.dock = payload;
+    }),
+    SET_VOLUME: produce((state, { payload }) => {
+      state.volume = payload;
     }),
   },
   initialState
