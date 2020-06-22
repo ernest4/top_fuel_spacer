@@ -3,17 +3,23 @@ import Spacing from "../../../../layout/Spacing";
 import Container from "../../../../layout/Container";
 import Text from "../../../../layout/Text";
 import SVG from "../../../../svg/SVG";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import * as musicActions from "../../../../store/actions/music";
 
 const Play = () => {
+  const dispatch = useDispatch();
   const playing = useSelector(state => state.music.playing);
+
+  const onPlayPause = () => dispatch(musicActions.setPlaying(!playing));
 
   return (
     <Spacing
+      pointer
       {...{
         hover: <PlayPauseHover />,
         hoverProps: { placement: "bottom" },
         children: playing ? <PauseButton /> : <PlayButton />,
+        onClick: onPlayPause,
       }}
     />
   );

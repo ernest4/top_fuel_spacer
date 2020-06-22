@@ -7,7 +7,7 @@ const initialState = {
   currentSong: {
     artist: "Nihilore",
     title: "We Are Already Dead (instrumental)",
-    filename: "We_Are_Already_Dead_(instrumental).mp3",
+    src: "We_Are_Already_Dead_(instrumental).mp3",
     position: 0,
     progress: 0,
     songLength: 500, // TESTING VALUE
@@ -42,6 +42,9 @@ const musicReducer = handleActions(
     }),
     SET_VOLUME: produce((state, { payload }) => {
       state.volume = payload;
+    }),
+    SET_PLAYING: produce((state, { payload }) => {
+      state.playing = payload;
     }),
   },
   initialState

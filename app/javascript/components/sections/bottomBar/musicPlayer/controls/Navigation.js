@@ -11,6 +11,7 @@ const Navigation = ({ direction }) => {
   return (
     <Spacing
       horizontal
+      pointer
       {...{
         hover: <NavigationHover {...{ direction }} />,
         hoverProps: { placement: "bottom" },

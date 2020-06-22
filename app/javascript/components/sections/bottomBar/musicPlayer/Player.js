@@ -1,21 +1,19 @@
-import React, { useState } from "react";
-import Spacing, { SPACING } from "../../../layout/Spacing";
+import React from "react";
+import Spacing from "../../../layout/Spacing";
 import { useSelector } from "react-redux";
 import Title from "../../../layout/pane/Title";
 import Line from "../../../layout/Line";
 import DockButton from "./DockButton";
 import NoteButton from "./NoteButton";
 import Controls from "./Controls";
-import ProgressBar from "../../../misc/ProgressBar";
+import SongProgressBar from "./SongProgressBar";
+import AudioContext from "./AudioContext";
 
 const Player = () => {
-  const closest = useSelector(state => state.theme.theme.color.closest);
-
   const artist = useSelector(state => state.music.currentSong.artist);
   const title = useSelector(state => state.music.currentSong.title);
   const time = useSelector(state => state.music.currentSong.time);
   const songLength = useSelector(state => state.music.currentSong.songLength);
-  // const filename = useSelector(state => state.music.currentSong.filename)
 
   return (
     <Spacing horizontal>
@@ -37,35 +35,9 @@ const Player = () => {
       </Spacing>
       <Line vertical />
       <NoteButton />
-      <audio controls>
-        {/* <source src="horse.ogg" type="audio/ogg" /> */}
-        <source src={"music/We_Are_Already_Dead_(instrumental).mp3"} />
-      </audio>
+      <AudioContext />
     </Spacing>
   );
 };
 
 export default Player;
-
-const SongProgressBar = () => {
-  const [hoverTime, setHoverTime] = useState();
-
-  const time = useSelector(state => state.music.currentSong.time);
-  const songLength = useSelector(state => state.music.currentSong.songLength);
-  const primary = useSelector(state => state.theme.theme.color.primary);
-
-  const onBarHover = ({ index }) => setHoverTime(index);
-
-  return (
-    <ProgressBar
-      {...{
-        value: time,
-        range: songLength,
-        resolution: 50,
-        barBackground: primary,
-        hover: <div>{hoverTime}</div>,
-        onBarHover,
-      }}
-    />
-  );
-};
