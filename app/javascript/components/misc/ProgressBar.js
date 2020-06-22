@@ -1,5 +1,5 @@
 import React from "react";
-import Spacing from "../layout/Spacing";
+import Spacing, { SPACING } from "../layout/Spacing";
 import { useSelector } from "react-redux";
 
 const ProgressBar = ({
@@ -16,6 +16,7 @@ const ProgressBar = ({
   outlineColor,
   skewRight,
   skewLeft,
+  onClick: onClickCallback,
   transform: transformOverride, // used in one specific case so far in morality rengedate bar...
 }) => {
   const secondary = useSelector(state => state.theme.theme.color.secondary);
@@ -49,12 +50,21 @@ const ProgressBar = ({
         ...outlineProps,
       }}
     >
-      <Spacing horizontal {...{ height, width: "100%", hover }}>
+      <Spacing horizontal {...{ height: height || `${1 * SPACING}px`, width: "100%", hover }}>
         {Array.from(Array(dataPoints)).map((x, key) => (
-          <Spacing {...{ key, width: `100%`, all: 0.375, left: 0 < key ? "0" : 0.375 }}>
+          <Spacing
+            {...{
+              key,
+              width: `100%`,
+              all: 0.375,
+              left: 0 < key ? "0" : 0.375,
+              onClick: onClickCallback ? () => onClickCallback({ index: key }) : undefined,
+            }}
+          >
             <Bar
               {...{
-                show: progress !== 0 && key / dataPoints <= progress,
+                // show: progress !== 0 && key / dataPoints <= progress, // TODO: solve the +1 issue
+                show: key / dataPoints <= progress,
                 background: barBackground || "purple",
               }}
             />

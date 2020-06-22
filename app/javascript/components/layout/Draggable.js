@@ -116,9 +116,7 @@ const createDragMouseDownCallback = ({ draggableRef, onDragCallback }) => {
       draggableRef.current.style.top = newTop;
       draggableRef.current.style.left = newLeft;
 
-      onDragCallback({ newTop, newLeft });
-      // draggableRef.current.style.top = `${draggableRef.current.offsetTop - pos2}px`;
-      // draggableRef.current.style.left = `${draggableRef.current.offsetLeft - pos1}px`;
+      if (onDragCallback) onDragCallback({ newTop, newLeft });
     }, 32);
 
     /* stop moving when mouse button is released:*/

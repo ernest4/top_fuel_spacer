@@ -3,6 +3,7 @@ import Spacing from "../../../../layout/Spacing";
 import Container from "../../../../layout/Container";
 import Text from "../../../../layout/Text";
 import SVG from "../../../../svg/SVG";
+import { useSelector } from "react-redux";
 
 const Play = () => {
   const playing = useSelector(state => state.music.playing);
