@@ -4,7 +4,7 @@ import Tippy from "@tippyjs/react";
 import { followCursor } from "tippy.js";
 import { useSelector } from "react-redux";
 
-const Spacing = forwardRef(({ hover, interactiveHover, ...props }, ref) => {
+const Spacing = forwardRef(({ hover, interactiveHover, hoverProps, ...props }, ref) => {
   const canFollowCursor = useSelector(state => state.settings.graphics.hover.followCursor);
   const primary = useSelector(state => state.theme.theme.color.primary);
 
@@ -27,6 +27,7 @@ const Spacing = forwardRef(({ hover, interactiveHover, ...props }, ref) => {
           appendTo: window.document.body,
           content: hover || interactiveHover,
           children: <Container {...{ primary, ...props, ref }} />,
+          ...hoverProps,
         }}
       />
     );

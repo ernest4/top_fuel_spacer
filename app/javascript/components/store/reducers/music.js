@@ -8,13 +8,16 @@ const initialState = {
     artist: "Nihilore",
     title: "We Are Already Dead (instrumental)",
     filename: "We_Are_Already_Dead_(instrumental).mp3",
+    position: 0,
   },
+  playing: false,
   songs: [
     // TODO: populate the full list here
     {
       artist: "Nihilore",
       title: "We Are Already Dead (instrumental)",
       filename: "We_Are_Already_Dead_(instrumental).mp3",
+      position: 0,
     },
   ],
 };

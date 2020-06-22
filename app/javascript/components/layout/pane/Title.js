@@ -2,9 +2,9 @@ import React from "react";
 import Spacing from "../Spacing";
 import Text from "../Text";
 
-const Title = ({ title, subtitles, icon }) => {
+const Title = ({ title, subtitles, icon, ...props }) => {
   return (
-    <Spacing horizontal>
+    <Spacing horizontal {...{ ...props }}>
       <Text small>
         <Text primary medium bold uppercase children={title} />
         {subtitles && subtitles.length !== 0 && (
