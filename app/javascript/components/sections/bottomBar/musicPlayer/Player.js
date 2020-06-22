@@ -7,7 +7,7 @@ import DockButton from "./DockButton";
 import NoteButton from "./NoteButton";
 import Controls from "./Controls";
 import SongProgressBar from "./SongProgressBar";
-import AudioContext from "./AudioContext";
+import AudioSource from "./AudioSource";
 
 const Player = () => {
   const artist = useSelector(state => state.music.currentSong.artist);
@@ -35,7 +35,7 @@ const Player = () => {
       </Spacing>
       <Line vertical />
       <NoteButton />
-      <AudioContext />
+      <AudioSource />
     </Spacing>
   );
 };
