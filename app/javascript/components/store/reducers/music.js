@@ -11,6 +11,7 @@ const initialState = {
     position: 0,
     duration: 0,
     currentTime: 0,
+    skipTime: 0,
   },
   playing: false,
   volume: 4,
@@ -50,6 +51,9 @@ const musicReducer = handleActions(
     }),
     SET_CURRENT_TIME: produce((state, { payload }) => {
       state.currentSong.currentTime = payload;
+    }),
+    SET_SKIP_TIME: produce((state, { payload }) => {
+      state.currentSong.skipTime = payload;
     }),
   },
   initialState

@@ -12,13 +12,14 @@ const SongProgressBar = () => {
 
   const [hoverTime, setHoverTime] = useState();
 
-  const currentTime = useSelector(state => state.music.currentSong.time);
+  const currentTime = useSelector(state => state.music.currentSong.currentTime);
   const duration = useSelector(state => state.music.currentSong.duration);
   const primary = useSelector(state => state.theme.theme.color.primary);
 
   const onBarHover = ({ index }) => setHoverTime(index);
   const onClick = ({ index }) => {
-    dispatch(musicActions.setCurrentTime((index / RESOLUTION) * duration));
+    // dispatch(musicActions.setCurrentTime((index / RESOLUTION) * duration));
+    dispatch(musicActions.setSkipTime((index / RESOLUTION) * duration));
   };
 
   return (

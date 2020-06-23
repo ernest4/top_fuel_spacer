@@ -19,11 +19,20 @@ const AudioSource = () => {
   const src = useSelector(state => state.music.currentSong.src);
   const playing = useSelector(state => state.music.playing);
   const volume = useSelector(state => state.music.volume);
-  const currentTime = useSelector(state => state.music.currentSong.currentTime);
+  // const currentTime = useSelector(state => state.music.currentSong.currentTime);
+  const skipTime = useSelector(state => state.music.currentSong.skipTime);
 
   useEffect(() => {
     if (audioRef && audioRef.current) {
       setTrack(audioContext.createMediaElementSource(audioRef.current));
+
+      audioRef.current.ontimeupdate = ({ target: { currentTime: newCurrentTime } }) => {
+        dispatch(musicActions.setCurrentTime(newCurrentTime));
+      };
+
+      const audioRefCurrent = audioRef.current;
+
+      return () => (audioRefCurrent.ontimeupdate = null);
 
       // dispatch(musicActions.setDuration(audioRef.current.duration));
 
@@ -36,7 +45,7 @@ const AudioSource = () => {
 
       // return audioRef.current.removeEventListener("ended", endedCallback);
     }
-  }, [audioRef]);
+  }, [audioRef, dispatch]);
 
   useEffect(() => {
     // check if context is in suspended state (autoplay policy)
@@ -59,15 +68,8 @@ const AudioSource = () => {
   }, [track]);
 
   useEffect(() => {
-    if (audioRef && audioRef.current) audioRef.current.currentTime = currentTime;
-  }, [currentTime, audioRef]);
-
-  // TODO: use this value to both read and write to the song timeline
-  // solution !!!
-  // document.getElementById("audio item").currentTime = 100;
-  // document.getElementById("audio item").duration // gives you total time !!!
-
-  // also if getting the 'ended' callback is not gonna work, can use this value to see if song over!
+    if (audioRef && audioRef.current) audioRef.current.currentTime = skipTime;
+  }, [skipTime, audioRef]);
 
   return <audio controls {...{ src: `music/${src}`, ref: audioRef, crossOrigin: "anonymous" }} />;
 };
