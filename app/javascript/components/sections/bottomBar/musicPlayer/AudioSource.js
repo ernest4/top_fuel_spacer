@@ -22,6 +22,7 @@ const AudioSource = () => {
   const playing = useSelector(state => state.music.playing);
   const volume = useSelector(state => state.music.volume);
   const skipTime = useSelector(state => state.music.currentSong.skipTime);
+  const currentSongPosition = useSelector(state => state.music.currentSong.position);
 
   useEffect(() => {
     if (audioRef && audioRef.current) {
@@ -52,12 +53,12 @@ const AudioSource = () => {
     // check if context is in suspended state (autoplay policy)
     if (audioContext.state === "suspended") audioContext.resume();
 
-    dispatch(musicActions.setDuration(audioRef.current.duration));
-
     const playPause = async () => {
       try {
         if (playing) await audioRef.current.play();
         else audioRef.current.pause();
+
+        dispatch(musicActions.setDuration(audioRef.current.duration));
       } catch (error) {
         console.error(error);
 
@@ -66,7 +67,7 @@ const AudioSource = () => {
     };
 
     playPause();
-  }, [playing, dispatch]);
+  }, [playing, dispatch, currentSongPosition]);
 
   useEffect(() => {
     gainNode.gain.value = volume / 10;

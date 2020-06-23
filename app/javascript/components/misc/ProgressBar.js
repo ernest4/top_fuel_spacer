@@ -48,6 +48,7 @@ const ProgressBar = ({
         transform: transformOverride || transform,
         // background: containerBackground || "transparent",
         background: containerBackground || middle,
+        borderRadius: "4px",
         ...outlineProps,
       }}
     >

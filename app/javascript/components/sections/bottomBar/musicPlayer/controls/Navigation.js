@@ -3,10 +3,26 @@ import Container from "../../../../layout/Container";
 import Text from "../../../../layout/Text";
 import Spacing from "../../../../layout/Spacing";
 import SVG from "../../../../svg/SVG";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import * as musicActions from "../../../../store/actions/music";
 
 const Navigation = ({ direction }) => {
+  const dispatch = useDispatch();
   const fontDefault = useSelector(state => state.theme.theme.color.fontDefault);
+  const songs = useSelector(state => state.music.songs);
+  const currentSongPosition = useSelector(state => state.music.currentSong.position);
+
+  const onSkipSong = () => {
+    const songDirection = direction === "next" ? 1 : -1;
+    let nextIndex = currentSongPosition + songDirection;
+
+    if (nextIndex < 0) nextIndex = songs.length - 1;
+    if (songs.length - 1 < nextIndex) nextIndex = 0;
+
+    dispatch(
+      musicActions.setCurrentSong({ ...songs[nextIndex], duration: 0, currentTime: 0, skipTime: 0 })
+    );
+  };
 
   return (
     <Spacing
@@ -16,6 +32,7 @@ const Navigation = ({ direction }) => {
         hover: <NavigationHover {...{ direction }} />,
         hoverProps: { placement: "bottom" },
         transform: `scale(${direction === "next" ? "-" : ""}1, 1)`,
+        onClick: onSkipSong,
       }}
     >
       <Spacing

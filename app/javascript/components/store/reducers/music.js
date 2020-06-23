@@ -19,55 +19,55 @@ const initialState = {
     {
       artist: "Nihilore",
       title: "We Are Already Dead (instrumental)",
-      filename: "We_Are_Already_Dead_(instrumental).mp3",
+      src: "We_Are_Already_Dead_(instrumental).mp3",
       position: 0,
     },
     {
       artist: "Nihilore",
       title: "Lappel du vide",
-      filename: "Lappel_du_vide.mp3",
+      src: "Lappel_du_vide.mp3",
       position: 1,
     },
     {
       artist: "Nihilore",
       title: "Democide",
-      filename: "Democide.mp3",
+      src: "Democide.mp3",
       position: 2,
     },
     {
       artist: "Nihilore",
       title: "Artifice",
-      filename: "Artifice.mp3",
+      src: "Artifice.mp3",
       position: 3,
     },
     {
       artist: "Nihilore",
       title: "Panthalassa",
-      filename: "Panthalassa.mp3",
+      src: "Panthalassa.mp3",
       position: 4,
     },
     {
       artist: "Nihilore",
       title: "The Author Never Dies (instrumental)",
-      filename: "The_Author_Never_Dies_(instrumental).mp3",
+      src: "The_Author_Never_Dies_(instrumental).mp3",
       position: 5,
     },
     {
       artist: "Nihilore",
       title: "In the Belly of the Whale",
-      filename: "In_the_Belly_of_the_Whale.mp3",
+      src: "In_the_Belly_of_the_Whale.mp3",
       position: 6,
     },
     {
       artist: "Nihilore",
       title: "Motion Blur",
-      filename: "Motion_Blur.mp3",
+      src: "Motion_Blur.mp3",
       position: 7,
     },
     {
       artist: "Nihilore",
       title: "Absolute Terror",
-      filename: "Absolute_Terror.mp3",
+      src: "Absolute_Terror.mp3",
       position: 8,
     },
   ],
@@ -81,8 +81,8 @@ const initialState = {
 
 const musicReducer = handleActions(
   {
-    SET_SONG: produce((state, { payload }) => {
-      state.theme = songs[payload];
+    SET_CURRENT_SONG: produce((state, { payload }) => {
+      state.currentSong = payload;
     }),
     SET_DOCK: produce((state, { payload }) => {
       state.dock = payload;
