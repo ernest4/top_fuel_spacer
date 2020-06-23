@@ -12,8 +12,8 @@ import AudioSource from "./AudioSource";
 const Player = () => {
   const artist = useSelector(state => state.music.currentSong.artist);
   const title = useSelector(state => state.music.currentSong.title);
-  const time = useSelector(state => state.music.currentSong.time);
-  const songLength = useSelector(state => state.music.currentSong.songLength);
+  const currentTime = useSelector(state => state.music.currentSong.time);
+  const duration = useSelector(state => state.music.currentSong.duration);
 
   return (
     <Spacing horizontal>
@@ -29,7 +29,12 @@ const Player = () => {
           width: "450px",
         }}
       >
-        <Title {...{ title: artist, subtitles: [title, `${time}s`, `-${songLength - time}s`] }} />
+        <Title
+          {...{
+            title: artist,
+            subtitles: [title, `${currentTime}s`, `-${duration - currentTime}s`],
+          }}
+        />
         <Spacing top={0.5} />
         <SongProgressBar />
       </Spacing>

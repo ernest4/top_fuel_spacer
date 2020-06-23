@@ -9,9 +9,8 @@ const initialState = {
     title: "We Are Already Dead (instrumental)",
     src: "We_Are_Already_Dead_(instrumental).mp3",
     position: 0,
-    progress: 0,
-    songLength: 500, // TESTING VALUE
-    time: 50, // TESTING VALUE
+    duration: 0,
+    currentTime: 0,
   },
   playing: false,
   volume: 4,
@@ -45,6 +44,12 @@ const musicReducer = handleActions(
     }),
     SET_PLAYING: produce((state, { payload }) => {
       state.playing = payload;
+    }),
+    SET_DURATION: produce((state, { payload }) => {
+      state.currentSong.duration = payload;
+    }),
+    SET_CURRENT_TIME: produce((state, { payload }) => {
+      state.currentSong.currentTime = payload;
     }),
   },
   initialState
