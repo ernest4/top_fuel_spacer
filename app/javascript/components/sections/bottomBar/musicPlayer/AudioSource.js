@@ -16,6 +16,8 @@ const AudioSource = () => {
   const audioRef = useRef(null);
   const [track, setTrack] = useState();
 
+  const basic = useSelector(state => state.settings.graphics.musicPlayer.basic);
+
   const src = useSelector(state => state.music.currentSong.src);
   const playing = useSelector(state => state.music.playing);
   const volume = useSelector(state => state.music.volume);
@@ -51,8 +53,6 @@ const AudioSource = () => {
     // check if context is in suspended state (autoplay policy)
     if (audioContext.state === "suspended") audioContext.resume();
 
-    // debugger
-
     dispatch(musicActions.setDuration(audioRef.current.duration));
 
     if (playing) audioRef.current.play();
@@ -71,7 +71,9 @@ const AudioSource = () => {
     if (audioRef && audioRef.current) audioRef.current.currentTime = skipTime;
   }, [skipTime, audioRef]);
 
-  return <audio controls {...{ src: `music/${src}`, ref: audioRef, crossOrigin: "anonymous" }} />;
+  return (
+    <audio {...{ src: `music/${src}`, ref: audioRef, crossOrigin: "anonymous", controls: basic }} />
+  );
 };
 
 export default AudioSource;

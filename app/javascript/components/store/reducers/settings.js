@@ -3,7 +3,14 @@ import reduceReducers from "reduce-reducers";
 import produce from "immer";
 
 const initialState = {
-  graphics: { hover: { followCursor: true } }, // set to false for improved performance
+  graphics: {
+    hover: {
+      followCursor: true, // set to false for improved performance 25% (dynamic)
+    },
+    musicPlayer: {
+      basic: false, // set to false for improved performance 5% (fixed)
+    },
+  },
 };
 
 // const otherReducer = handleActions({
@@ -24,7 +31,10 @@ const settingsReducer = handleActions(
 const graphicsReducer = handleActions(
   {
     SET_HOVER: produce((state, { payload }) => {
-      state.hover = payload;
+      state.graphics.hover = payload;
+    }),
+    SET_MUSIC_PLAYER: produce((state, { payload }) => {
+      state.graphics.musicPlayer = payload;
     }),
   },
   initialState

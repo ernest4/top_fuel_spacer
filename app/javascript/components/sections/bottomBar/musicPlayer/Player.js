@@ -8,41 +8,55 @@ import NoteButton from "./NoteButton";
 import Controls from "./Controls";
 import SongProgressBar from "./SongProgressBar";
 import AudioSource from "./AudioSource";
+import { formatTime, getMinuteSeconds } from "../../../utils/Time";
 
 const Player = () => {
-  const artist = useSelector(state => state.music.currentSong.artist);
-  const title = useSelector(state => state.music.currentSong.title);
-  const currentTime = useSelector(state => state.music.currentSong.time);
-  const duration = useSelector(state => state.music.currentSong.duration);
+  const basic = useSelector(state => state.settings.graphics.musicPlayer.basic);
 
   return (
     <Spacing horizontal>
       <DockButton />
       <Line vertical />
-      <Spacing
-        vertical
-        {...{
-          left: 1,
-          right: 1,
-          interactiveHover: <Controls />,
-          hoverProps: { placement: "bottom", followCursor: false },
-          width: "450px",
-        }}
-      >
-        <Title
+      <Spacing left={1} />
+      {!basic && (
+        <Spacing
+          vertical
           {...{
-            title: artist,
-            subtitles: [title, `${currentTime}s`, `-${duration - currentTime}s`],
+            interactiveHover: <Controls />,
+            hoverProps: { placement: "bottom", followCursor: false },
+            width: "450px",
           }}
-        />
-        <Spacing top={0.5} />
-        <SongProgressBar />
-      </Spacing>
+        >
+          <ArtistAndSong />
+          <Spacing top={0.5} />
+          <SongProgressBar />
+        </Spacing>
+      )}
+      <AudioSource />
+      <Spacing left={1} />
       <Line vertical />
       <NoteButton />
-      <AudioSource />
     </Spacing>
   );
 };
 
 export default Player;
+
+const ArtistAndSong = () => {
+  const artist = useSelector(state => state.music.currentSong.artist);
+  const title = useSelector(state => state.music.currentSong.title);
+  const currentTime = useSelector(state => state.music.currentSong.currentTime);
+  const duration = useSelector(state => state.music.currentSong.duration);
+
+  const currentTimeString = formatTime(getMinuteSeconds(currentTime));
+  const remainderTimeString = formatTime(getMinuteSeconds(duration - currentTime));
+
+  return (
+    <Title
+      {...{
+        title: artist,
+        subtitles: [title, `${currentTimeString}s`, `-${remainderTimeString}s`],
+      }}
+    />
+  );
+};

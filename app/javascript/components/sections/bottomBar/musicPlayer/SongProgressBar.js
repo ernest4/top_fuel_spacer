@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Container from "../../../layout/Container";
 import Text from "../../../layout/Text";
 import * as musicActions from "../../../store/actions/music";
+import { formatTime, getMinuteSeconds } from "../../../utils/Time";
 
 const RESOLUTION = 50;
 
@@ -18,7 +19,6 @@ const SongProgressBar = () => {
 
   const onBarHover = ({ index }) => setHoverTime(index);
   const onClick = ({ index }) => {
-    // dispatch(musicActions.setCurrentTime((index / RESOLUTION) * duration));
     dispatch(musicActions.setSkipTime((index / RESOLUTION) * duration));
   };
 
@@ -55,15 +55,4 @@ const Hover = ({ hoverTime }) => {
       </Text>
     </Container>
   );
-};
-
-const getMinuteSeconds = time => {
-  const minutes = Math.floor(time / 60);
-  const seconds = Math.round(time - minutes * 60);
-
-  return { minutes, seconds };
-};
-
-const formatTime = ({ minutes, seconds }) => {
-  return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 };
