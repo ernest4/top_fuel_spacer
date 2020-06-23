@@ -21,7 +21,6 @@ const AudioSource = () => {
   const src = useSelector(state => state.music.currentSong.src);
   const playing = useSelector(state => state.music.playing);
   const volume = useSelector(state => state.music.volume);
-  // const currentTime = useSelector(state => state.music.currentSong.currentTime);
   const skipTime = useSelector(state => state.music.currentSong.skipTime);
 
   useEffect(() => {
@@ -55,8 +54,18 @@ const AudioSource = () => {
 
     dispatch(musicActions.setDuration(audioRef.current.duration));
 
-    if (playing) audioRef.current.play();
-    else audioRef.current.pause();
+    const playPause = async () => {
+      try {
+        if (playing) await audioRef.current.play();
+        else audioRef.current.pause();
+      } catch (error) {
+        console.error(error);
+
+        if (isPermissionError(error.message)) alert(AUDIO_PERMISSIONS_STRING);
+      }
+    };
+
+    playPause();
   }, [playing, dispatch]);
 
   useEffect(() => {
@@ -77,3 +86,28 @@ const AudioSource = () => {
 };
 
 export default AudioSource;
+
+const isPermissionError = error => {
+  return (
+    error.includes("NotAllowedError") ||
+    error.includes("denied permission") ||
+    error.includes("not allowed")
+  );
+};
+
+const AUDIO_PERMISSIONS_STRING = `It appears that the game does not have permission to play audio!
+ 
+For best experience we recommend enabling web audio.
+ 
+For Safar, enable audio by opening "Safari" -> "Preferences ..."
+
+Then navigate to the "Websites" tab.
+
+In the Websites tab, on the right you will see the "Currently Open Websites" section.
+
+Find this game in the list and on the right side, there should be a dropdown with the currently selected option set to "Stop Media With Sound" or "Never Auto-Play".
+
+Click the drop down button, and select the "Allow All Auto-Play" option.
+
+Finally, restart the web page for chances to take effect.
+`;
