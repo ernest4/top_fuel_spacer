@@ -20,7 +20,7 @@ const SongProgressBar = () => {
   const onBarHover = useCallback(({ index }) => setHoverTime(index), []);
   const onClick = useCallback(
     ({ index }) => {
-      dispatch(musicActions.setSkipTime((index / RESOLUTION) * duration));
+      dispatch(musicActions.setSkipTime((index / RESOLUTION) * (duration || 0)));
     },
     [dispatch, duration]
   );
