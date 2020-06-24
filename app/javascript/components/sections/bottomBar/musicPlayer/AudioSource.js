@@ -8,8 +8,6 @@ const AudioContext = window.AudioContext || window.webkitAudioContext;
 const audioContext = new AudioContext();
 const gainNode = audioContext.createGain();
 
-// TODO: process (compress) and add the other songs!!
-// TODO: autoplaye next song
 const AudioSource = () => {
   const dispatch = useDispatch();
 
@@ -35,17 +33,6 @@ const AudioSource = () => {
       const audioRefCurrent = audioRef.current;
 
       return () => (audioRefCurrent.ontimeupdate = null);
-
-      // dispatch(musicActions.setDuration(audioRef.current.duration));
-
-      // TODO: not working...?!?!
-      // const endedCallback = () => {
-      //   console.log("song finished");
-      // };
-
-      // audioRef.current.addEventListener("ended", endedCallback, false);
-
-      // return audioRef.current.removeEventListener("ended", endedCallback);
     }
   }, [audioRef, dispatch]);
 

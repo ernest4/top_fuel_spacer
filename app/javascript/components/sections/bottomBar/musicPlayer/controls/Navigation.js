@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "../../../../layout/Container";
 import Text from "../../../../layout/Text";
 import Spacing from "../../../../layout/Spacing";
@@ -11,6 +11,8 @@ const Navigation = ({ direction }) => {
   const fontDefault = useSelector(state => state.theme.theme.color.fontDefault);
   const songs = useSelector(state => state.music.songs);
   const currentSongPosition = useSelector(state => state.music.currentSong.position);
+  const duration = useSelector(state => state.music.currentSong.duration);
+  const currentTime = useSelector(state => state.music.currentSong.currentTime);
 
   const onSkipSong = () => {
     const songDirection = direction === "next" ? 1 : -1;
@@ -23,6 +25,10 @@ const Navigation = ({ direction }) => {
       musicActions.setCurrentSong({ ...songs[nextIndex], duration: 0, currentTime: 0, skipTime: 0 })
     );
   };
+
+  useEffect(() => {
+    if (duration && Math.round(currentTime) === Math.round(duration)) onSkipSong();
+  }, [duration, dispatch, currentTime]);
 
   return (
     <Spacing
