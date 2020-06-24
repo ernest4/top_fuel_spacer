@@ -21,6 +21,8 @@ const AudioSource = () => {
   const volume = useSelector(state => state.music.volume);
   const skipTime = useSelector(state => state.music.currentSong.skipTime);
   const currentSongPosition = useSelector(state => state.music.currentSong.position);
+  const duration = useSelector(state => state.music.currentSong.duration);
+  const currentTime = useSelector(state => state.music.currentSong.currentTime);
 
   useEffect(() => {
     if (audioRef && audioRef.current) {
@@ -67,6 +69,12 @@ const AudioSource = () => {
   useEffect(() => {
     if (audioRef && audioRef.current) audioRef.current.currentTime = skipTime;
   }, [skipTime, audioRef]);
+
+  useEffect(() => {
+    if (duration && currentTime) {
+      dispatch(musicActions.setFinished(Math.round(currentTime) === Math.round(duration)));
+    }
+  }, [duration, dispatch, currentTime]);
 
   return (
     <audio {...{ src: `music/${src}`, ref: audioRef, crossOrigin: "anonymous", controls: basic }} />

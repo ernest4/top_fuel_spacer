@@ -13,8 +13,6 @@ const initialPlayerPosition = {
 const MusicPlayer = () => {
   const dispatch = useDispatch();
 
-  const basic = useSelector(state => state.settings.graphics.musicPlayer.basic);
-
   const dock = useSelector(state => state.music.dock);
   const closest = useSelector(state => state.theme.theme.color.closest);
   const secondary = useSelector(state => state.theme.theme.color.secondary);
@@ -32,7 +30,7 @@ const MusicPlayer = () => {
         all: 1,
         borderRadius: "100px",
         position: "absolute",
-        absoluteLeft: `-${(62 - (basic ? 16 : 0)) * SPACING}px`,
+        absoluteLeft: `-${64 * SPACING}px`,
         absoluteTop: `-${28 * SPACING}px`,
         resetPosition: dock,
         background: closest,

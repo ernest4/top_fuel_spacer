@@ -18,21 +18,24 @@ const Player = () => {
       <DockButton />
       <Line vertical />
       <Spacing left={1} />
-      {!basic && (
-        <Spacing
-          vertical
-          {...{
-            interactiveHover: <Controls />,
-            hoverProps: { placement: "bottom", followCursor: false },
-            width: "450px",
-          }}
-        >
-          <ArtistAndSong />
-          <Spacing top={0.5} />
-          <SongProgressBar />
-        </Spacing>
-      )}
-      <AudioSource />
+      <Spacing
+        vertical
+        center
+        {...{
+          interactiveHover: <Controls />,
+          hoverProps: { placement: "bottom", followCursor: false },
+          width: "450px",
+        }}
+      >
+        {!basic && (
+          <>
+            <ArtistAndSong />
+            <Spacing top={0.5} />
+            <SongProgressBar />
+          </>
+        )}
+        <AudioSource />
+      </Spacing>
       <Spacing left={1} />
       <Line vertical />
       <NoteButton />

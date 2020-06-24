@@ -13,6 +13,7 @@ const Navigation = ({ direction }) => {
   const currentSongPosition = useSelector(state => state.music.currentSong.position);
   const duration = useSelector(state => state.music.currentSong.duration);
   const currentTime = useSelector(state => state.music.currentSong.currentTime);
+  const finished = useSelector(state => state.music.currentSong.finished);
 
   const onSkipSong = () => {
     const songDirection = direction === "next" ? 1 : -1;
@@ -26,9 +27,13 @@ const Navigation = ({ direction }) => {
     );
   };
 
+  // useEffect(() => {
+  //   if (duration && Math.round(currentTime) === Math.round(duration)) onSkipSong();
+  // }, [duration, dispatch, currentTime]);
+
   useEffect(() => {
-    if (duration && Math.round(currentTime) === Math.round(duration)) onSkipSong();
-  }, [duration, dispatch, currentTime]);
+    if (finished) onSkipSong();
+  }, [finished]);
 
   return (
     <Spacing
