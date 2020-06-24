@@ -44,21 +44,19 @@ const ProgressBar = ({
   // so it's less than ideal.
   return (
     <Spacing
-      {...{
-        height: "fit-content",
-        width: "100%",
-        pointer,
-        transform: transformOverride || transform,
-        // background: containerBackground || "transparent",
-        background: containerBackground || middle,
-        borderRadius: "4px",
-        ...outlineProps,
-      }}
+      // Its more efficient to just do this prop by prop instead of spreading!!!
+      // TODO: use this method for all critical code !!!
+      height="fit-content"
+      width="100%"
+      pointer={pointer}
+      transform={transformOverride || transform}
+      // background={containerBackground || "transparent"}
+      background={containerBackground || middle}
+      borderRadius="4px"
+      {...outlineProps}
     >
       <Spacing
         horizontal
-        // its more efficient to just do this prop by prop instead of spreading!!!
-        // TODO: use this method for all critical code !!!
         height={height || `${2 * SPACING}px`}
         width="100%"
         hover={hover}
@@ -66,20 +64,16 @@ const ProgressBar = ({
       >
         {Array.from(Array(dataPoints)).map((x, key) => (
           <Spacing
-            {...{
-              key,
-              width: "100%",
-              all: 0.375,
-              left: 0 < key ? "0" : 0.375,
-              onClick: onClickCallback ? () => onClickCallback({ index: key }) : undefined,
-              onMouseOver: onBarHover ? () => onBarHover({ index: key }) : undefined,
-            }}
+            key={key}
+            width="100%"
+            all={0.375}
+            left={0 < key ? "0" : 0.375}
+            onClick={onClickCallback ? () => onClickCallback({ index: key }) : undefined}
+            onMouseOver={onBarHover ? () => onBarHover({ index: key }) : undefined}
           >
             <Bar
-              {...{
-                show: (key + 1) / dataPoints <= progress,
-                background: barBackground || secondary,
-              }}
+              show={(key + 1) / dataPoints <= progress}
+              background={barBackground || secondary}
             />
           </Spacing>
         ))}

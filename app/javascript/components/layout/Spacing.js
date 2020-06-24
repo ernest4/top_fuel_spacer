@@ -16,24 +16,22 @@ const Spacing = forwardRef(({ hover, interactiveHover, hoverProps, ...props }, r
         // distance={33}
         // offset={100}
         // maxWidth={1000}
-        {...{
-          plugins: [followCursor],
-          interactive: !!interactiveHover,
-          placement: "top",
-          trigger: "mouseenter", // 'for more options: https://atomiks.github.io/tippyjs/v6/all-props/#trigger'
-          duration: 0,
-          arrow: false,
-          appendTo: window.document.body,
-          content: hover || interactiveHover,
-          children: <Container {...{ primary, ...props, ref }} />,
-          ...hoverProps,
-          followCursor: canFollowCursor ? checkHoverProps(hoverProps) : false,
-        }}
+        plugins={[followCursor]}
+        interactive={!!interactiveHover}
+        placement={"top"}
+        trigger={"mouseenter"} // 'for more options: https://atomiks.github.io/tippyjs/v6/all-props/#trigger'
+        duration={0}
+        arrow={false}
+        appendTo={window.document.body}
+        content={hover || interactiveHover}
+        children={<Container primary={primary} {...props} ref={ref} />}
+        {...hoverProps}
+        followCursor={canFollowCursor ? checkHoverProps(hoverProps) : false}
       />
     );
   }
 
-  return <Container {...{ ...props, ref }} />;
+  return <Container {...props} ref={ref} />;
 });
 
 export default memo(Spacing);
@@ -46,7 +44,7 @@ const checkHoverProps = hoverProps => {
 
 export const SPACING = 8;
 
-const Container = styled.div`
+const Container = memo(styled.div`
   display: ${({ scroll, overflow }) => (scroll || overflow ? "block" : "flex")};
   ${({ scroll }) => scroll && `overflow-y: scroll;`}
   ${({ position }) => position && `position: ${position};`}
@@ -96,4 +94,4 @@ const Container = styled.div`
         } decided against this for now, pointer should be enough... */
       }
     `};
-`;
+`);
