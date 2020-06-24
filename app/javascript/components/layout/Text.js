@@ -26,7 +26,7 @@ const Text = forwardRef(({ italics, ...props }, ref) => {
 
 export default memo(Text);
 
-const Container = styled.span`
+const Container = memo(styled.span`
   margin: 0px;
   padding: 0px;
 
@@ -62,7 +62,7 @@ const Container = styled.span`
       font-size: 20px;
       line-height: 1.25;
     `}; */
-`;
+`);
 
 const getSizeAndLineHeight = ({
   extraSmall,
