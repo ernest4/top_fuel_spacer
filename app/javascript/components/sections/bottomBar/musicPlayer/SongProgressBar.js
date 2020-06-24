@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, memo } from "react";
 import ProgressBar from "../../../misc/ProgressBar";
 import { useSelector, useDispatch } from "react-redux";
 import Container from "../../../layout/Container";
@@ -17,10 +17,13 @@ const SongProgressBar = () => {
   const duration = useSelector(state => state.music.currentSong.duration);
   const primary = useSelector(state => state.theme.theme.color.primary);
 
-  const onBarHover = ({ index }) => setHoverTime(index);
-  const onClick = ({ index }) => {
-    dispatch(musicActions.setSkipTime((index / RESOLUTION) * duration));
-  };
+  const onBarHover = useCallback(({ index }) => setHoverTime(index), []);
+  const onClick = useCallback(
+    ({ index }) => {
+      dispatch(musicActions.setSkipTime((index / RESOLUTION) * duration));
+    },
+    [dispatch, duration]
+  );
 
   return (
     <ProgressBar
@@ -39,7 +42,7 @@ const SongProgressBar = () => {
 
 export default SongProgressBar;
 
-const Hover = ({ hoverTime }) => {
+const Hover = memo(({ hoverTime }) => {
   const duration = useSelector(state => state.music.currentSong.duration);
 
   const normalizedTime = (hoverTime / RESOLUTION) * duration;
@@ -55,4 +58,4 @@ const Hover = ({ hoverTime }) => {
       </Text>
     </Container>
   );
-};
+});

@@ -1,9 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import Spacing from "./Spacing";
 import { useSelector } from "react-redux";
-import Line from "./Line";
+// import Line from "./Line";
 
-// TODO: react memo?
 const Container = ({
   children,
   // items,
@@ -17,7 +16,7 @@ const Container = ({
   // NOTE: the separator is unlikely to ever be used. But migth be repurposed? so keeping it around.
 
   const secondary = useSelector(state => state.theme.theme.color.secondary);
-  const furthest = useSelector(state => state.theme.theme.color.furthest);
+  // const furthest = useSelector(state => state.theme.theme.color.furthest);
   const closest = useSelector(state => state.theme.theme.color.closest);
 
   const COMMON_INNER_PROPS = {
@@ -56,25 +55,23 @@ const Container = ({
 
   return (
     <Spacing
-      {...{
-        all: 0.5,
-        background: "transparent",
-        // background: furthest.replace(/, 1\)/, ", 0.5)"), // reduce alpha value
-        // background: furthest,
-        borderRadius: `${right ? "" : "5px"} 20px 5px 20px ${right ? "5px" : ""}`,
-        border: border ? `2px solid ${borderColor || secondary}` : "",
-        // border: border ? `3px solid ${borderColor || background}` : "",
-        // border: border ? `3px solid ${borderColor || primary}` : "",
-        opacity: "0.95",
-        // children: innerContent,
-        children: <Spacing {...{ ...COMMON_INNER_PROPS, children }} />,
-        ...props,
-      }}
+      all={0.5}
+      background="transparent"
+      // background: furthest.replace(/, 1\)/, ", 0.5)"), // reduce alpha value
+      // background: furthest,
+      borderRadius={`${right ? "" : "5px"} 20px 5px 20px ${right ? "5px" : ""}`}
+      border={border ? `2px solid ${borderColor || secondary}` : ""}
+      // border: border ? `3px solid ${borderColor || background}` : "",
+      // border: border ? `3px solid ${borderColor || primary}` : "",
+      opacity="0.95"
+      // children: innerContent,
+      children={<Spacing {...{ ...COMMON_INNER_PROPS, children }} />}
+      {...props}
     />
   );
 };
 
-export default Container;
+export default memo(Container);
 
 // const adjustBorderRadius = ({ section, cssBorderRadiString }) => {
 //   if (section === "body") return "4px 4px 4px 4px";

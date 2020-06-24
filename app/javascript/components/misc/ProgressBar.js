@@ -36,8 +36,16 @@ const ProgressBar = ({
 
   const dataPoints = resolution || range;
 
-  // TODO: see how much this helps!!  - seems like it makes this 0.5% cpu WORSE XD
-  // const dataPointsArray = useMemo(() => Array.from(Array(dataPoints)), [dataPoints]);
+  const callbacksArray = useMemo(
+    () =>
+      Array.from(Array(dataPoints)).map((x, index) => {
+        return [
+          onClickCallback ? () => onClickCallback({ index }) : undefined,
+          onBarHover ? () => onBarHover({ index }) : undefined,
+        ];
+      }),
+    [dataPoints, onClickCallback, onBarHover]
+  );
 
   // NOTE: bizzare way react works on line 176. I want to send the value 0, but react treats that as
   // no argument. Thus need to send string "0" event though the value will be used in a calculation,
@@ -62,14 +70,16 @@ const ProgressBar = ({
         hover={hover}
         pointer={onClickCallback}
       >
-        {Array.from(Array(dataPoints)).map((x, key) => (
+        {callbacksArray.map(([onClickCallbackMemo, onBarHoverMemo], key) => (
           <Spacing
             key={key}
             width="100%"
             all={0.375}
             left={0 < key ? "0" : 0.375}
-            onClick={onClickCallback ? () => onClickCallback({ index: key }) : undefined}
-            onMouseOver={onBarHover ? () => onBarHover({ index: key }) : undefined}
+            // onClick={onClickCallback ? () => onClickCallback({ index: key }) : undefined}
+            // onMouseOver={onBarHover ? () => onBarHover({ index: key }) : undefined}
+            onClick={onClickCallbackMemo}
+            onMouseOver={onBarHoverMemo}
           >
             <Bar
               show={(key + 1) / dataPoints <= progress}
@@ -83,45 +93,17 @@ const ProgressBar = ({
 };
 
 export default ProgressBar;
-// export default memo(ProgressBar);
-
-{
-  /* <Segment {...{ key, onClickCallback, onBarHover, dataPoints, progress, barBackground }} /> */
-}
-
-// const Segment = ({ key, onClickCallback, onBarHover, dataPoints, progress, barBackground }) => {
-//   const secondary = useSelector(state => state.theme.theme.color.secondary);
-
-//   return (
-//     <Spacing
-//       {...{
-//         key,
-//         width: "100%",
-//         all: 0.375,
-//         left: 0 < key ? "0" : 0.375,
-//         onClick: onClickCallback ? () => onClickCallback({ index: key }) : undefined,
-//         onMouseOver: onBarHover ? () => onBarHover({ index: key }) : undefined,
-//       }}
-//     >
-//       <Bar
-//         {...{ show: (key + 1) / dataPoints <= progress, background: barBackground || secondary }}
-//       />
-//     </Spacing>
-//   );
-// };
 
 const Bar = memo(({ show, background }) => {
   const black = useSelector(state => state.theme.theme.color.black);
 
   return (
     <Spacing
-      {...{
-        opacity: show ? "1" : "0.3",
-        width: "100%",
-        height: "100%",
-        borderRadius: "2px",
-        background: show ? background : black,
-      }}
+      opacity={show ? "1" : "0.3"}
+      width="100%"
+      height="100%"
+      borderRadius="2px"
+      background={show ? background : black}
     />
   );
 });

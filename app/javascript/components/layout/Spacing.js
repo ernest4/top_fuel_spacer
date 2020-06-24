@@ -4,6 +4,8 @@ import Tippy from "@tippyjs/react";
 import { followCursor } from "tippy.js";
 import { useSelector } from "react-redux";
 
+const plugins = [followCursor];
+
 const Spacing = forwardRef(({ hover, interactiveHover, hoverProps, ...props }, ref) => {
   const canFollowCursor = useSelector(state => state.settings.graphics.hover.followCursor);
   const primary = useSelector(state => state.theme.theme.color.primary);
@@ -16,7 +18,7 @@ const Spacing = forwardRef(({ hover, interactiveHover, hoverProps, ...props }, r
         // distance={33}
         // offset={100}
         // maxWidth={1000}
-        plugins={[followCursor]}
+        plugins={plugins}
         interactive={!!interactiveHover}
         placement={"top"}
         trigger={"mouseenter"} // 'for more options: https://atomiks.github.io/tippyjs/v6/all-props/#trigger'
