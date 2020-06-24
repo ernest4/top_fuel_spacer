@@ -59,6 +59,9 @@ const ArtistAndSong = () => {
       {...{
         title: artist,
         subtitles: [title, `${currentTimeString}s`, `-${remainderTimeString}s`],
+        overflow: "scroll",
+        height: "50px",
+        width: "100%",
       }}
     />
   );
