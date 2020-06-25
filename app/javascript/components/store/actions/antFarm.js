@@ -1,3 +1,3 @@
 import { createAction } from "redux-actions";
 
-export const setCurrentSection = createAction("SET_CURRENT_SECTION");
+export const setCurrentSectionId = createAction("SET_CURRENT_SECTION_ID");

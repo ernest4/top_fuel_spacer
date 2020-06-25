@@ -3,7 +3,7 @@ import reduceReducers from "reduce-reducers";
 import produce from "immer";
 
 const initialState = {
-  currentSection: null,
+  currentSectionId: null,
   sections: [],
 };
 
@@ -15,8 +15,8 @@ const initialState = {
 
 const antFarmReducer = handleActions(
   {
-    SET_CURRENT_SECTION: produce((state, { payload }) => {
-      state.currentSection = payload;
+    SET_CURRENT_SECTION_ID: produce((state, { payload }) => {
+      state.currentSectionId = payload;
     }),
   },
   initialState
