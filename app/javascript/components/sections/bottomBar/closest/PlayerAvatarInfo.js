@@ -1,5 +1,5 @@
 import React from "react";
-import Spacing, { SPACING } from "../../layout/Spacing";
+import Spacing, { SPACING } from "../../../layout/Spacing";
 import Prestige from "./playerAvatarInfo/Prestige";
 import Player from "./playerAvatarInfo/Player";
 import Level from "./playerAvatarInfo/Level";

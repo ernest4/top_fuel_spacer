@@ -1,8 +1,8 @@
 import React from "react";
-import Spacing, { SPACING } from "../../../layout/Spacing";
+import Spacing, { SPACING } from "../../../../layout/Spacing";
 import { useSelector } from "react-redux";
-import Text from "../../../layout/Text";
-import Card from "../../../layout/Card";
+import Text from "../../../../layout/Text";
+import Card from "../../../../layout/Card";
 
 const Player = () => {
   const secondary = useSelector(state => state.theme.theme.color.secondary);

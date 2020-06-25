@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import * as musicActions from "../../../store/actions/music";
+import * as musicActions from "../../../../store/actions/music";
 
 // instigate our audio context
 // for cross browser

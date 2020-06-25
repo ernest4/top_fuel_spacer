@@ -1,14 +1,14 @@
 import React from "react";
-import Spacing from "../../../layout/Spacing";
+import Spacing from "../../../../layout/Spacing";
 import { useSelector } from "react-redux";
-import Title from "../../../layout/pane/Title";
-import Line from "../../../layout/Line";
+import Title from "../../../../layout/pane/Title";
+import Line from "../../../../layout/Line";
 import DockButton from "./DockButton";
 import NoteButton from "./NoteButton";
 import Controls from "./Controls";
 import SongProgressBar from "./SongProgressBar";
 import AudioSource from "./AudioSource";
-import { formatTime, getMinuteSeconds } from "../../../utils/Time";
+import { formatTime, getMinuteSeconds } from "../../../../utils/Time";
 
 const Player = () => {
   const basic = useSelector(state => state.settings.graphics.musicPlayer.basic);

@@ -1,8 +1,8 @@
 import React from "react";
-import { SPACING } from "../../layout/Spacing";
+import { SPACING } from "../../../layout/Spacing";
 import { useSelector, useDispatch } from "react-redux";
-import Draggable from "../../layout/Draggable";
-import * as musicActions from "../../store/actions/music";
+import Draggable from "../../../layout/Draggable";
+import * as musicActions from "../../../store/actions/music";
 import Player from "./musicPlayer/Player";
 
 const initialPlayerPosition = {

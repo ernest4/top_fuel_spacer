@@ -1,8 +1,8 @@
 import React from "react";
-import Spacing, { SPACING } from "../../../layout/Spacing";
+import Spacing, { SPACING } from "../../../../layout/Spacing";
 import { useSelector } from "react-redux";
-import Card from "../../../layout/Card";
-import Text from "../../../layout/Text";
+import Card from "../../../../layout/Card";
+import Text from "../../../../layout/Text";
 
 const Prestige = () => {
   const background = useSelector(state => state.theme.theme.color.closest);

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import Spacing from "../../../layout/Spacing";
-import Container from "../../../layout/Container";
-import Text from "../../../layout/Text";
+import Spacing from "../../../../layout/Spacing";
+import Container from "../../../../layout/Container";
+import Text from "../../../../layout/Text";
 import { useSelector, useDispatch } from "react-redux";
-import * as musicActions from "../../../store/actions/music";
+import * as musicActions from "../../../../store/actions/music";
 // DANGER: react-intersection-observer consumes 30% CPU, never use it !!!!
 // import { useInView } from "react-intersection-observer";
 

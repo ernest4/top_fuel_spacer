@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Spacing, { SPACING } from "../../../../layout/Spacing";
-import SVG from "../../../../svg/SVG";
-import ProgressBar from "../../../../misc/ProgressBar";
+import Spacing, { SPACING } from "../../../../../layout/Spacing";
+import SVG from "../../../../../svg/SVG";
+import ProgressBar from "../../../../../misc/ProgressBar";
 import { useSelector, useDispatch } from "react-redux";
-import * as musicActions from "../../../../store/actions/music";
-import Text from "../../../../layout/Text";
-import Container from "../../../../layout/Container";
+import * as musicActions from "../../../../../store/actions/music";
+import Text from "../../../../../layout/Text";
+import Container from "../../../../../layout/Container";
 
 const Volume = () => {
   const dispatch = useDispatch();

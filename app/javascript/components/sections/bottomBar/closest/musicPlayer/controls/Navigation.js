@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import Container from "../../../../layout/Container";
-import Text from "../../../../layout/Text";
-import Spacing from "../../../../layout/Spacing";
-import SVG from "../../../../svg/SVG";
+import Container from "../../../../../layout/Container";
+import Text from "../../../../../layout/Text";
+import Spacing from "../../../../../layout/Spacing";
+import SVG from "../../../../../svg/SVG";
 import { useSelector, useDispatch } from "react-redux";
-import * as musicActions from "../../../../store/actions/music";
+import * as musicActions from "../../../../../store/actions/music";
 
 const Navigation = ({ direction }) => {
   const dispatch = useDispatch();

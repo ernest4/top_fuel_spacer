@@ -1,10 +1,10 @@
 import React, { useState, useCallback, memo } from "react";
-import ProgressBar from "../../../misc/ProgressBar";
+import ProgressBar from "../../../../misc/ProgressBar";
 import { useSelector, useDispatch } from "react-redux";
-import Container from "../../../layout/Container";
-import Text from "../../../layout/Text";
-import * as musicActions from "../../../store/actions/music";
-import { formatTime, getMinuteSeconds } from "../../../utils/Time";
+import Container from "../../../../layout/Container";
+import Text from "../../../../layout/Text";
+import * as musicActions from "../../../../store/actions/music";
+import { formatTime, getMinuteSeconds } from "../../../../utils/Time";
 
 const RESOLUTION = 50;
 

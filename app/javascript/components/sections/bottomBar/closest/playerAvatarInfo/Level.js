@@ -1,8 +1,8 @@
 import React from "react";
-import Spacing, { SPACING } from "../../../layout/Spacing";
+import Spacing, { SPACING } from "../../../../layout/Spacing";
 import { useSelector } from "react-redux";
 import { Hover } from "./PlayerXpBar";
-import Text from "../../../layout/Text";
+import Text from "../../../../layout/Text";
 
 const Level = () => {
   const background = useSelector(state => state.theme.theme.color.closest);

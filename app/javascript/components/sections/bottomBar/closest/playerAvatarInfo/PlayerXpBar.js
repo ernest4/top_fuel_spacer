@@ -1,9 +1,9 @@
 import React from "react";
-import Spacing, { SPACING } from "../../../layout/Spacing";
-import ProgressBar from "../../../misc/ProgressBar";
+import Spacing, { SPACING } from "../../../../layout/Spacing";
+import ProgressBar from "../../../../misc/ProgressBar";
 import { useSelector } from "react-redux";
-import Text from "../../../layout/Text";
-import Card from "../../../layout/Card";
+import Text from "../../../../layout/Text";
+import Card from "../../../../layout/Card";
 
 const PlayerXpBar = () => {
   const primary = useSelector(state => state.theme.theme.color.primary);

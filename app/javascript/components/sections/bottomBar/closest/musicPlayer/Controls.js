@@ -1,6 +1,6 @@
 import React from "react";
-import Spacing from "../../../layout/Spacing";
-import Line from "../../../layout/Line";
+import Spacing from "../../../../layout/Spacing";
+import Line from "../../../../layout/Line";
 import { useSelector } from "react-redux";
 import Navigation from "./controls/Navigation";
 import Play from "./controls/Play";
