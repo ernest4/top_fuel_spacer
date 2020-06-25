@@ -2,76 +2,76 @@ import { handleActions } from "redux-actions";
 import reduceReducers from "reduce-reducers";
 import produce from "immer";
 
+// NOTE: keep data as flat and normalized as possible. Since deep updates require new copies of
+// objects along the way, any components listening along the update path will need to rerender...
+// Also normalization is just more efficent as eveyrything is once source of truth.
 const initialState = {
   dock: false,
-  currentSong: {
-    artist: "Nihilore",
-    title: "We Are Already Dead (instrumental)",
-    src: "We_Are_Already_Dead_(instrumental).mp3",
-    position: 0,
-    duration: 0,
-    currentTime: 0,
-    skipTime: 0,
-    finished: false,
-  },
+  currentSongId: 0,
+  duration: 0,
+  currentTime: 0,
+  skipTime: 0,
+  finished: false,
   playing: false,
   volume: 4,
+  // NOTE: position in array is implicit id. Like a rown in a DB table.
   songs: [
     {
+      id: 0,
       artist: "Nihilore",
       title: "We Are Already Dead (instrumental)",
       src: "We_Are_Already_Dead_(instrumental).mp3",
-      position: 0,
     },
     {
+      id: 1,
       artist: "Nihilore",
       title: "Lappel du vide",
       src: "Lappel_du_vide.mp3",
-      position: 1,
     },
     {
+      id: 2,
       artist: "Nihilore",
       title: "Democide",
       src: "Democide.mp3",
-      position: 2,
     },
     {
+      id: 3,
       artist: "Nihilore",
       title: "Artifice",
       src: "Artifice.mp3",
-      position: 3,
     },
     {
+      id: 4,
       artist: "Nihilore",
       title: "Panthalassa",
       src: "Panthalassa.mp3",
-      position: 4,
     },
     {
+      id: 5,
       artist: "Nihilore",
       title: "The Author Never Dies (instrumental)",
       src: "The_Author_Never_Dies_(instrumental).mp3",
-      position: 5,
     },
     {
+      id: 6,
       artist: "Nihilore",
       title: "In the Belly of the Whale",
       src: "In_the_Belly_of_the_Whale.mp3",
-      position: 6,
     },
     {
+      id: 7,
       artist: "Nihilore",
       title: "Motion Blur",
       src: "Motion_Blur.mp3",
-      position: 7,
     },
     {
+      id: 8,
       artist: "Nihilore",
       title: "Absolute Terror",
       src: "Absolute_Terror.mp3",
-      position: 8,
     },
   ],
+  // allIds: [0, 1, 2, 3, 4, 5, 6, 7, 8], // NOTE: this is not necessary, since [0..songs.length] can give you same info
 };
 
 // const otherReducer = handleActions({
@@ -82,8 +82,8 @@ const initialState = {
 
 const musicReducer = handleActions(
   {
-    SET_CURRENT_SONG: produce((state, { payload }) => {
-      state.currentSong = payload;
+    SET_CURRENT_SONG_ID: produce((state, { payload }) => {
+      state.currentSongId = payload;
     }),
     SET_DOCK: produce((state, { payload }) => {
       state.dock = payload;
@@ -95,16 +95,16 @@ const musicReducer = handleActions(
       state.playing = payload;
     }),
     SET_DURATION: produce((state, { payload }) => {
-      state.currentSong.duration = payload;
+      state.duration = payload;
     }),
     SET_CURRENT_TIME: produce((state, { payload }) => {
-      state.currentSong.currentTime = payload;
+      state.currentTime = payload;
     }),
     SET_SKIP_TIME: produce((state, { payload }) => {
-      state.currentSong.skipTime = payload;
+      state.skipTime = payload;
     }),
     SET_FINISHED: produce((state, { payload }) => {
-      state.currentSong.finished = payload;
+      state.finished = payload;
     }),
   },
   initialState

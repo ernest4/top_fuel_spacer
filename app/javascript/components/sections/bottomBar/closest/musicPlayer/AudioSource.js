@@ -16,13 +16,13 @@ const AudioSource = () => {
 
   const basic = useSelector(state => state.settings.graphics.musicPlayer.basic);
 
-  const src = useSelector(state => state.music.currentSong.src);
+  const currentSongId = useSelector(state => state.music.currentSongId);
+  const src = useSelector(state => state.music.songs[currentSongId]?.src);
   const playing = useSelector(state => state.music.playing);
   const volume = useSelector(state => state.music.volume);
-  const skipTime = useSelector(state => state.music.currentSong.skipTime);
-  const currentSongPosition = useSelector(state => state.music.currentSong.position);
-  const duration = useSelector(state => state.music.currentSong.duration);
-  const currentTime = useSelector(state => state.music.currentSong.currentTime);
+  const skipTime = useSelector(state => state.music.skipTime);
+  const duration = useSelector(state => state.music.duration);
+  const currentTime = useSelector(state => state.music.currentTime);
 
   useEffect(() => {
     if (audioRef && audioRef.current) {
@@ -56,7 +56,7 @@ const AudioSource = () => {
     };
 
     playPause();
-  }, [playing, dispatch, currentSongPosition]);
+  }, [playing, dispatch, currentSongId]);
 
   useEffect(() => {
     gainNode.gain.value = volume / 10;

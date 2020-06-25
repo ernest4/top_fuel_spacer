@@ -1,6 +1,6 @@
 import { createAction } from "redux-actions";
 
-export const setCurrentSong = createAction("SET_CURRENT_SONG");
+export const setCurrentSongId = createAction("SET_CURRENT_SONG_ID");
 export const setDock = createAction("SET_DOCK");
 export const setVolume = createAction("SET_VOLUME");
 export const setPlaying = createAction("SET_PLAYING");

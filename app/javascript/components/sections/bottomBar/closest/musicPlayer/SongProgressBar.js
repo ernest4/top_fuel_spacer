@@ -13,8 +13,8 @@ const SongProgressBar = () => {
 
   const [hoverTime, setHoverTime] = useState();
 
-  const currentTime = useSelector(state => state.music.currentSong.currentTime);
-  const duration = useSelector(state => state.music.currentSong.duration);
+  const currentTime = useSelector(state => state.music.currentTime);
+  const duration = useSelector(state => state.music.duration);
   const primary = useSelector(state => state.theme.theme.color.primary);
 
   const onBarHover = useCallback(({ index }) => setHoverTime(index), []);
@@ -43,7 +43,7 @@ const SongProgressBar = () => {
 export default SongProgressBar;
 
 const Hover = memo(({ hoverTime }) => {
-  const duration = useSelector(state => state.music.currentSong.duration);
+  const duration = useSelector(state => state.music.duration);
 
   const normalizedTime = (hoverTime / RESOLUTION) * duration;
 

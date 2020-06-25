@@ -3,33 +3,31 @@ import Container from "../../../../../layout/Container";
 import Text from "../../../../../layout/Text";
 import Spacing from "../../../../../layout/Spacing";
 import SVG from "../../../../../svg/SVG";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, batch } from "react-redux";
 import * as musicActions from "../../../../../store/actions/music";
 
 const Navigation = ({ direction }) => {
   const dispatch = useDispatch();
   const fontDefault = useSelector(state => state.theme.theme.color.fontDefault);
-  const songs = useSelector(state => state.music.songs);
-  const currentSongPosition = useSelector(state => state.music.currentSong.position);
-  const duration = useSelector(state => state.music.currentSong.duration);
-  const currentTime = useSelector(state => state.music.currentSong.currentTime);
-  const finished = useSelector(state => state.music.currentSong.finished);
+  const songsLength = useSelector(state => state.music.songs.length);
+  const currentSongId = useSelector(state => state.music.currentSongId);
+  const finished = useSelector(state => state.music.finished);
 
   const onSkipSong = () => {
     const songDirection = direction === "next" ? 1 : -1;
-    let nextIndex = currentSongPosition + songDirection;
+    let nextIndex = currentSongId + songDirection;
 
-    if (nextIndex < 0) nextIndex = songs.length - 1;
-    if (songs.length - 1 < nextIndex) nextIndex = 0;
+    if (nextIndex < 0) nextIndex = songsLength - 1;
+    if (songsLength - 1 < nextIndex) nextIndex = 0;
 
-    dispatch(
-      musicActions.setCurrentSong({ ...songs[nextIndex], duration: 0, currentTime: 0, skipTime: 0 })
-    );
+    // NOTE: each dispatch triggers rerender, can batch them together to trigger rerender once
+    batch(() => {
+      dispatch(musicActions.setCurrentSongId(nextIndex));
+      dispatch(musicActions.setDuration(0));
+      dispatch(musicActions.setCurrentTime(0));
+      dispatch(musicActions.setSkipTime(0));
+    });
   };
-
-  // useEffect(() => {
-  //   if (duration && Math.round(currentTime) === Math.round(duration)) onSkipSong();
-  // }, [duration, dispatch, currentTime]);
 
   useEffect(() => {
     if (finished) onSkipSong();

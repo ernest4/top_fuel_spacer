@@ -46,10 +46,12 @@ const Player = () => {
 export default Player;
 
 const ArtistAndSong = () => {
-  const artist = useSelector(state => state.music.currentSong.artist);
-  const title = useSelector(state => state.music.currentSong.title);
-  const currentTime = useSelector(state => state.music.currentSong.currentTime);
-  const duration = useSelector(state => state.music.currentSong.duration);
+  const currentSongId = useSelector(state => state.music.currentSongId);
+  const artist = useSelector(state => state.music.songs[currentSongId]?.artist);
+  const title = useSelector(state => state.music.songs[currentSongId]?.title);
+
+  const currentTime = useSelector(state => state.music.currentTime);
+  const duration = useSelector(state => state.music.duration);
 
   const currentTimeString = formatTime(getMinuteSeconds(currentTime));
   const remainderTimeString = formatTime(getMinuteSeconds(duration - currentTime));
