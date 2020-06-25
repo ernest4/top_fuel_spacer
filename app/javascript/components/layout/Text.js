@@ -55,6 +55,7 @@ const Container = memo(styled.span`
 
   ${({ center }) => center && `text-align: center;`}
   ${({ initial }) => initial && `text-transform: initial;`}
+  ${({ transform }) => transform && `transform: ${transform};`}
 
   /* ${({ large }) =>
     large &&

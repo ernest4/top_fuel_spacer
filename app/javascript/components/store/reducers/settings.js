@@ -2,6 +2,7 @@ import { handleActions } from "redux-actions";
 import reduceReducers from "reduce-reducers";
 import produce from "immer";
 
+// TODO: flatten this state! apparently normalized state is faster for redux than nested one\1
 const initialState = {
   graphics: {
     hover: {

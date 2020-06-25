@@ -1,11 +1,19 @@
 import React from "react";
-import Spacing from "../../layout/Spacing";
+import Spacing, { SPACING } from "../../layout/Spacing";
+import { useSelector } from "react-redux";
+import Text from "../../layout/Text";
 
 const Middle = () => {
-  const controls = ["test1", "test2", "test3", "close"];
+  const controls = [
+    "chat",
+    "research", // [optional] -> research / build / hack / grow / fight (pirate) / etc
+    "tasks", // [optional] -> your missions / quests for this character
+    "collectibles", // -> [optional] show up on certain characters
+    "close",
+  ];
 
   return (
-    <Spacing>
+    <Spacing horizontal>
       <CharacterSection />
       <Spacing horizontal>
         {controls.map(control => {
@@ -19,15 +27,60 @@ const Middle = () => {
 export default Middle;
 
 const CharacterSection = () => {
+  const middle = useSelector(state => state.theme.theme.color.middle);
+  // const secondary = useSelector(state => state.theme.theme.color.secondary);
+  const closest = useSelector(state => state.theme.theme.color.closest);
+
   return (
-    <Spacing vertical>
+    <Spacing vertical {...{ width: `33vw` }}>
       <Spacing horizontal>
-        {" "}
-        {/* upper section */}
-        <Spacing>section rect</Spacing>
-        <Spacing>character</Spacing>
+        <Spacing
+          {...{
+            background: middle,
+            top: 2,
+            left: 24,
+            transform: `skewX(30deg)`,
+            borderRadius: "0px 4px",
+            // border: `solid ${secondary}`,
+            borderWidth: "3px 8px 0px 0px",
+          }}
+        />
+        <Character />
       </Spacing>
-      <Spacing> section rect</Spacing> {/* lower section */}
+      <Spacing
+        horizontal
+        {...{
+          background: middle,
+          justify: "flex-end",
+          all: 1,
+          right: 3,
+          transform: "skewX(30deg)",
+          border: `solid ${closest}`,
+          borderRadius: `0px 8px`,
+          borderWidth: "8px 16px 0px 0px",
+        }}
+      >
+        <Text large {...{ transform: "skewX(-30deg)", children: "Engineering" }} />
+      </Spacing>
+    </Spacing>
+  );
+};
+
+const Character = () => {
+  return (
+    <Spacing
+      {...{
+        width: "150px",
+        height: "150px",
+        background: "rgba(0, 128, 0, 0.48)",
+        position: "absolute",
+        absoluteLeft: `${32 * SPACING}px`,
+        absoluteBottom: `${6 * SPACING}px`,
+        z: "-1",
+        hover: <div>Peterson</div>,
+      }}
+    >
+      character
     </Spacing>
   );
 };
