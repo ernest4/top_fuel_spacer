@@ -49,19 +49,16 @@ const Volume = () => {
 
 export default Volume;
 
+const VOLUME_RANGE = 10;
+
 const Hover = () => {
   const dispatch = useDispatch();
-
-  const [volumeHover, setVolumeHover] = useState();
 
   const closest = useSelector(state => state.theme.theme.color.closest);
   const secondary = useSelector(state => state.theme.theme.color.secondary);
   const volume = useSelector(state => state.music.volume);
 
   const onBarClick = ({ index }) => dispatch(musicActions.setVolume(index + 1));
-  const onBarHover = ({ index }) => setVolumeHover(index);
-
-  const volumeRange = 10;
 
   return (
     <Spacing
@@ -70,30 +67,29 @@ const Hover = () => {
         all: 1,
         width: `${16 * SPACING}px`,
         borderRadius: "4px",
-        hover: <VolumeHover {...{ volumeHover, volumeRange }} />,
         hoverProps: { placement: "bottom" },
       }}
     >
       <ProgressBar
         {...{
           value: volume,
-          range: volumeRange,
+          range: VOLUME_RANGE,
           height: `${3 * SPACING}px`,
           barBackground: secondary,
-          onClick: onBarClick,
-          onBarHover,
+          barHover: VolumeHover,
+          onBarClick,
         }}
       />
     </Spacing>
   );
 };
 
-const VolumeHover = ({ volumeHover, volumeRange }) => {
+const VolumeHover = ({ index: volumeHover }) => {
   return (
     <Container border>
       <Text extraSmall>
         Set <Text primary extraSmall bold children="volume" /> to{" "}
-        <Text secondary extraSmall bold children={`${volumeHover + 1}/${volumeRange}`} />.
+        <Text secondary extraSmall bold children={`${volumeHover + 1}/${VOLUME_RANGE}`} />.
       </Text>
     </Container>
   );

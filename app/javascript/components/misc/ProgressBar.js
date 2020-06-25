@@ -16,8 +16,9 @@ const ProgressBar = ({
   outlineColor,
   skewRight,
   skewLeft,
-  onClick: onClickCallback,
-  onBarHover,
+  onClick,
+  onBarClick: onClickCallback,
+  barHover: BarHoverComponent, // This component needs to be able to accept 'index' prop for bar index !!!
   transform: transformOverride, // used in one specific case so far in morality rengedate bar...
 }) => {
   const secondary = useSelector(state => state.theme.theme.color.secondary);
@@ -41,10 +42,10 @@ const ProgressBar = ({
       Array.from(Array(dataPoints)).map((x, index) => {
         return [
           onClickCallback ? () => onClickCallback({ index }) : undefined,
-          onBarHover ? () => onBarHover({ index }) : undefined,
+          BarHoverComponent ? <BarHoverComponent index={index} /> : null,
         ];
       }),
-    [dataPoints, onClickCallback, onBarHover]
+    [dataPoints, onClickCallback, BarHoverComponent]
   );
 
   // NOTE: bizzare way react works on line 176. I want to send the value 0, but react treats that as
@@ -68,18 +69,17 @@ const ProgressBar = ({
         height={height || `${2 * SPACING}px`}
         width="100%"
         hover={hover}
+        onClick={onClick}
         pointer={onClickCallback}
       >
-        {callbacksArray.map(([onClickCallbackMemo, onBarHoverMemo], key) => (
+        {callbacksArray.map(([onClickCallbackMemo, BarHoverComponentMemo], key) => (
           <Spacing
             key={key}
             width="100%"
             all={0.375}
             left={0 < key ? "0" : 0.375}
-            // onClick={onClickCallback ? () => onClickCallback({ index: key }) : undefined}
-            // onMouseOver={onBarHover ? () => onBarHover({ index: key }) : undefined}
             onClick={onClickCallbackMemo}
-            onMouseOver={onBarHoverMemo}
+            hover={BarHoverComponentMemo}
           >
             <Bar
               show={(key + 1) / dataPoints <= progress}
@@ -92,7 +92,29 @@ const ProgressBar = ({
   );
 };
 
-export default ProgressBar;
+const customPropCheck = (prevProps, nextProps) => {
+  const dataPoints = nextProps.resolution || nextProps.range;
+
+  const prevProgressPercent = prevProps.value / prevProps.range;
+  const nextProgressPercent = nextProps.value / nextProps.range;
+
+  // If the difference between the progress values is higher than resolution, return false.
+  // This means that there is sufficient progress made to necesitate a render of new progress Bar.
+  // Any progress difference less than resolution wont render any new information and is thus
+  // wasteful and inefficient for a component that has potentially large number of Bars to render!!
+
+  // if (progressPercentResolution < ABS(nextProgressPercent - prevProgressPercent)) rerender;
+  if (1 / dataPoints < Math.abs(nextProgressPercent - prevProgressPercent)) return false;
+
+  for (const key in prevProps) {
+    if (key === "value") continue; // The value was already checked
+    if (prevProps[key] !== nextProps[key]) return false;
+  }
+
+  return true;
+};
+
+export default memo(ProgressBar, customPropCheck);
 
 const Bar = memo(({ show, background }) => {
   const black = useSelector(state => state.theme.theme.color.black);

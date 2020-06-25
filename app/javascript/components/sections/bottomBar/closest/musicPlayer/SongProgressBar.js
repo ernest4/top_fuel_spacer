@@ -11,14 +11,13 @@ const RESOLUTION = 50;
 const SongProgressBar = () => {
   const dispatch = useDispatch();
 
-  const [hoverTime, setHoverTime] = useState();
+  // const [hoverTime, setHoverTime] = useState();
 
   const currentTime = useSelector(state => state.music.currentTime);
   const duration = useSelector(state => state.music.duration);
   const primary = useSelector(state => state.theme.theme.color.primary);
 
-  const onBarHover = useCallback(({ index }) => setHoverTime(index), []);
-  const onClick = useCallback(
+  const onBarClick = useCallback(
     ({ index }) => {
       dispatch(musicActions.setSkipTime((index / RESOLUTION) * (duration || 0)));
     },
@@ -32,9 +31,8 @@ const SongProgressBar = () => {
         range: duration,
         resolution: RESOLUTION,
         barBackground: primary,
-        hover: <Hover {...{ hoverTime }} />,
-        onBarHover,
-        onClick,
+        barHover: Hover,
+        onBarClick,
       }}
     />
   );
@@ -42,7 +40,7 @@ const SongProgressBar = () => {
 
 export default SongProgressBar;
 
-const Hover = memo(({ hoverTime }) => {
+const Hover = memo(({ index: hoverTime }) => {
   const duration = useSelector(state => state.music.duration);
 
   const normalizedTime = (hoverTime / RESOLUTION) * duration;
