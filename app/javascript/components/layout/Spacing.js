@@ -97,4 +97,6 @@ const Container = memo(styled.div`
         } decided against this for now, pointer should be enough... */
       }
     `};
+
+  ${({ css }) => css};
 `);

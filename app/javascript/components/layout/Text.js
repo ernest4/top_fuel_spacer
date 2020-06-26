@@ -53,6 +53,7 @@ const Container = memo(styled.span`
   }};
 
   color: ${props => getColor(props)};
+  ${({ color }) => color && `color: ${color};`}
 
   ${({ center }) => center && `text-align: center;`}
   ${({ initial }) => initial && `text-transform: initial;`}

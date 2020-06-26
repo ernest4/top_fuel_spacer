@@ -10,7 +10,8 @@ const initialState = {
     {
       id: 0,
       requiredPrestige: 0,
-      name: "lunar_lights",
+      name: "lunar_light",
+      blurb: "Don’t like the dark side of the moon? Well here’s the bright side facing you!",
       color: {
         primary: "hsla(20, 75%, 58%, 1)", // main actions
         secondary: "hsla(200, 75%, 58%, 1)", // everywhere else (accents, 1)
@@ -32,6 +33,8 @@ const initialState = {
       id: 1,
       requiredPrestige: 0,
       name: "dark_matter",
+      blurb:
+        "Most of the universe is composed of dark energy and dark matter - and we can’t even see it!",
       color: {
         primary: "hsla(20, 75%, 58%, 1)", // main actions
         secondary: "hsla(200, 75%, 58%, 1)", // everywhere else (accents, 1)
@@ -53,6 +56,7 @@ const initialState = {
       id: 2,
       requiredPrestige: 1,
       name: "martian_maroon", // WIP
+      blurb: "", // WIP
       color: {
         // primary: "hsla(20, 75%, 58%, 1)", // main actions
         // secondary: "hsla(200, 75%, 58%, 1)", // everywhere else (accents, 1)
@@ -74,6 +78,7 @@ const initialState = {
       id: 3,
       requiredPrestige: 2,
       name: "sun_spot", // WIP
+      blurb: "", // WIP
       color: {
         // primary: "hsla(20, 75%, 58%, 1)", // main actions
         // secondary: "hsla(200, 75%, 58%, 1)", // everywhere else (accents, 1)

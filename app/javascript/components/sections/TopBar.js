@@ -51,6 +51,8 @@ const ThemeSelect = () => {
 const Hover = () => {
   const dispatch = useDispatch();
 
+  const prestige = useSelector(state => state.player.prestige);
+
   const currentThemeId = useSelector(state => state.theme.currentThemeId);
   const themes = useSelector(state => state.theme.themes);
 
@@ -58,8 +60,10 @@ const Hover = () => {
 
   return (
     <Container vertical right border>
-      {themes.map(({ name, unlocked }, key) => {
+      {themes.map(({ name, requiredPrestige }, key) => {
         if (currentThemeId === key) return null;
+
+        const unlocked = requiredPrestige <= prestige;
 
         return (
           <Spacing
@@ -90,7 +94,22 @@ const ThemePreview = ({ themeId }) => {
     state => state.theme.themes[currentThemeId].requiredPrestige
   );
 
+  const name = useSelector(state => state.theme.themes[themeId].name);
+  const blurb = useSelector(state => state.theme.themes[themeId].blurb);
+
+  // preview colors
   const primary = useSelector(state => state.theme.themes[themeId].color.primary);
+  const secondary = useSelector(state => state.theme.themes[themeId].color.secondary);
+  // const background = useSelector(state => state.theme.themes[themeId].color.background);
+  // const furthest = useSelector(state => state.theme.themes[themeId].color.furthest);
+  // const middle = useSelector(state => state.theme.themes[themeId].color.middle);
+  const closest = useSelector(state => state.theme.themes[themeId].color.closest);
+  // const black = useSelector(state => state.theme.themes[themeId].color.black);
+  // const white = useSelector(state => state.theme.themes[themeId].color.white);
+  const fontDefault = useSelector(state => state.theme.themes[themeId].color.fontDefault);
+  // const error = useSelector(state => state.theme.themes[themeId].color.error);
+  // const warning = useSelector(state => state.theme.themes[themeId].color.warning);
+  // const muted = useSelector(state => state.theme.themes[themeId].font.muted);
 
   if (prestige < requiredPrestige)
     return (
@@ -98,10 +117,7 @@ const ThemePreview = ({ themeId }) => {
         right
         border
         {...{
-          header: {
-            title: "Locked",
-            subtitles: [`Prestige`, prestige],
-          },
+          header: { title: "Locked", subtitles: [`Prestige`, prestige] },
           body: (
             <Text extraSmall>
               To unlock this <Text primary extraSmall bold children="theme" /> you need to reach{" "}
@@ -113,15 +129,26 @@ const ThemePreview = ({ themeId }) => {
     );
 
   return (
-    <Container border vertical right>
-      <Text
-        {...{
-          css: css`
-            color: ${primary};
-          `,
-          children: "Primary",
-        }}
-      />
+    <Container border vertical right {...{ background: closest }}>
+      <Text small>
+        <Text
+          primary
+          medium
+          bold
+          uppercase
+          {...{ color: primary, children: `Example ${formatName(name)}` }}
+        />
+        <Spacing top={0.5} />
+        <Spacing horizontal justify="flex-start">
+          <Text bold extraSmall {...{ color: secondary, children: "Theme" }} />{" "}
+          <Text extraSmall light {...{ color: secondary, children: "|" }} />{" "}
+          <Text bold extraSmall {...{ color: secondary, children: "Preview" }} />
+        </Spacing>
+      </Text>
+      <Spacing {...{ top: 0.5, bottom: 0.5, width: "100%", children: <Line /> }} />
+      <Text extraSmall {...{ color: fontDefault, children: blurb }} />
+      <Spacing {...{ top: 0.5, bottom: 0.5, width: "100%", children: <Line /> }} />
+      <Text extraSmall muted italics children={`"I want it!"`} />
     </Container>
   );
 };
