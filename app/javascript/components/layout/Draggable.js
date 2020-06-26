@@ -76,7 +76,7 @@ const Draggable = forwardRef(
 
     return (
       <Spacing
-        {...{ ...props, position: "absolute", z: "9999", ref: draggableRef, ...initialPosition }}
+        {...{ ...props, position: "fixed", z: "9999", ref: draggableRef, ...initialPosition }}
       >
         <Spacing {...{ position: "absolute", absoluteLeft: "100%" }}>
           {useButton && <DraggableButton ref={draggableButtonRef} />}
