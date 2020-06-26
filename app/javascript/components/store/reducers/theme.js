@@ -2,9 +2,10 @@ import { handleActions } from "redux-actions";
 import reduceReducers from "reduce-reducers";
 import produce from "immer";
 
-// themes: "lunarLights", 'darkMatter', 'martianMaroon', 'sun'?, 'europa'(ice)?
+// themes: "lunarLights", 'darkMatter', 'martianMaroon', 'sun'?, 'europa'(ice)?, "Custom 1", "Custom 2" etc.
 const initialState = {
   currentThemeId: 0,
+  // TODO: add ability to create custom themes. These can then be pushed into themes array!
   themes: [
     {
       id: 0,

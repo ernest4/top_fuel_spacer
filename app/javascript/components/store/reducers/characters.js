@@ -4,7 +4,16 @@ import produce from "immer";
 
 const initialState = {
   currentCharacterId: null,
-  characters: [],
+  characters: [
+    {
+      id: 0,
+      name: "Peterson 0",
+    },
+    {
+      id: 1,
+      name: "Peterson 1",
+    },
+  ],
 };
 
 // const otherReducer = handleActions({

@@ -20,7 +20,7 @@ const TopBar = () => {
         <Text extraSmall>Luminaries</Text>
       </Spacing>
       <Spacing horizontal>
-        <Text extraSmall>Theme: Lunar Lights</Text>
+        <Text extraSmall>Theme: Lunar Lights</Text> // TODO: proper fixed hover theme select with hover preview (leave custom theme building as a future feature?)
         <Text extraSmall>Version {version}</Text>
       </Spacing>
     </Spacing>

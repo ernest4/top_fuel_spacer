@@ -21,4 +21,9 @@ export default combineReducers({
   characters,
   locations,
   achievements,
+  // TODO: think about further data structures below
+  // research, // TODO: ... research tech tree. progress on items. completed items.
+  // collectibles, // TODO: ... items counts.
+  // items, // TODO: ... items under construction / production form enginereing, life support etc ?
+  // cargo, // TODO: ... all items and their counts
 });

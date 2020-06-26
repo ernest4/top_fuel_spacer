@@ -8,26 +8,32 @@ const initialState = {
     {
       id: 0,
       name: "Comms",
+      characterId: 0,
     },
     {
       id: 1,
       name: "Command",
+      characterId: 1,
     },
     {
       id: 2,
       name: "Main Entrance",
+      characterId: 0,
     },
     {
       id: 3,
       name: "Cargo",
+      characterId: 1,
     },
     {
       id: 4,
       name: "Barracks",
+      characterId: 0,
     },
     {
       id: 5,
       name: "Life Support",
+      characterId: 1,
     },
   ],
 };
