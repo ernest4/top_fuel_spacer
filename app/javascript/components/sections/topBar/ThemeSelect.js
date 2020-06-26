@@ -52,11 +52,12 @@ const Hover = () => {
           >
             <Text {...{ children: formatName(name), muted: !available }} />
             {/* {key < themes.length - 1 && <Line />} */}
-            <Line />
+            <Spacing {...{ top: 1, bottom: 1, children: <Line /> }} />
           </Spacing>
         );
       })}
-      <div>custom</div> {/*TODO: ...*/}
+      {/*TODO: ... custom theme creator ...*/}
+      <Spacing {...{ hover: <CustomHover />, children: <Text {...{ children: "Custom" }} /> }} />
     </Container>
   );
 };
@@ -120,7 +121,7 @@ const ThemePreview = ({ themeId }) => {
           medium
           bold
           uppercase
-          {...{ color: primary, children: `Example ${formatName(name)}` }}
+          {...{ color: primary, children: `${formatName(name)} Sample` }}
         />
         <Spacing top={0.5} />
         <Spacing horizontal justify="flex-start">
@@ -142,3 +143,31 @@ const ThemePreview = ({ themeId }) => {
 };
 
 const formatName = name => name.replace(/(^\w|_\w)/g, w => w.toUpperCase()).replace(/_/g, " ");
+
+const CustomHover = () => {
+  return (
+    <Card
+      right
+      border
+      {...{
+        header: { title: "[Work In Progress]", subtitles: ["Create a custom theme"] },
+        body: (
+          <Text extraSmall>
+            You will be able to <Text secondary extraSmall bold children="create" /> your own custom{" "}
+            <Text primary extraSmall bold children="themes" /> for{" "}
+            <Text italics extraSmall children="Top Fuel Spacer" /> and share them with{" "}
+            <Text primary extraSmall bold children="other players" />!
+          </Text>
+        ),
+        footer: (
+          <Text
+            extraSmall
+            muted
+            italics
+            children={`"My theme brings all the boys to the yard..."`}
+          />
+        ),
+      }}
+    />
+  );
+};
