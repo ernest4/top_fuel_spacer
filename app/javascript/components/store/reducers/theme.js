@@ -10,7 +10,7 @@ const initialState = {
     {
       id: 0,
       unlocked: true,
-      name: "lunarLights",
+      name: "lunar_lights",
       color: {
         primary: "hsla(20, 75%, 58%, 1)", // main actions
         secondary: "hsla(200, 75%, 58%, 1)", // everywhere else (accents, 1)
@@ -31,7 +31,7 @@ const initialState = {
     {
       id: 1,
       unlocked: true,
-      name: "darkMatter",
+      name: "dark_matter",
       color: {
         primary: "hsla(20, 75%, 58%, 1)", // main actions
         secondary: "hsla(200, 75%, 58%, 1)", // everywhere else (accents, 1)
@@ -52,7 +52,7 @@ const initialState = {
     {
       id: 2,
       unlocked: false,
-      name: "martianMaroon", // WIP
+      name: "martian_maroon", // WIP
       color: {
         // primary: "hsla(20, 75%, 58%, 1)", // main actions
         // secondary: "hsla(200, 75%, 58%, 1)", // everywhere else (accents, 1)
@@ -73,7 +73,7 @@ const initialState = {
     {
       id: 3,
       unlocked: false,
-      name: "sunSpot", // WIP
+      name: "sun_spot", // WIP
       color: {
         // primary: "hsla(20, 75%, 58%, 1)", // main actions
         // secondary: "hsla(200, 75%, 58%, 1)", // everywhere else (accents, 1)

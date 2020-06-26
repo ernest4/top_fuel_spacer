@@ -58,12 +58,7 @@ const Container = memo(styled.span`
   ${({ initial }) => initial && `text-transform: initial;`}
   ${({ transform }) => transform && `transform: ${transform};`}
 
-  /* ${({ large }) =>
-    large &&
-    css`
-      font-size: 20px;
-      line-height: 1.25;
-    `}; */
+  ${({ css }) => css};
 `);
 
 const getSizeAndLineHeight = ({
