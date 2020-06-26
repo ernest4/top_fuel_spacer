@@ -3,7 +3,7 @@ import reduceReducers from "reduce-reducers";
 import produce from "immer";
 import debugFlag from "../../debugFlag";
 
-const initialState = {
+let initialState = {
   currentAchievementId: null,
   achievements: [],
 };
