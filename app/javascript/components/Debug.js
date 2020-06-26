@@ -35,16 +35,16 @@ const ThemeSelect = () => {
 
   const currentThemeId = useSelector(state => state.theme.currentThemeId);
   const themes = useSelector(state => state.theme.themes);
-  const currentThemeName = useSelector(state => state.theme.themes[currentThemeId]?.name);
+  // const currentThemeName = useSelector(state => state.theme.themes[currentThemeId]?.name);
 
-  const onThemeSelect = ({ target: { value } }) => dispatch(themeActions.setCurrentThemeId(value));
+  const onThemeSelect = ({ target: { value } }) => {
+    dispatch(themeActions.setCurrentThemeId(parseInt(value)));
+  };
 
   return (
     <>
       <label htmlFor="themes" children="Theme:" />
-      <select
-        {...{ name: "themes", id: "themes", value: theme.id, onChange: onThemeSelect }}
-      >
+      <select {...{ name: "themes", id: "themes", value: theme.id, onChange: onThemeSelect }}>
         {themes.map(theme => (
           <option {...{ value: theme.id, children: theme.name, key: theme.name }} />
         ))}

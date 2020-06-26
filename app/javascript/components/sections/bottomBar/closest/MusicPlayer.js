@@ -6,8 +6,8 @@ import * as musicActions from "../../../store/actions/music";
 import Player from "./musicPlayer/Player";
 
 const initialPlayerPosition = {
-  absoluteLeft: `-${4 * SPACING}px`,
-  absoluteTop: `-${22 * SPACING}px`,
+  absoluteTop: `-${24 * SPACING}px`,
+  absoluteLeft: `-${64 * SPACING}px`,
 };
 
 const MusicPlayer = () => {
@@ -25,15 +25,14 @@ const MusicPlayer = () => {
     if (newTop === absoluteTop && newLeft === absoluteLeft) dispatch(musicActions.setDock(false));
   };
 
-  // TODO: bug. Docking only works the first time ?!?!?
   return (
     <Draggable
       {...{
         all: 1,
         borderRadius: "100px",
-        position: "absolute",
-        absoluteLeft: `-${64 * SPACING}px`,
-        absoluteTop: `-${28 * SPACING}px`,
+        // position: "absolute",
+        position: "fixed",
+        ...initialPlayerPosition,
         resetPosition: dock,
         background: closest,
         border: `4px solid ${closest}`,

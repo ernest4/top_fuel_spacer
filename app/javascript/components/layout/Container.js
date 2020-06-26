@@ -64,7 +64,7 @@ const Container = ({
       border={border ? `2px solid ${borderColor || secondary}` : ""}
       // border: border ? `3px solid ${borderColor || background}` : "",
       // border: border ? `3px solid ${borderColor || primary}` : "",
-      opacity="0.95"
+      opacity="0.90"
       // children: innerContent,
       children={<Spacing {...{ ...COMMON_INNER_PROPS, children }} />}
       {...props}
