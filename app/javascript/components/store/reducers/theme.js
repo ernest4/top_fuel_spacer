@@ -9,7 +9,7 @@ const initialState = {
   themes: [
     {
       id: 0,
-      unlocked: true,
+      requiredPrestige: 0,
       name: "lunar_lights",
       color: {
         primary: "hsla(20, 75%, 58%, 1)", // main actions
@@ -30,7 +30,7 @@ const initialState = {
     },
     {
       id: 1,
-      unlocked: true,
+      requiredPrestige: 0,
       name: "dark_matter",
       color: {
         primary: "hsla(20, 75%, 58%, 1)", // main actions
@@ -51,7 +51,7 @@ const initialState = {
     },
     {
       id: 2,
-      unlocked: false,
+      requiredPrestige: 1,
       name: "martian_maroon", // WIP
       color: {
         // primary: "hsla(20, 75%, 58%, 1)", // main actions
@@ -72,7 +72,7 @@ const initialState = {
     },
     {
       id: 3,
-      unlocked: false,
+      requiredPrestige: 2,
       name: "sun_spot", // WIP
       color: {
         // primary: "hsla(20, 75%, 58%, 1)", // main actions

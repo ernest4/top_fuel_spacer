@@ -90,7 +90,7 @@ const Hover = ({ prestige }) => {
 const PRESTIGE_RANGE = 10;
 
 const prestigeTexts = {
-  0: { levelText: "No Prestige", quote: "Not yet worthy." },
+  0: { levelText: "No Prestige", quote: "Not yet worthy!" },
   1: { levelText: "Prestige 1", quote: "some funny quote coming soon [WIP]..." },
   2: { levelText: "Prestige 2", quote: "some funny quote coming soon [WIP]..." },
   3: { levelText: "Prestige 3", quote: "some funny quote coming soon [WIP]..." },

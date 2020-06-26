@@ -83,13 +83,16 @@ const Hover = () => {
 };
 
 const ThemePreview = ({ themeId }) => {
-  const currentThemeId = useSelector(state => state.theme.currentThemeId);
-  const muted = useSelector(state => state.theme.themes[currentThemeId].font.muted);
+  const prestige = useSelector(state => state.player.prestige);
 
-  const unlocked = useSelector(state => state.theme.themes[themeId].unlocked);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const requiredPrestige = useSelector(
+    state => state.theme.themes[currentThemeId].requiredPrestige
+  );
+
   const primary = useSelector(state => state.theme.themes[themeId].color.primary);
 
-  if (!unlocked)
+  if (prestige < requiredPrestige)
     return (
       <Card
         right
@@ -97,12 +100,12 @@ const ThemePreview = ({ themeId }) => {
         {...{
           header: {
             title: "Locked",
-            subtitles: [`[Prestige]`, `required: ${99}`, `current: ${55}`],
+            subtitles: [`Prestige`, prestige],
           },
           body: (
             <Text extraSmall>
               To unlock this <Text primary extraSmall bold children="theme" /> you need to reach{" "}
-              <Text secondary extraSmall bold children={`prestige level ${1000}`} />.
+              <Text secondary extraSmall bold children={`prestige level ${requiredPrestige}`} />.
             </Text>
           ),
         }}

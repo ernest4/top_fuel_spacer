@@ -1,11 +1,19 @@
 import { handleActions } from "redux-actions";
 import reduceReducers from "reduce-reducers";
 import produce from "immer";
+import debugFlag from "../../debugFlag";
 
 const initialState = {
   currentAchievementId: null,
   achievements: [],
 };
+
+if (debugFlag) {
+  initialState = {
+    currentAchievementId: null,
+    achievements: [],
+  };
+}
 
 // const otherReducer = handleActions({
 //   ACTION_NAME: produce((state, action) => {
