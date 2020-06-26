@@ -31,6 +31,9 @@ const CharacterSection = () => {
   // const secondary = useSelector(state => state.theme.theme.color.secondary);
   const closest = useSelector(state => state.theme.theme.color.closest);
 
+  const currentSectionId = useSelector(state => state.antFarm.currentSectionId);
+  const name = useSelector(state => state.antFarm.sections[currentSectionId]?.name);
+
   return (
     <Spacing vertical {...{ width: `33vw` }}>
       <Spacing horizontal>
@@ -60,7 +63,7 @@ const CharacterSection = () => {
           borderWidth: "8px 16px 0px 0px",
         }}
       >
-        <Text large {...{ transform: "skewX(-30deg)", children: "Engineering" }} />
+        <Text large {...{ transform: "skewX(-30deg)", children: name }} />
       </Spacing>
     </Spacing>
   );

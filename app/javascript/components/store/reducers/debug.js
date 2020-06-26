@@ -6,7 +6,7 @@ const createDebugReducer = initialState =>
   handleActions(
     {
       SET_STATE: produce((state, { payload: { path, value } }) => {
-        eval(`state.${path} = ${value};`);
+        // eval(`state.${path} = ${value};`);
 
         // debugger
         // const keys = path.split(".").slice(1);

@@ -4,7 +4,32 @@ import produce from "immer";
 
 const initialState = {
   currentSectionId: null,
-  sections: [],
+  sections: [
+    {
+      id: 0,
+      name: "Comms",
+    },
+    {
+      id: 1,
+      name: "Command",
+    },
+    {
+      id: 2,
+      name: "Main Entrance",
+    },
+    {
+      id: 3,
+      name: "Cargo",
+    },
+    {
+      id: 4,
+      name: "Barracks",
+    },
+    {
+      id: 5,
+      name: "Life Support",
+    },
+  ],
 };
 
 // const otherReducer = handleActions({

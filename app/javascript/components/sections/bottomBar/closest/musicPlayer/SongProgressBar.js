@@ -11,8 +11,6 @@ const RESOLUTION = 50;
 const SongProgressBar = () => {
   const dispatch = useDispatch();
 
-  // const [hoverTime, setHoverTime] = useState();
-
   const currentTime = useSelector(state => state.music.currentTime);
   const duration = useSelector(state => state.music.duration);
   const primary = useSelector(state => state.theme.theme.color.primary);

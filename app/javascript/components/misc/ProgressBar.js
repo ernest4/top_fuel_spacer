@@ -11,7 +11,7 @@ const ProgressBar = ({
   containerBackground,
   height,
   pointer,
-  hover,
+  hover, // For the entire bar
   outline,
   outlineColor,
   skewRight,
