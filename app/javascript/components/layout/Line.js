@@ -3,7 +3,8 @@ import Spacing from "./Spacing";
 import { useSelector } from "react-redux";
 
 const Line = ({ size, vertical }) => {
-  const background = useSelector(state => state.theme.theme.color.secondary);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const background = useSelector(state => state.theme.themes[currentThemeId]?.color.secondary);
 
   return (
     <Spacing

@@ -6,7 +6,8 @@ import PlayerAvatarInfo from "./closest/PlayerAvatarInfo";
 import Morality from "./closest/Morality";
 
 const Closest = () => {
-  const closest = useSelector(state => state.theme.theme.color.closest);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const closest = useSelector(state => state.theme.themes[currentThemeId]?.color.closest);
 
   return (
     <Spacing horizontal {...{ background: closest, all: 1 }}>

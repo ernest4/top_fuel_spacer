@@ -41,7 +41,8 @@ const PlayPauseHover = () => {
 };
 
 const PlayButton = () => {
-  const fontDefault = useSelector(state => state.theme.theme.color.fontDefault);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const fontDefault = useSelector(state => state.theme.themes[currentThemeId]?.color.fontDefault);
 
   return (
     <Spacing transform="rotate(90deg)">
@@ -51,7 +52,8 @@ const PlayButton = () => {
 };
 
 const PauseButton = () => {
-  const fontDefault = useSelector(state => state.theme.theme.color.fontDefault);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const fontDefault = useSelector(state => state.theme.themes[currentThemeId]?.color.fontDefault);
 
   return (
     <Spacing horizontal height="100%">

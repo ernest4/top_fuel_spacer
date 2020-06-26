@@ -5,8 +5,10 @@ import Card from "../../../../layout/Card";
 import Text from "../../../../layout/Text";
 
 const Prestige = () => {
-  const background = useSelector(state => state.theme.theme.color.closest);
-  const secondary = useSelector(state => state.theme.theme.color.secondary);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const background = useSelector(state => state.theme.themes[currentThemeId]?.color.closest);
+  const secondary = useSelector(state => state.theme.themes[currentThemeId]?.color.secondary);
+
   const prestige = useSelector(state => state.player.prestige);
 
   // TODO: onclick, take to prestige upgrades when time is right

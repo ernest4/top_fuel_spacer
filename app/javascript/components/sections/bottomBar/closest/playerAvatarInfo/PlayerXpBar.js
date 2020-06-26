@@ -6,7 +6,9 @@ import Text from "../../../../layout/Text";
 import Card from "../../../../layout/Card";
 
 const PlayerXpBar = () => {
-  const primary = useSelector(state => state.theme.theme.color.primary);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const primary = useSelector(state => state.theme.themes[currentThemeId]?.color.primary);
+
   const xp = useSelector(state => state.player.xp);
   const levelUpXp = useSelector(state => state.player.levelUpXp);
   const level = useSelector(state => state.player.level);

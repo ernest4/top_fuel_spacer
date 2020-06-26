@@ -1,7 +1,6 @@
 import { handleActions } from "redux-actions";
 import reduceReducers from "reduce-reducers";
 import produce from "immer";
-import themes from "../../themes";
 
 // themes: "lunarLights", 'darkMatter', 'martianMaroon', 'sun'?, 'europa'(ice)?
 const initialState = {

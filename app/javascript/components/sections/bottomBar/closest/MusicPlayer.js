@@ -14,8 +14,10 @@ const MusicPlayer = () => {
   const dispatch = useDispatch();
 
   const dock = useSelector(state => state.music.dock);
-  const closest = useSelector(state => state.theme.theme.color.closest);
-  const secondary = useSelector(state => state.theme.theme.color.secondary);
+
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const closest = useSelector(state => state.theme.themes[currentThemeId]?.color.closest);
+  const secondary = useSelector(state => state.theme.themes[currentThemeId]?.color.secondary);
 
   const onDrag = ({ newTop, newLeft }) => {
     const { absoluteTop, absoluteLeft } = initialPlayerPosition;

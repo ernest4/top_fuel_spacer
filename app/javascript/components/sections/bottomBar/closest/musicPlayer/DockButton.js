@@ -9,7 +9,9 @@ import * as musicActions from "../../../../store/actions/music";
 
 const DockButton = () => {
   const dispatch = useDispatch();
-  const background = useSelector(state => state.theme.theme.color.fontDefault);
+
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const background = useSelector(state => state.theme.themes[currentThemeId]?.color.fontDefault);
 
   const onDock = () => dispatch(musicActions.setDock(true));
 

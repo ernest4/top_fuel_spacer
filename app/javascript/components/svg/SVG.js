@@ -5,8 +5,9 @@ import { useSelector } from "react-redux";
 const SCALE = 8;
 
 const SVG = ({ name, size, width, height, fill }) => {
-  // const white = useSelector(state => state.theme.theme.color.white);
-  const fontDefault = useSelector(state => state.theme.theme.color.fontDefault);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  // const white = useSelector(state => state.theme.themes[currentThemeId]?.color.white);
+  const fontDefault = useSelector(state => state.theme.themes[currentThemeId]?.color.fontDefault);
 
   const sizing = `${(size || 1) * SCALE}`;
 

@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 
 // TODO: this should only be displayed when a section is selected (or the height of it migth change from low to high)
 const Furthest = () => {
-  const furthest = useSelector(state => state.theme.theme.color.furthest);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const furthest = useSelector(state => state.theme.themes[currentThemeId]?.color.furthest);
 
   const selectedSection = {}; // TODO: from redux
   // const selectedSection = false;

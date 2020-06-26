@@ -8,7 +8,9 @@ import * as musicActions from "../../../../../store/actions/music";
 
 const Navigation = ({ direction }) => {
   const dispatch = useDispatch();
-  const fontDefault = useSelector(state => state.theme.theme.color.fontDefault);
+
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const fontDefault = useSelector(state => state.theme.themes[currentThemeId]?.color.fontDefault);
   const songsLength = useSelector(state => state.music.songs.length);
   const currentSongId = useSelector(state => state.music.currentSongId);
   const finished = useSelector(state => state.music.finished);

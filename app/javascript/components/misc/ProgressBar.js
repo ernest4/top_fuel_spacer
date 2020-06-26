@@ -21,8 +21,9 @@ const ProgressBar = ({
   barHover: BarHoverComponent, // This component needs to be able to accept 'index' prop for bar index !!!
   transform: transformOverride, // used in one specific case so far in morality rengedate bar...
 }) => {
-  const secondary = useSelector(state => state.theme.theme.color.secondary);
-  const middle = useSelector(state => state.theme.theme.color.middle);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const secondary = useSelector(state => state.theme.themes[currentThemeId]?.color.secondary);
+  const middle = useSelector(state => state.theme.themes[currentThemeId]?.color.middle);
 
   const progress = value / range;
 
@@ -117,7 +118,8 @@ const customPropCheck = (prevProps, nextProps) => {
 export default memo(ProgressBar, customPropCheck);
 
 const Bar = memo(({ show, background }) => {
-  const black = useSelector(state => state.theme.theme.color.black);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const black = useSelector(state => state.theme.themes[currentThemeId]?.color.black);
 
   return (
     <Spacing

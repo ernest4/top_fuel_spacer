@@ -7,8 +7,9 @@ import { useSelector } from "react-redux";
 const plugins = [followCursor];
 
 const Spacing = forwardRef(({ hover, interactiveHover, hoverProps, ...props }, ref) => {
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const primary = useSelector(state => state.theme.themes[currentThemeId]?.color.primary);
   const canFollowCursor = useSelector(state => state.settings.graphics.hover.followCursor);
-  const primary = useSelector(state => state.theme.theme.color.primary);
 
   if (hover || interactiveHover) {
     return (

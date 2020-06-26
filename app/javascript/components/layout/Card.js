@@ -18,7 +18,8 @@ const Card = ({
 }) => {
   // NOTE: we dont use the 'children' directly...
 
-  const closest = useSelector(state => state.theme.theme.color.closest);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const closest = useSelector(state => state.theme.themes[currentThemeId]?.color.closest);
 
   const header = customHeader || <Title {...defaultHeaderProps} />;
 

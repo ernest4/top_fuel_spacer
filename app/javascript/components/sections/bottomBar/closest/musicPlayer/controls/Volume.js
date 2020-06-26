@@ -9,9 +9,12 @@ import Container from "../../../../../layout/Container";
 
 const Volume = () => {
   const dispatch = useDispatch();
-  const fontDefault = useSelector(state => state.theme.theme.color.fontDefault);
+
   const volume = useSelector(state => state.music.volume);
-  const furthest = useSelector(state => state.theme.theme.color.furthest);
+
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const fontDefault = useSelector(state => state.theme.themes[currentThemeId]?.color.fontDefault);
+  const furthest = useSelector(state => state.theme.themes[currentThemeId]?.color.furthest);
 
   const onMute = () => dispatch(musicActions.setVolume(0 < volume ? 0 : 5));
 
@@ -54,8 +57,9 @@ const VOLUME_RANGE = 10;
 const Hover = () => {
   const dispatch = useDispatch();
 
-  const closest = useSelector(state => state.theme.theme.color.closest);
-  const secondary = useSelector(state => state.theme.theme.color.secondary);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const closest = useSelector(state => state.theme.themes[currentThemeId]?.color.closest);
+  const secondary = useSelector(state => state.theme.themes[currentThemeId]?.color.secondary);
   const volume = useSelector(state => state.music.volume);
 
   const onBarClick = ({ index }) => dispatch(musicActions.setVolume(index + 1));

@@ -5,12 +5,17 @@ import SVG from "../../../svg/SVG";
 import Spacing from "../../../layout/Spacing";
 import ProgressBar from "../../../misc/ProgressBar";
 import { useSelector } from "react-redux";
-import Container from "../../../layout/Container";
+// import Container from "../../../layout/Container";
 
 const Morality = () => {
-  const primary = useSelector(state => state.theme.theme.color.primary);
-  const renegadeBarBackground = useSelector(state => state.theme.theme.color.error);
-  const paragonBarBackground = useSelector(state => state.theme.theme.color.secondary);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const primary = useSelector(state => state.theme.themes[currentThemeId]?.color.primary);
+  const renegadeBarBackground = useSelector(
+    state => state.theme.themes[currentThemeId]?.color.error
+  );
+  const paragonBarBackground = useSelector(
+    state => state.theme.themes[currentThemeId]?.color.secondary
+  );
 
   const morality = useSelector(state => state.player.morality);
 

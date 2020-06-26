@@ -5,8 +5,9 @@ import Text from "../../../../layout/Text";
 import Card from "../../../../layout/Card";
 
 const Player = () => {
-  const secondary = useSelector(state => state.theme.theme.color.secondary);
-  const background = useSelector(state => state.theme.theme.color.closest);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const secondary = useSelector(state => state.theme.themes[currentThemeId]?.color.secondary);
+  const background = useSelector(state => state.theme.themes[currentThemeId]?.color.closest);
 
   // TODO: onclick, take to player stats / player creations
 

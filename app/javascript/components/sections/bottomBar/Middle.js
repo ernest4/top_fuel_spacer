@@ -27,9 +27,10 @@ const Middle = () => {
 export default Middle;
 
 const CharacterSection = () => {
-  const middle = useSelector(state => state.theme.theme.color.middle);
-  // const secondary = useSelector(state => state.theme.theme.color.secondary);
-  const closest = useSelector(state => state.theme.theme.color.closest);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const middle = useSelector(state => state.theme.themes[currentThemeId]?.color.middle);
+  // const secondary = useSelector(state => state.theme.themes[currentThemeId]?.color.secondary);
+  const closest = useSelector(state => state.theme.themes[currentThemeId]?.color.closest);
 
   const currentSectionId = useSelector(state => state.antFarm.currentSectionId);
   const name = useSelector(state => state.antFarm.sections[currentSectionId]?.name);

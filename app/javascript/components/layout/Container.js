@@ -15,9 +15,10 @@ const Container = ({
 }) => {
   // NOTE: the separator is unlikely to ever be used. But migth be repurposed? so keeping it around.
 
-  const secondary = useSelector(state => state.theme.theme.color.secondary);
-  // const furthest = useSelector(state => state.theme.theme.color.furthest);
-  const closest = useSelector(state => state.theme.theme.color.closest);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const secondary = useSelector(state => state.theme.themes[currentThemeId]?.color.secondary);
+  // const furthest = useSelector(state => state.theme.themes[currentThemeId]?.color.furthest);
+  const closest = useSelector(state => state.theme.themes[currentThemeId]?.color.closest);
 
   const COMMON_INNER_PROPS = {
     background: background || closest,

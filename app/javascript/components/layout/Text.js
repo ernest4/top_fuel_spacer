@@ -3,12 +3,13 @@ import styled, { css } from "styled-components";
 import { useSelector } from "react-redux";
 
 const Text = forwardRef(({ italics, ...props }, ref) => {
-  const _primary = useSelector(state => state.theme.theme.color.primary);
-  const _secondary = useSelector(state => state.theme.theme.color.secondary);
-  const _white = useSelector(state => state.theme.theme.color.white);
-  const _error = useSelector(state => state.theme.theme.color.error);
-  const _fontDefault = useSelector(state => state.theme.theme.color.fontDefault);
-  const _muted = useSelector(state => state.theme.theme.font.muted);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const _primary = useSelector(state => state.theme.themes[currentThemeId]?.color.primary);
+  const _secondary = useSelector(state => state.theme.themes[currentThemeId]?.color.secondary);
+  const _white = useSelector(state => state.theme.themes[currentThemeId]?.color.white);
+  const _error = useSelector(state => state.theme.themes[currentThemeId]?.color.error);
+  const _fontDefault = useSelector(state => state.theme.themes[currentThemeId]?.color.fontDefault);
+  const _muted = useSelector(state => state.theme.themes[currentThemeId]?.font.muted);
 
   if (italics)
     return (

@@ -5,8 +5,10 @@ import { Hover } from "./PlayerXpBar";
 import Text from "../../../../layout/Text";
 
 const Level = () => {
-  const background = useSelector(state => state.theme.theme.color.closest);
-  const secondary = useSelector(state => state.theme.theme.color.secondary);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const background = useSelector(state => state.theme.themes[currentThemeId]?.color.closest);
+  const secondary = useSelector(state => state.theme.themes[currentThemeId]?.color.secondary);
+
   const xp = useSelector(state => state.player.xp);
   const levelUpXp = useSelector(state => state.player.levelUpXp);
   const level = useSelector(state => state.player.level);

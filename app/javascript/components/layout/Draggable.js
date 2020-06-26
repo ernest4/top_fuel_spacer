@@ -128,9 +128,10 @@ const createDragMouseDownCallback = ({ draggableRef, onDragCallback }) => {
 };
 
 const DraggableButton = forwardRef(({ ...props }, ref) => {
-  const furthest = useSelector(state => state.theme.theme.color.furthest);
-  const closest = useSelector(state => state.theme.theme.color.closest);
-  const secondary = useSelector(state => state.theme.theme.color.secondary);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const furthest = useSelector(state => state.theme.themes[currentThemeId]?.color.furthest);
+  const closest = useSelector(state => state.theme.themes[currentThemeId]?.color.closest);
+  const secondary = useSelector(state => state.theme.themes[currentThemeId]?.color.secondary);
 
   const COMMON_RECT = {
     position: "absolute",

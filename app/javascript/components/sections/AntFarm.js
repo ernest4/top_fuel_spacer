@@ -6,7 +6,8 @@ import * as antFarmActions from "../store/actions/antFarm";
 const AntFarm = () => {
   const dispatch = useDispatch();
 
-  const background = useSelector(state => state.theme.theme.color.background);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const background = useSelector(state => state.theme.themes[currentThemeId]?.color.background);
   const sections = useSelector(state => state.antFarm.sections);
 
   // need reducer for sections or just that section reducer ??. Flying reducer, AntFarm reducer and Info reducer

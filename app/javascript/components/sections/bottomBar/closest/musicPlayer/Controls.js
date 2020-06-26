@@ -8,7 +8,8 @@ import Volume from "./controls/Volume";
 // import * as musicActions from "../../../store/actions/music";
 
 const Controls = () => {
-  const closest = useSelector(state => state.theme.theme.color.closest);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const closest = useSelector(state => state.theme.themes[currentThemeId]?.color.closest);
 
   return (
     <Spacing vertical {...{ background: closest, all: 1, borderRadius: "0px 0px 4px 4px" }}>

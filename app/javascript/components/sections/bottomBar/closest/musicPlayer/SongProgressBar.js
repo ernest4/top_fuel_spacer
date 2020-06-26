@@ -13,7 +13,9 @@ const SongProgressBar = () => {
 
   const currentTime = useSelector(state => state.music.currentTime);
   const duration = useSelector(state => state.music.duration);
-  const primary = useSelector(state => state.theme.theme.color.primary);
+
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const primary = useSelector(state => state.theme.themes[currentThemeId]?.color.primary);
 
   const onBarClick = useCallback(
     ({ index }) => {

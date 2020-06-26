@@ -3,7 +3,8 @@ import Spacing from "../layout/Spacing";
 import { useSelector } from "react-redux";
 
 const Flying = () => {
-  const black = useSelector(state => state.theme.theme.color.black);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const black = useSelector(state => state.theme.themes[currentThemeId]?.color.black);
 
   return (
     <Spacing {...{ height: "100vh", width: "100%", background: black }}>

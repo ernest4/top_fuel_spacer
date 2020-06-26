@@ -2,9 +2,9 @@ import React, { useRef, useState } from "react";
 import Spacing from "./layout/Spacing";
 import Text from "./layout/Text";
 import Draggable from "./layout/Draggable";
-import themes from "./themes/index";
 import { useSelector, useDispatch } from "react-redux";
 import * as themeActions from "./store/actions/theme";
+import theme from "./store/reducers/theme";
 
 // TODO: add debug overlay controls
 const Debug = ({ ...props }) => {
@@ -33,18 +33,20 @@ export default Debug;
 const ThemeSelect = () => {
   const dispatch = useDispatch();
 
-  const currentThemeName = useSelector(state => state.theme.theme.name);
+  const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const themes = useSelector(state => state.theme.themes);
+  const currentThemeName = useSelector(state => state.theme.themes[currentThemeId]?.name);
 
-  const onThemeSelect = ({ target: { value } }) => dispatch(themeActions.setTheme(value));
+  const onThemeSelect = ({ target: { value } }) => dispatch(themeActions.setCurrentThemeId(value));
 
   return (
     <>
       <label htmlFor="themes" children="Theme:" />
       <select
-        {...{ name: "themes", id: "themes", value: currentThemeName, onChange: onThemeSelect }}
+        {...{ name: "themes", id: "themes", value: theme.id, onChange: onThemeSelect }}
       >
-        {Object.keys(themes).map(themeName => (
-          <option {...{ value: themeName, children: themeName, key: themeName }} />
+        {themes.map(theme => (
+          <option {...{ value: theme.id, children: theme.name, key: theme.name }} />
         ))}
       </select>
     </>
