@@ -5,13 +5,43 @@ import debugFlag from "../../debugFlag";
 
 let initialState = {
   currentAchievementId: null,
-  achievements: [],
+  achievements: [
+    {
+      id: 0,
+      name: "Audiophile",
+      description: "Listen to every music track in the game.",
+      required: 9,
+      completed: 0,
+    },
+    {
+      id: 1,
+      name: "3... 2... 1... Liftoff!",
+      description: "Launch into the cosmos.",
+      required: 1,
+      completed: 0,
+    },
+  ],
 };
 
 if (debugFlag) {
   initialState = {
     currentAchievementId: null,
-    achievements: [],
+    achievements: [
+      {
+        id: 0,
+        name: "Audiophile",
+        description: "Listen to every music track in the game.",
+        required: 9,
+        completed: 4,
+      },
+      {
+        id: 1,
+        name: "3... 2... 1... Liftoff!",
+        description: "Launch into the cosmos.",
+        required: 1,
+        completed: 0,
+      },
+    ],
   };
 }
 

@@ -11,7 +11,7 @@ const Morality = () => {
   const currentThemeId = useSelector(state => state.theme.currentThemeId);
   const primary = useSelector(state => state.theme.themes[currentThemeId]?.color.primary);
   const renegadeBarBackground = useSelector(
-    state => state.theme.themes[currentThemeId]?.color.error
+    state => state.theme.themes[currentThemeId]?.color.danger
   );
   const paragonBarBackground = useSelector(
     state => state.theme.themes[currentThemeId]?.color.secondary
@@ -55,7 +55,7 @@ const Hover = ({ morality }) => {
   const { moralityLevelText, moralityLevelQuote } = getMoralityText(morality);
 
   const isParagon = MORALITY_RANGE <= morality;
-  const textColorProps = { error: !isParagon, secondary: isParagon };
+  const textColorProps = { danger: !isParagon, secondary: isParagon };
 
   return (
     <Card
@@ -80,9 +80,9 @@ const Hover = ({ morality }) => {
         ),
         body: (
           <Text extraSmall>
-            You accumulate <Text error extraSmall bold children="renegade points" /> when
+            You accumulate <Text danger extraSmall bold children="renegade points" /> when
             interacting with others in a{" "}
-            <Text error extraSmall bold children="threatening, apathetic, ruthless" /> way. Infamy
+            <Text danger extraSmall bold children="threatening, apathetic, ruthless" /> way. Infamy
             will make the smaller pirates fear you. However, larger sharks will have you on their
             radar!
             <Spacing top={1} />

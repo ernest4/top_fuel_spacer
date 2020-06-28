@@ -7,7 +7,7 @@ const Text = forwardRef(({ italics, ...props }, ref) => {
   const _primary = useSelector(state => state.theme.themes[currentThemeId]?.color.primary);
   const _secondary = useSelector(state => state.theme.themes[currentThemeId]?.color.secondary);
   const _white = useSelector(state => state.theme.themes[currentThemeId]?.color.white);
-  const _error = useSelector(state => state.theme.themes[currentThemeId]?.color.error);
+  const _danger = useSelector(state => state.theme.themes[currentThemeId]?.color.danger);
   const _fontDefault = useSelector(state => state.theme.themes[currentThemeId]?.color.fontDefault);
   const _muted = useSelector(state => state.theme.themes[currentThemeId]?.font.muted);
 
@@ -15,13 +15,15 @@ const Text = forwardRef(({ italics, ...props }, ref) => {
     return (
       <i>
         <Container
-          {...{ ...props, _primary, _secondary, _white, _error, _fontDefault, _muted, ref }}
+          {...{ ...props, _primary, _secondary, _white, _danger, _fontDefault, _muted, ref }}
         />
       </i>
     );
 
   return (
-    <Container {...{ ...props, _primary, _secondary, _white, _error, _fontDefault, _muted, ref }} />
+    <Container
+      {...{ ...props, _primary, _secondary, _white, _danger, _fontDefault, _muted, ref }}
+    />
   );
 });
 
@@ -93,12 +95,12 @@ const getColor = ({
   muted,
   primary,
   secondary,
-  error,
+  danger,
   white,
   _primary,
   _secondary,
   _white,
-  _error,
+  _danger,
   _fontDefault,
   _muted,
 }) => {
@@ -106,7 +108,7 @@ const getColor = ({
   if (primary) return _primary;
   if (secondary) return _secondary;
   if (white) return _white;
-  if (error) return _error;
+  if (danger) return _danger;
 
   return _fontDefault;
 };

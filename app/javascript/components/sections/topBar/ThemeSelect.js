@@ -85,7 +85,7 @@ const ThemePreview = ({ themeId }) => {
   // const black = useSelector(state => state.theme.themes[themeId].color.black);
   // const white = useSelector(state => state.theme.themes[themeId].color.white);
   const fontDefault = useSelector(state => state.theme.themes[themeId].color.fontDefault);
-  // const error = useSelector(state => state.theme.themes[themeId].color.error);
+  // const danger = useSelector(state => state.theme.themes[themeId].color.danger);
   // const warning = useSelector(state => state.theme.themes[themeId].color.warning);
   const muted = useSelector(state => state.theme.themes[themeId].font.muted);
 

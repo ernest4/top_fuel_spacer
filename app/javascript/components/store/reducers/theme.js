@@ -23,7 +23,7 @@ const initialState = {
         black: "hsla(0, 0%, 29%, 1)", // darkest color
         white: "hsla(0, 0%, 100%, 1)", // lightest color
         fontDefault: "hsla(0, 0%, 29%, 1)", // default text color
-        error: "hsla(5, 75%, 58%, 1)", // general red
+        danger: "hsla(5, 75%, 58%, 1)", // general red
         warning: "hsla(35, 75%, 58%, 1)", // general orange
       },
       font: {
@@ -47,7 +47,7 @@ const initialState = {
         black: "hsla(0, 0%, 14%, 1)", // darkest color
         white: "hsla(0, 0%, 100%, 1)", // lightest color
         fontDefault: "hsla(0, 0%, 100%, 1)", // default text color
-        error: "hsla(5, 75%, 58%, 1)", // general red
+        danger: "hsla(5, 75%, 58%, 1)", // general red
         warning: "hsla(35, 75%, 58%, 1)", // general orange
       },
       font: {
@@ -70,7 +70,7 @@ const initialState = {
         // black: "hsla(0, 0%, 14%, 1)", // darkest color
         // white: "hsla(0, 0%, 100%, 1)", // lightest color
         // fontDefault: "hsla(0, 0%, 100%, 1)", // default text color
-        // error: "hsla(5, 75%, 58%, 1)", // general red
+        // danger: "hsla(5, 75%, 58%, 1)", // general red
         // warning: "hsla(35, 75%, 58%, 1)", // general orange
       },
       font: {
@@ -93,7 +93,7 @@ const initialState = {
         // black: "hsla(0, 0%, 14%, 1)", // darkest color
         // white: "hsla(0, 0%, 100%, 1)", // lightest color
         // fontDefault: "hsla(0, 0%, 100%, 1)", // default text color
-        // error: "hsla(5, 75%, 58%, 1)", // general red
+        // danger: "hsla(5, 75%, 58%, 1)", // general red
         // warning: "hsla(35, 75%, 58%, 1)", // general orange
       },
       font: {

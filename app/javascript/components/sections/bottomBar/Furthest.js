@@ -7,10 +7,9 @@ const Furthest = () => {
   const currentThemeId = useSelector(state => state.theme.currentThemeId);
   const furthest = useSelector(state => state.theme.themes[currentThemeId]?.color.furthest);
 
-  const selectedSection = {}; // TODO: from redux
-  // const selectedSection = false;
+  const currentSectionId = useSelector(state => state.antFarm.currentSectionId);
 
-  if (!selectedSection) return null;
+  if (currentSectionId === null) return null;
 
   return (
     <Spacing

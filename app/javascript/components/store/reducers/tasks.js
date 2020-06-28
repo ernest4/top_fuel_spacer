@@ -5,7 +5,12 @@ import produce from "immer";
 // Tasks -> a.k.a missions / quests
 const initialState = {
   currentTaskId: null,
-  tasks: [],
+  tasks: [
+    {
+      id: 0,
+      name: "Task 1",
+    },
+  ],
 };
 
 // const otherReducer = handleActions({

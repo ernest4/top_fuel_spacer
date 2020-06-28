@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 export default ({ fill, width, height }) => {
   const currentThemeId = useSelector(state => state.theme.currentThemeId);
 
-  const error = useSelector(state => state.theme.themes[currentThemeId]?.color.error);
+  const danger = useSelector(state => state.theme.themes[currentThemeId]?.color.danger);
   const secondary = useSelector(state => state.theme.themes[currentThemeId]?.color.secondary);
 
   return (
@@ -26,7 +26,7 @@ export default ({ fill, width, height }) => {
           id="aVBXFfzMx"
         ></path>
       </defs>
-      <use xlinkHref="#a3RIGAIBOm" opacity="1" fillOpacity="1" fill={error}></use>
+      <use xlinkHref="#a3RIGAIBOm" opacity="1" fillOpacity="1" fill={danger}></use>
       <use xlinkHref="#aVBXFfzMx" opacity="1" fillOpacity="1" fill={secondary}></use>
     </svg>
   );

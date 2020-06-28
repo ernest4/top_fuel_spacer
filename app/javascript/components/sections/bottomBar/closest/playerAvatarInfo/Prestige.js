@@ -77,8 +77,8 @@ const Hover = ({ prestige }) => {
             Once you ascend, you will keep your player{" "}
             <Text primary extraSmall bold children="xp" /> and{" "}
             <Text primary extraSmall bold children="level" />. However all other{" "}
-            <Text error extraSmall bold children="progress, upgrades, collectibles" /> etc. will be{" "}
-            <Text error extraSmall bold children="reset to 0." />
+            <Text danger extraSmall bold children="progress, upgrades, collectibles" /> etc. will be{" "}
+            <Text danger extraSmall bold children="reset to 0." />
           </Text>
         ),
         footer: <Text extraSmall muted italics children={`"${quote}"`} />,
