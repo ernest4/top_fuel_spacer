@@ -34,6 +34,7 @@ const Container = memo(styled.span`
   padding: 0px;
 
   ${({ uppercase }) => uppercase && `text-transform: uppercase;`}
+  ${({ capitalize }) => capitalize && `text-transform: capitalize;`}
 
   ${props => {
     const { size, lineHeight } = getSizeAndLineHeight(props);

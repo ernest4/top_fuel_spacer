@@ -93,6 +93,7 @@ const getChildren = ({
 
   return (
     <Text
+      capitalize
       {...{
         extraSmall,
         transform,

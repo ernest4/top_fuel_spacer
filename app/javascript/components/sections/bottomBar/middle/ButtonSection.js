@@ -25,6 +25,9 @@ const ButtonSection = () => {
 
   // TODO: conditionally assembled buttons
   // buttons.push(...)
+  buttons.push(<Button primary children="research" />); // WIP placeholder
+  buttons.push(<Button secondary children="tasks" />); // WIP placeholder
+  buttons.push(<Button secondary children="collectibles" />); // WIP placeholder
 
   buttons.push(<Close />);
 
