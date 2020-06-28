@@ -10,6 +10,7 @@ const Button = ({ right, ...props }) => {
   // TODO: extract this into const {primary, secondary, ...} = useTheme() hook? not the most efficient as it will listen to every color,
   // but on the other hand we dont expect theme to be updated live during gamplay (custom themes not withstadning).
   const currentThemeId = useSelector(state => state.theme.currentThemeId);
+  const _closest = useSelector(state => state.theme.themes[currentThemeId]?.color.closest);
   const _primary = useSelector(state => state.theme.themes[currentThemeId]?.color.primary);
   const _secondary = useSelector(state => state.theme.themes[currentThemeId]?.color.secondary);
   const _white = useSelector(state => state.theme.themes[currentThemeId]?.color.white);
@@ -17,7 +18,7 @@ const Button = ({ right, ...props }) => {
   const _fontDefault = useSelector(state => state.theme.themes[currentThemeId]?.color.fontDefault);
   const _muted = useSelector(state => state.theme.themes[currentThemeId]?.font.muted);
 
-  const color = { _primary, _secondary, _danger, _white, _fontDefault, _muted };
+  const color = { _closest, _primary, _secondary, _danger, _white, _fontDefault, _muted };
 
   // TODO: onHover, change style !
   /* background / border color change wip */
@@ -32,7 +33,7 @@ const Button = ({ right, ...props }) => {
         ...getBackground({ hover, color, ...props }),
         transform: `skew(${right ? "-" : ""}30deg, 0deg)`,
         borderRadius: "8px",
-        border: `solid ${getBorderColor({ color, ...props })}`,
+        border: `solid ${getBorderColor({ hover, color, ...props })}`,
         ...getBorderWidth({ right, ...props }),
         children: getChildren({ right, hover, ...props }),
         onMouseEnter,
@@ -56,16 +57,22 @@ export default memo(Button);
 const getBackground = ({ primary, secondary, tertiary, danger, color, hover }) => {
   let background = "transparent";
 
-  if (primary) background = setAlpha({ hsla: color._primary, alpha: hover ? 0.75 : 0.1 });
-  if (secondary) background = setAlpha({ hsla: color._secondary, alpha: hover ? 0.75 : 0.1 });
-  if (danger) background = setAlpha({ hsla: color._danger, alpha: hover ? 0.75 : 0.1 });
+  // if (primary) background = setAlpha({ hsla: color._primary, alpha: hover ? 0.75 : 0.1 });
+  // if (secondary) background = setAlpha({ hsla: color._secondary, alpha: hover ? 0.75 : 0.1 });
+  // if (danger) background = setAlpha({ hsla: color._danger, alpha: hover ? 0.75 : 0.1 });
+
+  const white = color._closest;
+
+  if (primary) background = hover ? color._primary : white;
+  if (secondary) background = hover ? color._secondary : white;
+  if (danger) background = hover ? color._danger : white;
 
   // default tertiary, transparent
   return { background };
 };
 
 const getBorderColor = ({ primary, secondary, tertiary, danger, color, hover }) => {
-  if (hover) return color._white;
+  if (hover) return tertiary ? color._primary : color._white;
 
   if (primary) return color._primary;
   if (secondary) return color._secondary;
@@ -77,11 +84,11 @@ const getBorderColor = ({ primary, secondary, tertiary, danger, color, hover }) 
 };
 
 const getBorderWidth = ({ right, tertiary }) => {
-  let borderWidth = right ? "0px 2px 2px 0px" : "0px 0px 2px 2px";
+  // let borderWidth = right ? "0px 2px 2px 0px" : "0px 0px 2px 2px";
 
-  if (tertiary) borderWidth = "1px";
+  // if (tertiary) borderWidth = "1px";
 
-  return { borderWidth };
+  return { borderWidth: tertiary ? "1px" : "2px" };
 };
 
 const getChildren = ({
@@ -114,7 +121,7 @@ const getChildren = ({
 };
 
 const getColor = ({ primary, secondary, tertiary, danger, hover }) => {
-  if (hover) return { white: true };
+  if (hover) return { white: true, primary: tertiary };
 
   if (primary) return { primary: true };
   if (secondary) return { secondary: true };

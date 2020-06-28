@@ -14,6 +14,7 @@ const ThemeSelect = () => {
 
   return (
     <Button
+      secondary
       right
       small
       {...{
