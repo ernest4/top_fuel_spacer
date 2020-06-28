@@ -1,17 +1,61 @@
 import React from "react";
 import Spacing from "../layout/Spacing";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import Button from "../misc/Button";
+import * as gameActions from "../store/actions/game";
+import Text from "../layout/Text";
 
 const Flying = () => {
   const currentThemeId = useSelector(state => state.theme.currentThemeId);
   const black = useSelector(state => state.theme.themes[currentThemeId]?.color.black);
 
+  const running = useSelector(state => state.game.running);
+
   return (
-    <Spacing {...{ height: "100vh", width: "100%", background: black }}>
-      <div>left bar</div>
-      <div>Flying</div>
+    <Spacing
+      horizontal
+      {...{ justify: "center", height: "100vh", width: "100%", background: black }}
+    >
+      <LeftBar />
+      <Spacing vertical {...{ justify: "flex-start" }}>
+        <Spacing {...{ justify: "flex-start", height: "28vh" }}>
+          <Spacing top={9} />
+          {running ? <Score /> : <LaunchButton />}
+        </Spacing>
+        <Rocket />
+        <div /> {/* TODO: ... will be the ground initially */}
+      </Spacing>
     </Spacing>
   );
 };
 
 export default Flying;
+
+const LaunchButton = () => {
+  const dispatch = useDispatch();
+
+  const onLaunch = () => dispatch(gameActions.setRunning(true));
+
+  return <Button primary large {...{ children: "Launch", onClick: onLaunch }} />;
+};
+
+const Score = () => {
+  const distance = useSelector(state => state.score.distance);
+  const speed = useSelector(state => state.score.speed);
+
+  return (
+    <Spacing vertical>
+      <Text white {...{ children: `${distance} meters` }} />
+      <Text white {...{ children: `${speed} per second` }} />
+      <Text white {...{ children: `??? acceleration` }} />
+    </Spacing>
+  );
+};
+
+const LeftBar = () => {
+  return <Spacing {...{ position: "absolute", absoluteLeft: "0px" }}>left bar</Spacing>;
+};
+
+const Rocket = () => {
+  return <Spacing {...{ height: "33vh", background: "green" }}>rocket</Spacing>;
+};

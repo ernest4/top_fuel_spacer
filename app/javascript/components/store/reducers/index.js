@@ -9,6 +9,7 @@ import tasks from "./tasks";
 import characters from "./characters";
 import locations from "./locations";
 import achievements from "./achievements";
+import score from "./score";
 
 export default combineReducers({
   game,
@@ -21,6 +22,7 @@ export default combineReducers({
   characters,
   locations,
   achievements,
+  score,
   // TODO: think about further data structures below
   // research, // TODO: ... research tech tree. progress on items. completed items.
   // collectibles, // TODO: ... items counts.

@@ -4,7 +4,7 @@ import produce from "immer";
 
 const initialState = {
   version: "0.1.0", // keep this value up to date as features and patches come !!
-  showUi: false, // dummy test
+  running: false,
 };
 
 // const otherReducer = handleActions({
@@ -15,8 +15,8 @@ const initialState = {
 
 const gameReducer = handleActions(
   {
-    SHOW_UI: produce((state, { payload }) => {
-      state.showUi = payload;
+    SET_RUNNING: produce((state, { payload }) => {
+      state.running = payload;
     }),
   },
   initialState
