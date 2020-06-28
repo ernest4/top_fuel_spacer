@@ -31,9 +31,9 @@ const Button = ({ right, ...props }) => {
         ...props,
         ...getBackground({ hover, color, ...props }),
         transform: `skew(${right ? "-" : ""}30deg, 0deg)`,
-        border: `1px solid ${getBorderColor({ color, ...props })}`,
         borderRadius: "8px",
-        borderWidth: "1px 1px 1px 1px",
+        border: `solid ${getBorderColor({ color, ...props })}`,
+        ...getBorderWidth({ right, ...props }),
         children: getChildren({ right, hover, ...props }),
         onMouseEnter,
         onMouseLeave,
@@ -56,9 +56,9 @@ export default memo(Button);
 const getBackground = ({ primary, secondary, tertiary, danger, color, hover }) => {
   let background = "transparent";
 
-  if (primary) background = setAlpha({ hsla: color._primary, alpha: hover ? 0.9 : 0.1 });
-  if (secondary) background = setAlpha({ hsla: color._secondary, alpha: hover ? 0.9 : 0.1 });
-  if (danger) background = setAlpha({ hsla: color._danger, alpha: hover ? 0.9 : 0.1 });
+  if (primary) background = setAlpha({ hsla: color._primary, alpha: hover ? 0.75 : 0.1 });
+  if (secondary) background = setAlpha({ hsla: color._secondary, alpha: hover ? 0.75 : 0.1 });
+  if (danger) background = setAlpha({ hsla: color._danger, alpha: hover ? 0.75 : 0.1 });
 
   // default tertiary, transparent
   return { background };
@@ -74,6 +74,14 @@ const getBorderColor = ({ primary, secondary, tertiary, danger, color, hover }) 
 
   // default tertiary, secondary
   return color._secondary;
+};
+
+const getBorderWidth = ({ right, tertiary }) => {
+  let borderWidth = right ? "0px 2px 2px 0px" : "0px 0px 2px 2px";
+
+  if (tertiary) borderWidth = "1px";
+
+  return { borderWidth };
 };
 
 const getChildren = ({

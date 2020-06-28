@@ -14,15 +14,15 @@ const TopBar = () => {
   return (
     <Spacing horizontal {...{ background: closest, all: 1, position: "fixed", width: "100%" }}>
       <Spacing horizontal>
-        <Button small children="Top Fuel Spacer ©" />
+        <Button tertiary small children="Top Fuel Spacer ©" />
         <Spacing left={1} />
-        <Button small children={`OutlierStudio: ${new Date().getFullYear()}`} />
+        <Button tertiary small children={`OutlierStudio: ${new Date().getFullYear()}`} />
         <Spacing left={1} />
-        <Button small children="Twitter" />
+        <Button tertiary small children="Twitter" />
         <Spacing left={1} />
-        <Button small children="Patreon" />
+        <Button tertiary small children="Patreon" />
         <Spacing left={1} />
-        <Button small children="Luminaries" />
+        <Button tertiary small children="Luminaries" />
       </Spacing>
       <Spacing horizontal>
         <ThemeSelect />
