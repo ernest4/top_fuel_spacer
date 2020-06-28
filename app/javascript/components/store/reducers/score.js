@@ -4,14 +4,16 @@ import produce from "immer";
 import debugFlag from "../../debugFlag";
 
 let initialState = {
-  distance: 0,
-  speed: 0,
+  distance: 0, // m
+  speed: 100, // m/s
+  acceleration: 0, // m/s^2 // TODO: set this to initial value, fuel permitting
 };
 
 if (debugFlag) {
   initialState = {
     distance: 0,
-    speed: 0,
+    speed: 100,
+    acceleration: 100, // TODO: experiment with the initial acceleration
   };
 }
 
@@ -25,6 +27,7 @@ const scoreReducer = handleActions(
   {
     SET_DISTANCE: produce((state, { payload }) => {
       state.distance = payload;
+      // console.log(payload);
     }),
     SET_SPEED: produce((state, { payload }) => {
       state.speed = payload;

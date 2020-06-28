@@ -3,7 +3,7 @@ import Spacing from "../layout/Spacing";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "../misc/Button";
 import * as gameActions from "../store/actions/game";
-import Text from "../layout/Text";
+import Score from "./flying/Score";
 
 const Flying = () => {
   const currentThemeId = useSelector(state => state.theme.currentThemeId);
@@ -37,19 +37,6 @@ const LaunchButton = () => {
   const onLaunch = () => dispatch(gameActions.setRunning(true));
 
   return <Button primary large {...{ children: "Launch", onClick: onLaunch }} />;
-};
-
-const Score = () => {
-  const distance = useSelector(state => state.score.distance);
-  const speed = useSelector(state => state.score.speed);
-
-  return (
-    <Spacing vertical>
-      <Text white {...{ children: `${distance} meters` }} />
-      <Text white {...{ children: `${speed} per second` }} />
-      <Text white {...{ children: `??? acceleration` }} />
-    </Spacing>
-  );
 };
 
 const LeftBar = () => {
