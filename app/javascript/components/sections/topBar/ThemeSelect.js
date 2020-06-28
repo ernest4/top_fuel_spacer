@@ -6,17 +6,22 @@ import Container from "../../layout/Container";
 import Line from "../../layout/Line";
 import * as themeActions from "../../store/actions/theme";
 import Card from "../../layout/Card";
+import Button from "../../misc/Button";
 
 const ThemeSelect = () => {
   const currentThemeId = useSelector(state => state.theme.currentThemeId);
   const name = useSelector(state => state.theme.themes[currentThemeId]?.name);
 
   return (
-    <Spacing
-      {...{ interactiveHover: <Hover />, hoverProps: { placement: "bottom", followCursor: false } }}
-    >
-      <Text extraSmall children={`Theme: ${formatName(name)}`} />
-    </Spacing>
+    <Button
+      right
+      small
+      {...{
+        interactiveHover: <Hover />,
+        hoverProps: { placement: "bottom", followCursor: false },
+        children: `Theme: ${formatName(name)}`,
+      }}
+    />
   );
 };
 

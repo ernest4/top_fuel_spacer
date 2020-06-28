@@ -2,9 +2,10 @@ import React from "react";
 import Spacing, { SPACING } from "../../layout/Spacing";
 import { useSelector } from "react-redux";
 import Text from "../../layout/Text";
+import Button from "../../misc/Button";
 
 const Middle = () => {
-  const controls = [
+  const buttons = [
     "chat",
     "research", // [optional] -> research / build / hack / grow / fight (pirate) / etc
     "tasks", // [optional] -> your missions / quests for this character
@@ -16,8 +17,12 @@ const Middle = () => {
     <Spacing horizontal>
       <CharacterSection />
       <Spacing horizontal>
-        {controls.map(control => {
-          return <Spacing>{control}</Spacing>;
+        {buttons.map(control => {
+          return (
+            <Button>
+              <div>{control}</div>
+            </Button>
+          );
         })}
       </Spacing>
     </Spacing>
@@ -49,7 +54,7 @@ const CharacterSection = () => {
             borderWidth: "3px 8px 0px 0px",
           }}
         />
-        <Character />
+        {currentSectionId != null && <Character />} {/* 0 is false...kinda annoying */}
       </Spacing>
       <Spacing
         horizontal
@@ -71,6 +76,10 @@ const CharacterSection = () => {
 };
 
 const Character = () => {
+  const currentSectionId = useSelector(state => state.antFarm.currentSectionId);
+  const characterId = useSelector(state => state.antFarm.sections[currentSectionId]?.characterId);
+  const name = useSelector(state => state.characters.characters[characterId]?.name);
+
   return (
     <Spacing
       {...{
@@ -81,7 +90,7 @@ const Character = () => {
         absoluteLeft: `${32 * SPACING}px`,
         absoluteBottom: `${6 * SPACING}px`,
         z: "-1",
-        hover: <div>Peterson</div>,
+        hover: <div>{name}</div>,
       }}
     >
       character

@@ -26,6 +26,7 @@ const Volume = () => {
       pointer
       center
       {...{
+        right: 1,
         interactiveHover: <Hover />,
         hoverProps: { placement: "right", followCursor: false },
         onClick: onMute,
@@ -38,9 +39,9 @@ const Volume = () => {
           background: color,
           all: 0.5,
           left: 1,
-          height: `${2 * SPACING}px`,
+          height: `${1.5 * SPACING}px`,
           position: "absolute",
-          absoluteRight: `${3 * SPACING}px`,
+          absoluteRight: `${3.5 * SPACING}px`,
         }}
       />
       <Spacing transform={`rotate(-90deg)`}>

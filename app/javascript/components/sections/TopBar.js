@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Spacing from "../layout/Spacing";
 import Text from "../layout/Text";
 import ThemeSelect from "./topBar/ThemeSelect";
+import Button from "../misc/Button";
 
 const TopBar = () => {
   const version = useSelector(state => state.game.version);
@@ -13,17 +14,15 @@ const TopBar = () => {
   return (
     <Spacing horizontal {...{ background: closest, all: 1, position: "fixed", width: "100%" }}>
       <Spacing horizontal>
-        <Text extraSmall>Top Fuel Spacer ©</Text>
+        <Button small children="Top Fuel Spacer ©" />
         <Spacing left={1} />
-        <Text extraSmall>OutlierStudio</Text>
+        <Button small children={`OutlierStudio: ${new Date().getFullYear()}`} />
         <Spacing left={1} />
-        <Text extraSmall>{new Date().getFullYear()}</Text>
+        <Button small children="Twitter" />
         <Spacing left={1} />
-        <Text extraSmall>Twitter</Text>
+        <Button small children="Patreon" />
         <Spacing left={1} />
-        <Text extraSmall>Patreon</Text>
-        <Spacing left={1} />
-        <Text extraSmall>Luminaries</Text>
+        <Button small children="Luminaries" />
       </Spacing>
       <Spacing horizontal>
         <ThemeSelect />
