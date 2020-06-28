@@ -5,17 +5,7 @@ import { useSelector } from "react-redux";
 import Text from "../layout/Text";
 import { setAlpha } from "../utils/Color";
 
-const Button = ({
-  // primary: primaryButton,
-  // secondary: secondaryButton,
-  // tertiary: tertiaryButton,
-  // small,
-  // medium,
-  // large,
-  right,
-  // children,
-  ...props
-}) => {
+const Button = ({ right, ...props }) => {
   const [hover, setHover] = useState(false);
   // TODO: extract this into const {primary, secondary, ...} = useTheme() hook? not the most efficient as it will listen to every color,
   // but on the other hand we dont expect theme to be updated live during gamplay (custom themes not withstadning).
@@ -40,14 +30,14 @@ const Button = ({
       {...{
         ...props,
         ...getBackground({ hover, color, ...props }),
-        ...getSize(props),
         transform: `skew(${right ? "-" : ""}30deg, 0deg)`,
-        border: `1px solid ${_secondary}`,
+        border: `1px solid ${getBorderColor({ color, ...props })}`,
         borderRadius: "8px",
         borderWidth: "1px 1px 1px 1px",
         children: getChildren({ right, hover, ...props }),
         onMouseEnter,
         onMouseLeave,
+        ...getSize(props),
       }}
     />
   );
@@ -64,36 +54,38 @@ const Button = ({
 export default memo(Button);
 
 const getBackground = ({ primary, secondary, tertiary, danger, color, hover }) => {
-  console.log(hover);
-
   let background = "transparent";
 
-  if (primary) background = setAlpha({ hsla: color._primary, alpha: hover ? 1 : 0.1 });
-  if (secondary) background = setAlpha({ hsla: color._secondary, alpha: hover ? 1 : 0.1 });
+  if (primary) background = setAlpha({ hsla: color._primary, alpha: hover ? 0.9 : 0.1 });
+  if (secondary) background = setAlpha({ hsla: color._secondary, alpha: hover ? 0.9 : 0.1 });
+  if (danger) background = setAlpha({ hsla: color._danger, alpha: hover ? 0.9 : 0.1 });
 
   // default tertiary, transparent
   return { background };
 };
 
-const getSize = ({ small, medium, large }) => {
-  if (small) return { all: 0.5, left: 1, right: 1 };
-  if (large) return { all: 2, left: 4, right: 4 };
+const getBorderColor = ({ primary, secondary, tertiary, danger, color, hover }) => {
+  if (hover) return color._white;
 
-  // default is medium
-  return { all: 1, left: 2, right: 2 };
+  if (primary) return color._primary;
+  if (secondary) return color._secondary;
+  if (tertiary) return color._secondary;
+  if (danger) return color._danger;
+
+  // default tertiary, secondary
+  return color._secondary;
 };
 
 const getChildren = ({
-  children,
   right,
   small: extraSmall,
-  medium,
-  large,
+  children,
   primary,
   secondary,
   tertiary,
   danger,
   hover,
+  ...props
 }) => {
   if (typeof children !== "string") return children;
 
@@ -103,14 +95,31 @@ const getChildren = ({
     <Text
       {...{
         extraSmall,
-        medium,
-        large,
         transform,
+        ...getColor({ primary, secondary, tertiary, danger, hover }),
         children,
-        primary,
-        secondary: secondary || tertiary || !primary || !danger,
-        danger,
+        ...props,
       }}
     />
   );
+};
+
+const getColor = ({ primary, secondary, tertiary, danger, hover }) => {
+  if (hover) return { white: true };
+
+  if (primary) return { primary: true };
+  if (secondary) return { secondary: true };
+  if (tertiary) return { secondary: true };
+  if (danger) return { danger: true };
+
+  // default tertiary, secondary
+  return { secondary: true };
+};
+
+const getSize = ({ small, medium, large }) => {
+  if (small) return { all: 0.5, left: 1, right: 1 };
+  if (large) return { all: 2, left: 4, right: 4 };
+
+  // default is medium
+  return { all: 1, left: 2, right: 2 };
 };
