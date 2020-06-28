@@ -1,8 +1,9 @@
-import React from "react";
+import React, { memo, useState } from "react";
 import Spacing from "../layout/Spacing";
 import Container from "../layout/Container";
 import { useSelector } from "react-redux";
 import Text from "../layout/Text";
+import { setAlpha } from "../utils/Color";
 
 const Button = ({
   // primary: primaryButton,
@@ -15,28 +16,38 @@ const Button = ({
   // children,
   ...props
 }) => {
+  const [hover, setHover] = useState(false);
   // TODO: extract this into const {primary, secondary, ...} = useTheme() hook? not the most efficient as it will listen to every color,
   // but on the other hand we dont expect theme to be updated live during gamplay (custom themes not withstadning).
   const currentThemeId = useSelector(state => state.theme.currentThemeId);
-  const secondary = useSelector(state => state.theme.themes[currentThemeId].color.secondary);
+  const _primary = useSelector(state => state.theme.themes[currentThemeId]?.color.primary);
+  const _secondary = useSelector(state => state.theme.themes[currentThemeId]?.color.secondary);
+  const _white = useSelector(state => state.theme.themes[currentThemeId]?.color.white);
+  const _danger = useSelector(state => state.theme.themes[currentThemeId]?.color.danger);
+  const _fontDefault = useSelector(state => state.theme.themes[currentThemeId]?.color.fontDefault);
+  const _muted = useSelector(state => state.theme.themes[currentThemeId]?.font.muted);
+
+  const color = { _primary, _secondary, _danger, _white, _fontDefault, _muted };
 
   // TODO: onHover, change style !
-  const onMouseOver = () => {
-    /* background / border color change wip */
-  };
+  /* background / border color change wip */
+  const onMouseEnter = () => setHover(true);
+  const onMouseLeave = () => setHover(false);
 
   return (
     <Spacing
       pointer
       {...{
         ...props,
-        ...getBackground(props),
+        ...getBackground({ hover, color, ...props }),
         ...getSize(props),
         transform: `skew(${right ? "-" : ""}30deg, 0deg)`,
-        border: `1px solid ${secondary}`,
+        border: `1px solid ${_secondary}`,
         borderRadius: "8px",
         borderWidth: "1px 1px 1px 1px",
-        children: getChildren({ right, ...props }),
+        children: getChildren({ right, hover, ...props }),
+        onMouseEnter,
+        onMouseLeave,
       }}
     />
   );
@@ -50,14 +61,18 @@ const Button = ({
   // );
 };
 
-export default Button;
+export default memo(Button);
 
-const getBackground = ({ primary, secondary, tertiary, danger }) => {
-  if (secondary) return { background: secondary };
-  if (primary) return { background: primary };
+const getBackground = ({ primary, secondary, tertiary, danger, color, hover }) => {
+  console.log(hover);
 
-  // default tertiary
-  return { background: "transparent" };
+  let background = "transparent";
+
+  if (primary) background = setAlpha({ hsla: color._primary, alpha: hover ? 1 : 0.1 });
+  if (secondary) background = setAlpha({ hsla: color._secondary, alpha: hover ? 1 : 0.1 });
+
+  // default tertiary, transparent
+  return { background };
 };
 
 const getSize = ({ small, medium, large }) => {
@@ -78,6 +93,7 @@ const getChildren = ({
   secondary,
   tertiary,
   danger,
+  hover,
 }) => {
   if (typeof children !== "string") return children;
 

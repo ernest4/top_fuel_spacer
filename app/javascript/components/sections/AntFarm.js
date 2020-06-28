@@ -13,7 +13,7 @@ const AntFarm = () => {
   // need reducer for sections or just that section reducer ??. Flying reducer, AntFarm reducer and Info reducer
   return (
     <Spacing scroll {...{ height: "100vh", width: "100%", background }}>
-      <Spacing height="34px" />
+      <Spacing height="44px" />
       {sections.map((section, key) => {
         return (
           <Spacing pointer onClick={() => dispatch(antFarmActions.setCurrentSectionId(section.id))}>

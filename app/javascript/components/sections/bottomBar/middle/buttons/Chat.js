@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../../../../misc/Button";
 
 const Chat = () => {
-  return <Button {...{ children: "chat" }} />;
+  return <Button secondary {...{ children: "chat" }} />;
 };
 
 export default Chat;

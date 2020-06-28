@@ -20,7 +20,7 @@ const Furthest = () => {
         absoluteLeft: `${14 * SPACING}px`,
         absoluteBottom: "0px",
         transform: "skewX(-30deg)",
-        height: `${20 * SPACING}px`, // TODO: bit hight? will see how it looks with buttons, might need to be lowered
+        height: `${16 * SPACING}px`, // TODO: bit hight? will see how it looks with buttons, might need to be lowered
         borderRadius: "100px 0px 0px 0px",
         z: -1,
       }}
