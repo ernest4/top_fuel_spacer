@@ -68,7 +68,7 @@ const Score = ({ onDistance: onDistanceCallback }) => {
   return (
     <Container>
       {/* <div children={distance} /> */}
-      <Distance children={`${formatNumberToSiUnit(distance)}meters`} />
+      <Distance children={`${formatNumberToSiUnit(distance)} meters`} />
       <div>testy</div>
     </Container>
   );
@@ -93,8 +93,33 @@ const Distance = styled.div`
   /* top: 15vh; */
 `;
 
-const formatNumberToSiUnit = count => {
+const formatNumberToSiUnit = number => {
   // TODO: use light years once far enough
   // return `${count} kilo`;
-  return `${count} `;
+  let wholePart = 0;
+  let fractionalPart = 0;
+  let multipleName = "";
+
+  for (const [multiplier, multiple] of MULTIPLE_NAME) {
+    const divisor = 1000 * multiplier;
+
+    if (1 < number / divisor) {
+      wholePart = Math.floor(number / divisor);
+      fractionalPart = Math.floor(number % divisor);
+
+      multipleName = multiple;
+
+      break;
+    }
+  }
+
+  return `${wholePart}.${fractionalPart} ${multipleName}`;
 };
+
+const MULTIPLE_NAME = [
+  [1, "thousand"],
+  [2, "million"],
+  [3, "billion"],
+  [4, "trillion"],
+  [5, "quadrillion"],
+];
