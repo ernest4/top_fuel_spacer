@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Button from "../misc/Button";
 import * as gameActions from "../store/actions/game";
 import Score from "./flying/Score";
+import Container from "../layout/Container";
 
 const Flying = () => {
   const currentThemeId = useSelector(state => state.theme.currentThemeId);
@@ -44,5 +45,19 @@ const LeftBar = () => {
 };
 
 const Rocket = () => {
-  return <Spacing {...{ height: "33vh", background: "green" }}>rocket</Spacing>;
+  const onAddKineticEnergy = () => {}; // dispatch action adding kinteic energy / fuel / acceleration
+
+  return (
+    <Spacing
+      {...{ height: "33vh", background: "green", onClick: onAddKineticEnergy, hover: <Hover /> }}
+    >
+      rocket
+    </Spacing>
+  );
+};
+
+const Hover = () => {
+  const name = useSelector(state => state.ship.name);
+
+  return <Container border>{name}</Container>;
 };

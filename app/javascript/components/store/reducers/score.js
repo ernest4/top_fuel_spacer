@@ -11,9 +11,9 @@ let initialState = {
 
 if (debugFlag) {
   initialState = {
-    distance: 0,
+    distance: 1000,
     speed: 100,
-    acceleration: 100, // TODO: experiment with the initial acceleration
+    acceleration: 10, // TODO: experiment with the initial acceleration
   };
 }
 

@@ -10,6 +10,7 @@ import characters from "./characters";
 import locations from "./locations";
 import achievements from "./achievements";
 import score from "./score";
+import ship from "./ship";
 
 export default combineReducers({
   game,
@@ -23,6 +24,7 @@ export default combineReducers({
   locations,
   achievements,
   score,
+  ship,
   // TODO: think about further data structures below
   // research, // TODO: ... research tech tree. progress on items. completed items.
   // collectibles, // TODO: ... items counts.

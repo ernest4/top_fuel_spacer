@@ -9,11 +9,15 @@ import styled from "styled-components";
 const Score = ({ onDistance: onDistanceCallback }) => {
   const disptach = useDispatch();
 
-  const [distance, setDistance] = useState(0);
+  const reduxDistance = useSelector(state => state.score.distance);
+  const [distance, setDistance] = useState(reduxDistance);
 
-  // const distance = useSelector(state => state.score.distance);
   const speed = useSelector(state => state.score.speed);
-  // // const acceleration = useSelector(state => state.score.acceleration);
+
+
+  // TODO: speed affects distance directly, accleration does not. So render acceleration elsewhere
+
+  // const acceleration = useSelector(state => state.score.acceleration);
 
   const requestRef = useRef();
   const previousTimeRef = useRef();
@@ -69,7 +73,8 @@ const Score = ({ onDistance: onDistanceCallback }) => {
     <Container>
       {/* <div children={distance} /> */}
       <Distance children={`${formatNumberToSiUnit(distance)} meters`} />
-      <div>testy</div>
+      <Speed children={`${formatNumberToSiUnit(speed)} meters / s`} />
+      {/* <Acceleration children={`${formatNumberToSiUnit(acceleration)} meters / s / s`} /> */}
     </Container>
   );
 };
@@ -86,16 +91,18 @@ const Container = styled.div`
   top: 15vh;
   left: 0px;
   width: 33vw;
+  padding-left: 64px;
+  padding-right: 64px;
 `;
 
-const Distance = styled.div`
-  /* position: absolute; */
-  /* top: 15vh; */
-`;
+// TODO: ... wip
+const Distance = styled.div``;
+const Speed = styled.div``;
+const Acceleration = styled.div``;
 
 const formatNumberToSiUnit = number => {
   // TODO: use light years once far enough
-  // return `${count} kilo`;
+
   let wholePart = number;
   let fractionalPart = 0;
   let multipleName = "";
@@ -124,4 +131,5 @@ const MULTIPLE_NAME = [
   [3, "billion"],
   [4, "trillion"],
   [5, "quadrillion"],
+  // [9.4607, "light years"],
 ];
