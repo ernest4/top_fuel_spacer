@@ -96,24 +96,26 @@ const Distance = styled.div`
 const formatNumberToSiUnit = number => {
   // TODO: use light years once far enough
   // return `${count} kilo`;
-  let wholePart = 0;
+  let wholePart = number;
   let fractionalPart = 0;
   let multipleName = "";
 
-  for (const [multiplier, multiple] of MULTIPLE_NAME) {
-    const divisor = 1000 * multiplier;
+  if (999 < number) {
+    for (const [multiplier, multiple] of MULTIPLE_NAME) {
+      const divisor = 1000 * multiplier;
 
-    if (1 < number / divisor) {
-      wholePart = Math.floor(number / divisor);
-      fractionalPart = Math.floor(number % divisor);
+      if (1 < number / divisor) {
+        wholePart = number / divisor;
+        fractionalPart = number % divisor;
 
-      multipleName = multiple;
+        multipleName = multiple;
 
-      break;
+        break;
+      }
     }
   }
 
-  return `${wholePart}.${fractionalPart} ${multipleName}`;
+  return `${Math.floor(wholePart)}.${Math.floor(fractionalPart)} ${multipleName}`;
 };
 
 const MULTIPLE_NAME = [
