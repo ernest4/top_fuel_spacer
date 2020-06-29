@@ -14,7 +14,7 @@ const TopBar = () => {
   return (
     <Spacing
       horizontal
-      {...{ background: closest, all: 1, position: "fixed", width: "100%", z: 1 }}
+      {...{ background: closest, all: 1, left: 2, position: "fixed", width: "100%", z: 1 }}
     >
       <Spacing horizontal>
         <Button tertiary small children="Top Fuel Spacer ©" />

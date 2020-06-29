@@ -3,6 +3,7 @@ import Spacing, { SPACING } from "../../layout/Spacing";
 import Container from "../../layout/Container";
 import { useSelector } from "react-redux";
 import useTheme from "../../hooks/useTheme";
+import { css } from "styled-components";
 
 const Rocket = () => {
   // add energy to dynamo for ion thrusters https://en.wikipedia.org/wiki/Ion_thruster
@@ -13,9 +14,18 @@ const Rocket = () => {
       vertical
       {...{
         height: "33vh",
+        // width: "fit-content",
+        width: "38px",
         align: "center",
         background: "green",
         onClick: onAddKineticEnergy,
+        borderRadius: "38px 38px 0px 0px",
+        css: css`
+          align-self: center;
+
+          border-left: 2px solid #45afe4;
+          border-right: 2px solid #e47a44;
+        `,
         hover: <Hover />,
       }}
     >
@@ -35,23 +45,24 @@ export default Rocket;
 const Hover = () => {
   const name = useSelector(state => state.rocket.name);
 
-  console.log(name); // WIP testing
-
   return <Container border>{name}</Container>;
 };
 
 const Head = () => {
-  const { black } = useTheme();
+  const { black, white } = useTheme();
 
   return (
-    <Spacing horizontal {...{ height: "100%", width: "50%" }}>
+    <Spacing horizontal {...{ height: "100%", width: "100%" }}>
       <Spacing
         {...{
           width: `${6 * SPACING}px`,
           height: `100%`,
           background: "#b9c8d4",
           border: `1px solid ${black}`,
-          boxShadow: `19px -1px 0px -1px ${black} inset`,
+          boxShadow: `10px -1px 0px -1px ${black} inset`,
+          css: css`
+            border-right: 1px solid ${white};
+          `,
           borderRadius: "100px 0px 0px 0px",
         }}
       />
@@ -60,8 +71,11 @@ const Head = () => {
           width: `${6 * SPACING}px`,
           height: `100%`,
           background: "#e5ecf0",
-          border: `1px solid ${black}`,
-          boxShadow: "-19px -1px 0px -1px red inset",
+          border: `1px solid ${white}`,
+          boxShadow: `-10px -1px 0px -1px ${white} inset`,
+          css: css`
+            border-left: 1px solid ${black};
+          `,
           borderRadius: "0px 100px 0px 0px",
         }}
       />
@@ -70,17 +84,21 @@ const Head = () => {
 };
 
 const StabilizerFins = () => {
-  const { black } = useTheme();
+  const { black, white } = useTheme();
 
   return (
-    <Spacing horizontal {...{ height: "100%", width: "50%" }}>
+    <Spacing horizontal {...{ height: "100%", width: "100%" }}>
       <Spacing
         {...{
           width: `${6 * SPACING}px`,
           height: `100%`,
           background: "#b9c8d4",
           border: `1px solid ${black}`,
-          boxShadow: `19px -1px 0px -1px ${black} inset`,
+          boxShadow: `10px -1px 0px -1px ${black} inset`,
+          css: css`
+            border-right: 1px solid ${white};
+            border-top: 1px solid #b9c8d4;
+          `,
         }}
       />
       <Spacing
@@ -88,8 +106,11 @@ const StabilizerFins = () => {
           width: `${6 * SPACING}px`,
           height: `100%`,
           background: "#e5ecf0",
-          border: `1px solid ${black}`,
-          boxShadow: "-19px -1px 0px -1px red inset",
+          border: `1px solid ${white}`,
+          boxShadow: `-10px -1px 0px -1px ${white} inset`,
+          css: css`
+            border-left: 1px solid ${black};
+          `,
         }}
       />
     </Spacing>
@@ -97,17 +118,21 @@ const StabilizerFins = () => {
 };
 
 const Shaft = () => {
-  const { black } = useTheme();
+  const { black, white } = useTheme();
 
   return (
-    <Spacing horizontal {...{ height: "100%", width: "50%" }}>
+    <Spacing horizontal {...{ height: "100%", width: "100%" }}>
       <Spacing
         {...{
           width: `${6 * SPACING}px`,
           height: `100%`,
           background: "#b9c8d4",
           border: `1px solid ${black}`,
-          boxShadow: `19px -1px 0px -1px ${black} inset`,
+          boxShadow: `10px -1px 0px -1px ${black} inset`,
+          css: css`
+            border-right: 1px solid ${white};
+            border-top: 1px solid #b9c8d4;
+          `,
         }}
       />
       <Spacing
@@ -115,8 +140,11 @@ const Shaft = () => {
           width: `${6 * SPACING}px`,
           height: `100%`,
           background: "#e5ecf0",
-          border: `1px solid ${black}`,
-          boxShadow: "-19px -1px 0px -1px red inset",
+          border: `1px solid ${white}`,
+          boxShadow: `-10px -1px 0px -1px ${white} inset`,
+          css: css`
+            border-left: 1px solid ${black};
+          `,
         }}
       />
     </Spacing>
@@ -124,17 +152,21 @@ const Shaft = () => {
 };
 
 const IonThrusters = () => {
-  const { black } = useTheme();
+  const { black, white } = useTheme();
 
   return (
-    <Spacing horizontal {...{ height: "100%", width: "50%" }}>
+    <Spacing horizontal {...{ height: "100%", width: "100%" }}>
       <Spacing
         {...{
           width: `${6 * SPACING}px`,
           height: `100%`,
           background: "#b9c8d4",
           border: `1px solid ${black}`,
-          boxShadow: `19px -1px 0px -1px ${black} inset`,
+          boxShadow: `10px -1px 0px -1px ${black} inset`,
+          css: css`
+            border-right: 1px solid ${white};
+            border-top: 1px solid #b9c8d4;
+          `,
         }}
       />
       <Spacing
@@ -142,8 +174,11 @@ const IonThrusters = () => {
           width: `${6 * SPACING}px`,
           height: `100%`,
           background: "#e5ecf0",
-          border: `1px solid ${black}`,
-          boxShadow: "-19px -1px 0px -1px red inset",
+          border: `1px solid ${white}`,
+          boxShadow: `-10px -1px 0px -1px ${white} inset`,
+          css: css`
+            border-left: 1px solid ${black};
+          `,
         }}
       />
     </Spacing>
@@ -151,17 +186,21 @@ const IonThrusters = () => {
 };
 
 const MainThurster = () => {
-  const { black } = useTheme();
+  const { black, white } = useTheme();
 
   return (
-    <Spacing horizontal {...{ height: "100%", width: "50%" }}>
+    <Spacing horizontal {...{ height: "100%", width: "100%" }}>
       <Spacing
         {...{
           width: `${6 * SPACING}px`,
           height: `100%`,
           background: "#b9c8d4",
           border: `1px solid ${black}`,
-          boxShadow: `19px -1px 0px -1px ${black} inset`,
+          boxShadow: `10px -1px 0px -1px ${black} inset`,
+          css: css`
+            border-right: 1px solid ${white};
+            border-top: 1px solid #b9c8d4;
+          `,
         }}
       />
       <Spacing
@@ -169,8 +208,11 @@ const MainThurster = () => {
           width: `${6 * SPACING}px`,
           height: `100%`,
           background: "#e5ecf0",
-          border: `1px solid ${black}`,
-          boxShadow: "-19px -1px 0px -1px red inset",
+          border: `1px solid ${white}`,
+          boxShadow: `-10px -1px 0px -1px ${white} inset`,
+          css: css`
+            border-left: 1px solid ${black};
+          `,
         }}
       />
     </Spacing>

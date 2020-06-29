@@ -106,7 +106,7 @@ const formatNumberToSiUnit = number => {
   let fractionalPart = 0;
   let multipleName = "";
 
-  if (999 < number) {
+  if (999999 < number) {
     for (const [multiplier, multiple] of MULTIPLE_NAME) {
       const divisor = 1000 * multiplier;
 
@@ -125,7 +125,7 @@ const formatNumberToSiUnit = number => {
 };
 
 const MULTIPLE_NAME = [
-  [1, "thousand"],
+  [1, ""], // TODO: skip thousand, begin words from million
   [2, "million"],
   [3, "billion"],
   [4, "trillion"],
