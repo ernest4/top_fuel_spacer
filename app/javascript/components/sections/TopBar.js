@@ -12,7 +12,10 @@ const TopBar = () => {
   const closest = useSelector(state => state.theme.themes[currentThemeId]?.color.closest);
 
   return (
-    <Spacing horizontal {...{ background: closest, all: 1, position: "fixed", width: "100%" }}>
+    <Spacing
+      horizontal
+      {...{ background: closest, all: 1, position: "fixed", width: "100%", z: 1 }}
+    >
       <Spacing horizontal>
         <Button tertiary small children="Top Fuel Spacer ©" />
         <Spacing left={1} />

@@ -131,5 +131,5 @@ const MULTIPLE_NAME = [
   [3, "billion"],
   [4, "trillion"],
   [5, "quadrillion"],
-  // [9.4607, "light years"],
+  // [9.4607...wip, "light years"], // light year -> 9.4607×1015 m
 ];

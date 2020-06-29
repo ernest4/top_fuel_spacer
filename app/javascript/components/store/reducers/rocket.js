@@ -27,7 +27,7 @@ if (debugFlag) {
 //   })
 // }, initialState);
 
-const shipReducer = handleActions(
+const rocketReducer = handleActions(
   {
     SET_NAME: produce((state, { payload }) => {
       state.name = payload;
@@ -36,5 +36,5 @@ const shipReducer = handleActions(
   initialState
 );
 
-// export default reduceReducers(shipReducer, otherReducer, someOtherReducer);
-export default reduceReducers(shipReducer);
+// export default reduceReducers(rocketReducer, otherReducer, someOtherReducer);
+export default reduceReducers(rocketReducer);

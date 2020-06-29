@@ -3,6 +3,9 @@ import reduceReducers from "reduce-reducers";
 import produce from "immer";
 import debugFlag from "../../debugFlag";
 
+// TODO: need local state persistance !!
+// probs have a save game component that periodicaly backs up the state. mayeb use score component
+// to track time and send signal to save game component.
 let initialState = {
   distance: 0, // m
   speed: 100, // m/s
