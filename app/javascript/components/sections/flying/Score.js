@@ -14,7 +14,6 @@ const Score = ({ onDistance: onDistanceCallback }) => {
 
   const speed = useSelector(state => state.score.speed);
 
-
   // TODO: speed affects distance directly, accleration does not. So render acceleration elsewhere
 
   // const acceleration = useSelector(state => state.score.acceleration);
@@ -86,7 +85,7 @@ const UPDATE_INTERVAL = 50; // 20fps
 
 const Container = styled.div`
   display: flex;
-  position: absolute;
+  position: fixed;
   flex-direction: column;
   top: 15vh;
   left: 0px;
