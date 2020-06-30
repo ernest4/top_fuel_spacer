@@ -1,12 +1,11 @@
 import React from "react";
 import Spacing from "../layout/Spacing";
-import { useSelector, useDispatch } from "react-redux";
-import Button from "../misc/Button";
-import * as gameActions from "../store/actions/game";
+import { useSelector } from "react-redux";
 import Score from "./flying/Score";
 import Rocket from "./flying/Rocket";
 import Itinerary from "./flying/Itinerary";
 import Background from "./flying/Background";
+import LaunchButton from "./flying/LaunchButton";
 
 const Flying = () => {
   const currentThemeId = useSelector(state => state.theme.currentThemeId);
@@ -27,19 +26,10 @@ const Flying = () => {
           {running ? <Score /> : <LaunchButton />}
         </Spacing>
         <Rocket />
-        <div /> {/* TODO: ... will be the ground initially */}
+        <div /> {/* TODO: ... will be the ground before launching */}
       </Spacing>
     </Spacing>
   );
 };
 
 export default Flying;
-
-// TODO: add stripes animation to draw more attention!
-const LaunchButton = () => {
-  const dispatch = useDispatch();
-
-  const onLaunch = () => dispatch(gameActions.setRunning(true));
-
-  return <Button primary large {...{ children: "Launch", onClick: onLaunch }} />;
-};

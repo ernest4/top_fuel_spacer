@@ -6,7 +6,7 @@ import Text from "../layout/Text";
 // import { setAlpha } from "../utils/Color";
 import { css } from "styled-components";
 
-const Button = ({ right, ...props }) => {
+const Button = ({ right, innerProps, ...props }) => {
   const [hover, setHover] = useState(false);
   // TODO: extract this into const {primary, secondary, ...} = useTheme() hook? not the most efficient as it will listen to every color,
   // but on the other hand we dont expect theme to be updated live during gamplay (custom themes not withstadning).
@@ -74,11 +74,10 @@ const Button = ({ right, ...props }) => {
           ...getSize(props),
           css: css`
             &:hover {
-              ${"" /* border-width: 6px;
-            padding: 0px; */}
               border-radius: 0px;
             }
           `,
+          ...innerProps,
         },
       }}
     />
