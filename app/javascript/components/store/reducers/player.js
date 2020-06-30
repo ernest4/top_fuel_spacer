@@ -14,12 +14,13 @@ let initialState = {
   prestige: 0,
   name: "",
   avatar: null,
-  skills: {
-    luck: 0,
-    strength: 0,
-    charisma: 0,
-    intelligence: 0,
-  },
+  currentSkillId: null,
+  skills: [
+    { id: 0, name: "luck", value: 0 },
+    { id: 1, name: "strength", value: 0 },
+    { id: 2, name: "charisma", value: 0 },
+    { id: 3, name: "intelligence", value: 0 },
+  ],
 };
 
 if (debugFlag) {
@@ -31,12 +32,13 @@ if (debugFlag) {
     prestige: 1,
     name: "Ernest",
     avatar: null,
-    skills: {
-      luck: 4,
-      strength: 7,
-      charisma: 3,
-      intelligence: 9,
-    },
+    currentSkillId: null,
+    skills: [
+      { id: 0, name: "luck", value: 4 },
+      { id: 1, name: "strength", value: 7 },
+      { id: 2, name: "charisma", value: 3 },
+      { id: 3, name: "intelligence", value: 9 },
+    ],
   };
 }
 
@@ -50,6 +52,27 @@ const playerReducer = handleActions(
   {
     SET_MORALITY: produce((state, { payload }) => {
       state.morality = payload;
+    }),
+    SET_XP: produce((state, { payload }) => {
+      state.xp = payload;
+    }),
+    SET_LEVEL_UP_XP: produce((state, { payload }) => {
+      state.levelUpXp = payload;
+    }),
+    SET_LEVEL: produce((state, { payload }) => {
+      state.level = payload;
+    }),
+    SET_PRESTIGE: produce((state, { payload }) => {
+      state.prestige = payload;
+    }),
+    SET_NAME: produce((state, { payload }) => {
+      state.name = payload;
+    }),
+    SET_XP: produce((state, { payload }) => {
+      state.xp = payload;
+    }),
+    SET_CURRENT_SKILL_ID: produce((state, { payload }) => {
+      state.currentSkillId = payload;
     }),
   },
   initialState

@@ -6,7 +6,7 @@ import * as scoreActions from "../../store/actions/score";
 import styled from "styled-components";
 
 // Highly optimized custom component to deal with constant updates to progress
-const Score = ({ onDistance: onDistanceCallback }) => {
+const Score = () => {
   const disptach = useDispatch();
 
   const reduxDistance = useSelector(state => state.score.distance);
@@ -63,10 +63,6 @@ const Score = ({ onDistance: onDistanceCallback }) => {
     return () => window.cancelAnimationFrame(requestRef.current);
   }, [disptach, distance, speed]);
   // }, [disptach, distance, speed, distanceRef, speedRef]);
-
-  useEffect(() => {
-    if (distance && onDistanceCallback) onDistanceCallback(distance);
-  }, [distance, onDistanceCallback]);
 
   return (
     <Container>

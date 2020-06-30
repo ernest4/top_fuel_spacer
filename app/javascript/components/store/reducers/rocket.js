@@ -4,7 +4,7 @@ import produce from "immer";
 import debugFlag from "../../debugFlag";
 import { getRandom } from "../../utils/Array";
 
-const NAMES = ["Merry Way", "White Submarine", "Random Name 674"];
+const NAMES = ["Merry Way", "White Submarine", "Random Name 674", "Nyan Rocket"];
 
 let initialState = {
   name: getRandom(NAMES),

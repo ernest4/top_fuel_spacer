@@ -4,6 +4,7 @@ import Prestige from "./playerAvatarInfo/Prestige";
 import Player from "./playerAvatarInfo/Player";
 import Level from "./playerAvatarInfo/Level";
 import PlayerXpBar from "./playerAvatarInfo/PlayerXpBar";
+import XpTracker from "./playerAvatarInfo/XpTracker";
 
 const PlayerAvatarInfo = () => {
   return (
@@ -22,6 +23,7 @@ const PlayerAvatarInfo = () => {
         <Level />
       </Spacing>
       <PlayerXpBar />
+      <XpTracker />
     </Spacing>
   );
 };
