@@ -80,7 +80,7 @@ const Score = ({ onDistance: onDistanceCallback }) => {
 
 export default Score;
 
-const REDUX_UPDATE_INTERVAL = 1000;
+export const REDUX_UPDATE_INTERVAL = 1000;
 const UPDATE_INTERVAL = 50; // 20fps
 
 const Container = styled.div`
@@ -125,7 +125,7 @@ const formatNumberToSiUnit = number => {
 };
 
 const MULTIPLE_NAME = [
-  [2, "million"], 
+  [2, "million"],
   [3, "billion"], // TODO: not working??
   [4, "trillion"],
   [5, "quadrillion"],

@@ -4,6 +4,7 @@ import { setAlpha } from "../../utils/Color";
 import useTheme from "../../hooks/useTheme";
 import { css } from "styled-components";
 import { useSelector } from "react-redux";
+import { REDUX_UPDATE_INTERVAL } from "./Score";
 
 const Itinerary = () => {
   const { secondary } = useTheme();
@@ -47,8 +48,9 @@ const Itinerary = () => {
               position: "absolute",
               width: "70px",
               background: "green",
+              // TODO: the distance transform needs to be tweaked to account for changing distances and speed
               css: css`
-                transition: all 1s;
+                transition: all ${(REDUX_UPDATE_INTERVAL / 1000) * 1.5}s linear;
                 transform: translate(0, ${location.distanceToRocket + distance / 100}vh);
               `,
             }}
