@@ -1,9 +1,10 @@
 import React, { memo, useState } from "react";
-import Spacing from "../layout/Spacing";
+// import Spacing from "../layout/Spacing";
 import Container from "../layout/Container";
 import { useSelector } from "react-redux";
 import Text from "../layout/Text";
-import { setAlpha } from "../utils/Color";
+// import { setAlpha } from "../utils/Color";
+import { css } from "styled-components";
 
 const Button = ({ right, ...props }) => {
   const [hover, setHover] = useState(false);
@@ -56,23 +57,32 @@ const Button = ({ right, ...props }) => {
         children: getChildren({ right, hover, ...props }),
         onMouseEnter,
         onMouseLeave,
-        // ...getSize(props),
-        all: 0.5,
+        all: props.tertiary ? 0 : 0.5,
+        height: "fit-content",
+        transition: "all 0.2s",
+        css: !props.tertiary
+          ? css`
+              &:hover {
+                border-width: 6px;
+                padding: 0px;
+                border-color: ${getBorderColor({ color, ...props })};
+              }
+            `
+          : "",
         innerProps: {
           borderRadius: "4px",
           ...getSize(props),
+          css: css`
+            &:hover {
+              ${"" /* border-width: 6px;
+            padding: 0px; */}
+              border-radius: 0px;
+            }
+          `,
         },
       }}
     />
   );
-
-  // return (
-  //   <Container
-  //     pointer
-  //     border
-  //     {...{ transform: right ? `skewX(-30deg)` : transform, onMouseOver, right, ...props }}
-  //   />
-  // );
 };
 
 export default memo(Button);

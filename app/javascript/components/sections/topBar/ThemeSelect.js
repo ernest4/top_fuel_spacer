@@ -14,9 +14,9 @@ const ThemeSelect = () => {
 
   return (
     <Button
-      secondary
       right
       small
+      tertiary
       {...{
         interactiveHover: <Hover />,
         hoverProps: { placement: "bottom", followCursor: false },

@@ -35,6 +35,7 @@ const Flying = () => {
 
 export default Flying;
 
+// TODO: add stripes animation to draw more attention!
 const LaunchButton = () => {
   const dispatch = useDispatch();
 
