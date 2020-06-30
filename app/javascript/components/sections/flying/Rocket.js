@@ -31,6 +31,7 @@ const Rocket = () => {
           border-right: 2px solid #e47a44;
         `,
         hover: <Hover />,
+        hoverProps: { placement: "right" },
         z: 1,
       }}
     >
@@ -70,7 +71,6 @@ const Hover = () => {
           </Text>
         ),
         footer: <Text extraSmall muted italics children={`"All systems nominal."`} />,
-        hoverProps: { placement: "right" }, // not working ??
       }}
     />
   );
