@@ -108,7 +108,7 @@ const formatNumberToSiUnit = number => {
 
   if (999999 < number) {
     for (const [multiplier, multiple] of MULTIPLE_NAME) {
-      const divisor = 1000 * multiplier;
+      const divisor = Math.pow(1000, multiplier);
 
       if (1 < number / divisor) {
         wholePart = number / divisor;
@@ -125,9 +125,8 @@ const formatNumberToSiUnit = number => {
 };
 
 const MULTIPLE_NAME = [
-  [1, ""], // TODO: skip thousand, begin words from million
-  [2, "million"],
-  [3, "billion"],
+  [2, "million"], 
+  [3, "billion"], // TODO: not working??
   [4, "trillion"],
   [5, "quadrillion"],
   // [9.4607...wip, "light years"], // light year -> 9.4607×1015 m

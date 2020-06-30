@@ -1,8 +1,14 @@
 import React from "react";
 import Spacing from "../../../layout/Spacing";
 import { css, keyframes } from "styled-components";
+import { useSelector } from "react-redux";
 
 const Fire = () => {
+  const running = useSelector(state => state.game.running);
+  const fuel = useSelector(state => state.rocket.fuel);
+
+  if (!running || fuel === 0) return null;
+
   return (
     <Spacing
       {...{

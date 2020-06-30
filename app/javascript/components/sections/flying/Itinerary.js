@@ -3,11 +3,19 @@ import Spacing, { SPACING } from "../../layout/Spacing";
 import { setAlpha } from "../../utils/Color";
 import useTheme from "../../hooks/useTheme";
 import { css } from "styled-components";
+import { useSelector } from "react-redux";
 
 const Itinerary = () => {
   const { secondary } = useTheme();
 
-  const locations = ["planet", "satelite", "station", "meteor"]; // TODO: ... wip
+  const distance = useSelector(state => state.score.distance);
+
+  const locations = [
+    { name: "planet", distanceToRocket: 0 },
+    { name: "satelite", distanceToRocket: 25 },
+    { name: "station", distanceToRocket: 50 },
+    { name: "meteor", distanceToRocket: 75 },
+  ]; // TODO: ... wip
 
   return (
     <Spacing
@@ -32,7 +40,22 @@ const Itinerary = () => {
       }}
     >
       {locations.map((location, key) => {
-        return <Spacing {...{ key, width: "70px", background: "green" }}>{location}</Spacing>;
+        return (
+          <Spacing
+            {...{
+              key,
+              position: "absolute",
+              width: "70px",
+              background: "green",
+              css: css`
+                transition: all 1s;
+                transform: translate(0, ${location.distanceToRocket + distance / 100}vh);
+              `,
+            }}
+          >
+            {location.name}
+          </Spacing>
+        );
       })}
     </Spacing>
   );

@@ -10,6 +10,7 @@ let initialState = {
   name: getRandom(NAMES),
   fuel: 100,
   kineticEnergy: 0,
+  contactRange: 100,
 };
 
 if (debugFlag) {
@@ -18,6 +19,7 @@ if (debugFlag) {
     name: getRandom(NAMES),
     fuel: 100,
     kineticEnergy: 0,
+    contactRange: 100,
   };
 }
 
