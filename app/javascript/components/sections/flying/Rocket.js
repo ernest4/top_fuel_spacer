@@ -3,7 +3,10 @@ import Spacing, { SPACING } from "../../layout/Spacing";
 import Container from "../../layout/Container";
 import { useSelector } from "react-redux";
 import useTheme from "../../hooks/useTheme";
-import { css, keyframes } from "styled-components";
+import { css } from "styled-components";
+import Fire from "./rocket/Fire";
+import Card from "../../layout/Card";
+import Text from "../../layout/Text";
 
 const Rocket = () => {
   // add energy to dynamo for ion thrusters https://en.wikipedia.org/wiki/Ion_thruster
@@ -48,7 +51,29 @@ export default Rocket;
 const Hover = () => {
   const name = useSelector(state => state.rocket.name);
 
-  return <Container border>{name}</Container>;
+  return (
+    <Card
+      border
+      {...{
+        header: {
+          title: `"${name}"`,
+          subtitles: ["wip ???"],
+        },
+        body: (
+          <Text extraSmall>
+            This is your pride and joy, the <Text primary extraSmall bold children={name} />.
+            <Spacing top={1} />
+            <Text secondary extraSmall bold children="Click" /> this rocket to spin up a generator
+            to convert your kinetic energy to electricity that can be used in{" "}
+            <Text primary extraSmall bold children="ion thrusters" /> for a temporary{" "}
+            <Text secondary extraSmall bold children="speed boost" />.
+          </Text>
+        ),
+        footer: <Text extraSmall muted italics children={`"All systems nominal."`} />,
+        hoverProps: { placement: "right" }, // not working ??
+      }}
+    />
+  );
 };
 
 const Head = () => {
@@ -219,94 +244,5 @@ const MainThurster = () => {
         }}
       />
     </Spacing>
-  );
-};
-
-const Fire = () => {
-  return (
-    <Spacing
-      {...{
-        position: "absolute",
-        absoluteBottom: "-9%",
-        width: "50px",
-        height: "50px",
-        filter: "blur(4px)",
-        css: css`
-          align-self: center;
-        `,
-        z: "-1",
-      }}
-    >
-      <Spacing
-        {...{
-          position: "absolute",
-          absoluteLeft: "50%",
-          width: "100%",
-          height: "100%",
-          transform: "translateX(-50%) rotate(-45deg)",
-        }}
-      >
-        {Array.from(Array(4)).map((flame, key) => {
-          return <Flame {...{ key }} />;
-        })}
-      </Spacing>
-    </Spacing>
-  );
-};
-
-const Flame = () => {
-  const yellow = "#FEDC00";
-  const orange = "#FEAC00";
-  const red = "#F73C00";
-
-  const animationTime = 0.4;
-
-  return (
-    <Spacing
-      {...{
-        position: "absolute",
-        background: yellow,
-        width: "100%",
-        height: "100%",
-        css: css`
-          &:nth-child(2n + 1) {
-            animation-name: ${keyframes`
-              0% { transform: translate(0%, 0%) scale(0); background-color: ${yellow}; }
-              25% { transform: translate(-1%, 2%) scale(1); }
-              40% { background-color: ${orange}; }
-              100% { transform: translate(-150%, 170%) scale(0); background-color:  ${red}; }
-            `};
-
-            animation-duration: ${animationTime}s;
-            animation-timing-function: ease-in;
-            animation-iteration-count: infinite;
-          }
-          &:nth-child(2n) {
-            animation-name: ${keyframes`
-              0% { transform: translate(0%, 0%) scale(0); background-color: ${yellow}; }
-              25% { transform: translate(2%, -1%) scale(1); }
-              40% { background-color: ${orange}; }
-              100% { transform: translate(-170%, 150%) scale(0); background-color: ${red}; }
-            `};
-
-            animation-duration: ${animationTime}s;
-            animation-timing-function: ease-in;
-            animation-iteration-count: infinite;
-          }
-          &:nth-child(1) {
-            animation-delay: 0s;
-          }
-          &:nth-child(2) {
-            animation-delay: ${animationTime / 4}s;
-          }
-          &:nth-child(3) {
-            animation-delay: ${(animationTime / 4) * 2}s;
-          }
-          &:nth-child(4) {
-            animation-delay: ${(animationTime / 4) * 3}s;
-          }
-        `,
-      }}
-    />
   );
 };
