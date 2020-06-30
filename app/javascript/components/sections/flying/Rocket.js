@@ -230,7 +230,7 @@ const Fire = () => {
         absoluteBottom: "-9%",
         width: "50px",
         height: "50px",
-        // filter: "blur(1px)",
+        filter: "blur(4px)",
         css: css`
           align-self: center;
         `,
@@ -243,7 +243,7 @@ const Fire = () => {
           absoluteLeft: "50%",
           width: "100%",
           height: "100%",
-          transform: "translateX(-50%) rotate(-135deg)",
+          transform: "translateX(-50%) rotate(-45deg)",
         }}
       >
         {Array.from(Array(4)).map((flame, key) => {
@@ -256,28 +256,26 @@ const Fire = () => {
 
 // TODO: optimize animation with transforms !!!
 const Flame = () => {
-  const yellow = "#FFDC01";
-  const orange = "#FDAC01";
-  const red = "#F73B01";
+  const yellow = "#FEDC00";
+  const orange = "#FEAC00";
+  const red = "#F73C00";
 
-  const animationTime = 0.5;
+  const animationTime = 0.4;
 
   return (
     <Spacing
       {...{
         position: "absolute",
         background: yellow,
+        width: "100%",
+        height: "100%",
         css: css`
           &:nth-child(2n + 1) {
             animation-name: ${keyframes`
-              0%, 100% { width: 0%; height: 0%; }
-              25% { width: 100%; height: 100%; }
-              0% { background-color: ${yellow}; z-index: 1000000; }
-              40% { background-color: ${orange}; z-index: 1000000; }
-              100% { background-color: ${red}; z-index: -10; }
-              0% { right: 0%; bottom: 0%; }
-              25% { right: 1%; bottom: 2%; }
-              100% { right: 150%; bottom: 170%; }
+              0% { transform: translate(0%, 0%) scale(0); background-color: ${yellow}; }
+              25% { transform: translate(-1%, 2%) scale(1); }
+              40% { background-color: ${orange}; }
+              100% { transform: translate(-150%, 170%) scale(0); background-color:  ${red}; }
             `};
 
             animation-duration: ${animationTime}s;
@@ -286,14 +284,10 @@ const Flame = () => {
           }
           &:nth-child(2n) {
             animation-name: ${keyframes`
-              0%, 100% { width: 0%; height: 0%; }
-              25% { width: 100%; height: 100%; }
-              0% { background-color: ${yellow}; z-index: 1000000; }
-              40% { background-color: ${orange}; z-index: 1000000; }
-              100% { background-color: ${red}; z-index: -10; }
-              0% { right: 0%; bottom: 0%; }
-              25% { right: 2%; bottom: 1%; }
-              100% { right: 170%; bottom: 150%; }
+              0% { transform: translate(0%, 0%) scale(0); background-color: ${yellow}; }
+              25% { transform: translate(2%, -1%) scale(1); }
+              40% { background-color: ${orange}; }
+              100% { transform: translate(-170%, 150%) scale(0); background-color: ${red}; }
             `};
 
             animation-duration: ${animationTime}s;
