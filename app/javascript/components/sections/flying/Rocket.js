@@ -254,7 +254,6 @@ const Fire = () => {
   );
 };
 
-// TODO: optimize animation with transforms !!!
 const Flame = () => {
   const yellow = "#FEDC00";
   const orange = "#FEAC00";
