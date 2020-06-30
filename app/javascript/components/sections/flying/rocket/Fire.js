@@ -13,7 +13,7 @@ const Fire = () => {
     <Spacing
       {...{
         position: "absolute",
-        absoluteBottom: "-9%",
+        absoluteBottom: "-8%",
         width: "50px",
         height: "50px",
         filter: "blur(4px)",

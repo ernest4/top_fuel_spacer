@@ -11,6 +11,7 @@ const Container = ({
   background,
   separator,
   border,
+  innerProps,
   ...props
 }) => {
   // NOTE: the separator is unlikely to ever be used. But migth be repurposed? so keeping it around.
@@ -24,6 +25,7 @@ const Container = ({
     background: background || closest,
     borderRadius: `${right ? "" : "2px "}15px 2px 15px${right ? " 2px" : ""}`,
     all: 1,
+    ...innerProps,
   };
 
   // const innerContent = children.length ? (
@@ -61,7 +63,7 @@ const Container = ({
       // background: furthest.replace(/, 1\)/, ", 0.5)"), // reduce alpha value
       // background: furthest,
       borderRadius={`${right ? "" : "5px"} 20px 5px 20px ${right ? "5px" : ""}`}
-      border={border ? `2px solid ${borderColor || secondary}` : ""}
+      border={getBorder({ border, borderColor, secondary })}
       // border: border ? `3px solid ${borderColor || background}` : "",
       // border: border ? `3px solid ${borderColor || primary}` : "",
       opacity="0.90"
@@ -73,6 +75,12 @@ const Container = ({
 };
 
 export default memo(Container);
+
+const getBorder = ({ border, borderColor, secondary }) => {
+  if (!border) return "";
+
+  return typeof border === "string" ? border : `2px solid ${borderColor || secondary}`;
+};
 
 // const adjustBorderRadius = ({ section, cssBorderRadiString }) => {
 //   if (section === "body") return "4px 4px 4px 4px";

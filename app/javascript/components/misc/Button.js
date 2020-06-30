@@ -25,8 +25,26 @@ const Button = ({ right, ...props }) => {
   const onMouseEnter = () => setHover(true);
   const onMouseLeave = () => setHover(false);
 
+  // return (
+  //   <Spacing
+  //     pointer
+  //     {...{
+  //       ...props,
+  //       ...getBackground({ hover, color, ...props }),
+  //       transform: `skew(${right ? "-" : ""}30deg, 0deg)`,
+  //       borderRadius: "8px",
+  //       border: `solid ${getBorderColor({ hover, color, ...props })}`,
+  //       ...getBorderWidth({ right, ...props }),
+  //       children: getChildren({ right, hover, ...props }),
+  //       onMouseEnter,
+  //       onMouseLeave,
+  //       ...getSize(props),
+  //     }}
+  //   />
+  // );
+
   return (
-    <Spacing
+    <Container
       pointer
       {...{
         ...props,
@@ -38,7 +56,12 @@ const Button = ({ right, ...props }) => {
         children: getChildren({ right, hover, ...props }),
         onMouseEnter,
         onMouseLeave,
-        ...getSize(props),
+        // ...getSize(props),
+        all: 0.5,
+        innerProps: {
+          borderRadius: "4px",
+          ...getSize(props),
+        },
       }}
     />
   );
