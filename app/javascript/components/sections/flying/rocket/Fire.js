@@ -20,7 +20,7 @@ const Fire = () => {
         css: css`
           align-self: center;
         `,
-        z: "-1",
+        z: "-2",
       }}
     >
       <Spacing
