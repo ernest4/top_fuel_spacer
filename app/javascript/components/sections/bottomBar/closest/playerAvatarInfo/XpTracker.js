@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
+import { getXpRequired } from "../../../../utils/Progression";
 import * as playerActions from "../../../../store/actions/player";
 
 const XpTracker = () => {
@@ -11,21 +12,27 @@ const XpTracker = () => {
   const level = useSelector(state => state.player.level);
 
   useEffect(() => {
-    if (distance) dispatch(playerActions.setXp(distance / 10));
-  }, [distance, dispatch]);
+    if (!dispatch) return;
+
+    if (distance) dispatch(playerActions.setXp(normalizeXp(distance)));
+  }, [distance, level, dispatch]);
 
   useEffect(() => {
-    if (xp) {
-      if (levelUpXp < xp) {
-        batch(() => {
-          dispatch(playerActions.setLevel(level + 1));
-          disptach(
-            playerActions.setLevelUpXp(
-              getXpRequiredForNextLevel({ currentLevel: level, initialLevelUpXpRequired: 100 })
-            )
-          );
-        });
-      }
+    if (!dispatch) return;
+
+    if (levelUpXp < xp) {
+      const nextLevel = level + 1;
+
+      batch(() => {
+        dispatch(playerActions.setLevel(nextLevel));
+        dispatch(
+          playerActions.setLevelUpXp(
+            getXpRequired({ level: nextLevel, levelOneXp: 100 }) -
+              getXpRequired({ level, levelOneXp: 100 })
+          )
+        );
+        dispatch(playerActions.setXp(normalizeXp(xp - getXpRequired({ level, levelOneXp: 100 }))));
+      });
     }
   }, [xp, levelUpXp, level, dispatch]);
 
@@ -34,7 +41,8 @@ const XpTracker = () => {
 
 export default XpTracker;
 
-// TODO: need better name for this method and variables !!!
-const getXpRequiredForNextLevel = ({ currentLevel, initialLevelUpXpRequired }) => {
-  return currentLevel * currentLevel * initialLevelUpXpRequired;
-};
+const normalizeXp = xp => Math.floor(xp / 10);
+
+// lvl 1 // 0:0 -> 100 //0:100
+// lvl 2 // 100:100 -> 400 //0:300
+// lvl 3 // 400:400 -> 900 //0:500

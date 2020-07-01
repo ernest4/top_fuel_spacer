@@ -1,16 +1,13 @@
 import React from "react";
 import Spacing, { SPACING } from "../../../../layout/Spacing";
 import { useSelector } from "react-redux";
-import { Hover } from "./PlayerXpBar";
 import Text from "../../../../layout/Text";
+import XpHover from "./XpHover";
+import useTheme from "../../../../hooks/useTheme";
 
 const Level = () => {
-  const currentThemeId = useSelector(state => state.theme.currentThemeId);
-  const background = useSelector(state => state.theme.themes[currentThemeId]?.color.closest);
-  const secondary = useSelector(state => state.theme.themes[currentThemeId]?.color.secondary);
+  const { closest: background, secondary } = useTheme();
 
-  const xp = useSelector(state => state.player.xp);
-  const levelUpXp = useSelector(state => state.player.levelUpXp);
   const level = useSelector(state => state.player.level);
 
   // TODO: onclick, take to level stats and upgrades
@@ -39,7 +36,7 @@ const Level = () => {
           border: `4px solid ${secondary}`,
           z: "1",
           children: <Text primary bold {...{ children: level }} />,
-          hover: <Hover {...{ xp, levelUpXp, level }} />,
+          hover: <XpHover />,
         }}
       />
     </Spacing>
