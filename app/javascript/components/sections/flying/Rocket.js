@@ -119,6 +119,18 @@ const StabilizerFins = () => {
       <Spacing
         {...{
           width: `${6 * SPACING}px`,
+          position: "absolute",
+          absoluteLeft: "69px",
+          borderRadius: "150% 0px 0px 5px",
+          background: black,
+          border: "1px solid #45afe4",
+          height: "37px",
+          width: "7px",
+        }}
+      />
+      <Spacing
+        {...{
+          width: `${6 * SPACING}px`,
           height: `100%`,
           background: "#b9c8d4",
           border: `1px solid ${black}`,
@@ -139,6 +151,19 @@ const StabilizerFins = () => {
           css: css`
             border-left: 1px solid ${black};
           `,
+        }}
+      />
+      <Spacing
+        {...{
+          width: `${6 * SPACING}px`,
+          position: "absolute",
+          absoluteRight: "69px",
+          borderRadius: "0px 150% 5px 0px",
+          background: "#e5ecf0",
+          border: "1px solid #d57544",
+          borderWidth: "1px 1px 1px 0px",
+          height: "37px",
+          width: "8px",
         }}
       />
     </Spacing>
