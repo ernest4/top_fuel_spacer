@@ -14,7 +14,12 @@ const XpTracker = () => {
   useEffect(() => {
     if (!dispatch) return;
 
-    if (distance) dispatch(playerActions.setXp(normalizeXp(distance)));
+    if (distance)
+      dispatch(
+        playerActions.setXp(
+          normalizeXp(distance) - getXpRequired({ level: level - 1, levelOneXp: 100 })
+        )
+      );
   }, [distance, level, dispatch]);
 
   useEffect(() => {
@@ -31,7 +36,6 @@ const XpTracker = () => {
               getXpRequired({ level, levelOneXp: 100 })
           )
         );
-        dispatch(playerActions.setXp(normalizeXp(xp - getXpRequired({ level, levelOneXp: 100 }))));
       });
     }
   }, [xp, levelUpXp, level, dispatch]);
@@ -42,7 +46,3 @@ const XpTracker = () => {
 export default XpTracker;
 
 const normalizeXp = xp => Math.floor(xp / 10);
-
-// lvl 1 // 0:0 -> 100 //0:100
-// lvl 2 // 100:100 -> 400 //0:300
-// lvl 3 // 400:400 -> 900 //0:500

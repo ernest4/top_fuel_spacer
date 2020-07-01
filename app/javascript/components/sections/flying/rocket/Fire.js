@@ -16,7 +16,7 @@ const Fire = () => {
         absoluteBottom: "-8%",
         width: "50px",
         height: "50px",
-        filter: "blur(4px)",
+        // filter: "blur(4px)",
         css: css`
           align-self: center;
         `,
@@ -52,6 +52,7 @@ const Flame = () => {
   return (
     <Spacing
       {...{
+        borderRadius: "4px",
         position: "absolute",
         background: yellow,
         width: "100%",
