@@ -12,6 +12,9 @@ const Level = () => {
 
   // TODO: onclick, take to level stats and upgrades
 
+  // TODO: do a +1 animation of a +1 number popping up and floating away and fading when you level
+  // up. Also some kinda blinking on the level to indicate level up, which will allow you to
+  // upgrade your skills.
   return (
     <Spacing
       center
