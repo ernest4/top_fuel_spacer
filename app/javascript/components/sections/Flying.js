@@ -21,17 +21,9 @@ const Flying = () => {
       <Background />
       <Itinerary />
       <Spacing vertical {...{ justify: "flex-start", position: "absolute" }}>
-        <Spacing {...{ justify: "flex-start", height: "28vh" }}>
+        <Spacing {...{ justify: "flex-start", height: "28vh", width: "188px" }}>
           <Spacing top={9} />
-          {running ? (
-            <>
-              <Score />
-              {/* For maintaining dom positoin since Score is position fixed */}
-              <Spacing {...{ width: "188px" }} />{" "}
-            </>
-          ) : (
-            <LaunchButton />
-          )}
+          {running ? <Score /> : <LaunchButton />}
         </Spacing>
         <Rocket />
         <div /> {/* TODO: ... will be the ground before launching */}

@@ -239,20 +239,44 @@ const IonThrusters = () => {
 };
 
 const MainThurster = () => {
+  const running = useSelector(state => state.game.running);
   const { black, white } = useTheme();
+
+  const fireLightGradient = `linear-gradient(0deg, hsla(45, 100%, 71%, 1), ${white})`;
+  const fireDarkGradient = `linear-gradient(0deg,hsla(45,100%,71%,1), ${black})`;
 
   return (
     <Spacing horizontal {...{ height: "100%", width: "100%" }}>
       <Spacing
         {...{
           width: `${6 * SPACING}px`,
+          position: "absolute",
+          absoluteLeft: "53px",
+          borderRadius: "150% 0px 0px 5px",
+          background: black,
+          border: "2px solid #45afe4",
+          height: "37px",
+          width: "24px",
+          transform: "skew(0deg, -45deg)",
+        }}
+      />
+      <Spacing
+        {...{
+          width: `${6 * SPACING}px`,
           height: `100%`,
-          background: "#b9c8d4",
+          background: running ? fireDarkGradient : "#b9c8d4",
           border: `1px solid ${black}`,
-          boxShadow: `10px -1px 0px -1px ${black} inset`,
+          boxShadow: running ? "none" : `10px -1px 0px -1px ${black} inset`,
           css: css`
             border-right: 1px solid ${white};
             border-top: 1px solid #b9c8d4;
+
+            ${running &&
+            css`
+              border-bottom: 1px solid white;
+              border-left: 1px solid #b9c8d4;
+              border-top: 1px solid ${black};
+            `}
           `,
         }}
       />
@@ -260,12 +284,26 @@ const MainThurster = () => {
         {...{
           width: `${6 * SPACING}px`,
           height: `100%`,
-          background: "#e5ecf0",
+          background: running ? fireLightGradient : "#e5ecf0",
           border: `1px solid ${white}`,
-          boxShadow: `-10px -1px 0px -1px ${white} inset`,
+          boxShadow: running ? "none" : `-10px -1px 0px -1px ${white} inset`,
           css: css`
-            border-left: 1px solid ${black};
+            border-left: 1px solid ${running ? white : black};
           `,
+        }}
+      />
+      <Spacing
+        {...{
+          width: `${6 * SPACING}px`,
+          position: "absolute",
+          absoluteRight: "53px",
+          borderRadius: "0px 150% 5px 0px",
+          background: running ? fireLightGradient : "#e5ecf0",
+          border: "1px solid #d57544",
+          borderWidth: "2px 2px 2px 0px",
+          height: "37px",
+          width: "24px",
+          transform: "skew(0deg, 45deg)",
         }}
       />
     </Spacing>
