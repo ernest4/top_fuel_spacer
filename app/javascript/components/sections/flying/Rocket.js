@@ -16,7 +16,15 @@ const Rocket = () => {
   const dispatch = useDispatch();
 
   const kineticEnergy = useSelector(state => state.rocket.kineticEnergy);
-  const onAddKineticEnergy = () => dispatch(rocketActions.setKineticEnergy(kineticEnergy + 10));
+  const kineticEnergyCapacity = useSelector(state => state.rocket.kineticEnergyCapacity);
+  const onAddKineticEnergy = () => {
+    let newKineticEnergy = kineticEnergy + 10;
+
+    newKineticEnergy =
+      newKineticEnergy < kineticEnergyCapacity ? newKineticEnergy : kineticEnergyCapacity;
+
+    dispatch(rocketActions.setKineticEnergy(newKineticEnergy));
+  };
 
   return (
     <Spacing

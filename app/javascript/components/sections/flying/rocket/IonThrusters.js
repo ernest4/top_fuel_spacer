@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Spacing, { SPACING } from "../../../layout/Spacing";
 import useTheme from "../../../hooks/useTheme";
 import { css } from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setKineticEnergy } from "../../../store/actions/rocket";
 
 const IonThrusters = () => {
   const { black, white } = useTheme();
@@ -72,8 +73,24 @@ const IonThrusters = () => {
 export default IonThrusters;
 
 const IonBeam = () => {
+  const dispatch = useDispatch();
+
+  const distance = useSelector(state => state.score.distance);
+
   const kineticEnergy = useSelector(state => state.rocket.kineticEnergy);
   const kineticEnergyCapacity = useSelector(state => state.rocket.kineticEnergyCapacity);
+
+  useEffect(() => {
+    if (!distance || !kineticEnergy || !dispatch) return;
+    if (kineticEnergy === 0) return;
+
+    let newKineticEnergy = kineticEnergy - 0.1 * kineticEnergy;
+
+    // NOTE: once it gets close to 0, just set to 0.
+    newKineticEnergy = newKineticEnergy < 0.01 * kineticEnergyCapacity ? 0 : newKineticEnergy;
+
+    dispatch(setKineticEnergy(newKineticEnergy));
+  }, [distance, dispatch]);
 
   return <Beam {...{ intensityPercent: kineticEnergy / kineticEnergyCapacity }} />;
 };
@@ -86,7 +103,7 @@ const Beam = ({ background, intensityPercent }) => {
         absoluteTop: "33px",
         width: "100%",
         // height: `${intensity * SPACING}px`,
-        height: `33vh`,
+        height: `${intensityPercent * 33}vh`,
         background: `linear-gradient(45deg, transparent , ${
           background ? background : `hsla(200, 75%, 58%, ${intensityPercent})`
         })`,
