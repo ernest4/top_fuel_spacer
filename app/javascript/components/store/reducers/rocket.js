@@ -10,6 +10,7 @@ let initialState = {
   name: getRandom(NAMES),
   fuel: 100,
   kineticEnergy: 0,
+  kineticEnergyCapacity: 100,
   contactRange: 100,
 };
 
@@ -19,6 +20,7 @@ if (debugFlag) {
     name: getRandom(NAMES),
     fuel: 100,
     kineticEnergy: 0,
+    kineticEnergyCapacity: 100,
     contactRange: 100,
   };
 }
@@ -33,6 +35,12 @@ const rocketReducer = handleActions(
   {
     SET_NAME: produce((state, { payload }) => {
       state.name = payload;
+    }),
+    SET_FUEL: produce((state, { payload }) => {
+      state.fuel = payload;
+    }),
+    SET_KINETIC_ENERGY: produce((state, { payload }) => {
+      state.kineticEnergy = payload;
     }),
   },
   initialState

@@ -2,6 +2,7 @@ import React from "react";
 import Spacing, { SPACING } from "../../../layout/Spacing";
 import useTheme from "../../../hooks/useTheme";
 import { css } from "styled-components";
+import { useSelector } from "react-redux";
 
 const IonThrusters = () => {
   const { black, white } = useTheme();
@@ -14,13 +15,13 @@ const IonThrusters = () => {
           width: `${6 * SPACING}px`,
           position: "absolute",
           absoluteLeft: "61px",
-          absoluteBottom: "100px",
           borderRadius: "8px 0px 0px 4px",
           background: black,
           border: "2px solid #45afe4",
           height: "37px",
           width: "16px",
           transform: "skew(0deg, -45deg)",
+          children: <IonBeam />,
         }}
       />
       <Spacing
@@ -54,7 +55,6 @@ const IonThrusters = () => {
           width: `${6 * SPACING}px`,
           position: "absolute",
           absoluteRight: "61px",
-          absoluteBottom: "100px",
           borderRadius: "0px 8px 4px 0px",
           background: "#e5ecf0",
           border: "1px solid #d57544",
@@ -62,6 +62,7 @@ const IonThrusters = () => {
           height: "37px",
           width: "16px",
           transform: "skew(0deg, 45deg)",
+          children: <IonBeam />,
         }}
       />
     </Spacing>
@@ -69,3 +70,27 @@ const IonThrusters = () => {
 };
 
 export default IonThrusters;
+
+const IonBeam = () => {
+  const kineticEnergy = useSelector(state => state.rocket.kineticEnergy);
+  const kineticEnergyCapacity = useSelector(state => state.rocket.kineticEnergyCapacity);
+
+  return <Beam {...{ intensityPercent: kineticEnergy / kineticEnergyCapacity }} />;
+};
+
+const Beam = ({ background, intensityPercent }) => {
+  return (
+    <Spacing
+      {...{
+        position: "absolute",
+        absoluteTop: "33px",
+        width: "100%",
+        // height: `${intensity * SPACING}px`,
+        height: `33vh`,
+        background: `linear-gradient(45deg, transparent , ${
+          background ? background : `hsla(200, 75%, 58%, ${intensityPercent})`
+        })`,
+      }}
+    />
+  );
+};

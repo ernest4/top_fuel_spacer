@@ -1,6 +1,6 @@
 import React from "react";
 import Spacing from "../../layout/Spacing";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { css } from "styled-components";
 import Fire from "./rocket/Fire";
 import Card from "../../layout/Card";
@@ -10,10 +10,13 @@ import Head from "./rocket/Head";
 import StabilizerFins from "./rocket/StabilizerFins";
 import Shaft from "./rocket/Shaft";
 import IonThrusters from "./rocket/IonThrusters";
+import * as rocketActions from "../../store/actions/rocket";
 
 const Rocket = () => {
-  // add energy to dynamo for ion thrusters https://en.wikipedia.org/wiki/Ion_thruster
-  const onAddKineticEnergy = () => {}; // dispatch action adding kinteic energy / fuel / acceleration
+  const dispatch = useDispatch();
+
+  const kineticEnergy = useSelector(state => state.rocket.kineticEnergy);
+  const onAddKineticEnergy = () => dispatch(rocketActions.setKineticEnergy(kineticEnergy + 10));
 
   return (
     <Spacing
