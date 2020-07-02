@@ -27,7 +27,7 @@ const TopBar = () => {
         <Spacing left={1} />
         <Button tertiary small children="Luminaries" />
       </Spacing>
-      <Spacing horizontal>
+      <Spacing horizontal center>
         <ThemeSelect />
         <Spacing left={1} />
         <Text extraSmall children={`Version ${version}`} />

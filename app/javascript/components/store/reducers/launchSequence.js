@@ -8,7 +8,13 @@ import debugFlag from "../../debugFlag";
 // to track time and send signal to save game component.
 let initialState = {
   currentStageId: 0,
-  stages: [{ id: 0, name: "docked" }], // TODO: second last stage is flying, last is playing bg music
+  stages: [
+    { id: 0, name: "docked" },
+    { id: 1, name: "??" },
+    { id: 2, name: "??" },
+    { name: "flying" },
+    { name: "msuci" },
+  ],
 };
 
 if (debugFlag) {
