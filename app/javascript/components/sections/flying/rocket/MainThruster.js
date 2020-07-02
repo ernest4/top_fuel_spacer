@@ -19,6 +19,7 @@ const MainThurster = () => {
           width: `${6 * SPACING}px`,
           position: "absolute",
           absoluteLeft: "53px",
+          absoluteBottom: "0px",
           borderRadius: "150% 0px 0px 5px",
           background: running ? fireDarkGradient.replace("transparent", black) : black,
           border: running ? "none" : "2px solid #45afe4",
@@ -31,7 +32,7 @@ const MainThurster = () => {
         {...{
           // left underside (main body)
           width: `17px`,
-          height: "37px",
+          height: "7.5%",
           position: "absolute",
           z: "-1",
           background: "#b9c8d4",
@@ -81,7 +82,7 @@ const MainThurster = () => {
         {...{
           // right underside (main body)
           width: `17px`,
-          height: "37px",
+          height: "7.5%",
           position: "absolute",
           absoluteLeft: "94px",
           z: "-1",
@@ -99,6 +100,7 @@ const MainThurster = () => {
           width: `${6 * SPACING}px`,
           position: "absolute",
           absoluteRight: "53px",
+          absoluteBottom: "0px",
           borderRadius: "0px 150% 5px 0px",
           background: running ? fireLightGradient.replace("transparent", white) : "#e5ecf0",
           border: running ? "none" : "1px solid #d57544",
