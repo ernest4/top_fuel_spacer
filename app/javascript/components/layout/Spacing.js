@@ -69,6 +69,7 @@ const Container = memo(styled.div`
   ${({ transform }) => transform && `transform: ${transform};`}
   ${({ transition }) => transition && `transition: ${transition};`}
   ${({ filter }) => filter && `filter: ${filter};`}
+  ${({ transformOrigin }) => transformOrigin && `transform-origin: ${transformOrigin};`}
 
   ${({ top, right, bottom, left, all }) =>
     css`

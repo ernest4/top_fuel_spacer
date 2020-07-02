@@ -5,6 +5,7 @@ import Rocket from "./Rocket";
 const LaunchSequence = () => {
   return (
     <Spacing>
+      <LeftSupportPlatform />
       <Rocket />
       <Ground />
     </Spacing>
@@ -12,6 +13,22 @@ const LaunchSequence = () => {
 };
 
 export default LaunchSequence;
+
+const LeftSupportPlatform = () => {
+  return (
+    <Spacing
+      {...{
+        background: "red",
+        width: "50px",
+        height: "33vh",
+        position: "fixed",
+        transform: "rotate(0deg)",
+        transformOrigin: "bottom right",
+        transition: "transform 5s",
+      }}
+    />
+  );
+};
 
 const Ground = () => {
   return (

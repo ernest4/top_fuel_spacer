@@ -72,6 +72,8 @@ const IonThrusters = () => {
 
 export default IonThrusters;
 
+// TODO: might need to be done more efficiently. Make the update in score tracker possibly batching
+// it and just provide the result here.
 const IonBeam = () => {
   const dispatch = useDispatch();
 

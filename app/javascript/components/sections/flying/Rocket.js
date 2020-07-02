@@ -15,9 +15,13 @@ import * as rocketActions from "../../store/actions/rocket";
 const Rocket = () => {
   const dispatch = useDispatch();
 
+  const running = useSelector(state => state.game.running);
+
   const kineticEnergy = useSelector(state => state.rocket.kineticEnergy);
   const kineticEnergyCapacity = useSelector(state => state.rocket.kineticEnergyCapacity);
   const onAddKineticEnergy = () => {
+    if (!running) return;
+
     let newKineticEnergy = kineticEnergy + 10;
 
     newKineticEnergy =
