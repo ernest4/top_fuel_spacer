@@ -6,10 +6,11 @@ import Rocket from "./flying/Rocket";
 import Itinerary from "./flying/Itinerary";
 import Background from "./flying/Background";
 import LaunchButton from "./flying/LaunchButton";
+import LaunchSequence from "./flying/LaunchSequence";
+import useTheme from "../hooks/useTheme";
 
 const Flying = () => {
-  const currentThemeId = useSelector(state => state.theme.currentThemeId);
-  const black = useSelector(state => state.theme.themes[currentThemeId]?.color.black);
+  const { black } = useTheme();
 
   const running = useSelector(state => state.game.running);
 
@@ -25,8 +26,7 @@ const Flying = () => {
           <Spacing top={9} />
           {running ? <Score /> : <LaunchButton />}
         </Spacing>
-        <Rocket />
-        <div /> {/* TODO: ... will be the ground before launching */}
+        <LaunchSequence />
       </Spacing>
     </Spacing>
   );

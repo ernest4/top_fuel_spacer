@@ -6,7 +6,7 @@ import * as musicActions from "../../../store/actions/music";
 import Player from "./musicPlayer/Player";
 
 const initialPlayerPosition = {
-  absoluteTop: `${64 * SPACING}px`,
+  absoluteTop: `calc(100vh - ${34 * SPACING}px)`,
   absoluteLeft: `-${64 * SPACING}px`,
 };
 
