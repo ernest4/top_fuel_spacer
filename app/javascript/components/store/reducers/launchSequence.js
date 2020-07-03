@@ -9,13 +9,12 @@ import debugFlag from "../../debugFlag";
 let initialState = {
   currentStageId: 0,
   stages: [
-    { id: 0, name: "docked" },
-    { id: 1, name: "??" },
-    { id: 2, name: "??" },
-    { name: "lift off" },
-    { name: "boosters detach" },
-    { name: "flying" },
-    { name: "msuci" },
+    { id: 0, name: "docked" }, // audio 0s
+    { id: 1, name: "detaching" },
+    { id: 2, name: "engine power up" }, // audio 7s
+    { name: "lift off" }, // audio 20s
+    { name: "boosters detach" }, // audio 27s -  end
+    { name: "flying, play music" },
   ],
 };
 
