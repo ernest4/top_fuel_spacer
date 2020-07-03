@@ -12,6 +12,8 @@ let initialState = {
     { id: 0, name: "docked" },
     { id: 1, name: "??" },
     { id: 2, name: "??" },
+    { name: "lift off" },
+    { name: "boosters detach" },
     { name: "flying" },
     { name: "msuci" },
   ],

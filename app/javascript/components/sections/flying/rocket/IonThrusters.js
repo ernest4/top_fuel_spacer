@@ -4,6 +4,7 @@ import useTheme from "../../../hooks/useTheme";
 import { css } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { setKineticEnergy } from "../../../store/actions/rocket";
+import Beam from "./Beam";
 
 const IonThrusters = () => {
   const { black, white } = useTheme();
@@ -94,22 +95,5 @@ const IonBeam = () => {
     dispatch(setKineticEnergy(newKineticEnergy));
   }, [distance, dispatch]);
 
-  return <Beam {...{ intensityPercent: kineticEnergy / kineticEnergyCapacity }} />;
-};
-
-const Beam = ({ background, intensityPercent }) => {
-  return (
-    <Spacing
-      {...{
-        position: "absolute",
-        absoluteTop: "33px",
-        width: "100%",
-        // height: `${intensity * SPACING}px`,
-        height: `${intensityPercent * 33}vh`,
-        background: `linear-gradient(45deg, transparent , ${
-          background ? background : `hsla(200, 75%, 58%, ${intensityPercent})`
-        })`,
-      }}
-    />
-  );
+  return <Beam {...{ intensityRatio: kineticEnergy / kineticEnergyCapacity }} />;
 };
