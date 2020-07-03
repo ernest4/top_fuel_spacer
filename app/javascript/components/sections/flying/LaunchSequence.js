@@ -2,6 +2,7 @@ import React from "react";
 import Spacing from "../../layout/Spacing";
 import Rocket from "./Rocket";
 import Booster from "./launchSequence/Booster";
+import LaunchSound from "./launchSequence/LaunchSound";
 
 // TODO: the launch button will begin launch sequence.
 // Once launch sequence is complete, then the game state will be set to 'running'.
@@ -15,6 +16,7 @@ const LaunchSequence = () => {
       <Booster right />
       <RightSupportPlatform /> {/* TODO: add astronaut in a little car */}
       <Ground />
+      <LaunchSound />
     </Spacing>
   );
 };

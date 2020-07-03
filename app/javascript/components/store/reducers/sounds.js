@@ -7,11 +7,12 @@ import produce from "immer";
 // Also normalization is just more efficent as eveyrything is once source of truth.
 const initialState = {
   currentSoundId: 0,
-  duration: 0,
-  currentTime: 0,
-  finished: false,
-  playing: false,
-  volume: 4,
+  // TODO: need to control these individually per sound, in parallel!
+  // duration: 0,
+  // currentTime: 0,
+  // finished: false,
+  // playing: false,
+  // volume: 4,
   // NOTE: position in array is implicit id. Like a rown in a DB table.
   sounds: [
     {
