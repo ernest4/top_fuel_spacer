@@ -3,7 +3,8 @@ import Button from "../../misc/Button";
 import Text from "../../layout/Text";
 import { useDispatch } from "react-redux";
 import useTheme from "../../hooks/useTheme";
-import * as gameActions from "../../store/actions/game";
+// import * as gameActions from "../../store/actions/game";
+import { setCurrentStageId } from "../../store/actions/launchSequence";
 
 // TODO: add stripes animation to draw more attention!
 const LaunchButton = () => {
@@ -16,7 +17,8 @@ const LaunchButton = () => {
     ${primary} 10px,
     ${primary} 20px )`;
 
-  const onLaunch = () => dispatch(gameActions.setRunning(true));
+  // const onLaunch = () => dispatch(gameActions.setRunning(true));
+  const onLaunch = () => dispatch(setCurrentStageId(1));
 
   return (
     <Button

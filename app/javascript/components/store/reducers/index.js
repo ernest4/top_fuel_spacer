@@ -12,6 +12,7 @@ import achievements from "./achievements";
 import score from "./score";
 import rocket from "./rocket";
 import launchSequence from "./launchSequence";
+import sounds from "./sounds";
 
 export default combineReducers({
   game,
@@ -27,6 +28,7 @@ export default combineReducers({
   score,
   rocket,
   launchSequence,
+  sounds,
   // TODO: think about further data structures below
   // research, // TODO: ... research tech tree. progress on items. completed items.
   // collectibles, // TODO: ... items counts.

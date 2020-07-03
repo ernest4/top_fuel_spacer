@@ -10,18 +10,25 @@ let initialState = {
   currentStageId: 0,
   stages: [
     { id: 0, name: "docked" }, // audio 0s
-    { id: 1, name: "detaching" },
+    { id: 1, name: "begin launch sequence" }, // audio 0s
     { id: 2, name: "engine power up" }, // audio 7s
-    { name: "lift off" }, // audio 20s
-    { name: "boosters detach" }, // audio 27s -  end
-    { name: "flying, play music" },
+    { id: 3, name: "lift off" }, // audio 20s
+    { id: 4, name: "boosters detach" }, // audio 24s -  end
+    { id: 5, name: "flying, play music" },// audio 27s -  end
   ],
 };
 
 if (debugFlag) {
   initialState = {
     currentStageId: 0,
-    stages: [{ id: 0, name: "docked" }],
+    stages: [
+      { id: 0, name: "docked" }, // audio 0s
+      { id: 1, name: "begin launch sequence" }, // audio 0s
+      { id: 2, name: "engine power up" }, // audio 7s
+      { id: 3, name: "lift off" }, // audio 20s
+      { id: 4, name: "boosters detach" }, // audio 27s -  end
+      { id: 5, name: "flying, play music" },
+    ],
   };
 }
 
