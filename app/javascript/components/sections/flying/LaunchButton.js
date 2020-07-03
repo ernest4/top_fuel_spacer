@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../../misc/Button";
 import Text from "../../layout/Text";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useTheme from "../../hooks/useTheme";
 // import * as gameActions from "../../store/actions/game";
 import { setCurrentStageId } from "../../store/actions/launchSequence";
@@ -10,7 +10,12 @@ import { setCurrentStageId } from "../../store/actions/launchSequence";
 const LaunchButton = () => {
   const dispatch = useDispatch();
 
+  const currentStageId = useSelector(state => state.launchSequence.currentStageId);
+
   const { primary } = useTheme();
+
+  if (1 <= currentStageId) return null;
+
   const background = `repeating-linear-gradient(
     -35deg, hsla(0, 0%, 0%, 0),
     hsla(0, 0%, 0%, 0) 10px,
