@@ -14,12 +14,13 @@ const initialState = {
   volume: 4,
   // NOTE: position in array is implicit id. Like a rown in a DB table.
   sounds: [
-    // {
-    //   id: 0,
-    //   artist: "Nihilore",
-    //   title: "We Are Already Dead (instrumental)",
-    //   src: "We_Are_Already_Dead_(instrumental).mp3",
-    // },
+    {
+      id: 0,
+      artist: "Paul368",
+      credit: "https://freesound.org/people/Paul368/sounds/201899/",
+      title: "Starship Rail Gun",
+      src: "sounds/launch_sequence.mp3",
+    },
   ],
   // allIds: [0, 1, 2, 3, 4, 5, 6, 7, 8], // NOTE: this is not necessary, since [0..sounds.length] can give you same info
 };

@@ -76,9 +76,7 @@ const AudioSource = () => {
     }
   }, [duration, dispatch, currentTime]);
 
-  return (
-    <audio {...{ src: `music/${src}`, ref: audioRef, crossOrigin: "anonymous", controls: basic }} />
-  );
+  return <audio {...{ src, ref: audioRef, crossOrigin: "anonymous", controls: basic }} />;
 };
 
 export default AudioSource;

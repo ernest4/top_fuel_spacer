@@ -27,6 +27,7 @@ const LeftSupportPlatform = () => {
   return (
     <Spacing
       {...{
+        z: 1,
         background: "red",
         width: "50px",
         height: "33vh",

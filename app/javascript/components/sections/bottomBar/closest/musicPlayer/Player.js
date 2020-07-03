@@ -9,6 +9,8 @@ import Controls from "./Controls";
 import SongProgressBar from "./SongProgressBar";
 import AudioSource from "./AudioSource";
 import { formatTime, getMinuteSeconds } from "../../../../utils/Time";
+import Text from "../../../../layout/Text";
+import Container from "../../../../layout/Container";
 
 const Player = () => {
   const basic = useSelector(state => state.settings.graphics.musicPlayer.basic);
@@ -49,6 +51,7 @@ const ArtistAndSong = () => {
   const currentSongId = useSelector(state => state.music.currentSongId);
   const artist = useSelector(state => state.music.songs[currentSongId]?.artist);
   const title = useSelector(state => state.music.songs[currentSongId]?.title);
+  const credit = useSelector(state => state.music.songs[currentSongId]?.credit);
 
   const currentTime = useSelector(state => state.music.currentTime);
   const duration = useSelector(state => state.music.duration);
@@ -64,6 +67,11 @@ const ArtistAndSong = () => {
         overflow: "scroll",
         height: "50px",
         width: "100%",
+        hover: (
+          <Container border>
+            <Text extraSmall {...{ children: credit }} />
+          </Container>
+        ),
       }}
     />
   );
