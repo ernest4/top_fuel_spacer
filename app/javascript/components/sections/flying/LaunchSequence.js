@@ -3,6 +3,9 @@ import Spacing from "../../layout/Spacing";
 import Rocket from "./Rocket";
 import Booster from "./launchSequence/Booster";
 import LaunchOrchestrator from "./launchSequence/LaunchOrchestrator";
+import LeftSupportPlatform from "./launchSequence/LeftSupportPlatform";
+import RightSupportPlatform from "./launchSequence/RightSupportPlatform";
+import Ground from "./launchSequence/Ground";
 
 // TODO: the launch button will begin launch sequence.
 // Once launch sequence is complete, then the game state will be set to 'running'.
@@ -22,58 +25,3 @@ const LaunchSequence = () => {
 };
 
 export default LaunchSequence;
-
-const LeftSupportPlatform = () => {
-  // TODO: add 2 talking astronauts
-
-  return (
-    <Spacing
-      {...{
-        z: 1,
-        background: "red",
-        width: "50px",
-        height: "33vh",
-        position: "fixed",
-        transform: "rotate(0deg)",
-        transformOrigin: "bottom right",
-        transition: "transform 5s",
-      }}
-    />
-  );
-};
-
-const RightSupportPlatform = () => {
-  // TODO: add 2 talking astronauts
-
-  return (
-    <Spacing
-      {...{
-        background: "pink",
-        width: "50px",
-        height: "16vh",
-        position: "absolute",
-        // absoluteBottom: "39vh",
-        absoluteLeft: "138px",
-        absoluteBottom: "0px",
-        // transform: "rotate(0deg)",
-        // transformOrigin: "bottom right",
-        transition: "transform 5s",
-      }}
-    />
-  );
-};
-
-const Ground = () => {
-  return (
-    <Spacing
-      {...{
-        background: "green",
-        width: "32vw",
-        position: "fixed",
-        absoluteTop: "61vh",
-        absoluteLeft: "0px",
-        height: "100%",
-      }}
-    />
-  );
-};

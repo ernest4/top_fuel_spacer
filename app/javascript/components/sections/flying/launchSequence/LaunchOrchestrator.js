@@ -23,7 +23,7 @@ const LaunchOrchestrator = () => {
 
   useEffect(() => {
     if (currentTime === 7) dispatch(setCurrentStageId(2));
-    if (currentTime === 20) dispatch(setCurrentStageId(3));
+    if (currentTime === 19) dispatch(setCurrentStageId(3));
     if (currentTime === 27) dispatch(setCurrentStageId(4));
     if (currentTime === 29) dispatch(setCurrentStageId(5));
   }, [currentTime, dispatch]);
