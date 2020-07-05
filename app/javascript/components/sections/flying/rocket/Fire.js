@@ -6,7 +6,7 @@ const Fire = () => {
   const running = useSelector(state => state.game.running);
   const fuel = useSelector(state => state.rocket.fuel);
 
-  return running && fuel ? <Particles fire angle={180} /> : null;
+  return running && fuel ? <Particles fire /> : null;
 };
 
 export default Fire;

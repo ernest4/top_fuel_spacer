@@ -2,7 +2,6 @@ import React from "react";
 import Spacing from "../../layout/Spacing";
 import { useSelector, useDispatch } from "react-redux";
 import { css } from "styled-components";
-import Particles from "./rocket/Particles";
 import Card from "../../layout/Card";
 import Text from "../../layout/Text";
 import MainThurster from "./rocket/MainThruster";
