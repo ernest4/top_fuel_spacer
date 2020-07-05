@@ -9,19 +9,29 @@ const LeftSupportPlatform = () => {
 
   if (3 <= currentStageId) return null;
 
+  const backgroundGradient =
+    "repeating-linear-gradient( -55deg, hsl(207, 24%, 78%), hsl(207, 24%, 78%) 5px, transparent 5px, transparent 20px )";
+
+  const foregroundGradient =
+    "repeating-linear-gradient( 55deg, hsl(207, 24%, 78%), hsl(207, 24%, 78%) 5px, transparent 5px, transparent 20px )";
+
   return (
     <Spacing
       {...{
         z: 1,
-        background: "red",
+        background: backgroundGradient,
+        border: "4px solid #b9c8d4",
         width: "50px",
         height: "33vh",
         position: "fixed",
         transform: getTransform(currentStageId),
         transformOrigin: "bottom right",
         transition: "transform 7s linear",
+        borderRadius: "4px 4px 0px 0px",
       }}
-    />
+    >
+      <Spacing {...{ background: foregroundGradient, width: "100%", height: "100%" }} />
+    </Spacing>
   );
 };
 
