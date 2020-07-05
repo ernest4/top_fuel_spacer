@@ -12,7 +12,7 @@ const Fire = () => {
   return (
     fuel && (
       <Spacing {...{ position: "absolute", absoluteTop: "59vh", width: "50px", height: "50px" }}>
-        <Particles fire duration={0.4} />
+        <Particles fire duration={0.4} count={4} length={1.5} />
       </Spacing>
     )
   );

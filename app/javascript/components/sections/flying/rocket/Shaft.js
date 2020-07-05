@@ -17,7 +17,7 @@ const Shaft = ({ steam }) => {
             width: "16px",
             height: "16px",
             z: 1,
-            children: <Particles steam {...{ angle: -45, duration: 2, count: 8 }} />,
+            children: <Particles steam {...{ angle: -45, duration: 2, count: 8, length: 2 }} />,
           }}
         />
       )}

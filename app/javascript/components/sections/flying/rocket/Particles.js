@@ -16,7 +16,7 @@ const COLOR_PRESETS = {
 };
 
 // TODD: optimize with memo and useMemo !!!
-const Particles = ({ count, angle, duration, ...props }) => {
+const Particles = ({ count, angle, duration, length, ...props }) => {
   return (
     <Spacing
       {...{
@@ -45,7 +45,7 @@ const Particles = ({ count, angle, duration, ...props }) => {
         }}
       >
         {Array.from(Array(count || 4)).map((particle, key) => {
-          return <Particle {...{ key, count, duration, ...getColors(props) }} />;
+          return <Particle {...{ key, count, duration, length, ...getColors(props) }} />;
         })}
       </Spacing>
     </Spacing>
@@ -54,7 +54,16 @@ const Particles = ({ count, angle, duration, ...props }) => {
 
 export default Particles;
 
-const Particle = ({ initialColor, middleColor, finalColor, count, duration }) => {
+const Particle = ({
+  initialColor,
+  middleColor,
+  finalColor,
+  count,
+  duration,
+  length: lengthOverride,
+}) => {
+  const length = lengthOverride || 1;
+
   return (
     <Spacing
       {...{
@@ -69,7 +78,9 @@ const Particle = ({ initialColor, middleColor, finalColor, count, duration }) =>
               0% { transform: translate(0%, 0%) scale(0); background-color: ${initialColor}; }
               25% { transform: translate(-1%, 2%) scale(1); }
               40% { background-color: ${middleColor}; }
-              100% { transform: translate(-150%, 170%) scale(0); background-color:  ${finalColor}; }
+              100% {transform: translate(${length * -150}%, ${
+              length * 170
+            }%) scale(0); background-color:  ${finalColor}; }
             `};
 
             animation-duration: ${duration}s;
@@ -81,7 +92,9 @@ const Particle = ({ initialColor, middleColor, finalColor, count, duration }) =>
               0% { transform: translate(0%, 0%) scale(0); background-color: ${initialColor}; }
               25% { transform: translate(2%, -1%) scale(1); }
               40% { background-color: ${middleColor}; }
-              100% { transform: translate(-170%, 150%) scale(0); background-color: ${finalColor}; }
+              100% { transform: translate(${length * -170}%, ${
+              length * 150
+            }%) scale(0); background-color: ${finalColor}; }
             `};
 
             animation-duration: ${duration}s;
