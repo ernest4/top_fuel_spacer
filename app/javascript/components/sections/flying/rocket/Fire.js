@@ -1,12 +1,21 @@
 import React from "react";
 import Particles from "./Particles";
 import { useSelector } from "react-redux";
+import Spacing from "../../../layout/Spacing";
 
 const Fire = () => {
   const running = useSelector(state => state.game.running);
   const fuel = useSelector(state => state.rocket.fuel);
 
-  return running && fuel ? <Particles fire /> : null;
+  if (!running) return null;
+
+  return (
+    fuel && (
+      <Spacing {...{ position: "absolute", absoluteTop: "59vh", width: "50px", height: "50px" }}>
+        <Particles fire duration={0.4} />
+      </Spacing>
+    )
+  );
 };
 
 export default Fire;

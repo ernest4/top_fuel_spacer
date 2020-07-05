@@ -10,9 +10,9 @@ const COLOR_PRESETS = {
   },
   steam: {
     // TODO: ...
-    initialColor: "",
-    middleColor: "",
-    finalColor: "",
+    initialColor: "#b9c8d4",
+    middleColor: "#e5ecf0",
+    finalColor: "white",
   },
 };
 
@@ -21,11 +21,13 @@ const Particles = ({ count, angle, duration, ...props }) => {
   return (
     <Spacing
       {...{
-        position: "absolute",
+        // position: "absolute",
+        // absoluteTop: "59vh",
         // absoluteBottom: "-32px",
-        absoluteTop: "59vh",
-        width: "50px",
-        height: "50px",
+        // width: "50px",
+        // height: "50px",
+        width: "100%",
+        height: "100%",
         // filter: "blur(4px)",
         css: css`
           align-self: center;
@@ -53,9 +55,7 @@ const Particles = ({ count, angle, duration, ...props }) => {
 
 export default Particles;
 
-const Particle = ({ initialColor, middleColor, finalColor, duration: durationOverride }) => {
-  const duration = durationOverride || 0.4;
-
+const Particle = ({ initialColor, middleColor, finalColor, duration }) => {
   return (
     <Spacing
       {...{

@@ -15,6 +15,8 @@ import Fire from "./rocket/Fire";
 const Rocket = () => {
   const dispatch = useDispatch();
 
+  const currentStageId = useSelector(state => state.launchSequence.currentStageId);
+
   const running = useSelector(state => state.game.running);
 
   const kineticEnergy = useSelector(state => state.rocket.kineticEnergy);
@@ -55,9 +57,9 @@ const Rocket = () => {
     >
       <Head />
       <StabilizerFins />
-      <Shaft steam />
+      <Shaft steam={currentStageId < 2 ? 1 : null} />
       <IonThrusters />
-      <Shaft steam />
+      <Shaft steam={currentStageId < 2 ? 2 : null} />
       <Shaft />
       <MainThurster />
       {running && <Fire />}

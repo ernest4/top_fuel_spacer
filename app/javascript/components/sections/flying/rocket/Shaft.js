@@ -2,12 +2,25 @@ import React from "react";
 import Spacing, { SPACING } from "../../../layout/Spacing";
 import useTheme from "../../../hooks/useTheme";
 import { css } from "styled-components";
+import Particles from "./Particles";
 
 const Shaft = ({ steam }) => {
   const { black, white } = useTheme();
 
   return (
     <Spacing horizontal {...{ height: "100%", width: "100%" }}>
+      {steam && (
+        <Spacing
+          {...{
+            position: "absolute",
+            absoluteTop: steam === 1 ? "39vh" : "49vh",
+            width: "16px",
+            height: "16px",
+            z: 1,
+            children: <Particles steam angle={-45} duration={2} />,
+          }}
+        />
+      )}
       <Spacing
         {...{
           width: `${6 * SPACING}px`,
