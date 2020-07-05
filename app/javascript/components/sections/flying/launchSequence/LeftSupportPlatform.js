@@ -10,10 +10,10 @@ const LeftSupportPlatform = () => {
   if (3 <= currentStageId) return null;
 
   const backgroundGradient =
-    "repeating-linear-gradient( -55deg, hsl(207, 24%, 78%), hsl(207, 24%, 78%) 5px, transparent 5px, transparent 20px )";
+    "repeating-linear-gradient( -55deg, hsl(207, 24%, 45%), hsl(207, 24%, 30%) 5px, transparent 5px, transparent 20px )";
 
   const foregroundGradient =
-    "repeating-linear-gradient( 55deg, hsl(207, 24%, 78%), hsl(207, 24%, 78%) 5px, transparent 5px, transparent 20px )";
+    "repeating-linear-gradient( 55deg,hsla(207, 33%, 50%, 1),hsla(207, 33%, 85%, 1) 5px,transparent 5px,transparent 20px )";
 
   return (
     <Spacing
