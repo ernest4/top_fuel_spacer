@@ -20,7 +20,7 @@ const Flying = () => {
       {...{ justify: "center", height: "100vh", width: "100%", background: black }}
     >
       <Background />
-      <Itinerary />
+      {running && <Itinerary />}
       <Spacing vertical {...{ justify: "flex-start", position: "absolute" }}>
         <Spacing {...{ justify: "flex-start", height: "28vh", width: "188px" }}>
           <Spacing top={9} />

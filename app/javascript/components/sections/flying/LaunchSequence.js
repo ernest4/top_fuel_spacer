@@ -7,9 +7,7 @@ import LeftSupportPlatform from "./launchSequence/LeftSupportPlatform";
 import RightSupportPlatform from "./launchSequence/RightSupportPlatform";
 import Ground from "./launchSequence/Ground";
 
-// TODO: the launch button will begin launch sequence.
-// Once launch sequence is complete, then the game state will be set to 'running'.
-// Till then, launch sequence is cancellable via page refresh.
+// TODO: steam comming from rocket!!
 const LaunchSequence = () => {
   return (
     <Spacing>
