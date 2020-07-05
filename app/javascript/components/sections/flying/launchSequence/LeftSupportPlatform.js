@@ -1,6 +1,7 @@
 import React from "react";
 import Spacing from "../../../layout/Spacing";
 import { useSelector } from "react-redux";
+import Alarm from "./Alarm";
 
 // TODO: add 2 talking astronauts
 const LeftSupportPlatform = () => {
@@ -30,7 +31,19 @@ const LeftSupportPlatform = () => {
         borderRadius: "4px 4px 0px 0px",
       }}
     >
-      <Spacing {...{ background: foregroundGradient, width: "100%", height: "100%" }} />
+      <Spacing
+        {...{
+          background: foregroundGradient,
+          width: "100%",
+          height: "100%",
+          justify: "space-around",
+          align: "center",
+        }}
+      >
+        <Alarm />
+        <Alarm />
+        <Alarm />
+      </Spacing>
     </Spacing>
   );
 };
