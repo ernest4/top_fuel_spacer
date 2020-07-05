@@ -9,7 +9,6 @@ const COLOR_PRESETS = {
     finalColor: "#F73C00",
   },
   steam: {
-    // TODO: ...
     initialColor: "#b9c8d4",
     middleColor: "#e5ecf0",
     finalColor: "white",
@@ -46,7 +45,7 @@ const Particles = ({ count, angle, duration, ...props }) => {
         }}
       >
         {Array.from(Array(count || 4)).map((particle, key) => {
-          return <Particle {...{ key, duration, ...getColors(props) }} />;
+          return <Particle {...{ key, count, duration, ...getColors(props) }} />;
         })}
       </Spacing>
     </Spacing>
@@ -55,7 +54,7 @@ const Particles = ({ count, angle, duration, ...props }) => {
 
 export default Particles;
 
-const Particle = ({ initialColor, middleColor, finalColor, duration }) => {
+const Particle = ({ initialColor, middleColor, finalColor, count, duration }) => {
   return (
     <Spacing
       {...{
@@ -89,18 +88,14 @@ const Particle = ({ initialColor, middleColor, finalColor, duration }) => {
             animation-timing-function: ease-in;
             animation-iteration-count: infinite;
           }
-          &:nth-child(1) {
-            animation-delay: 0s;
-          }
-          &:nth-child(2) {
-            animation-delay: ${duration / 4}s;
-          }
-          &:nth-child(3) {
-            animation-delay: ${(duration / 4) * 2}s;
-          }
-          &:nth-child(4) {
-            animation-delay: ${(duration / 4) * 3}s;
-          }
+
+          ${Array.from(Array(count || 4)).map(
+            (particle, index) => css`
+              &:nth-child(${index + 1}) {
+                animation-delay: ${(duration / (count || 4)) * index}s;
+              }
+            `
+          )}
         `,
       }}
     />
