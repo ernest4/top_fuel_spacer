@@ -3,7 +3,7 @@ import Spacing, { SPACING } from "../../../layout/Spacing";
 import useTheme from "../../../hooks/useTheme";
 import { css } from "styled-components";
 
-const Shaft = () => {
+const Shaft = ({ steam }) => {
   const { black, white } = useTheme();
 
   return (

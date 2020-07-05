@@ -2,7 +2,7 @@ import React from "react";
 import Spacing from "../../layout/Spacing";
 import { useSelector, useDispatch } from "react-redux";
 import { css } from "styled-components";
-import Fire from "./rocket/Fire";
+import Particles from "./rocket/Particles";
 import Card from "../../layout/Card";
 import Text from "../../layout/Text";
 import MainThurster from "./rocket/MainThruster";
@@ -11,6 +11,7 @@ import StabilizerFins from "./rocket/StabilizerFins";
 import Shaft from "./rocket/Shaft";
 import IonThrusters from "./rocket/IonThrusters";
 import * as rocketActions from "../../store/actions/rocket";
+import Fire from "./rocket/Fire";
 
 const Rocket = () => {
   const dispatch = useDispatch();
@@ -55,12 +56,12 @@ const Rocket = () => {
     >
       <Head />
       <StabilizerFins />
-      <Shaft />
+      <Shaft steam />
       <IonThrusters />
-      <Shaft />
+      <Shaft steam />
       <Shaft />
       <MainThurster />
-      <Fire />
+      {running && <Fire />}
     </Spacing>
   );
 };
