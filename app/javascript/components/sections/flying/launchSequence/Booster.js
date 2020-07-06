@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Spacing from "../../../layout/Spacing";
 import Beam from "../rocket/Beam";
 import { css, keyframes } from "styled-components";
 import { useSelector } from "react-redux";
-import Triangle from "../../../svg/Triangle";
 
 const Booster = ({ right }) => {
   const currentStageId = useSelector(state => state.launchSequence.currentStageId);
@@ -19,9 +18,11 @@ const Booster = ({ right }) => {
 
   return (
     <Spacing
+      center
       {...{
         // onClick: testy,
-        background: right ? "aqua" : "teal",
+        // background: right ? "aqua" : "teal",
+        background: "#b9c8d4",
         position: "fixed",
         absoluteLeft: right ? "17.25vw" : "11vw",
         absoluteBottom: "39vh",
@@ -33,8 +34,14 @@ const Booster = ({ right }) => {
           : "",
         transformOrigin: "bottom right",
         transition: "transform 5s",
+        boxShadow: "-1px 1px 0px 1px #45afe4",
+        css: css`
+          border-right: 10px solid white;
+          border-left: 10px solid #4a4a4a;
+        `,
       }}
     >
+      <Charge charging={enginePowerUp} discharging={liftOff} />
       {enginePowerUp && (
         <>
           {Array.from(Array(5)).map((circle, key) => {
@@ -64,6 +71,29 @@ const Booster = ({ right }) => {
 };
 
 export default Booster;
+
+const Charge = () => {
+  return (
+    <Spacing {...{ background: "red", width: "50%", height: "80%" }}>
+      {Array.from(Array(8)).map((cell, key) => {
+        return <Cell {...{ key }} />;
+      })}
+    </Spacing>
+  );
+};
+
+const Cell = () => {
+  return (
+    <Spacing
+      {...{
+        background: "green",
+        width: "100%",
+        height: "100%",
+        all: 0.5,
+      }}
+    />
+  );
+};
 
 const CircleCharger = ({ right, index }) => {
   const duration = 0.3;
