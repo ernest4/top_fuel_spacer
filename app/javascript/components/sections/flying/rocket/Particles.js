@@ -17,7 +17,6 @@ const COLOR_PRESETS = {
 
 // TODD: optimize and useMemo !!!?!?!
 const Particles = ({ count, angle, duration, length, ...props }) => {
-  console.log("rendered");
   return (
     <Spacing
       {...{

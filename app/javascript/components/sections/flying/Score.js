@@ -73,10 +73,7 @@ const Score = () => {
   return (
     <Container>
       <Distance children={`${formatNumberToSiUnit(distance)} meters`} />
-      <Speed primary={primary} children={`${formatNumberToSiUnit(speed)} meters / s`} />
-      <Spacing top={1} />
-      <Acceleration />
-      <Fuel />
+      <Speed secondary={secondary} children={`${formatNumberToSiUnit(speed)} meters / s`} />
     </Container>
   );
 };
@@ -101,10 +98,10 @@ const Container = styled.div`
 const Distance = styled.div`
   color: white;
   font-size: 24px;
-  transform: skewX(-20deg);
+  transform: skewX(-15deg);
 `;
 const Speed = styled.div`
-  color: ${({ primary }) => primary};
+  color: ${({ secondary }) => secondary};
   transform: skewX(10deg);
 `;
 
@@ -140,47 +137,3 @@ const MULTIPLE_NAME = [
   [5, "quadrillion"],
   // [9.4607...wip, "light years"], // light year -> 9.4607×1015 m
 ];
-
-const Acceleration = memo(() => {
-  const dispatch = useDispatch();
-
-  const fuel = useSelector(state => state.rocket.fuel);
-  const acceleration = useSelector(state => state.score.acceleration);
-
-  useEffect(() => {
-    if (fuel <= 0) dispatch(scoreActions.setAcceleration(0));
-    else dispatch(scoreActions.setAcceleration(acceleration + 10));
-  }, [fuel, dispatch]);
-
-  return (
-    <Text
-      extraSmall
-      light
-      secondary
-      transform="skew(-20deg)"
-      children={`${formatNumberToSiUnit(acceleration)} meters / s / s`}
-    />
-  );
-});
-
-const Fuel = memo(() => {
-  const dispatch = useDispatch();
-
-  const distance = useSelector(state => state.score.distance);
-  const acceleration = useSelector(state => state.score.acceleration);
-  const fuel = useSelector(state => state.rocket.fuel);
-
-  useEffect(() => {
-    dispatch(setFuel(fuel - acceleration * distance));
-  }, [distance, dispatch]);
-
-  return (
-    <Text
-      extraSmall
-      light
-      danger
-      transform="skew(10deg)"
-      children={`${formatNumberToSiUnit(fuel)} fuel`}
-    />
-  );
-});
