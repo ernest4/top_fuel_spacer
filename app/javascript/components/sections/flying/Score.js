@@ -1,16 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, memo } from "react";
 // import Spacing from "../../layout/Spacing"; // These are too heavy weight...
 // import Text from "../../layout/Text"; // These are too heavy weight...
 import { useDispatch, batch, useSelector } from "react-redux";
 import * as scoreActions from "../../store/actions/score";
 import styled from "styled-components";
 import useTheme from "../../hooks/useTheme";
+import Text from "../../layout/Text";
+import Spacing from "../../layout/Spacing";
 
 // Highly optimized custom component to deal with constant updates to progress
 const Score = () => {
   const disptach = useDispatch();
 
-  const { secondary } = useTheme();
+  const { secondary, primary } = useTheme();
 
   const reduxDistance = useSelector(state => state.score.distance);
   const [distance, setDistance] = useState(reduxDistance);
@@ -69,10 +71,11 @@ const Score = () => {
 
   return (
     <Container>
-      {/* <div children={distance} /> */}
       <Distance children={`${formatNumberToSiUnit(distance)} meters`} />
-      <Speed children={`${formatNumberToSiUnit(speed)} meters / s`} />
-      {/* <Acceleration children={`${formatNumberToSiUnit(acceleration)} meters / s / s`} /> */}
+      <Speed primary={primary} children={`${formatNumberToSiUnit(speed)} meters / s`} />
+      <Spacing top={1} />
+      <Acceleration />
+      <Fuel />
     </Container>
   );
 };
@@ -100,10 +103,9 @@ const Distance = styled.div`
   transform: skewX(-20deg);
 `;
 const Speed = styled.div`
-  color: ${secondary};
+  color: ${({ primary }) => primary};
   transform: skewX(10deg);
 `;
-const Acceleration = styled.div``;
 
 const formatNumberToSiUnit = number => {
   // TODO: use light years once far enough
@@ -137,3 +139,31 @@ const MULTIPLE_NAME = [
   [5, "quadrillion"],
   // [9.4607...wip, "light years"], // light year -> 9.4607×1015 m
 ];
+
+const Acceleration = memo(() => {
+  const acceleration = useSelector(state => state.score.acceleration);
+
+  return (
+    <Text
+      extraSmall
+      light
+      secondary
+      transform="skew(-20deg)"
+      children={`${formatNumberToSiUnit(acceleration)} meters / s / s`}
+    />
+  );
+});
+
+const Fuel = memo(() => {
+  const fuel = useSelector(state => state.rocket.fuel);
+
+  return (
+    <Text
+      extraSmall
+      light
+      danger
+      transform="skew(10deg)"
+      children={`${formatNumberToSiUnit(fuel)} fuel`}
+    />
+  );
+});
