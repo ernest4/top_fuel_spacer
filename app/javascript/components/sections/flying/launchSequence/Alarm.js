@@ -2,6 +2,7 @@ import React from "react";
 import Spacing from "../../../layout/Spacing";
 import { useSelector } from "react-redux";
 import { css, keyframes } from "styled-components";
+import Triangle from "../../../svg/Triangle";
 
 const Alarm = () => {
   const currentStageId = useSelector(state => state.launchSequence.currentStageId);
@@ -42,44 +43,42 @@ const Lights = () => {
     <>
       <Spacing
         {...{
-          background: "#f8c602",
           position: "absolute",
           width: "20px",
           height: "20px",
-          transform: "translate(5px, 5px)",
-          borderRadius: "100%",
+          transform: "translate(10px, 10px) rotate(78deg)",
           css: css`
             animation-name: ${keyframes`
-      0% { opacity: 1;}
-      50% { opacity: 0;}
-      100% { opacity: 1;}
-  `};
+                0% { opacity: 1;}
+                50% { opacity: 0;}
+                100% { opacity: 1;}
+            `};
 
             animation-duration: 1s;
             animation-timing-function: linear;
             animation-iteration-count: infinite;
           `,
+          children: <Triangle fill="#f8c602" />,
         }}
       />
       <Spacing
         {...{
-          background: "#f8c602",
           position: "absolute",
           width: "20px",
           height: "20px",
-          transform: "translate(-15px, -15px)",
-          borderRadius: "100%",
+          transform: "translate(-20px, -20px) rotate(12deg)",
           css: css`
             animation-name: ${keyframes`
-      0% { opacity: 1;}
-      50% { opacity: 0;}
-      100% { opacity: 1;}
-  `};
+                0% { opacity: 1;}
+                50% { opacity: 0;}
+                100% { opacity: 1;}
+            `};
 
             animation-duration: 1s;
             animation-timing-function: linear;
             animation-iteration-count: infinite;
           `,
+          children: <Triangle fill="#f8c602" />,
         }}
       />
     </>
