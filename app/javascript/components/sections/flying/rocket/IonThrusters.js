@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, memo } from "react";
 import Spacing, { SPACING } from "../../../layout/Spacing";
 import useTheme from "../../../hooks/useTheme";
 import { css } from "styled-components";
@@ -71,7 +71,7 @@ const IonThrusters = () => {
   );
 };
 
-export default IonThrusters;
+export default memo(IonThrusters);
 
 // TODO: might need to be done more efficiently. Make the update in score tracker possibly batching
 // it and just provide the result here.

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Particles from "./Particles";
 import { useSelector } from "react-redux";
 import Spacing from "../../../layout/Spacing";
@@ -18,4 +18,4 @@ const Fire = () => {
   );
 };
 
-export default Fire;
+export default memo(Fire);

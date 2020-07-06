@@ -13,7 +13,7 @@ const LaunchOrchestrator = () => {
   const currentStageId = useSelector(state => state.launchSequence.currentStageId);
   const stagesLength = useSelector(state => state.launchSequence.stages.length);
 
-  const { playing, toggle: toggleLaunchSound, currentTime } = useSound({ src, debugTime: true });
+  const { playing, toggle: toggleLaunchSound, currentTime } = useSound({ src, debugTime: false });
 
   useEffect(() => {
     if (!src || !toggleLaunchSound) return;

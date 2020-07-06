@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Spacing from "../../../layout/Spacing";
 import { css, keyframes } from "styled-components";
 
@@ -15,8 +15,9 @@ const COLOR_PRESETS = {
   },
 };
 
-// TODD: optimize with memo and useMemo !!!
+// TODD: optimize and useMemo !!!?!?!
 const Particles = ({ count, angle, duration, length, ...props }) => {
+  console.log("rendered");
   return (
     <Spacing
       {...{
@@ -52,7 +53,7 @@ const Particles = ({ count, angle, duration, length, ...props }) => {
   );
 };
 
-export default Particles;
+export default memo(Particles);
 
 const Particle = ({
   initialColor,

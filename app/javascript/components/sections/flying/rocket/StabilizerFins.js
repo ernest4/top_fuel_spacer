@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Spacing, { SPACING } from "../../../layout/Spacing";
 import useTheme from "../../../hooks/useTheme";
 import { css } from "styled-components";
@@ -62,4 +62,4 @@ const StabilizerFins = () => {
   );
 };
 
-export default StabilizerFins;
+export default memo(StabilizerFins);

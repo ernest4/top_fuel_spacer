@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Spacing, { SPACING } from "../../../layout/Spacing";
 import useTheme from "../../../hooks/useTheme";
 import { css } from "styled-components";
@@ -114,4 +114,4 @@ const MainThurster = () => {
   );
 };
 
-export default MainThurster;
+export default memo(MainThurster);
