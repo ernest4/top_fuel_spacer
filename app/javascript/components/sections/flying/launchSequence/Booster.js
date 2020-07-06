@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Spacing from "../../../layout/Spacing";
 import Beam from "../rocket/Beam";
-import { css } from "styled-components";
+import { css, keyframes } from "styled-components";
 import { useSelector } from "react-redux";
 
 const Booster = ({ right }) => {
@@ -9,6 +9,8 @@ const Booster = ({ right }) => {
   const name = useSelector(state => state.launchSequence.stages[currentStageId]?.name);
   const stagesLength = useSelector(state => state.launchSequence.stages.length);
 
+  const enginePowerUp = name === "engine power up";
+  // const enginePowerUp = true;
   const liftOff = name === "lift off";
   const detach = name === "boosters detach";
 
@@ -32,6 +34,13 @@ const Booster = ({ right }) => {
         transition: "transform 5s",
       }}
     >
+      {enginePowerUp && (
+        <>
+          {Array.from(Array(5)).map((circle, key) => {
+            return <CircleCharger {...{ key, right, index: key }} />;
+          })}
+        </>
+      )}
       <Beam
         {...{
           background: "#fec200",
@@ -51,3 +60,35 @@ const Booster = ({ right }) => {
 };
 
 export default Booster;
+
+const CircleCharger = ({ right, index }) => {
+  const duration = 0.3;
+
+  return (
+    <Spacing
+      {...{
+        position: "fixed",
+        absoluteBottom: "26vh",
+        absoluteLeft: right ? "10vw" : "4vw",
+        background: "transparent",
+        border: "32px solid #fec200",
+        borderRadius: "100%",
+        width: "200px",
+        height: "200px",
+        css: css`
+          animation-name: ${keyframes`
+                0% { transform: scale(1); opacity: 0;}
+                /* 1% { transform: scale(1); opacity: 0.01;} */
+                100%  { transform: scale(0); opacity: 1;}
+            `};
+
+          animation-timing-function: cubic-bezier(0.74, 0.07, 1, -0.19);
+          animation-iteration-count: 1;
+          animation-fill-mode: both;
+          animation-duration: ${duration * 8}s;
+          animation-delay: ${(duration * index) / 2 + 1.5}s;
+        `,
+      }}
+    />
+  );
+};
