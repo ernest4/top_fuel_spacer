@@ -59,11 +59,11 @@ const Booster = ({ right }) => {
           absoluteTop: "100%",
           height: "100%",
           transition: "opacity 6s cubic-bezier(.74,.07,1,-0.19)",
-          css: liftOff
-            ? css`
-                opacity: 0;
-              `
-            : "",
+          css:
+            liftOff &&
+            css`
+              opacity: 0;
+            `,
         }}
       />
     </Spacing>
@@ -72,24 +72,52 @@ const Booster = ({ right }) => {
 
 export default Booster;
 
-const Charge = () => {
+const Charge = ({ charging, discharging }) => {
   return (
     <Spacing {...{ background: "red", width: "50%", height: "80%" }}>
       {Array.from(Array(8)).map((cell, key) => {
-        return <Cell {...{ key }} />;
+        return <Cell {...{ key, charging, discharging, index: key }} />;
       })}
     </Spacing>
   );
 };
 
-const Cell = () => {
+const Cell = ({ index, charging, discharging }) => {
+  if (!charging && !discharging) return null;
+
   return (
     <Spacing
       {...{
-        background: "green",
+        background: "#45afe4",
         width: "100%",
         height: "100%",
-        all: 0.5,
+        css: charging
+          ? css`
+              animation-name: ${keyframes`
+              0% { opacity: 0;}
+              99% { opacity: 0;}
+              100%  { opacity: 1;}
+          `};
+
+              animation-timing-function: linear;
+              animation-iteration-count: 1;
+              animation-fill-mode: both;
+              animation-duration: 1.6s;
+              animation-delay: ${8 - index}s;
+            `
+          : css`
+              animation-name: ${keyframes`
+              0% { opacity: 1;}
+              99% { opacity: 1;}
+              100%  { opacity: 0;}
+          `};
+
+              animation-timing-function: linear;
+              animation-iteration-count: 1;
+              animation-fill-mode: both;
+              animation-duration: 0.5s;
+              animation-delay: ${index / 2 + 0.75}s;
+            `,
       }}
     />
   );
