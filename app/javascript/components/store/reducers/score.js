@@ -35,6 +35,9 @@ const scoreReducer = handleActions(
     SET_SPEED: produce((state, { payload }) => {
       state.speed = payload;
     }),
+    SET_ACCELERATION: produce((state, { payload }) => {
+      state.acceleration = payload;
+    }),
   },
   initialState
 );

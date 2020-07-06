@@ -74,7 +74,7 @@ export default Booster;
 
 const Charge = ({ charging, discharging }) => {
   return (
-    <Spacing {...{ background: "red", width: "50%", height: "80%" }}>
+    <Spacing {...{ background: "#e45144", width: "50%", height: "80%" }}>
       {Array.from(Array(8)).map((cell, key) => {
         return <Cell {...{ key, charging, discharging, index: key }} />;
       })}

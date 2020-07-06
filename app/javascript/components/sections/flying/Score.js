@@ -7,6 +7,7 @@ import styled from "styled-components";
 import useTheme from "../../hooks/useTheme";
 import Text from "../../layout/Text";
 import Spacing from "../../layout/Spacing";
+import { setFuel } from "../../store/actions/rocket";
 
 // Highly optimized custom component to deal with constant updates to progress
 const Score = () => {
@@ -141,7 +142,15 @@ const MULTIPLE_NAME = [
 ];
 
 const Acceleration = memo(() => {
+  const dispatch = useDispatch();
+
+  const fuel = useSelector(state => state.rocket.fuel);
   const acceleration = useSelector(state => state.score.acceleration);
+
+  useEffect(() => {
+    if (fuel <= 0) dispatch(scoreActions.setAcceleration(0));
+    else dispatch(scoreActions.setAcceleration(acceleration + 10));
+  }, [fuel, dispatch]);
 
   return (
     <Text
@@ -155,7 +164,15 @@ const Acceleration = memo(() => {
 });
 
 const Fuel = memo(() => {
+  const dispatch = useDispatch();
+
+  const distance = useSelector(state => state.score.distance);
+  const acceleration = useSelector(state => state.score.acceleration);
   const fuel = useSelector(state => state.rocket.fuel);
+
+  useEffect(() => {
+    dispatch(setFuel(fuel - acceleration * distance));
+  }, [distance, dispatch]);
 
   return (
     <Text
