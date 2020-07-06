@@ -117,8 +117,8 @@ const RayCharger = ({ right, index }) => {
         css: css`
           animation-name: ${keyframes`
                 0% { transform: rotate(0deg) scale(0); opacity: 0;}
-                50% { transform: rotate(360deg) scale(2); opacity: 0.5;}
-                100%  { transform: rotate(7200deg) scale(4); opacity: 1;}
+                50% { transform: rotate(3600deg) scale(2); opacity: 0.5;}
+                100%  { transform: rotate(14400deg) scale(4); opacity: 1;}
             `};
 
           ${"" /* animation-timing-function: cubic-bezier(0.74, 0.07, 1, -0.19); */}
