@@ -4,10 +4,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, batch, useSelector } from "react-redux";
 import * as scoreActions from "../../store/actions/score";
 import styled from "styled-components";
+import useTheme from "../../hooks/useTheme";
 
 // Highly optimized custom component to deal with constant updates to progress
 const Score = () => {
   const disptach = useDispatch();
+
+  const { secondary } = useTheme();
 
   const reduxDistance = useSelector(state => state.score.distance);
   const [distance, setDistance] = useState(reduxDistance);
@@ -91,8 +94,15 @@ const Container = styled.div`
 `;
 
 // TODO: ... wip
-const Distance = styled.div``;
-const Speed = styled.div``;
+const Distance = styled.div`
+  color: white;
+  font-size: 24px;
+  transform: skewX(-20deg);
+`;
+const Speed = styled.div`
+  color: ${secondary};
+  transform: skewX(10deg);
+`;
 const Acceleration = styled.div``;
 
 const formatNumberToSiUnit = number => {
