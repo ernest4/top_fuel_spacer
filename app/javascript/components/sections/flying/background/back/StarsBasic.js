@@ -1,27 +1,15 @@
 import React from "react";
 import Base from "./Base";
-import styled from "styled-components";
+import Stars from "./Stars";
 
-// TODO: need to optimize this. might just memo everything....
 const StarsBasic = () => {
   return (
     <Base>
       <Stars size={1} count={100} />
+      <Stars size={2} count={50} randomColor />
+      <Stars size={3} count={10} />
     </Base>
   );
 };
 
 export default StarsBasic;
-
-const generateStars = count => {
-  return Array.from(Array(count))
-    .map(i => `${Math.random() * 33}vw ${Math.random() * 100}vh #fff`)
-    .join(",");
-};
-
-const Stars = styled.div`
-  /* position: absolute; */
-  width: ${({ size }) => `${size || 1}px`};
-  height: ${({ size }) => `${size || 1}px`};
-  box-shadow: ${({ count }) => generateStars(count || 100)};
-`;
