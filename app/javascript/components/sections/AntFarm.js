@@ -11,6 +11,8 @@ const AntFarm = () => {
   const sections = useSelector(state => state.antFarm.sections);
 
   // need reducer for sections or just that section reducer ??. Flying reducer, AntFarm reducer and Info reducer
+
+  // TODO: sections will point to section components to render, likely from antFarm/sections/<component name> or something like that
   return (
     <Spacing scroll {...{ height: "100vh", width: "100%", background }}>
       <Spacing height="44px" />

@@ -22,7 +22,7 @@ const Booster = ({ right }) => {
       {...{
         // onClick: testy,
         // background: right ? "aqua" : "teal",
-        background: "#b9c8d4",
+        background: "#e5ecf0",
         position: "fixed",
         absoluteLeft: right ? "17.25vw" : "11vw",
         absoluteBottom: "39vh",
