@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { getRandom } from "../../../../utils/Array";
 import styled from "styled-components";
 
@@ -29,4 +29,5 @@ const Stars = styled.div`
   box-shadow: ${({ count, randomColor }) => generateStars({ count: count || 100, randomColor })};
 `;
 
-export default Stars;
+// TODO: bug. memo not stopiing stars from jumping??
+export default memo(Stars);
