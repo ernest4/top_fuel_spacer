@@ -5,7 +5,7 @@ import styled from "styled-components";
 const StarsBasic = () => {
   return (
     <Base>
-      <Stars size={1} count={10} />
+      <Stars size={1} count={100} />
     </Base>
   );
 };
