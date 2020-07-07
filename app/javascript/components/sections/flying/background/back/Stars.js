@@ -1,15 +1,10 @@
-import React, { memo } from "react";
-import { getRandom } from "../../../../utils/Array";
+import { memo } from "react";
+import { generateColor } from "../../../../utils/Color";
 import styled from "styled-components";
 
-// TODO: need to optimize this. might just memo everything....
+// TODO: need to optimize this!! might just memo everything....??
 // NOTE: memo is also needed because the scroller rerenders this component so if random every time
 // the stars jump around in position!!!
-
-// TODO: HEX and generateColor can probs be extracted to general utils
-const HEX = [1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
-
-const generateColor = () => `#${getRandom(HEX)}${getRandom(HEX)}${getRandom(HEX)}`;
 
 const generateStars = ({ count, randomColor }) => {
   return Array.from(Array(count))
@@ -29,5 +24,5 @@ const Stars = styled.div`
   box-shadow: ${({ count, randomColor }) => generateStars({ count: count || 100, randomColor })};
 `;
 
-// TODO: bug. memo not stopiing stars from jumping??
+// TODO: bug. memo not stopping stars from jumping??
 export default memo(Stars);
