@@ -2,6 +2,7 @@ import React from "react";
 import Base from "./Base";
 import styled from "styled-components";
 
+// TODO: need to optimize this. might just memo everything....
 const StarsBasic = () => {
   return (
     <Base>
