@@ -12,8 +12,8 @@ const Background = () => {
   return (
     <>
       <Back />
-      <Middle />
-      <Front />
+      {/* <Middle /> */}
+      {/* <Front /> */}
     </>
   );
 };

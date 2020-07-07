@@ -1,23 +1,24 @@
-import React from "react";
-import Spacing from "../../../layout/Spacing";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import Scroller from "./Scroller";
+import backComponents from "./back/index";
+import { getRandom } from "../../../utils/Array";
 
 const Back = () => {
+  const running = useSelector(state => state.game.running);
+
+  const [nextComponent, setNextComponent] = useState(backComponents[1]);
+  const [currentComponent, setCurrentComponent] = useState(backComponents[0]);
+
+  const onScrolled = () => {
+    console.log("animation end");
+
+    setNextComponent(getRandom(backComponents.slice(1, backComponents.length)));
+    setCurrentComponent(nextComponent);
+  };
+
   return (
-    <Spacing
-      {...{
-        position: "absolute",
-        width: "33vw",
-        height: "100vh",
-        // absoluteTop: "-100vh",
-        absoluteTop: "-50vh",
-        background: "green",
-        opacity: 0.5,
-        // background: red;
-        // z-index: -1;
-      }}
-    >
-      <div>some planet here etc.</div>
-    </Spacing>
+    <Scroller {...{ play: running, onScrolled, duration: 20, nextComponent, currentComponent }} />
   );
 };
 
