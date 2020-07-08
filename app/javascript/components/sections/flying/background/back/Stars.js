@@ -33,8 +33,8 @@ export default Stars;
 const Container = styled.div`
   position: absolute;
 
-  width: ${({ size }) => size};
-  height: ${({ size }) => size};
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
   box-shadow: ${({ boxShadow }) => boxShadow};
 `;
 
