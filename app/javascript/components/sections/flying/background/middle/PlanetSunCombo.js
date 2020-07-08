@@ -38,23 +38,25 @@ const PlanetSunCombo = () => {
           `,
         }}
       >
-        <Dots {...{ minWidth: "20px", minHeight: "20px", maxWith: "180px", maxHeight: "180px" }} />
+        <Dots {...{ minLeft: "30px", minTop: "30px", maxLeft: "170px", maxTop: "170px" }} />
         <Dots
           {...{
             size: 4,
-            minWidth: "20px",
-            minHeight: "20px",
-            maxWith: "100px",
-            maxHeight: "100px",
+            count: 10,
+            minLeft: "40px", // not working??
+            minTop: "40px",
+            maxLeft: "100px",
+            maxTop: "100px",
           }}
         />
         <Dots
           {...{
             size: 4,
-            minWidth: "100px",
-            minHeight: "100px",
-            maxWith: "180px",
-            maxHeight: "180px",
+            count: 20,
+            minLeft: "100px",
+            minTop: "100px",
+            maxLeft: "160px",
+            maxTop: "160px",
           }}
         />
       </Planet>

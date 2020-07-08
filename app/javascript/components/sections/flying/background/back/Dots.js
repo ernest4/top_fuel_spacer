@@ -1,6 +1,5 @@
 import React, { memo, useMemo } from "react";
 import { generateColor } from "../../../../utils/Color";
-import styled from "styled-components";
 import { getRandomNumber } from "../../../../utils/Array";
 import { parseNumberUnit } from "../../../../utils/Props";
 import Spacing from "../../../../layout/Spacing";
@@ -9,24 +8,35 @@ import Spacing from "../../../../layout/Spacing";
 // NOTE: memo is also needed because the scroller rerenders this component so if random every time
 // the Dots jump around in position!!!
 
-const generateBoxShadowDots = ({ count, randomColor, maxWith, maxHeight }) => {
-  const { number: maxWithNumber, unit: maxWithUnit } = parseNumberUnit(maxWith || "33vw");
-  const { number: maxHeightNumber, unit: maxHeightUnit } = parseNumberUnit(maxHeight || "100vh");
+const generateBoxShadowDots = ({ count, randomColor, minLeft, minTop, maxLeft, maxTop }) => {
+  const { number: minLeftNumber, unit: minLeftUnit } = parseNumberUnit(minLeft || "0vw");
+  const { number: minTopNumber, unit: minTopUnit } = parseNumberUnit(minTop || "0vh");
+
+  const { number: maxLeftNumber, unit: maxLeftUnit } = parseNumberUnit(maxLeft || "33vw");
+  const { number: maxTopNumber, unit: maxTopUnit } = parseNumberUnit(maxTop || "100vh");
 
   return Array.from(Array(count))
     .map(
       i =>
-        `${getRandomNumber() * maxWithNumber}${maxWithUnit} ${
-          getRandomNumber() * maxHeightNumber
-        }${maxHeightUnit} ${randomColor ? generateColor() : "white"}`
+        `${minLeftNumber + getRandomNumber() * (maxLeftNumber - minLeftNumber)}${maxLeftUnit} ${
+          minTopNumber + getRandomNumber() * (maxTopNumber - minTopNumber)
+        }${maxTopUnit} ${randomColor ? generateColor() : "white"}`
     )
     .join(",");
 };
 
-const Dots = ({ size, count, randomColor, maxWith, maxHeight, square, ...props }) => {
+const Dots = ({ size, count, randomColor, minLeft, minTop, maxLeft, maxTop, square, ...props }) => {
   const boxShadow = useMemo(
-    () => generateBoxShadowDots({ count: count || 100, randomColor, maxWith, maxHeight }),
-    [count, randomColor, maxWith, maxHeight]
+    () =>
+      generateBoxShadowDots({
+        count: count || 100,
+        randomColor,
+        minLeft,
+        minTop,
+        maxLeft,
+        maxTop,
+      }),
+    [count, randomColor, minLeft, minTop, maxLeft, maxTop]
   );
 
   return (
