@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import Spacing from "../../../layout/Spacing";
 import { keyframes, css } from "styled-components";
+import { getRandom } from "../../../utils/Array";
 
-const Scroller = ({ play, duration, onScrolled, nextComponent, currentComponent }) => {
+const Scroller = ({
+  play,
+  duration,
+  onScrolled: onScrolledCallback,
+  initialComponent,
+  components,
+}) => {
+  const [nextComponent, setNextComponent] = useState(components[1]);
+  const [currentComponent, setCurrentComponent] = useState(initialComponent || components[0]);
+
+  const onScrolled = () => {
+    setCurrentComponent(nextComponent);
+    setNextComponent(getRandom(components));
+
+    if (onScrolledCallback) onScrolledCallback();
+  };
+
   return (
     <Spacing
       {...{

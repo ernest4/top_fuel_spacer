@@ -1,22 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import Scroller from "./Scroller";
 import backComponents from "./back/index";
-import { getRandom } from "../../../utils/Array";
+
+const components = backComponents.slice(1, backComponents.length);
 
 const Back = () => {
   const running = useSelector(state => state.game.running);
 
-  const [nextComponent, setNextComponent] = useState(backComponents[1]);
-  const [currentComponent, setCurrentComponent] = useState(backComponents[0]);
-
-  const onScrolled = () => {
-    setCurrentComponent(nextComponent);
-    setNextComponent(getRandom(backComponents.slice(1, backComponents.length)));
-  };
+  // exclude the 1st one (blue sky) from future random selection as you're already in space
 
   return (
-    <Scroller {...{ play: running, onScrolled, duration: 20, nextComponent, currentComponent }} />
+    <Scroller
+      {...{ play: running, duration: 20, components, initialComponent: backComponents[0] }}
+    />
   );
 };
 
