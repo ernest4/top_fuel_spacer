@@ -1,5 +1,5 @@
 import React from "react";
-import Spacing from "../../../../layout/Spacing";
+import Spacing from "../../../layout/Spacing";
 
 const Base = ({ background, ...props }) => {
   return (

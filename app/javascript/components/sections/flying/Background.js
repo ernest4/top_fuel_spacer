@@ -12,7 +12,7 @@ const Background = () => {
   return (
     <>
       <Back />
-      {/* <Middle /> */}
+      <Middle />
       {/* <Front /> */}
     </>
   );
