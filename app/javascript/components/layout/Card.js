@@ -4,7 +4,6 @@ import Container from "./Container";
 import Spacing from "./Spacing";
 import Line from "./Line";
 import Title from "./pane/Title";
-import { head } from "lodash";
 
 // TODO: react memo?
 const Card = ({
@@ -33,7 +32,7 @@ const Card = ({
       {...{
         background: background || closest,
         // children: [customHeader, header, body, footer].filter(component => component),
-        children: items,
+        children: items.map((item, key) => <Spacing key={key} children={item} />),
         ...props,
       }}
     />
