@@ -1,5 +1,4 @@
 import React from "react";
-import Spacing from "../../layout/Spacing";
 import Back from "./background/Back";
 import Middle from "./background/Middle";
 import Front from "./background/Front";

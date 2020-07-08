@@ -4,12 +4,17 @@ import { getRandomNumber } from "../../../../utils/Array";
 import Planet from "./Planet";
 
 const Planets = () => {
-  const absoluteLeft = `${getRandomNumber() * 33}vw`;
-  const absoluteTop = `${getRandomNumber() * 100}vh`;
+  const absoluteLeft = getRandomNumber() * 33;
 
   return (
     <Base>
-      <Planet {...{ absoluteLeft, absoluteTop }} />
+      <Planet
+        {...{
+          maxSize: `${33 - absoluteLeft}vw`,
+          absoluteLeft: `${absoluteLeft}vw`,
+          absoluteTop: `${getRandomNumber() * 100}vh`,
+        }}
+      />
     </Base>
   );
 };

@@ -1,13 +1,13 @@
 import React from "react";
 import Base from "../Base";
-import Stars from "./Stars";
+import Dots from "./Dots";
 
 const StarsBasic = () => {
   return (
     <Base>
-      <Stars size={1} count={100} />
-      <Stars size={2} count={50} randomColor />
-      <Stars size={3} count={10} />
+      <Dots size={1} count={100} />
+      <Dots size={2} count={50} randomColor />
+      <Dots size={3} count={10} />
     </Base>
   );
 };
