@@ -43,7 +43,7 @@ const PlanetSunCombo = () => {
           {...{
             size: 4,
             count: 10,
-            minLeft: "40px", // not working??
+            minLeft: "40px",
             minTop: "40px",
             maxLeft: "100px",
             maxTop: "100px",
