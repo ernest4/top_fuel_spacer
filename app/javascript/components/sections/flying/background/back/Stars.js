@@ -1,6 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { generateColor } from "../../../../utils/Color";
 import styled from "styled-components";
+import { getRandomNumber } from "../../../../utils/Array";
 
 // TODO: need to optimize this!! might just memo everything....??
 // NOTE: memo is also needed because the scroller rerenders this component so if random every time
@@ -10,7 +11,7 @@ const generateStars = ({ count, randomColor }) => {
   return Array.from(Array(count))
     .map(
       i =>
-        `${Math.random() * 33}vw ${Math.random() * 100}vh ${
+        `${getRandomNumber() * 33}vw ${getRandomNumber() * 100}vh ${
           randomColor ? generateColor() : "white"
         }`
     )
