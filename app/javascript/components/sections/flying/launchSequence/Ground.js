@@ -18,7 +18,7 @@ const Ground = () => {
     <Spacing
       {...{
         background: `linear-gradient(0deg, ${black}, ${black}, ${black}, ${black}, ${black}, ${black}, ${black}, #b9c8d4)`,
-        width: "32vw",
+        width: "32.6vw",
         position: "fixed",
         absoluteTop: "61vh",
         absoluteLeft: "0px",

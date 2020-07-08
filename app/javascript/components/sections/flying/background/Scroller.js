@@ -17,13 +17,12 @@ const Scroller = ({ play, duration, onScrolled, nextComponent, currentComponent 
           play &&
           css`
             animation-name: ${keyframes`
-          0% { transform: translate(0, 0); }
-          100% { transform: translate(0, 100vh); }
-          `};
+              0% { transform: translate(0, 0); }
+              100% { transform: translate(0, 100vh); }
+            `};
 
             animation-duration: ${duration}s;
             animation-timing-function: linear;
-            ${"" /* animation-fill-mode: both; */}
             animation-iteration-count: 1;
           `,
         onAnimationEnd: onScrolled,

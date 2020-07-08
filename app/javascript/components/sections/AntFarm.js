@@ -2,6 +2,7 @@ import React from "react";
 import Spacing from "../layout/Spacing";
 import { useSelector, useDispatch } from "react-redux";
 import * as antFarmActions from "../store/actions/antFarm";
+import Title from "../layout/pane/Title";
 
 const AntFarm = () => {
   const dispatch = useDispatch();

@@ -24,15 +24,16 @@ export default Title;
 const Subtitles = ({ subtitles }) => {
   return subtitles.map((subtitle, key) => {
     return (
-      <>
+      <Text key={key}>
         <Text bold extraSmall secondary children={subtitle} />
         {key < subtitles.length - 1 && (
           <>
-            {" "}
-            <Text extraSmall light secondary children="|" />{" "}
+            <Text extraSmall children=" " />
+            <Text extraSmall light secondary children="|" />
+            <Text extraSmall children=" " />
           </>
         )}
-      </>
+      </Text>
     );
   });
 };
