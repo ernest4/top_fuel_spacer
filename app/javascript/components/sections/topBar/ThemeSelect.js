@@ -50,6 +50,7 @@ const Hover = () => {
           <Spacing
             vertical
             {...{
+              key,
               pointer: available,
               onClick: available ? () => onThemeSelect(key) : undefined,
               hover: <ThemePreview {...{ themeId: key }} />,

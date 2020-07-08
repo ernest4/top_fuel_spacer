@@ -26,7 +26,9 @@ const Scroller = ({ play, duration, onScrolled, nextComponent, currentComponent 
             animation-iteration-count: 1;
           `,
         onAnimationEnd: onScrolled,
-        children: [nextComponent, currentComponent],
+        children: [nextComponent, currentComponent].map((component, key) => (
+          <Spacing key={key} children={component} />
+        )),
       }}
     />
   );
