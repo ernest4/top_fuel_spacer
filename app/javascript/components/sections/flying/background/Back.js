@@ -11,8 +11,6 @@ const Back = () => {
   const [currentComponent, setCurrentComponent] = useState(backComponents[0]);
 
   const onScrolled = () => {
-    console.log("animation end"); // TESTING
-
     setCurrentComponent(nextComponent);
     setNextComponent(getRandom(backComponents.slice(1, backComponents.length)));
   };
