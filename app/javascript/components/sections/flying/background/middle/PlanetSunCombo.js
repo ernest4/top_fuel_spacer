@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Base from "../Base";
 import Star from "./Star";
 import Planet from "./Planet";
@@ -9,18 +9,17 @@ import Spacing from "../../../../layout/Spacing";
 
 const PlanetSunCombo = () => {
   const absoluteTop = getRandomNumber() * 100;
-  const absoluteLeft = 12;
+  const absoluteLeft = getRandomNumber() * 12;
 
   return (
     <Base>
       <Star
         {...{
           background: "hsla(53, 100%, 80%, 1)",
-          height: "50px",
-          width: "50px",
+          height: "65px",
+          width: "65px",
           absoluteTop: `${absoluteTop - 2}vh`,
           absoluteLeft: `${absoluteLeft + 11}vw`,
-          filter: "blur(10px)",
         }}
       />
       <Planet
@@ -91,4 +90,4 @@ const PlanetSunCombo = () => {
   );
 };
 
-export default PlanetSunCombo;
+export default memo(PlanetSunCombo);
