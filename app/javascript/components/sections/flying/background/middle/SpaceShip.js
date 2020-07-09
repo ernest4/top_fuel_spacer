@@ -1,11 +1,11 @@
 import React from "react";
 import Spacing from "../../../../layout/Spacing";
-import { getComplementary, generateHSL } from "../../../../utils/Color";
+import { getComplementary, generateHSLA } from "../../../../utils/Color";
 
 const SpaceShip = ({ size, box, circle, triangle, ...props }) => {
   // TODO: square, circle, triangle
 
-  const background = generateHSL();
+  const background = generateHSLA({ lightness: 50, alpha: 1 });
 
   return (
     <Spacing

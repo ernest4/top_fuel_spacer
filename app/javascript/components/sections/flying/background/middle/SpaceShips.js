@@ -19,9 +19,9 @@ const SpaceShips = () => {
 
 export default SpaceShips;
 
-const ShipCluster = ({ seed, maxSize, maxShipSize, ...props }) => {
+const ShipCluster = ({ seed, maxSize, maxShipSize, minShipSize, ...props }) => {
   const shipCount = Math.floor(seed * (maxSize || 4));
-  const size = Math.floor(seed * (maxShipSize || 4));
+  const size = Math.floor(seed * (maxShipSize || 30)) + (minShipSize || 15);
 
   return (
     <Spacing {...{ position: "absolute", ...props }}>
