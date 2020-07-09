@@ -1,17 +1,21 @@
 import React from "react";
 import Spacing from "../../../../layout/Spacing";
+import { getComplementary, generateHSL } from "../../../../utils/Color";
 
-const SpaceShip = ({ size, square, circle, triangle, ...props }) => {
+const SpaceShip = ({ size, box, circle, triangle, ...props }) => {
   // TODO: square, circle, triangle
-  // TODO: borders for all
+
+  const background = generateHSL();
 
   return (
     <Spacing
       {...{
-        background: "pink",
+        background,
         width: `${size}px`,
-        height: `${size}px`,
+        height: box ? `${size / 2}px` : `${size}px`,
         borderRadius: circle ? "100%" : "",
+        transform: box ? "skew(-10deg, 0deg)" : "",
+        border: `2px solid ${getComplementary({ hsla: background })}`,
         ...props,
       }}
     />

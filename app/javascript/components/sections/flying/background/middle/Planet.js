@@ -1,7 +1,7 @@
 import React from "react";
 import Spacing from "../../../../layout/Spacing";
 import { getRandomNumber } from "../../../../utils/Array";
-import { generateColor } from "../../../../utils/Color";
+import { generateRGB } from "../../../../utils/Color";
 import { parseNumberUnit } from "../../../../utils/Props";
 
 const Planet = ({ maxSize, width, height, ...props }) => {
@@ -12,7 +12,7 @@ const Planet = ({ maxSize, width, height, ...props }) => {
   return (
     <Spacing
       {...{
-        background: generateColor(),
+        background: generateRGB(),
         position: "absolute",
         borderRadius: "100%",
         width: width || `${maxSizeNumber * seed}${maxSizeUnit}`,

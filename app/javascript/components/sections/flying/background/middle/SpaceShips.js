@@ -8,7 +8,7 @@ const SpaceShips = () => {
   const absoluteLeft = `${getRandomNumber() * 33}vw`;
   const absoluteTop = `${getRandomNumber() * 100}vh`;
 
-  const seed = 3; // TODO: use random;
+  const seed = 0.78; // TODO: use random;
 
   return (
     <Base>
@@ -22,7 +22,6 @@ export default SpaceShips;
 const ShipCluster = ({ seed, maxSize, maxShipSize, ...props }) => {
   const shipCount = Math.floor(seed * (maxSize || 4));
   const size = Math.floor(seed * (maxShipSize || 4));
-  // const bottom = Math.floor(seed);
 
   return (
     <Spacing {...{ position: "absolute", ...props }}>
@@ -37,6 +36,6 @@ const ShipCluster = ({ seed, maxSize, maxShipSize, ...props }) => {
   );
 };
 
-const SHIP_TYPES = ["square", "circle", "triangle"];
+const SHIP_TYPES = ["box", "circle", "triangle"];
 
 const getShipType = () => ({ [getRandom(SHIP_TYPES)]: true });
