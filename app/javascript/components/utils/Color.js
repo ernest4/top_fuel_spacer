@@ -1,4 +1,4 @@
-import { getRandom, getRandomNumber } from "./Array";
+import { getRandom } from "./Array";
 
 export const setAlpha = ({ hsla, alpha }) => hsla?.replace(/, 1\)/, `, ${alpha})`);
 
@@ -12,7 +12,7 @@ export const generateHSLA = ({
   lightness: lightnessOverride,
   alpha: alphaOverride,
 }) => {
-  const seed = getRandomNumber();
+  const seed = Math.random();
 
   const hue = hueOverride || Math.round(seed * 360);
   const saturation = saturationOverride || Math.round(seed * 100);

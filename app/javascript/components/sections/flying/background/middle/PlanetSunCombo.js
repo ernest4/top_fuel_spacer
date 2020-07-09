@@ -3,17 +3,17 @@ import Base from "../Base";
 import Star from "./Star";
 import Planet from "./Planet";
 import { css } from "styled-components";
-import { getRandomNumber, getRandom } from "../../../../utils/Array";
+import { getRandom } from "../../../../utils/Array";
 import Dots from "../back/Dots";
 import Spacing from "../../../../layout/Spacing";
 
 const SCALES = ["1,1", "-1,1", "1,-1", "-1,-1"];
 
 const PlanetSunCombo = () => {
-  const seed = getRandomNumber();
+  const seed = Math.random();
 
   const absoluteTop = seed * 100;
-  const absoluteLeft = getRandomNumber() * 12;
+  const absoluteLeft = Math.random() * 12;
 
   return (
     <Base {...{ transform: `scale(${getRandom(SCALES)})` }}>

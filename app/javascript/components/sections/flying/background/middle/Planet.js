@@ -1,11 +1,11 @@
 import React from "react";
 import Spacing from "../../../../layout/Spacing";
-import { getRandomNumber } from "../../../../utils/Array";
+
 import { generateRGB } from "../../../../utils/Color";
 import { parseNumberUnit } from "../../../../utils/Props";
 
 const Planet = ({ maxSize, width, height, ...props }) => {
-  const seed = getRandomNumber();
+  const seed = Math.random();
 
   const { number: maxSizeNumber, unit: maxSizeUnit } = parseNumberUnit(maxSize || "50px");
 

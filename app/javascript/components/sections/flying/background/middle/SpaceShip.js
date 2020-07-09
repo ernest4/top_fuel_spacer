@@ -3,13 +3,17 @@ import Spacing from "../../../../layout/Spacing";
 import { getComplementary, generateHSLA } from "../../../../utils/Color";
 import SVG from "../../../../svg/SVG";
 
+// NOTE: initial direction for ships is LEFTward
 const SpaceShip = ({ size, box, circle, triangle, ...props }) => {
   const background = generateHSLA({ saturation: 65, lightness: 50, alpha: 1 });
 
   if (triangle)
     return (
-      <Spacing {...{ transform: "rotate(30deg)" }}>
-        <SVG {...{ name: "Triangle", size: Math.round(size / 10), fill: background }} />
+      <Spacing {...props}>
+        {/* bias transform, to point in the right initial direction  */}
+        <Spacing {...{ transform: "rotate(30deg)" }}>
+          <SVG {...{ name: "Triangle", size: Math.round(size / 10), fill: background }} />
+        </Spacing>
       </Spacing>
     );
 

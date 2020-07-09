@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from "react";
 import { generateRGB } from "../../../../utils/Color";
-import { getRandomNumber } from "../../../../utils/Array";
+
 import { parseNumberUnit } from "../../../../utils/Props";
 import Spacing from "../../../../layout/Spacing";
 
@@ -18,8 +18,8 @@ const generateBoxShadowDots = ({ count, randomColor, minLeft, minTop, maxLeft, m
   return Array.from(Array(count))
     .map(
       i =>
-        `${minLeftNumber + getRandomNumber() * (maxLeftNumber - minLeftNumber)}${maxLeftUnit} ${
-          minTopNumber + getRandomNumber() * (maxTopNumber - minTopNumber)
+        `${minLeftNumber + Math.random() * (maxLeftNumber - minLeftNumber)}${maxLeftUnit} ${
+          minTopNumber + Math.random() * (maxTopNumber - minTopNumber)
         }${maxTopUnit} ${randomColor ? generateRGB() : "white"}`
     )
     .join(",");
