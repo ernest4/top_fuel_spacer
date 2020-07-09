@@ -2,6 +2,7 @@ import React from "react";
 import Spacing from "../layout/Spacing";
 import { useSelector, useDispatch } from "react-redux";
 import * as antFarmActions from "../store/actions/antFarm";
+import SpaceShips from "./flying/background/middle/SpaceShips";
 
 const AntFarm = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const AntFarm = () => {
           </Spacing>
         );
       })}
+      <SpaceShips />
       <div style={{ height: 5000 }}>AntFarm</div>
     </Spacing>
   );
