@@ -71,6 +71,8 @@ export default Rocket;
 
 const Hover = () => {
   const name = useSelector(state => state.rocket.name);
+  const kineticEnergy = useSelector(state => state.rocket.kineticEnergy);
+  const kineticEnergyCapacity = useSelector(state => state.rocket.kineticEnergyCapacity);
 
   return (
     <Card
@@ -78,14 +80,19 @@ const Hover = () => {
       {...{
         header: {
           title: `"${name}"`,
-          subtitles: ["wip ???"],
+          subtitles: [
+            "KI boost",
+            `${Math.floor(kineticEnergy)}/${kineticEnergyCapacity} m/s`,
+            `${Math.floor((kineticEnergy / kineticEnergyCapacity) * 100)} %`,
+          ],
         },
         body: (
           <Text extraSmall>
             This is your pride and joy, the <Text primary extraSmall bold children={name} />.
             <Spacing top={1} />
             <Text secondary extraSmall bold children="Click" /> this rocket to spin up a generator
-            to convert your kinetic energy to electricity that can be used in{" "}
+            to convert your kinetic energy (<Text primary extraSmall bold children="KI" />) to
+            electricity that can be used in{" "}
             <Text primary extraSmall bold children="ion thrusters" /> for a temporary{" "}
             <Text secondary extraSmall bold children="speed boost" />.
           </Text>

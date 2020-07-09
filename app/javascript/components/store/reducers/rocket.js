@@ -9,7 +9,7 @@ const NAMES = ["Merry Way", "White Submarine", "Random Name 674", "Nyan Rocket"]
 let initialState = {
   name: getRandom(NAMES),
   kineticEnergy: 0,
-  kineticEnergyCapacity: 100,
+  kineticEnergyCapacity: 200,
   contactRange: 100,
 };
 
@@ -18,7 +18,7 @@ if (debugFlag) {
     // name: "Going Merry",
     name: getRandom(NAMES),
     kineticEnergy: 0,
-    kineticEnergyCapacity: 100,
+    kineticEnergyCapacity: 200,
     contactRange: 100,
   };
 }

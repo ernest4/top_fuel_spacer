@@ -20,6 +20,8 @@ const Score = () => {
 
   const speed = useSelector(state => state.score.speed);
 
+  const kineticEnergy = useSelector(state => state.rocket.kineticEnergy);
+
   // TODO: speed affects distance directly, accleration does not. So render acceleration elsewhere
 
   // const acceleration = useSelector(state => state.score.acceleration);
@@ -45,13 +47,12 @@ const Score = () => {
           // console.log(updateInterval.current / 1000);
           // console.log(speed * (updateInterval.current / 1000));
 
-          setDistance(distance => distance + speed * (updateInterval.current / 1000));
+          setDistance(
+            distance => distance + (speed + kineticEnergy) * (updateInterval.current / 1000)
+          );
 
           if (REDUX_UPDATE_INTERVAL < reduxUpdateInterval.current) {
-            batch(() => {
-              disptach(scoreActions.setDistance(distance));
-              // disptach(scoreActions.setSpeed(speed + acceleration * deltaTime));
-            });
+            disptach(scoreActions.setDistance(distance));
 
             reduxUpdateInterval.current = 0;
           }
@@ -67,13 +68,16 @@ const Score = () => {
     requestRef.current = window.requestAnimationFrame(updateScore);
 
     return () => window.cancelAnimationFrame(requestRef.current);
-  }, [disptach, distance, speed]);
+  }, [disptach, distance, speed, kineticEnergy]);
   // }, [disptach, distance, speed, distanceRef, speedRef]);
 
   return (
     <Container>
       <Distance children={`${formatNumberToSiUnit(distance)} meters`} />
-      <Speed secondary={secondary} children={`${formatNumberToSiUnit(speed)} meters / s`} />
+      <Speed
+        secondary={secondary}
+        children={`${formatNumberToSiUnit(speed + kineticEnergy)} meters / s`}
+      />
     </Container>
   );
 };
