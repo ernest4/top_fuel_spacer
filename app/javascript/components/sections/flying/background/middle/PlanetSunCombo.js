@@ -5,6 +5,7 @@ import Planet from "./Planet";
 import { css } from "styled-components";
 import { getRandomNumber } from "../../../../utils/Array";
 import Dots from "../back/Dots";
+import Spacing from "../../../../layout/Spacing";
 
 const PlanetSunCombo = () => {
   const absoluteTop = getRandomNumber() * 100;
@@ -39,26 +40,52 @@ const PlanetSunCombo = () => {
         }}
       >
         <Dots {...{ minLeft: "30px", minTop: "30px", maxLeft: "170px", maxTop: "170px" }} />
-        <Dots
+        <Spacing
           {...{
-            size: 2,
-            count: 10,
-            minLeft: "40px",
-            minTop: "40px",
-            maxLeft: "100px",
-            maxTop: "100px",
+            position: "absolute",
+            background: "hsla(134, 27%, 26%, 0.3)",
+            width: "80px",
+            height: "80px",
+            absoluteLeft: "18%",
+            absoluteTop: "20%",
+            borderRadius: "54px 0px 31px 31px",
+            transform: "rotate(73deg)",
           }}
-        />
-        <Dots
+        >
+          <Dots
+            {...{
+              size: 2,
+              count: 20,
+              minLeft: "10px",
+              minTop: "10px",
+              maxLeft: "70px",
+              maxTop: "70px",
+            }}
+          />
+        </Spacing>
+        <Spacing
           {...{
-            size: 3,
-            count: 20,
-            minLeft: "100px",
-            minTop: "100px",
-            maxLeft: "160px",
-            maxTop: "160px",
+            position: "absolute",
+            background: "hsla(134, 27%, 25%, 0.2)",
+            width: "80px",
+            height: "80px",
+            absoluteLeft: "44%",
+            absoluteTop: "44%",
+            borderRadius: "54px 0px 31px 31px",
+            transform: "rotate(-73deg)",
           }}
-        />
+        >
+          <Dots
+            {...{
+              size: 3,
+              count: 20,
+              minLeft: "10px",
+              minTop: "10px",
+              maxLeft: "70px",
+              maxTop: "70px",
+            }}
+          />
+        </Spacing>
       </Planet>
     </Base>
   );
