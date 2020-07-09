@@ -1,18 +1,22 @@
-import React, { memo } from "react";
+import React from "react";
 import Base from "../Base";
 import Star from "./Star";
 import Planet from "./Planet";
 import { css } from "styled-components";
-import { getRandomNumber } from "../../../../utils/Array";
+import { getRandomNumber, getRandom } from "../../../../utils/Array";
 import Dots from "../back/Dots";
 import Spacing from "../../../../layout/Spacing";
 
+const SCALES = ["1,1", "-1,1", "1,-1", "-1,-1"];
+
 const PlanetSunCombo = () => {
-  const absoluteTop = getRandomNumber() * 100;
+  const seed = getRandomNumber();
+
+  const absoluteTop = seed * 100;
   const absoluteLeft = getRandomNumber() * 12;
 
   return (
-    <Base>
+    <Base {...{ transform: `scale(${getRandom(SCALES)})` }}>
       <Star
         {...{
           background: "hsla(53, 100%, 80%, 1)",
@@ -20,6 +24,7 @@ const PlanetSunCombo = () => {
           width: "65px",
           absoluteTop: `${absoluteTop - 2}vh`,
           absoluteLeft: `${absoluteLeft + 11}vw`,
+          transform: `scale(${seed},${seed})`,
         }}
       />
       <Planet
@@ -36,6 +41,7 @@ const PlanetSunCombo = () => {
             border-bottom: 3px solid hsla(197, 100%, 90%, 1);
             border-left: 3px solid hsla(197, 100%, 90%, 1);
           `,
+          transform: `scale(${seed},${seed})`,
         }}
       >
         <Dots {...{ minLeft: "30px", minTop: "30px", maxLeft: "170px", maxTop: "170px" }} />
@@ -90,4 +96,4 @@ const PlanetSunCombo = () => {
   );
 };
 
-export default memo(PlanetSunCombo);
+export default PlanetSunCombo;
