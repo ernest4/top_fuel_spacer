@@ -28,12 +28,11 @@ const ShipCluster = ({ seed, maxShipCount, maxShipSize, minShipSize, ...props })
   const max = maxShipSize || 15;
   const size = Math.floor(seed * (max - min)) + min;
 
-  // TODO: not working ... !??!?!
-  const initialXOffset = Math.round(Math.random() * 20) - 10; // range: [-10, 10]
-
   return (
     <Spacing {...{ position: "absolute", ...props }}>
       {Array.from(Array(shipCount)).map((_, key) => {
+        const initialXOffset = Math.round(Math.random() * 40) - 20; // range: [-20, 20]
+
         return (
           <Spacing {...{ key, bottom: seed, transform: `translate(${initialXOffset}px, 0px)` }}>
             <SpaceShip {...{ size, ...getShipType() }} />
