@@ -9,7 +9,7 @@ import Spacing from "../../../../layout/Spacing";
 
 const SCALES = ["1,1", "-1,1", "1,-1", "-1,-1"];
 
-const PlanetSunCombo = () => {
+const PlanetSunCombo = ({ day }) => {
   const seed = Math.random();
 
   const absoluteTop = seed * 100;
@@ -31,15 +31,20 @@ const PlanetSunCombo = () => {
         {...{
           height: "200px",
           width: "200px",
-          background: "#264226",
+          background: day ? "#1f96c1" : "#264226",
           absoluteLeft: `${absoluteLeft}vw`,
           absoluteTop: `${absoluteTop}vh`,
-          boxShadow: "-5px 5px 5px 0px inset #e47a44, 5px -5px 5px 0px inset #01b9ff",
+          boxShadow: day
+            ? `-1px 1px 5px 0px inset #01b9ff, 0px 0px 5px 0px inset #01b9ff,
+                ${seed * 100}px -${seed * 100}px 5px 0px inset #264227`
+            : "-5px 5px 5px 0px inset #e47a44, 5px -5px 5px 0px inset #01b9ff",
           css: css`
             border-right: 3px solid hsla(20, 75%, 90%, 1);
             border-top: 3px solid hsla(20, 75%, 90%, 1);
             border-bottom: 3px solid hsla(197, 100%, 90%, 1);
             border-left: 3px solid hsla(197, 100%, 90%, 1);
+
+            ${day ? "border-color: hsla(197, 100%, 90%, 1)" : ""}
           `,
           transform: `scale(${seed},${seed})`,
         }}
@@ -48,7 +53,7 @@ const PlanetSunCombo = () => {
         <Spacing
           {...{
             position: "absolute",
-            background: "hsla(134, 27%, 26%, 0.3)",
+            background: day ? "hsla(134, 80%, 38%, 0.3)" : "hsla(134, 27%, 26%, 0.3)",
             width: "80px",
             height: "80px",
             absoluteLeft: "18%",
@@ -71,7 +76,7 @@ const PlanetSunCombo = () => {
         <Spacing
           {...{
             position: "absolute",
-            background: "hsla(134, 27%, 25%, 0.2)",
+            background: day ? "hsla(134, 80%, 38%, 0.3)" : "hsla(134, 27%, 25%, 0.2)",
             width: "80px",
             height: "80px",
             absoluteLeft: "44%",
