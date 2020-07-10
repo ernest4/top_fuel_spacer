@@ -3,6 +3,7 @@ import Spacing from "../../../../layout/Spacing";
 import { getComplementary, generateHSLA } from "../../../../utils/Color";
 import SVG from "../../../../svg/SVG";
 import Beam from "../../rocket/Beam";
+import { css } from "styled-components";
 
 // NOTE: initial direction for ships is LEFTward
 const SpaceShip = ({ size, box, circle, triangle, ...props }) => {
@@ -48,7 +49,7 @@ const Trail = ({ seed, size, triangle }) => {
     <Beam
       {...{
         background: seed < 0.5 ? "hsl(200, 75%, 58%)" : "#fec200",
-        width: `${size / 4}px`,
+        width: `${size / 8}px`,
         intensityRatio: seed + 0.5,
         absoluteTop: "36%",
         absoluteLeft: "100%",

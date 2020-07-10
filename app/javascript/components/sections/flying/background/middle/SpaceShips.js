@@ -3,6 +3,7 @@ import Base from "../Base";
 import { getRandom } from "../../../../utils/Array";
 import SpaceShip from "./SpaceShip";
 import Spacing from "../../../../layout/Spacing";
+import { css, keyframes } from "styled-components";
 
 const SpaceShips = () => {
   return (
@@ -31,11 +32,28 @@ const ShipCluster = ({ seed, maxShipCount, maxShipSize, minShipSize, ...props })
   return (
     <Spacing {...{ position: "absolute", ...props }}>
       {Array.from(Array(shipCount)).map((_, key) => {
-        const initialXOffset = Math.round(Math.random() * 40) - 20; // range: [-20, 20]
+        const seed2 = Math.random();
+        const initialXOffset = Math.round(seed2 * 40) - 20; // range: [-20, 20]
 
         return (
           <Spacing {...{ key, bottom: seed, transform: `translate(${initialXOffset}px, 0px)` }}>
-            <SpaceShip {...{ size, ...getShipType() }} />
+            <SpaceShip
+              {...{
+                size,
+                ...getShipType(),
+                css: css`
+                  animation-name: ${keyframes`
+                      0% { transform: translate(0vw, 0px); }
+                      100%  { transform: translate(-100vw, 0px); }
+                  `};
+
+                  animation-timing-function: linear;
+                  animation-iteration-count: 1;
+                  animation-fill-mode: both;
+                  animation-duration: ${seed2 * 20 + 10}s;
+                `,
+              }}
+            />
           </Spacing>
         );
       })}
