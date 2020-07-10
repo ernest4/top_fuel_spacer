@@ -14,7 +14,18 @@ const SpaceShips = () => {
         const absoluteLeft = `${seed * 33}vw`;
         const absoluteTop = `${Math.random() * 100}vh`;
 
-        return <ShipCluster {...{ key: seed, seed, maxShipCount: 6, absoluteLeft, absoluteTop }} />;
+        return (
+          <ShipCluster
+            {...{
+              key: seed,
+              seed,
+              maxShipCount: 6,
+              absoluteLeft,
+              absoluteTop,
+              transform: `rotate(${0.5 < seed ? "-" : ""}${seed * 80}deg)`,
+            }}
+          />
+        );
       })}
     </Base>
   );
