@@ -10,36 +10,34 @@ import { getRandom } from "../../utils/Array";
 //   { name: "meteor", distanceToRocket: 75 },
 // ];
 
-const generatePlanet = () => {
-  return { type: "planet", name: "planet1", distanceToRocket: 0 };
+const generatePlanet = ({ distance, contactRange }) => {
+  return { type: "planet", name: "planet1", distanceToRocket: distance - 0 };
 };
 
-const generateSatelite = () => {
-  return { type: "satelite", name: "satelite1", distanceToRocket: 25 };
+const generateSatelite = ({ distance, contactRange }) => {
+  return { type: "satelite", name: "satelite1", distanceToRocket: distance - 25 };
 };
 
-const generateStation = () => {
-  return { type: "station", name: "station1", distanceToRocket: 50 };
+const generateStation = ({ distance, contactRange }) => {
+  return { type: "station", name: "station1", distanceToRocket: distance - 50 };
 };
 
-const generateMeteor = () => {
-  return { type: "meteor", name: "meteor1", distanceToRocket: 75 };
+const generateMeteor = ({ distance, contactRange }) => {
+  return { type: "meteor", name: "meteor1", distanceToRocket: distance - 75 };
 };
 
 const GENERATORS = [generatePlanet, generateSatelite, generateStation, generateMeteor];
 
-const generateItinerary = count => Array.from(Array(count || 4)).map(() => getRandom(GENERATORS)());
+const generateItinerary = ({ count, ...params }) => {
+  return Array.from(Array(count))
+    .map(() => getRandom(GENERATORS)({ count, ...params }))
+    .sort((a, b) => a.distanceToRocket - b.distanceToRocket);
+};
 
 const initialState = {
   currentLocationId: null,
-  locations: generateItinerary(),
+  locations: generateItinerary({ count: 4 }),
 };
-
-// const otherReducer = handleActions({
-//   ACTION_NAME: produce((state, action) => {
-//     state.something = action.payload;
-//   })
-// }, initialState);
 
 const locationsReducer = handleActions(
   {

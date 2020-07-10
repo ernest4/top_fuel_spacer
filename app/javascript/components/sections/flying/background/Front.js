@@ -1,25 +1,14 @@
 import React from "react";
-import Spacing from "../../../layout/Spacing";
+import Scroller from "./Scroller";
+import { useSelector } from "react-redux";
+import frontComponents from "./front/index";
 
-// TODO: use Scroller !!!
+const components = frontComponents.slice(1, frontComponents.length);
+
 const Front = () => {
-  return (
-    <Spacing
-      {...{
-        position: "absolute",
-        width: "33vw",
-        height: "100vh",
-        // absoluteTop: "-100vh",
-        absoluteTop: "-25vh",
-        background: "blue",
-        opacity: 0.5,
-        // background: red;
-        // z-index: -1;
-      }}
-    >
-      <div>some planet here etc.</div>
-    </Spacing>
-  );
+  const running = useSelector(state => state.game.running);
+
+  // return <Scroller inOrded {...{ play: running, duration: 40, components }} />;
 };
 
 export default Front;

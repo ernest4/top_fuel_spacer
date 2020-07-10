@@ -11,7 +11,14 @@ const Back = () => {
 
   return (
     <Scroller
-      {...{ play: running, duration: 20, components, initialComponent: backComponents[0] }}
+      {...{
+        play: running,
+        duration: 20,
+        components,
+        initialComponent: backComponents[0],
+        overflow: "hidden",
+        height: "100vh",
+      }}
     />
   );
 };

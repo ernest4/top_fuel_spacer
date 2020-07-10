@@ -9,6 +9,7 @@ const Scroller = ({
   onScrolled: onScrolledCallback,
   initialComponent,
   components,
+  ...props
 }) => {
   const [nextComponent, setNextComponent] = useState(components[1]);
   const [currentComponent, setCurrentComponent] = useState(initialComponent || components[0]);
@@ -20,6 +21,7 @@ const Scroller = ({
     if (onScrolledCallback) onScrolledCallback();
   };
 
+  // TODO: need to think about this, how to scroll without exceeding page bounds and eliminate pop in ?!?!
   return (
     <Spacing
       {...{
@@ -46,6 +48,7 @@ const Scroller = ({
         children: [nextComponent, currentComponent].map((component, key) => (
           <Spacing key={key} children={component} />
         )),
+        ...props,
       }}
     />
   );

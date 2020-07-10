@@ -3,20 +3,28 @@ import Spacing, { SPACING } from "../../layout/Spacing";
 import { setAlpha } from "../../utils/Color";
 import useTheme from "../../hooks/useTheme";
 import { css } from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { REDUX_UPDATE_INTERVAL } from "./Score";
 import Card from "../../layout/Card";
 import Text from "../../layout/Text";
+import { generateNextLocations } from "../../store/actions/locations";
 
 const Itinerary = () => {
+  const dispatch = useDispatch();
+
   const { secondary } = useTheme();
 
   const distance = useSelector(state => state.score.distance);
 
   const locations = useSelector(state => state.locations.locations);
 
+  const speed = useSelector(state => state.rocket.speed);
+  const contactRange = useSelector(state => state.rocket.contactRange);
+
   useEffect(() => {
+    // dispatch(generateNextLocations());
     // TODO: update distance to locations
+    // locations.map(location => {});
   }, [distance]);
 
   return (
@@ -43,6 +51,16 @@ const Itinerary = () => {
       }}
     >
       {locations.map(({ name, distanceToRocket }, key) => {
+        const yDisplacement = ((distanceToRocket - distance) / contactRange) * 100;
+
+        {
+          /* If last element is outside contact range, generate next locations */
+          /* TODO: not working ?!??!?! */
+        }
+        if (key === locations.length - 1 && 100 < yDisplacement) {
+          dispatch(generateNextLocations({ count: 4, distance }));
+        }
+
         return (
           <Spacing
             {...{
@@ -53,7 +71,7 @@ const Itinerary = () => {
               // TODO: the distance transform needs to be tweaked to account for changing distances and speed
               css: css`
                 transition: all ${(REDUX_UPDATE_INTERVAL / 1000) * 1.5}s linear;
-                transform: translate(0, ${distanceToRocket + distance / 100}vh);
+                transform: translate(0, ${yDisplacement}vh);
               `,
               children: name,
             }}
