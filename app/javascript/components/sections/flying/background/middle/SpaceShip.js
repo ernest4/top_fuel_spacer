@@ -49,6 +49,7 @@ const Trail = ({ seed, size, triangle }) => {
       {...{
         background: seed < 0.5 ? "hsl(200, 75%, 58%)" : "#fec200",
         width: `${size / 4}px`,
+        intensityRatio: seed + 0.5,
         absoluteTop: "36%",
         absoluteLeft: "100%",
         transform: triangle ? "rotate(-120deg)" : "rotate(-90deg)",
