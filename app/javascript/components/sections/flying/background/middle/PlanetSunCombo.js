@@ -9,8 +9,10 @@ import Spacing from "../../../../layout/Spacing";
 
 const SCALES = ["1,1", "-1,1", "1,-1", "-1,-1"];
 
-const PlanetSunCombo = ({ day }) => {
+const PlanetSunCombo = ({ day: dayOverride }) => {
   const seed = Math.random();
+
+  const day = dayOverride || seed < 0.5;
 
   const absoluteTop = seed * 100;
   const absoluteLeft = Math.random() * 12;
