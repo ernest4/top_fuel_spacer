@@ -27,6 +27,8 @@ const ShipCluster = ({ seed, maxShipCount, maxShipSize, minShipSize, ...props })
   const min = minShipSize || 15;
   const max = maxShipSize || 15;
   const size = Math.floor(seed * (max - min)) + min;
+
+  // TODO: not working ... !??!?!
   const initialXOffset = Math.round(Math.random() * 20) - 10; // range: [-10, 10]
 
   return (
