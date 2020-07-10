@@ -10,7 +10,7 @@ const Line = ({ size, vertical, ...props }) => {
     <Spacing
       {...{
         background,
-        height: vertical ? "auto" : `${size || 1}px`,
+        height: vertical ? "100%" : `${size || 1}px`,
         width: vertical ? `${size || 1}px` : "100%",
         ...props,
       }}
