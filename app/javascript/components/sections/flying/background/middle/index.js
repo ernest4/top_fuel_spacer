@@ -8,4 +8,5 @@ import PlanetSunCombo from "./PlanetSunCombo";
 
 // TODO: MORE !!
 
-export default [Clear, Planets, Stars, Asteroids, SpaceStations, SpaceShips, PlanetSunCombo];
+// export default [Clear, Planets, Stars, Asteroids, SpaceStations, SpaceShips, PlanetSunCombo];
+export default [Clear, Planets, Stars, SpaceShips, PlanetSunCombo];

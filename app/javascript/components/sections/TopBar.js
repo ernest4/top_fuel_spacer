@@ -1,13 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Spacing from "../layout/Spacing";
-import Text from "../layout/Text";
 import ThemeSelect from "./topBar/ThemeSelect";
 import Button from "../misc/Button";
+import Development from "./topBar/Development";
 
 const TopBar = () => {
-  const version = useSelector(state => state.game.version);
-
   const currentThemeId = useSelector(state => state.theme.currentThemeId);
   const closest = useSelector(state => state.theme.themes[currentThemeId]?.color.closest);
 
@@ -30,7 +28,7 @@ const TopBar = () => {
       <Spacing horizontal center>
         <ThemeSelect />
         <Spacing left={1} />
-        <Text extraSmall children={`Version ${version}`} />
+        <Development />
       </Spacing>
     </Spacing>
   );

@@ -6,7 +6,7 @@ import Text from "../layout/Text";
 // import { setAlpha } from "../utils/Color";
 import { css } from "styled-components";
 
-const Button = ({ right, innerProps, ...props }) => {
+const Button = ({ right, innerProps, link, ...props }) => {
   const [hover, setHover] = useState(false);
   // TODO: extract this into const {primary, secondary, ...} = useTheme() hook? not the most efficient as it will listen to every color,
   // but on the other hand we dont expect theme to be updated live during gamplay (custom themes not withstadning).
@@ -44,10 +44,13 @@ const Button = ({ right, innerProps, ...props }) => {
   //   />
   // );
 
+  const onLink = () => window.open(link, "_blank");
+
   return (
     <Container
       pointer
       {...{
+        onClick: link ? onLink : null,
         ...props,
         ...getBackground({ hover, color, ...props }),
         transform: `skew(${right ? "-" : ""}30deg, 0deg)`,
