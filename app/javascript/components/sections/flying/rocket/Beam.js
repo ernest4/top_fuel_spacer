@@ -1,7 +1,9 @@
 import React from "react";
 import Spacing from "../../../layout/Spacing";
 
-const Beam = ({ background, intensityRatio, ...props }) => {
+const Beam = ({ background, intensityRatio: intensityRatioOverride, ...props }) => {
+  const intensityRatio = isNaN(`${intensityRatioOverride}`) ? 1 : intensityRatioOverride;
+
   return (
     <Spacing
       {...{
