@@ -9,6 +9,7 @@ const Scroller = ({
   onScrolled: onScrolledCallback,
   initialComponent,
   components,
+  finalScrollPosition,
   ...props
 }) => {
   const [nextComponent, setNextComponent] = useState(components[1]);
@@ -37,10 +38,10 @@ const Scroller = ({
           css`
             animation-name: ${keyframes`
               0% { transform: translate(0, 0); }
-              100% { transform: translate(0, 100vh); }
+              100% { transform: translate(0, ${finalScrollPosition || "100vh"}); }
             `};
 
-            animation-duration: ${duration}s;
+            animation-duration: ${duration || 20}s;
             animation-timing-function: linear;
             animation-iteration-count: 1;
           `,

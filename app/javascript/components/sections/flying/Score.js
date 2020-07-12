@@ -90,6 +90,7 @@ const UPDATE_INTERVAL = 50; // 20fps
 const Container = styled.div`
   display: flex;
   position: fixed;
+  align-items: center;
   flex-direction: column;
   top: 15vh;
   left: 0px;

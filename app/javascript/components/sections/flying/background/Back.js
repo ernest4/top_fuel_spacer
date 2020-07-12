@@ -9,11 +9,7 @@ const components = backComponents.slice(1, backComponents.length);
 const Back = () => {
   const running = useSelector(state => state.game.running);
 
-  return (
-    <Scroller
-      {...{ play: running, duration: 20, components, initialComponent: backComponents[0] }}
-    />
-  );
+  return <Scroller {...{ play: running, components, initialComponent: backComponents[0] }} />;
 };
 
 export default Back;
