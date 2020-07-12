@@ -11,19 +11,27 @@ import { getRandom } from "../../utils/Array";
 // ];
 
 const generatePlanet = ({ distance, contactRange }) => {
-  return { type: "planet", name: `planet_${Math.random()}`, distanceToRocket: distance - 0 };
+  const distanceToRocket = distance + contactRange * 0.0;
+
+  return { type: "planet", name: `planet_${distanceToRocket}`, distanceToRocket };
 };
 
 const generateSatelite = ({ distance, contactRange }) => {
-  return { type: "satelite", name: `satelite_${Math.random()}`, distanceToRocket: distance - 25 };
+  const distanceToRocket = distance + contactRange * 0.25;
+
+  return { type: "satelite", name: `satelite_${distanceToRocket}`, distanceToRocket };
 };
 
 const generateStation = ({ distance, contactRange }) => {
-  return { type: "station", name: `station_${Math.random()}`, distanceToRocket: distance - 50 };
+  const distanceToRocket = distance + contactRange * 0.5;
+
+  return { type: "station", name: `station_${distanceToRocket}`, distanceToRocket };
 };
 
 const generateMeteor = ({ distance, contactRange }) => {
-  return { type: "meteor", name: `meteor_${Math.random()}`, distanceToRocket: distance - 75 };
+  const distanceToRocket = distance + contactRange * 0.75;
+
+  return { type: "meteor", name: `meteor_${distanceToRocket}`, distanceToRocket };
 };
 
 const GENERATORS = [generatePlanet, generateSatelite, generateStation, generateMeteor];
@@ -31,7 +39,7 @@ const GENERATORS = [generatePlanet, generateSatelite, generateStation, generateM
 const generateItinerary = ({ count, ...params }) => {
   return Array.from(Array(count))
     .map(() => getRandom(GENERATORS)({ count, ...params }))
-    .sort((a, b) => a.distanceToRocket - b.distanceToRocket);
+    .sort((a, b) => b.distanceToRocket - a.distanceToRocket);
 };
 
 const initialState = {
@@ -45,7 +53,8 @@ const locationsReducer = handleActions(
       state.currentLocationId = payload;
     }),
     GENERATE_NEXT_LOCATIONS: produce((state, { payload }) => {
-      state.locations = [...generateItinerary(payload), ...state.locations.slice(0, 4)];
+      // state.locations = [...generateItinerary(payload), ...state.locations.slice(0, 4)];
+      state.locations = [...generateItinerary(payload)];
     }),
   },
   initialState

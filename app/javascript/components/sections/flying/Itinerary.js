@@ -25,9 +25,10 @@ const Itinerary = () => {
   useEffect(() => {
     if (!(0 < distance)) return;
     if (locations?.length !== 0) return;
+    if (!(0 < contactRange)) return;
 
-    dispatch(generateNextLocations({ count: 4, distance }));
-  }, [distance, dispatch, locations]);
+    dispatch(generateNextLocations({ count: 4, distance, contactRange }));
+  }, [distance, dispatch, locations, contactRange]);
 
   useEffect(() => {
     // dispatch(generateNextLocations());
@@ -64,15 +65,13 @@ const Itinerary = () => {
       }}
     >
       {locations.map(({ name, distanceToRocket }, key) => {
-        const yDisplacement = ((distance - distanceToRocket) / contactRange) * 100;
-
+        const yDisplacement = (1 - (distanceToRocket - distance) / contactRange) * 100;
         {
-          /* If last element is outside contact range, generate next locations */
-          /* TODO: not working ?!??!?! */
+          /* const absoluteTop =  */
         }
+
         if (key === 0 && 100 < yDisplacement) {
-          {/* debugger; */}
-          dispatch(generateNextLocations({ count: 4, distance }));
+          dispatch(generateNextLocations({ count: 4, distance, contactRange }));
         }
 
         return (
@@ -82,10 +81,11 @@ const Itinerary = () => {
               position: "absolute",
               width: "70px",
               background: "green",
+              // absoluteTop,
               // TODO: the distance transform needs to be tweaked to account for changing distances and speed
               css: css`
-                transition: all ${(REDUX_UPDATE_INTERVAL / 1000) * 1.5}s linear;
-                transform: translate(0, ${yDisplacement}vh);
+                ${"" /* transition: all ${(REDUX_UPDATE_INTERVAL / 1000) * 1.5}s linear; */}
+                transform: translate(0, ${yDisplacement - 100}vh);
               `,
               children: name,
             }}

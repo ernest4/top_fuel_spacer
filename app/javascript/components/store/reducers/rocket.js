@@ -10,7 +10,7 @@ let initialState = {
   name: getRandom(NAMES),
   kineticEnergy: 0,
   kineticEnergyCapacity: 200,
-  contactRange: 1000,
+  contactRange: 4000,
 };
 
 if (debugFlag) {
@@ -19,7 +19,7 @@ if (debugFlag) {
     name: getRandom(NAMES),
     kineticEnergy: 0,
     kineticEnergyCapacity: 200,
-    contactRange: 1000,
+    contactRange: 4000,
   };
 }
 
