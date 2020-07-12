@@ -1,4 +1,4 @@
-import React, { forwardRef, memo, useState, useEffect, useRef } from "react";
+import React, { forwardRef, memo, useEffect, useRef } from "react";
 import styled, { css, keyframes } from "styled-components";
 import Tippy from "@tippyjs/react";
 import { followCursor } from "tippy.js";
@@ -174,9 +174,11 @@ const BubbleContainer = ({
               children: children || bubbleTrigger,
               css: css`
                 animation-name: ${keyframes`
-                0% { transform: scale(0); }
-                50% { transform: scale(1); }
-                100%  { transform: scale(0); }
+                0% { transform: scale(0) translate(0vw, 0vh); }
+                10% { transform: scale(0.1) translate(10vw, 0vh); }
+                50% { transform: scale(0.5) translate(10vw, -15vh); }
+                99%  { transform: scale(1) translate(10vw, -30vh); }
+                100%  { transform: scale(0) translate(10vw, -30vh); }
               `};
 
                 ${"" /* animation-timing-function: cubic-bezier(0.74, 0.07, 1, -0.19); */}
