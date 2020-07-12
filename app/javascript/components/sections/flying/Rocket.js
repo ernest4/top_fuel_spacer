@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Spacing from "../../layout/Spacing";
 import { useSelector, useDispatch } from "react-redux";
 import { css } from "styled-components";
@@ -15,12 +15,15 @@ import Fire from "./rocket/Fire";
 const Rocket = () => {
   const dispatch = useDispatch();
 
+  const [bubbleTrigger, setBubbleTrigger] = useState();
+
   const currentStageId = useSelector(state => state.launchSequence.currentStageId);
 
   const running = useSelector(state => state.game.running);
 
   const kineticEnergy = useSelector(state => state.rocket.kineticEnergy);
   const kineticEnergyCapacity = useSelector(state => state.rocket.kineticEnergyCapacity);
+
   const onAddKineticEnergy = () => {
     if (!running) return;
 
@@ -30,7 +33,10 @@ const Rocket = () => {
       newKineticEnergy < kineticEnergyCapacity ? newKineticEnergy : kineticEnergyCapacity;
 
     dispatch(rocketActions.setKineticEnergy(newKineticEnergy));
+    setBubbleTrigger({}); // different object every time...
   };
+
+  // const onBubbleAnimationEnd = () => setBubbleTrigger(false);
 
   return (
     <Spacing
@@ -51,8 +57,11 @@ const Rocket = () => {
           border-right: 2px solid #e47a44;
         `,
         hover: <Hover />,
-        hoverProps: { placement: "right" },
+        hoverProps: { placement: "right" }, // causes rerender every time !!!
         z: 1,
+        bubble: <div>TESTY</div>,
+        bubbleTrigger,
+        // onBubbleAnimationEnd,
       }}
     >
       <Head />

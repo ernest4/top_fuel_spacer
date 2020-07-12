@@ -77,16 +77,14 @@ const Itinerary = () => {
         return (
           <Spacing
             {...{
-              key,
+              // key,
               position: "absolute",
               width: "70px",
               background: "green",
               // absoluteTop,
               // TODO: the distance transform needs to be tweaked to account for changing distances and speed
-              css: css`
-                ${"" /* transition: all ${(REDUX_UPDATE_INTERVAL / 1000) * 1.5}s linear; */}
-                transform: translate(0, ${yDisplacement - 100}vh);
-              `,
+              // transition: `transform ${(REDUX_UPDATE_INTERVAL / 1000) * 1.5}s linear`,
+              transform: `translate(0, ${yDisplacement - 100}vh)`,
               children: name,
             }}
           />

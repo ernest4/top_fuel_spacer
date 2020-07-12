@@ -1,41 +1,81 @@
-import React, { forwardRef, memo } from "react";
-import styled, { css } from "styled-components";
+import React, { forwardRef, memo, useState, useEffect, useRef } from "react";
+import styled, { css, keyframes } from "styled-components";
 import Tippy from "@tippyjs/react";
 import { followCursor } from "tippy.js";
 import { useSelector } from "react-redux";
 
 const plugins = [followCursor];
 
-const Spacing = forwardRef(({ hover, interactiveHover, hoverProps, ...props }, ref) => {
-  const currentThemeId = useSelector(state => state.theme.currentThemeId);
-  const primary = useSelector(state => state.theme.themes[currentThemeId]?.color.primary);
-  const canFollowCursor = useSelector(state => state.settings.graphics.hover.followCursor);
+const Spacing = forwardRef(
+  (
+    {
+      hover,
+      interactiveHover,
+      hoverProps,
+      bubble,
+      bubbleTrigger,
+      onBubbleAnimationEnd: onBubbleAnimationEndCallback,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    const currentThemeId = useSelector(state => state.theme.currentThemeId);
+    const primary = useSelector(state => state.theme.themes[currentThemeId]?.color.primary);
+    const canFollowCursor = useSelector(state => state.settings.graphics.hover.followCursor);
 
-  if (hover || interactiveHover) {
+    if (hover || interactiveHover) {
+      return (
+        <Tippy
+          // interactiveBorder: 30,
+          // className="sv-navbar-menu"
+          // distance={33}
+          // offset={100}
+          // maxWidth={1000}
+          plugins={plugins}
+          interactive={!!interactiveHover}
+          placement={"top"}
+          trigger={"mouseenter"} // 'for more options: https://atomiks.github.io/tippyjs/v6/all-props/#trigger'
+          duration={0}
+          arrow={false}
+          appendTo={window.document.body}
+          content={hover || interactiveHover}
+          children={
+            <Container primary={primary} {...props} ref={ref}>
+              {bubble && (
+                <BubbleContainer
+                  {...{
+                    bubbleTrigger,
+                    onBubbleAnimationEnd: onBubbleAnimationEndCallback,
+                    children: bubble,
+                  }}
+                />
+              )}
+              {children}
+            </Container>
+          }
+          {...hoverProps}
+          followCursor={canFollowCursor ? checkHoverProps(hoverProps) : false}
+        />
+      );
+    }
+
     return (
-      <Tippy
-        // interactiveBorder: 30,
-        // className="sv-navbar-menu"
-        // distance={33}
-        // offset={100}
-        // maxWidth={1000}
-        plugins={plugins}
-        interactive={!!interactiveHover}
-        placement={"top"}
-        trigger={"mouseenter"} // 'for more options: https://atomiks.github.io/tippyjs/v6/all-props/#trigger'
-        duration={0}
-        arrow={false}
-        appendTo={window.document.body}
-        content={hover || interactiveHover}
-        children={<Container primary={primary} {...props} ref={ref} />}
-        {...hoverProps}
-        followCursor={canFollowCursor ? checkHoverProps(hoverProps) : false}
-      />
+      <Container {...props} ref={ref}>
+        {bubble && (
+          <BubbleContainer
+            {...{
+              bubbleTrigger,
+              onBubbleAnimationEnd: onBubbleAnimationEndCallback,
+              children: bubble,
+            }}
+          />
+        )}
+        {children}
+      </Container>
     );
   }
-
-  return <Container {...props} ref={ref} />;
-});
+);
 
 export default memo(Spacing);
 
@@ -101,3 +141,55 @@ const Container = memo(styled.div`
 
   ${({ css }) => css};
 `);
+
+const BubbleContainer = ({
+  bubbleTrigger,
+  onBubbleAnimationEnd: onBubbleAnimationEndCallback,
+  duration,
+  children,
+}) => {
+  const bubblesRef = useRef([]);
+
+  useEffect(() => {
+    bubblesRef.current = [...bubblesRef.current, bubbleTrigger];
+  }, [bubbleTrigger]);
+
+  const onDisappear = index => {
+    if (index === bubblesRef.current.length - 1) {
+      bubblesRef.current = bubblesRef.current.splice(index, 1);
+    }
+
+    // console.log(bubblesRef.current);
+    if (onBubbleAnimationEndCallback) onBubbleAnimationEndCallback();
+  };
+
+  return (
+    <>
+      {bubblesRef.current.map((bubbleTrigger, index) => {
+        return (
+          <Spacing
+            {...{
+              position: "absolute",
+              margin: "100% 0%",
+              children: children || bubbleTrigger,
+              css: css`
+                animation-name: ${keyframes`
+                0% { transform: scale(0); }
+                50% { transform: scale(1); }
+                100%  { transform: scale(0); }
+              `};
+
+                ${"" /* animation-timing-function: cubic-bezier(0.74, 0.07, 1, -0.19); */}
+                animation-timing-function: linear;
+                animation-iteration-count: 1;
+                animation-fill-mode: both;
+                animation-duration: ${duration || 3}s;
+              `,
+              onAnimationEnd: () => onDisappear(index),
+            }}
+          />
+        );
+      })}
+    </>
+  );
+};
