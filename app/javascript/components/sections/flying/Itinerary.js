@@ -21,11 +21,24 @@ const Itinerary = () => {
   const speed = useSelector(state => state.rocket.speed);
   const contactRange = useSelector(state => state.rocket.contactRange);
 
+  // Generate initial set of locations
+  useEffect(() => {
+    if (!(0 < distance)) return;
+    if (locations?.length !== 0) return;
+
+    dispatch(generateNextLocations({ count: 4, distance }));
+  }, [distance, dispatch, locations]);
+
   useEffect(() => {
     // dispatch(generateNextLocations());
     // TODO: update distance to locations
     // locations.map(location => {});
   }, [distance]);
+
+  useEffect(() => {
+    // DEBUGGING
+    console.log(locations);
+  }, [locations]);
 
   return (
     <Spacing
@@ -51,13 +64,14 @@ const Itinerary = () => {
       }}
     >
       {locations.map(({ name, distanceToRocket }, key) => {
-        const yDisplacement = ((distanceToRocket - distance) / contactRange) * 100;
+        const yDisplacement = ((distance - distanceToRocket) / contactRange) * 100;
 
         {
           /* If last element is outside contact range, generate next locations */
           /* TODO: not working ?!??!?! */
         }
-        if (key === locations.length - 1 && 100 < yDisplacement) {
+        if (key === 0 && 100 < yDisplacement) {
+          {/* debugger; */}
           dispatch(generateNextLocations({ count: 4, distance }));
         }
 

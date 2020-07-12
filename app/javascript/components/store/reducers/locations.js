@@ -11,18 +11,22 @@ import { getRandom } from "../../utils/Array";
 // ];
 
 const generatePlanet = ({ distance, contactRange }) => {
+  // debugger;
   return { type: "planet", name: "planet1", distanceToRocket: distance - 0 };
 };
 
 const generateSatelite = ({ distance, contactRange }) => {
+  // debugger;
   return { type: "satelite", name: "satelite1", distanceToRocket: distance - 25 };
 };
 
 const generateStation = ({ distance, contactRange }) => {
+  // debugger;
   return { type: "station", name: "station1", distanceToRocket: distance - 50 };
 };
 
 const generateMeteor = ({ distance, contactRange }) => {
+  // debugger;
   return { type: "meteor", name: "meteor1", distanceToRocket: distance - 75 };
 };
 
@@ -36,7 +40,7 @@ const generateItinerary = ({ count, ...params }) => {
 
 const initialState = {
   currentLocationId: null,
-  locations: generateItinerary({ count: 4 }),
+  locations: [],
 };
 
 const locationsReducer = handleActions(
