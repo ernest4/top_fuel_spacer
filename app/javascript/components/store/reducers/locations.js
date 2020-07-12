@@ -11,23 +11,19 @@ import { getRandom } from "../../utils/Array";
 // ];
 
 const generatePlanet = ({ distance, contactRange }) => {
-  // debugger;
-  return { type: "planet", name: "planet1", distanceToRocket: distance - 0 };
+  return { type: "planet", name: `planet_${Math.random()}`, distanceToRocket: distance - 0 };
 };
 
 const generateSatelite = ({ distance, contactRange }) => {
-  // debugger;
-  return { type: "satelite", name: "satelite1", distanceToRocket: distance - 25 };
+  return { type: "satelite", name: `satelite_${Math.random()}`, distanceToRocket: distance - 25 };
 };
 
 const generateStation = ({ distance, contactRange }) => {
-  // debugger;
-  return { type: "station", name: "station1", distanceToRocket: distance - 50 };
+  return { type: "station", name: `station_${Math.random()}`, distanceToRocket: distance - 50 };
 };
 
 const generateMeteor = ({ distance, contactRange }) => {
-  // debugger;
-  return { type: "meteor", name: "meteor1", distanceToRocket: distance - 75 };
+  return { type: "meteor", name: `meteor_${Math.random()}`, distanceToRocket: distance - 75 };
 };
 
 const GENERATORS = [generatePlanet, generateSatelite, generateStation, generateMeteor];
@@ -49,7 +45,7 @@ const locationsReducer = handleActions(
       state.currentLocationId = payload;
     }),
     GENERATE_NEXT_LOCATIONS: produce((state, { payload }) => {
-      state.locations = [...generateItinerary(payload), ...state.locations];
+      state.locations = [...generateItinerary(payload), ...state.locations.slice(0, 4)];
     }),
   },
   initialState
