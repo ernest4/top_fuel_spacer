@@ -21,11 +21,11 @@ const TopBar = () => {
       <Spacing horizontal align="center">
         <Text extraSmall children="Top Fuel Spacer ©" />
         <Spacing left={1} />
-        <Line vertical transform="rotate(-30deg)" />
+        <Line vertical height="100%" transform="rotate(-30deg)" />
         <Spacing left={1} />
         <Text extraSmall children={`OutlierStudio: ${new Date().getFullYear()}`} />
         <Spacing left={1} />
-        <Line vertical transform="rotate(-30deg)" />
+        <Line vertical height="100%" transform="rotate(-30deg)" />
         <Spacing left={1} />
         <Button tertiary small link="https://twitter.com/StudioOutlier" children="Twitter" />
         <Spacing left={1} />
