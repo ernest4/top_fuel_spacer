@@ -57,9 +57,9 @@ const Rocket = () => {
     >
       <Head />
       <StabilizerFins />
-      <Shaft steam={currentStageId < 2 ? 1 : null} />
+      <Shaft steam={!running && currentStageId < 2 ? 1 : null} />
       <IonThrusters />
-      <Shaft steam={currentStageId < 2 ? 2 : null} />
+      <Shaft steam={!running && currentStageId < 2 ? 2 : null} />
       <Shaft />
       <MainThurster />
       {running && <Fire />}

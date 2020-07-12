@@ -6,9 +6,13 @@ import LaunchOrchestrator from "./launchSequence/LaunchOrchestrator";
 import LeftSupportPlatform from "./launchSequence/LeftSupportPlatform";
 import RightSupportPlatform from "./launchSequence/RightSupportPlatform";
 import Ground from "./launchSequence/Ground";
+import { useSelector } from "react-redux";
 
-// TODO: steam comming from rocket!!
 const LaunchSequence = () => {
+  const running = useSelector(state => state.game.running);
+
+  if (running) return <Rocket />;
+
   return (
     <Spacing>
       <LeftSupportPlatform />
