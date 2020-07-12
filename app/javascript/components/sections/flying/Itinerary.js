@@ -70,7 +70,7 @@ const Itinerary = () => {
           /* const absoluteTop =  */
         }
 
-        if (key === 0 && 100 < yDisplacement) {
+        if (key === 0 && 200 < yDisplacement) {
           dispatch(generateNextLocations({ count: 4, distance, contactRange }));
         }
 

@@ -10,35 +10,35 @@ import { getRandom } from "../../utils/Array";
 //   { name: "meteor", distanceToRocket: 75 },
 // ];
 
-const generatePlanet = ({ distance, contactRange }) => {
-  const distanceToRocket = distance + contactRange * 0.0;
+const generatePlanet = ({ index, count, distance, contactRange }) => {
+  const distanceToRocket = distance + contactRange * (index / count);
 
-  return { type: "planet", name: `planet_${distanceToRocket}`, distanceToRocket };
+  return { type: "planet", name: `planet_${Math.round(distanceToRocket)}`, distanceToRocket };
 };
 
-const generateSatelite = ({ distance, contactRange }) => {
-  const distanceToRocket = distance + contactRange * 0.25;
+const generateSatelite = ({ index, count, distance, contactRange }) => {
+  const distanceToRocket = distance + contactRange * (index / count);
 
-  return { type: "satelite", name: `satelite_${distanceToRocket}`, distanceToRocket };
+  return { type: "satelite", name: `satelite_${Math.round(distanceToRocket)}`, distanceToRocket };
 };
 
-const generateStation = ({ distance, contactRange }) => {
-  const distanceToRocket = distance + contactRange * 0.5;
+const generateStation = ({ index, count, distance, contactRange }) => {
+  const distanceToRocket = distance + contactRange * (index / count);
 
-  return { type: "station", name: `station_${distanceToRocket}`, distanceToRocket };
+  return { type: "station", name: `station_${Math.round(distanceToRocket)}`, distanceToRocket };
 };
 
-const generateMeteor = ({ distance, contactRange }) => {
-  const distanceToRocket = distance + contactRange * 0.75;
+const generateMeteor = ({ index, count, distance, contactRange }) => {
+  const distanceToRocket = distance + contactRange * (index / count);
 
-  return { type: "meteor", name: `meteor_${distanceToRocket}`, distanceToRocket };
+  return { type: "meteor", name: `meteor_${Math.round(distanceToRocket)}`, distanceToRocket };
 };
 
 const GENERATORS = [generatePlanet, generateSatelite, generateStation, generateMeteor];
 
 const generateItinerary = ({ count, ...params }) => {
   return Array.from(Array(count))
-    .map(() => getRandom(GENERATORS)({ count, ...params }))
+    .map((_, index) => getRandom(GENERATORS)({ index, count, ...params }))
     .sort((a, b) => b.distanceToRocket - a.distanceToRocket);
 };
 
