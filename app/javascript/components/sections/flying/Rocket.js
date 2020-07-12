@@ -24,10 +24,12 @@ const Rocket = () => {
   const kineticEnergy = useSelector(state => state.rocket.kineticEnergy);
   const kineticEnergyCapacity = useSelector(state => state.rocket.kineticEnergyCapacity);
 
+  const kineticEnergyAddition = 10;
+
   const onAddKineticEnergy = () => {
     if (!running) return;
 
-    let newKineticEnergy = kineticEnergy + 10;
+    let newKineticEnergy = kineticEnergy + kineticEnergyAddition;
 
     newKineticEnergy =
       newKineticEnergy < kineticEnergyCapacity ? newKineticEnergy : kineticEnergyCapacity;
@@ -59,8 +61,17 @@ const Rocket = () => {
         hover: <Hover />,
         hoverProps: { placement: "right" }, // causes rerender every time !!!
         z: 1,
-        bubble: <div>TESTY</div>,
+        bubble: (
+          <Text
+            secondary
+            bold
+            large
+            transform="skew(-15deg, 0deg)"
+            children={`+${kineticEnergyAddition}`}
+          />
+        ),
         bubbleTrigger,
+        bubbleAbsoluteTop: "35vh",
         // onBubbleAnimationEnd,
       }}
     >

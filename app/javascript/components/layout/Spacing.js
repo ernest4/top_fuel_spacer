@@ -1,25 +1,14 @@
-import React, { forwardRef, memo, useEffect, useRef } from "react";
-import styled, { css, keyframes } from "styled-components";
+import React, { forwardRef, memo } from "react";
+import styled, { css } from "styled-components";
 import Tippy from "@tippyjs/react";
 import { followCursor } from "tippy.js";
 import { useSelector } from "react-redux";
+import BubbleContainer from "./spacing/BubbleContainer";
 
 const plugins = [followCursor];
 
 const Spacing = forwardRef(
-  (
-    {
-      hover,
-      interactiveHover,
-      hoverProps,
-      bubble,
-      bubbleTrigger,
-      onBubbleAnimationEnd: onBubbleAnimationEndCallback,
-      children,
-      ...props
-    },
-    ref
-  ) => {
+  ({ hover, interactiveHover, hoverProps, bubble, children, ...props }, ref) => {
     const currentThemeId = useSelector(state => state.theme.currentThemeId);
     const primary = useSelector(state => state.theme.themes[currentThemeId]?.color.primary);
     const canFollowCursor = useSelector(state => state.settings.graphics.hover.followCursor);
@@ -42,15 +31,7 @@ const Spacing = forwardRef(
           content={hover || interactiveHover}
           children={
             <Container primary={primary} {...props} ref={ref}>
-              {bubble && (
-                <BubbleContainer
-                  {...{
-                    bubbleTrigger,
-                    onBubbleAnimationEnd: onBubbleAnimationEndCallback,
-                    children: bubble,
-                  }}
-                />
-              )}
+              {bubble && <BubbleContainer {...{ ...props, children: bubble }} />}
               {children}
             </Container>
           }
@@ -62,15 +43,7 @@ const Spacing = forwardRef(
 
     return (
       <Container {...props} ref={ref}>
-        {bubble && (
-          <BubbleContainer
-            {...{
-              bubbleTrigger,
-              onBubbleAnimationEnd: onBubbleAnimationEndCallback,
-              children: bubble,
-            }}
-          />
-        )}
+        {bubble && <BubbleContainer {...{ ...props, children: bubble }} />}
         {children}
       </Container>
     );
@@ -141,59 +114,3 @@ const Container = memo(styled.div`
 
   ${({ css }) => css};
 `);
-
-const BubbleContainer = ({
-  bubbleTrigger,
-  onBubbleAnimationEnd: onBubbleAnimationEndCallback,
-  duration,
-  children,
-}) => {
-  const bubblesRef = useRef([]);
-
-  useEffect(() => {
-    bubblesRef.current = [...bubblesRef.current, bubbleTrigger];
-  }, [bubbleTrigger]);
-
-  const onDisappear = index => {
-    if (index === bubblesRef.current.length - 1) {
-      bubblesRef.current = bubblesRef.current.splice(index, 1);
-    }
-
-    // console.log(bubblesRef.current);
-    if (onBubbleAnimationEndCallback) onBubbleAnimationEndCallback();
-  };
-
-  return (
-    <>
-      {bubblesRef.current.map((bubbleTrigger, index) => {
-        const seed = Math.random();
-
-        return (
-          <Spacing
-            {...{
-              position: "absolute",
-              margin: "100% 0%",
-              children: children || bubbleTrigger,
-              css: css`
-                animation-name: ${keyframes`
-                0% { transform: scale(0) translate(0vw, 0vh); }
-                10% { transform: scale(0.25) translate(1vw, 0vh); }
-                20% { transform: scale(0.5) translate(10vw, 0vh); }
-                99%  { transform: scale(1) translate(10vw, -30vh); }
-                100%  { transform: scale(0) translate(10vw, -30vh); }
-              `};
-
-                ${"" /* animation-timing-function: cubic-bezier(0.74, 0.07, 1, -0.19); */}
-                animation-timing-function: linear;
-                animation-iteration-count: 1;
-                animation-fill-mode: both;
-                animation-duration: ${duration || 3}s;
-              `,
-              onAnimationEnd: () => onDisappear(index),
-            }}
-          />
-        );
-      })}
-    </>
-  );
-};

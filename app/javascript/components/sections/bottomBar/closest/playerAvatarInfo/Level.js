@@ -40,6 +40,9 @@ const Level = () => {
           z: "1",
           children: <Text primary bold {...{ children: level }} />,
           hover: <XpHover />,
+          bubble: <Text primary bold large transform="skew(-15deg, 0deg)" children="+1" />,
+          bubbleTrigger: level,
+          // bubbleMaxHorizontal: "5vw",
         }}
       />
     </Spacing>
