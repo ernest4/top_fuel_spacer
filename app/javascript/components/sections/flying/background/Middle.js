@@ -11,14 +11,7 @@ const Middle = () => {
 
   return (
     <Scroller
-      {...{
-        play: running,
-        duration: 10,
-        components,
-        initialComponent: middleComponents[0],
-        overflow: "hidden",
-        height: "100vh",
-      }}
+      {...{ play: running, duration: 10, components, initialComponent: middleComponents[0] }}
     />
   );
 };

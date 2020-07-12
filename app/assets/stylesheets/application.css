@@ -26,4 +26,7 @@
 body {
   margin: 0px;
   padding: 0px;
+  /* Prevent the game from scrolling and exposing scrollable elements that go beyong page bounds! */
+  height: 100vh;
+  overflow: hidden;
 }
