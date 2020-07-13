@@ -27,25 +27,25 @@ const initialState = {
       id: 3,
       name: "main_entrance",
       characterId: 0,
-      // unlocked: true
+      unlocked: true
     },
     {
       id: 4,
       name: "cargo",
       characterId: 1,
-      // unlocked: true
+      unlocked: true
     },
     {
       id: 5,
       name: "barracks",
       characterId: 0,
-      // unlocked: true
+      unlocked: true
     },
     {
       id: 6,
       name: "life_support",
       characterId: 1,
-      // unlocked: true
+      unlocked: true
     },
   ],
 };

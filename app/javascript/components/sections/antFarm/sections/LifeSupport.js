@@ -2,12 +2,12 @@ import React from "react";
 import Spacing from "../../../layout/Spacing";
 import { generateHSLA } from "../../../utils/Color";
 
-const Comms = () => {
+const LifeSupport = () => {
   return (
     <Spacing {...{ background: generateHSLA({ alpha: 1 }), width: "100%", height: "100%" }}>
-      coms
+      LifeSupport
     </Spacing>
   );
 };
 
-export default Comms;
+export default LifeSupport;
