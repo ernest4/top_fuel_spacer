@@ -4,7 +4,7 @@ import useTheme from "../../../hooks/useTheme";
 import { css } from "styled-components";
 import Particles from "./Particles";
 
-const Shaft = ({ steam }) => {
+const Shaft = ({ steam, antFarm }) => {
   const { black, white } = useTheme();
 
   return (
@@ -22,28 +22,13 @@ const Shaft = ({ steam }) => {
         />
       )}
       <Spacing
-        {...{
-          width: `${6 * SPACING}px`,
-          height: `100%`,
-          background: "#b9c8d4",
-          border: `1px solid ${black}`,
-          boxShadow: `10px -1px 0px -1px ${black} inset`,
-          css: css`
-            border-right: 1px solid ${white};
-            border-top: 1px solid #b9c8d4;
-          `,
-        }}
+        {...{ height: `100%`, background: "#b9c8d4", ...getProps({ antFarm, black, white }) }}
       />
       <Spacing
         {...{
-          width: `${6 * SPACING}px`,
           height: `100%`,
           background: "#e5ecf0",
-          border: `1px solid ${white}`,
-          boxShadow: `-10px -1px 0px -1px ${white} inset`,
-          css: css`
-            border-left: 1px solid ${black};
-          `,
+          ...getProps({ right: true, antFarm, black, white }),
         }}
       />
     </Spacing>
@@ -51,3 +36,39 @@ const Shaft = ({ steam }) => {
 };
 
 export default memo(Shaft);
+
+const getProps = ({ right, antFarm, black, white }) => {
+  const color1 = right ? white : black;
+  const color2 = right ? black : white;
+
+  let props = {
+    width: `${6 * SPACING}px`,
+    border: `1px solid ${color1}`,
+    boxShadow: `${right ? "-" : ""}10px -1px 0px -1px ${color1} inset`,
+    css: right
+      ? css`
+          border-left: 1px solid ${color2};
+        `
+      : css`
+          border-right: 1px solid ${color2};
+          border-top: 1px solid #b9c8d4;
+        `,
+  };
+
+  if (antFarm)
+    props = {
+      width: "100%",
+      border: `1px solid ${color1}`,
+      boxShadow: `${right ? "-" : ""}100px -1px 0px -1px ${color1} inset`,
+      css: right
+        ? css`
+            border-left: 2px solid ${color2};
+          `
+        : css`
+            border-right: 2px solid ${color2};
+            border-top: 2px solid #b9c8d4;
+          `,
+    };
+
+  return props;
+};

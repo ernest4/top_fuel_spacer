@@ -10,40 +10,18 @@ const Head = ({ antFarm }) => {
     <Spacing horizontal {...{ height: "100%", width: "100%" }}>
       <Spacing
         {...{
-          width: antFarm ? "100%" : `${6 * SPACING}px`,
           height: "100%",
           background: "#b9c8d4",
-          border: antFarm ? `2px solid ${black}` : `1px solid ${black}`,
-          boxShadow: antFarm
-            ? `100px -1px 0px -1px ${black} inset`
-            : `10px -1px 0px -1px ${black} inset`,
-          css: antFarm
-            ? css`
-                border-right: 2px solid ${white};
-              `
-            : css`
-                border-right: 1px solid ${white};
-              `,
           borderRadius: "100px 0px 0px 0px",
+          ...getProps({ antFarm, black, white }),
         }}
       />
       <Spacing
         {...{
-          width: antFarm ? "100%" : `${6 * SPACING}px`,
           height: "100%",
           background: "#e5ecf0",
-          border: antFarm ? `2px solid ${white}` : `1px solid ${white}`,
-          boxShadow: antFarm
-            ? `-100px -1px 0px -1px ${white} inset`
-            : `-10px -1px 0px -1px ${white} inset`,
-          css: antFarm
-            ? css`
-                border-left: 2px solid ${black};
-              `
-            : css`
-                border-left: 1px solid ${black};
-              `,
           borderRadius: "0px 100px 0px 0px",
+          ...getProps({ right: true, antFarm, black, white }),
         }}
       />
     </Spacing>
@@ -51,3 +29,29 @@ const Head = ({ antFarm }) => {
 };
 
 export default memo(Head);
+
+const getProps = ({ right, antFarm, black, white }) => {
+  const color1 = right ? white : black;
+  const color2 = right ? black : white;
+
+  let props = {
+    width: `${6 * SPACING}px`,
+    border: `1px solid ${color1}`,
+    boxShadow: `${right ? "-" : ""}10px -1px 0px -1px ${color1} inset`,
+    css: css`
+      border-${right ? "left" : "right"}: 1px solid ${color2};
+    `,
+  };
+
+  if (antFarm)
+    props = {
+      width: "100%",
+      border: `2px solid ${color1}`,
+      boxShadow: `${right ? "-" : ""}100px -1px 0px -1px ${color1} inset`,
+      css: css`
+        border-${right ? "left" : "right"}: 2px solid ${color2};
+      `,
+    };
+
+  return props;
+};

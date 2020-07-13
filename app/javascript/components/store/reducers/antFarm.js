@@ -54,6 +54,13 @@ const initialState = {
       unlocked: true,
       buttons: ["Chat", "Grow", "Tasks", "Collectibles"],
     },
+    {
+      id: 6,
+      name: "shaft",
+      characterId: null,
+      unlocked: true,
+      buttons: [],
+    },
   ],
 };
 

@@ -10,23 +10,8 @@ const ButtonSection = () => {
   const sectionButtons = useSelector(state => state.antFarm.sections[currentSectionId]?.buttons);
 
   if (currentSectionId === null) return null;
-  // const buttons = [
-  //   "chat",
-  //   "research", // [optional] -> research / build / hack / grow / fight (pirate) / etc
-  //   "tasks", // [optional] -> your missions / quests for this character
-  //   "collectibles", // -> [optional] show up on certain characters
-  //   "close",
-  // ];
 
   const buttons = [...sectionButtons, "Close"];
-
-  // TODO: conditionally assembled buttons
-  // // buttons.push(...)
-  // buttons.push(<Button primary children="research" />); // WIP placeholder
-  // buttons.push(<Button secondary children="tasks" />); // WIP placeholder
-  // buttons.push(<Button secondary children="collectibles" />); // WIP placeholder
-
-  // buttons.push(<Close />);
 
   return (
     <Spacing
