@@ -11,7 +11,7 @@ const Head = ({ antFarm }) => {
       <Spacing
         {...{
           width: antFarm ? "100%" : `${6 * SPACING}px`,
-          height: antFarm ? "300px" : `100%`,
+          height: "100%",
           background: "#b9c8d4",
           border: antFarm ? `2px solid ${black}` : `1px solid ${black}`,
           boxShadow: antFarm
@@ -30,7 +30,7 @@ const Head = ({ antFarm }) => {
       <Spacing
         {...{
           width: antFarm ? "100%" : `${6 * SPACING}px`,
-          height: antFarm ? "300px" : `100%`,
+          height: "100%",
           background: "#e5ecf0",
           border: antFarm ? `2px solid ${white}` : `1px solid ${white}`,
           boxShadow: antFarm

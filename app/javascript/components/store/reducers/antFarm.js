@@ -15,13 +15,13 @@ const initialState = {
       id: 1,
       name: "comms",
       characterId: 0,
-      // unlocked: true
+      unlocked: true,
     },
     {
       id: 2,
       name: "command",
       characterId: 1,
-      // unlocked: true
+      unlocked: true
     },
     {
       id: 3,
