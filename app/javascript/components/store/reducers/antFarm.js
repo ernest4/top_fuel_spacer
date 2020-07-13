@@ -10,42 +10,49 @@ const initialState = {
       name: "head",
       characterId: null,
       unlocked: true,
+      buttons: [],
     },
     {
       id: 1,
       name: "comms",
       characterId: 0,
       unlocked: true,
+      buttons: ["Chat", "Contact", "Tasks", "Collectibles"],
     },
     {
       id: 2,
       name: "command",
       characterId: 1,
-      unlocked: true
+      unlocked: true,
+      buttons: ["Chat", "Navigate", "Tasks", "Collectibles"],
     },
     {
       id: 3,
       name: "main_entrance",
       characterId: 0,
-      unlocked: true
+      unlocked: true,
+      buttons: ["Chat", "WIP", "Tasks", "Collectibles"],
     },
     {
       id: 4,
       name: "cargo",
       characterId: 1,
-      unlocked: true
+      unlocked: true,
+      buttons: ["Chat", "Inspect", "Tasks", "Collectibles"],
     },
     {
       id: 5,
       name: "barracks",
       characterId: 0,
-      unlocked: true
+      unlocked: true,
+      buttons: ["Chat", "Orders", "Tasks", "Collectibles"],
     },
     {
       id: 6,
       name: "life_support",
       characterId: 1,
-      unlocked: true
+      unlocked: true,
+      buttons: ["Chat", "Grow", "Tasks", "Collectibles"],
     },
   ],
 };
