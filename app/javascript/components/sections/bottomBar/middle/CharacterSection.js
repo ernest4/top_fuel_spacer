@@ -55,6 +55,8 @@ const Character = () => {
   const characterId = useSelector(state => state.antFarm.sections[currentSectionId]?.characterId);
   const name = useSelector(state => state.characters.characters[characterId]?.name);
 
+  if (characterId === null || characterId === undefined) return null;
+
   return (
     <Spacing
       {...{

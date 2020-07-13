@@ -1,7 +1,8 @@
 import React from "react";
 import Spacing from "../layout/Spacing";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Section from "./antFarm/Section";
+import RocketName from "./antFarm/RocketName";
 
 const AntFarm = () => {
   const currentThemeId = useSelector(state => state.theme.currentThemeId);
@@ -12,6 +13,8 @@ const AntFarm = () => {
   return (
     <Spacing scroll {...{ height: "100vh", width: "100%", background }}>
       <Spacing height="44px" />
+      <RocketName />
+      <Spacing top={1} />
       {Array.from(Array(sectionsLength)).map((_, key) => {
         return <Section {...{ key, sectionId: key }} />;
       })}

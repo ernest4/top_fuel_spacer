@@ -36,10 +36,10 @@ const Itinerary = () => {
     // locations.map(location => {});
   }, [distance]);
 
-  useEffect(() => {
-    // DEBUGGING
-    console.log(locations);
-  }, [locations]);
+  // useEffect(() => {
+  //   // DEBUGGING
+  //   console.log(locations);
+  // }, [locations]);
 
   return (
     <Spacing
@@ -66,9 +66,6 @@ const Itinerary = () => {
     >
       {locations.map(({ name, distanceToRocket }, key) => {
         const yDisplacement = (1 - (distanceToRocket - distance) / contactRange) * 100;
-        {
-          /* const absoluteTop =  */
-        }
 
         if (key === 0 && 200 < yDisplacement) {
           dispatch(generateNextLocations({ count: 4, distance, contactRange }));
@@ -77,7 +74,7 @@ const Itinerary = () => {
         return (
           <Spacing
             {...{
-              // key,
+              key,
               position: "absolute",
               width: "70px",
               background: "green",

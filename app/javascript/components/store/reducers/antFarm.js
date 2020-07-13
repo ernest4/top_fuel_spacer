@@ -7,33 +7,45 @@ const initialState = {
   sections: [
     {
       id: 0,
-      name: "Comms",
-      characterId: 0,
+      name: "head",
+      characterId: null,
+      unlocked: true,
     },
     {
       id: 1,
-      name: "Command",
-      characterId: 1,
+      name: "comms",
+      characterId: 0,
+      // unlocked: true
     },
     {
       id: 2,
-      name: "Main Entrance",
-      characterId: 0,
+      name: "command",
+      characterId: 1,
+      // unlocked: true
     },
     {
       id: 3,
-      name: "Cargo",
-      characterId: 1,
+      name: "main_entrance",
+      characterId: 0,
+      // unlocked: true
     },
     {
       id: 4,
-      name: "Barracks",
-      characterId: 0,
+      name: "cargo",
+      characterId: 1,
+      // unlocked: true
     },
     {
       id: 5,
-      name: "Life Support",
+      name: "barracks",
+      characterId: 0,
+      // unlocked: true
+    },
+    {
+      id: 6,
+      name: "life_support",
       characterId: 1,
+      // unlocked: true
     },
   ],
 };

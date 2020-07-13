@@ -51,6 +51,7 @@ const BubbleContainer = ({
         return (
           <Spacing
             {...{
+              key: index,
               position: "absolute",
               // margin: "100% 0%",
               absoluteTop: bubbleAbsoluteTop,
