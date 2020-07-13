@@ -4,6 +4,8 @@ import Container from "./Container";
 import Spacing from "./Spacing";
 import Line from "./Line";
 import Title from "./pane/Title";
+import Body from "./pane/Body";
+import Footer from "./pane/Footer";
 
 // TODO: react memo?
 const Card = ({
@@ -21,11 +23,13 @@ const Card = ({
   const closest = useSelector(state => state.theme.themes[currentThemeId]?.color.closest);
 
   const header = customHeader || <Title {...defaultHeaderProps} />;
+  const bodyComponent = typeof body === "string" ? <Body text={body} /> : body;
+  const footerComponent = typeof footer === "string" ? <Footer text={footer} /> : footer;
 
   const items = [header];
 
-  if (body) items.push(<Divider />, body);
-  if (footer) items.push(<Divider />, footer);
+  if (body) items.push(<Divider />, bodyComponent);
+  if (footer) items.push(<Divider />, footerComponent);
 
   return (
     <Container

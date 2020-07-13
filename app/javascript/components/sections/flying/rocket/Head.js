@@ -3,11 +3,11 @@ import Spacing, { SPACING } from "../../../layout/Spacing";
 import useTheme from "../../../hooks/useTheme";
 import { css } from "styled-components";
 
-const Head = ({ antFarm }) => {
+const Head = ({ antFarm, hover }) => {
   const { black, white } = useTheme();
 
   return (
-    <Spacing horizontal {...{ height: "100%", width: "100%" }}>
+    <Spacing horizontal {...{ height: "100%", width: "100%", hover }}>
       <Spacing
         {...{
           height: "100%",

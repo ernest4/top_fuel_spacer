@@ -10,7 +10,7 @@ const initialState = {
       name: "head",
       characterId: null,
       unlocked: true,
-      buttons: [],
+      buttons: ["Settings"],
     },
     {
       id: 1,

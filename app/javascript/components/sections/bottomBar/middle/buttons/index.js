@@ -8,6 +8,7 @@ import Inspect from "./Inspect";
 import Navigate from "./Navigate";
 import Orders from "./Orders";
 import Grow from "./Grow";
+import Settings from "./Settings";
 
 export default {
   Chat: <Chat />,
@@ -19,4 +20,5 @@ export default {
   Navigate: <Navigate />,
   Orders: <Orders />,
   Grow: <Grow />,
+  Settings: <Settings />,
 };
