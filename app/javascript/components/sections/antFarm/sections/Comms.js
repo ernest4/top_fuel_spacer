@@ -1,6 +1,5 @@
 import React from "react";
 import Spacing from "../../../layout/Spacing";
-import { generateHSLA } from "../../../utils/Color";
 import Card from "../../../layout/Card";
 import { useSelector } from "react-redux";
 
@@ -8,7 +7,7 @@ const Comms = () => {
   return (
     <Spacing
       {...{
-        background: generateHSLA({ alpha: 1 }),
+        background: "#e5ecf0",
         width: "100%",
         height: "100%",
         hover: <Hover />,
