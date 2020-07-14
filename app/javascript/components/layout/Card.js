@@ -35,7 +35,6 @@ const Card = ({
     <Container
       {...{
         background: background || closest,
-        // children: [customHeader, header, body, footer].filter(component => component),
         children: items.map((item, key) => <Spacing key={key} children={item} />),
         ...props,
       }}

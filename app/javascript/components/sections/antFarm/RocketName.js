@@ -25,7 +25,7 @@ const Hover = () => {
           title: "Rocket Name",
           subtitles: ["work in progress (wip)"],
         },
-        body: "Click to change the name of your rocket.",
+        body: "Click to <s>change</s> the <p>name</p> of your rocket.",
         footer: "This is fine.",
       }}
     />
