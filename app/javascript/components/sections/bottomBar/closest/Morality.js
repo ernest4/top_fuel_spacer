@@ -94,7 +94,7 @@ const Hover = ({ morality }) => {
             outpost will give you more favourable rates!
           </Text>
         ),
-        footer: <Text extraSmall muted italics children={`"${moralityLevelQuote}"`} />,
+        footer: moralityLevelQuote,
       }}
     />
   );

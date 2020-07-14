@@ -9,7 +9,9 @@ const Body = ({ text }) => {
 export default Body;
 
 const textToComponents = ({ text }) => {
-  let tokens = text.split(/(<s>[a-zA-Z0-9]+<\/s>)|(<p>[a-zA-Z0-9]+<\/p>)|(<space \/>)/);
+  let tokens = text.split(
+    /(<s>[a-zA-Z0-9]+<\/s>)|(<p>[a-zA-Z0-9]+<\/p>)|(<d>[a-zA-Z0-9]+<\/d>)|(<space \/>)/
+  );
   tokens = tokens.filter(token => token); // Remove 'undefined'
 
   return tokens.map(token => componentize(token));
@@ -24,6 +26,10 @@ const componentize = string => {
 
   if ((match = string.match(/^<s>([a-zA-Z0-9]+)<\/s>/)?.[1])) {
     return <Text secondary extraSmall bold children={match} />;
+  }
+
+  if ((match = string.match(/^<d>([a-zA-Z0-9]+)<\/d>/)?.[1])) {
+    return <Text danger extraSmall bold children={match} />;
   }
 
   if ((match = string.match(/^(<space \/>)/)?.[1])) return <Spacing top={1} />;
