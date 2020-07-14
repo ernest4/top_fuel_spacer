@@ -14,6 +14,7 @@ const Info = () => {
     <Spacing scroll {...{ height: "100vh", width: "100%", background, all: 1 }}>
       <Spacing height="44px" />
       {pageComponents[name]}
+      <Spacing height="128px" />
     </Spacing>
   );
 };

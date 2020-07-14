@@ -15,6 +15,7 @@ const Card = ({
   body,
   footer,
   background,
+  split,
   ...props
 }) => {
   // NOTE: we dont use the 'children' directly...
@@ -28,14 +29,22 @@ const Card = ({
 
   const items = [header];
 
-  if (body) items.push(<Divider />, bodyComponent);
-  if (footer) items.push(<Divider />, footerComponent);
+  if (body) {
+    if (split) items.push(...bodyComponent);
+    else items.push(<Divider />, bodyComponent);
+  }
+
+  if (footer) {
+    if (split) items.push(footerComponent);
+    else items.push(<Divider />, footerComponent);
+  }
 
   return (
     <Container
       {...{
         background: background || closest,
         children: items.map((item, key) => <Spacing key={key} children={item} />),
+        split,
         ...props,
       }}
     />
