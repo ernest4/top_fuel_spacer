@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { capitalize } from "lodash";
 import Text from "../../layout/Text";
 import Spacing from "../../layout/Spacing";
+import { prettyPrintCamel } from "../../utils/String";
 
 const Settings = () => {
   const settings = useSelector(state => state.settings);
@@ -23,7 +24,7 @@ const Settings = () => {
             />
           );
         }),
-        footer: <div>testy</div>,
+        footer: <div>wip</div>,
       }}
     />
   );
@@ -37,7 +38,7 @@ const CategorySettings = ({ categorySettings }) => {
       {Object.entries(categorySettings).map(([section, sectionSettings]) => {
         return (
           <Spacing top={1}>
-            <Text small children={section} />
+            <Text bold small children={prettyPrintCamel(section)} />
             <Spacing top={1} />
             <SectionSettings {...{ sectionSettings }} />
           </Spacing>
@@ -53,7 +54,7 @@ const SectionSettings = ({ sectionSettings }) => {
       {Object.entries(sectionSettings).map(([setting, value]) => {
         return (
           <Spacing horizontal>
-            <Text small children={setting} />
+            <Text small children={prettyPrintCamel(setting)} />
             <Spacing left={1} />
             <Control {...{ value }} />
           </Spacing>
