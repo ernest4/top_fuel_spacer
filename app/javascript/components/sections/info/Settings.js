@@ -5,6 +5,7 @@ import { capitalize } from "lodash";
 import Text from "../../layout/Text";
 import Spacing from "../../layout/Spacing";
 import { prettyPrintCamel } from "../../utils/String";
+import Button from "../../misc/Button";
 
 const Settings = () => {
   const settings = useSelector(state => state.settings);
@@ -53,8 +54,11 @@ const SectionSettings = ({ sectionSettings }) => {
     <>
       {Object.entries(sectionSettings).map(([setting, value]) => {
         return (
-          <Spacing horizontal>
-            <Text small children={prettyPrintCamel(setting)} />
+          <Spacing horizontal align="center">
+            <Text
+              small
+              {...{ transform: "skew(-15deg, 0deg)", children: prettyPrintCamel(setting) }}
+            />
             <Spacing left={1} />
             <Control {...{ value }} />
           </Spacing>
@@ -73,7 +77,13 @@ const Control = ({ value }) => {
   // typeof {} => 'object'
   // typeof (() => {}) => 'function'
 
-  return <div>{`${value}`}</div>;
+  if (typeof value === "boolean") return <Toggle {...{ value }} />;
+
+  return <div>{`${value}`}</div>; // DEFAULT FOR TESTING
+};
+
+const Toggle = ({ value }) => {
+  return <Button secondary right small {...{ hover: value, children: `${value}` }} />;
 };
 
 // const initialState = {

@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState, useEffect } from "react";
 // import Spacing from "../layout/Spacing";
 import Container from "../layout/Container";
 import { useSelector } from "react-redux";
@@ -6,7 +6,7 @@ import Text from "../layout/Text";
 // import { setAlpha } from "../utils/Color";
 import { css } from "styled-components";
 
-const Button = ({ right, innerProps, link, ...props }) => {
+const Button = ({ right, innerProps, link, hover: hoverOverride, ...props }) => {
   const [hover, setHover] = useState(false);
   // TODO: extract this into const {primary, secondary, ...} = useTheme() hook? not the most efficient as it will listen to every color,
   // but on the other hand we dont expect theme to be updated live during gamplay (custom themes not withstadning).
@@ -21,10 +21,18 @@ const Button = ({ right, innerProps, link, ...props }) => {
 
   const color = { _closest, _primary, _secondary, _danger, _white, _fontDefault, _muted };
 
+  useEffect(() => {
+    if (hoverOverride !== null && hoverOverride !== undefined) setHover(hoverOverride);
+  }, [hoverOverride]);
+
   // TODO: onHover, change style !
   /* background / border color change wip */
-  const onMouseEnter = () => setHover(true);
-  const onMouseLeave = () => setHover(false);
+  const onMouseEnter = () => {
+    setHover(hoverOverride !== null && hoverOverride !== undefined ? hoverOverride : true);
+  };
+  const onMouseLeave = () => {
+    setHover(hoverOverride !== null && hoverOverride !== undefined ? hoverOverride : false);
+  };
 
   // return (
   //   <Spacing
