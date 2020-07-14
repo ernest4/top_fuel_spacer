@@ -81,7 +81,7 @@ const SectionSettings = ({ sectionSettings }) => {
 };
 
 const Hover = ({ info }) => {
-  return <Card right border {...{ body: info }} />;
+  return <Card right border noDivider {...{ body: info }} />;
 };
 
 const Control = ({ setting, value }) => {

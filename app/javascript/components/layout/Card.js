@@ -16,6 +16,7 @@ const Card = ({
   footer,
   background,
   split,
+  noDivider,
   ...props
 }) => {
   // NOTE: we dont use the 'children' directly...
@@ -31,12 +32,18 @@ const Card = ({
 
   if (body) {
     if (split) items.push(...bodyComponent);
-    else items.push(<Divider />, bodyComponent);
+    else {
+      if (!noDivider) items.push(<Divider />);
+      items.push(bodyComponent);
+    }
   }
 
   if (footer) {
     if (split) items.push(footerComponent);
-    else items.push(<Divider />, footerComponent);
+    else {
+      if (!noDivider) items.push(<Divider />);
+      items.push(footerComponent);
+    }
   }
 
   return (
