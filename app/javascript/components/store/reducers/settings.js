@@ -12,6 +12,8 @@ const initialState = {
       basic: false, // set to false for improved performance 5% (fixed)
     },
   },
+  audio: {},
+  progress: {},
 };
 
 // const otherReducer = handleActions({
