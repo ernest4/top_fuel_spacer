@@ -10,6 +10,7 @@ const Container = ({
   borderColor,
   background,
   separator,
+  split,
   border,
   innerProps,
   ...props
@@ -28,33 +29,35 @@ const Container = ({
     ...innerProps,
   };
 
-  // const innerContent = children.length ? (
-  //   children.map((item, key) => {
-  //     const lastItemIndex = children.length - 1;
+  const innerContent =
+    split && typeof children !== "string" && 0 < children.length ? (
+      children.map((item, key) => {
+        const lastItemIndex = children.length - 1;
 
-  //     const gap = key < lastItemIndex ? (separator ? 0.5 : 0.25) : 0;
+        const gap = key < lastItemIndex ? (separator ? 0.5 : 0.25) : 0;
 
-  //     let borderRadius = "";
+        let borderRadius = "";
 
-  //     const cssBorderRadiString = COMMON_INNER_PROPS.borderRadius;
+        const cssBorderRadiString = COMMON_INNER_PROPS.borderRadius;
 
-  //     if (key === 0) borderRadius = adjustBorderRadius({ section: "header", cssBorderRadiString });
-  //     else if (key === lastItemIndex)
-  //       borderRadius = adjustBorderRadius({ section: "footer", cssBorderRadiString });
-  //     else borderRadius = adjustBorderRadius({ section: "body", cssBorderRadiString });
+        if (key === 0)
+          borderRadius = adjustBorderRadius({ section: "header", cssBorderRadiString });
+        else if (key === lastItemIndex)
+          borderRadius = adjustBorderRadius({ section: "footer", cssBorderRadiString });
+        else borderRadius = adjustBorderRadius({ section: "body", cssBorderRadiString });
 
-  //     return (
-  //       <>
-  //         <Spacing {...{ ...COMMON_INNER_PROPS, borderRadius, children: item }} />
-  //         <Spacing
-  //           {...{ key, bottom: gap, top: gap, children: gap && separator ? <Line /> : null }}
-  //         />
-  //       </>
-  //     );
-  //   })
-  // ) : (
-  //   <Spacing {...{ ...COMMON_INNER_PROPS, children }} />
-  // );
+        return (
+          <>
+            <Spacing {...{ ...COMMON_INNER_PROPS, borderRadius, children: item }} />
+            <Spacing
+              {...{ key, bottom: gap, top: gap, children: gap && separator ? <Line /> : null }}
+            />
+          </>
+        );
+      })
+    ) : (
+      <Spacing {...{ ...COMMON_INNER_PROPS, children }} />
+    );
 
   return (
     <Spacing
@@ -67,8 +70,8 @@ const Container = ({
       // border: border ? `3px solid ${borderColor || background}` : "",
       // border: border ? `3px solid ${borderColor || primary}` : "",
       opacity="0.90"
-      // children: innerContent,
-      children={<Spacing {...{ ...COMMON_INNER_PROPS, children }} />}
+      children={innerContent}
+      // children={<Spacing {...{ ...COMMON_INNER_PROPS, children }} />}
       {...props}
     />
   );
@@ -82,15 +85,15 @@ const getBorder = ({ border, borderColor, secondary }) => {
   return typeof border === "string" ? border : `2px solid ${borderColor || secondary}`;
 };
 
-// const adjustBorderRadius = ({ section, cssBorderRadiString }) => {
-//   if (section === "body") return "4px 4px 4px 4px";
+const adjustBorderRadius = ({ section, cssBorderRadiString }) => {
+  if (section === "body") return "4px 4px 4px 4px";
 
-//   const [topLeft, topRight, bottomRight, bottomLeft] = cssBorderRadiString.split(" ");
+  const [topLeft, topRight, bottomRight, bottomLeft] = cssBorderRadiString.split(" ");
 
-//   if (section === "header") return `${topLeft} ${topRight} 4px 4px`;
+  if (section === "header") return `${topLeft} ${topRight} 4px 4px`;
 
-//   return `4px 4px ${bottomRight} ${bottomLeft}`;
-// };
+  return `4px 4px ${bottomRight} ${bottomLeft}`;
+};
 
 // // outer
 // TODO: this skew can be used for the log animation!!!
