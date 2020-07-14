@@ -14,6 +14,8 @@ import Credits from "./Credits";
 import Development from "./Development";
 
 export default {
+  Settings: <Settings />,
+  Info: <Info />,
   Chat: <Chat />,
   Close: <Close />,
   Contact: <Contact />,
@@ -23,8 +25,6 @@ export default {
   Navigate: <Navigate />,
   Orders: <Orders />,
   Grow: <Grow />,
-  Settings: <Settings />,
-  Info: <Info />,
   Credits: <Credits />,
   Development: <Development />,
 };
