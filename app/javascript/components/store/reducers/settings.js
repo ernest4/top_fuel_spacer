@@ -27,6 +27,9 @@ const settingsReducer = handleActions(
     SET_GRAPHICS: produce((state, { payload }) => {
       state.graphics = payload;
     }),
+    RESET_ALL: produce((state, { payload }) => {
+      return initialState;
+    }),
   },
   initialState
 );

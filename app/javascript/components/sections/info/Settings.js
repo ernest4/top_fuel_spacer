@@ -8,7 +8,10 @@ import Button from "../../misc/Button";
 import * as settingsActions from "../../store/actions/settings";
 
 const Settings = () => {
+  const dispatch = useDispatch();
   const settings = useSelector(state => state.settings);
+
+  const onReset = () => dispatch(settingsActions.resetAll());
 
   return (
     <Card
@@ -25,7 +28,16 @@ const Settings = () => {
             />
           );
         }),
-        footer: <div>wip</div>,
+        footer: (
+          <Spacing all={1}>
+            <Button
+              right
+              danger
+              small
+              {...{ children: "Reset All", onClick: onReset, innerProps: { center: true } }}
+            />
+          </Spacing>
+        ),
       }}
     />
   );
