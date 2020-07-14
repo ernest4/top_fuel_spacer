@@ -1,20 +1,35 @@
 import React from "react";
 import Text from "../Text";
+import Spacing from "../Spacing";
 
 const Body = ({ text }) => {
-  return <Text extraSmall>{text}</Text>;
+  return <Text extraSmall children={textToComponents({ text })} />;
 };
 
 export default Body;
 
-// You accumulate <Text danger extraSmall bold children="renegade points" /> when interacting
-//       with others in a <Text danger extraSmall bold children="threatening, apathetic, ruthless" />{" "}
-//       way. Infamy will make the smaller pirates fear you. However, larger sharks will have you on
-//       their radar!
-//       <Spacing top={1} />
-//       You accumulate <Text secondary extraSmall bold children="paragon points" /> when{" "}
-//       <Text secondary extraSmall bold children="helping" /> others,{" "}
-//       <Text secondary extraSmall bold children="sympathizing" /> and choosing{" "}
-//       <Text secondary extraSmall bold children="diplomacy" /> over fighting. Renown will make you a
-//       target to all pirates who want to make a name for themselves! However, trading outpost will
-//       give you more favourable rates!
+const textToComponents = ({ text }) => {
+  let tokens = text.split(/(<s>[a-zA-Z0-9]+<\/s>)|(<p>[a-zA-Z0-9]+<\/p>)|(<space \/>)/);
+  tokens = tokens.filter(token => token); // Remove 'undefined'
+
+  return tokens.map(token => componentize(token));
+};
+
+const componentize = string => {
+  if (string.match(/^<p>([a-zA-Z0-9]+)<\/p>/)?.[1]) {
+    return <Text primary extraSmall bold children={string} />;
+  }
+
+  if (string.match(/^<s>([a-zA-Z0-9]+)<\/s>/)?.[1]) {
+    return <Text secondary extraSmall bold children={string} />;
+  }
+
+  if (string.match(/^(<space \/>)/)?.[1]) {
+    return <Spacing top={1} />;
+  }
+
+  // TODO: if ... more
+
+  // default, raw string
+  return string;
+};
