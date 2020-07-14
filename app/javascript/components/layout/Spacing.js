@@ -11,7 +11,7 @@ const Spacing = forwardRef(
   ({ hover, interactiveHover, hoverProps, bubble, children, ...props }, ref) => {
     const currentThemeId = useSelector(state => state.theme.currentThemeId);
     const primary = useSelector(state => state.theme.themes[currentThemeId]?.color.primary);
-    const canFollowCursor = useSelector(state => state.settings.graphics.hover.followCursor);
+    const canFollowCursor = useSelector(state => state.settings.graphics.hover.followCursor.value);
 
     if (hover || interactiveHover) {
       return (

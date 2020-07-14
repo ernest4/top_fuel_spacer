@@ -13,7 +13,7 @@ import Text from "../../../../layout/Text";
 import Container from "../../../../layout/Container";
 
 const Player = () => {
-  const basic = useSelector(state => state.settings.graphics.musicPlayer.basic);
+  const basic = useSelector(state => state.settings.graphics.musicPlayer.basic.value);
 
   return (
     <Spacing horizontal>

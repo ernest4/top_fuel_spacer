@@ -6,10 +6,10 @@ import produce from "immer";
 const initialState = {
   graphics: {
     hover: {
-      followCursor: true, // set to false for improved performance 25% (dynamic)
+      followCursor: { value: true, info: "Set to false for 25% performance improvement." },
     },
     musicPlayer: {
-      basic: false, // set to false for improved performance 5% (fixed)
+      basic: { value: false, info: "Set to false for 5% performance improvement." },
     },
   },
   audio: {},
@@ -42,11 +42,17 @@ const graphicsReducer = handleActions(
     SET_FOLLOW_CURSOR: produce((state, { payload }) => {
       state.graphics.hover.followCursor = payload;
     }),
+    SET_FOLLOW_CURSOR_VALUE: produce((state, { payload }) => {
+      state.graphics.hover.followCursor.value = payload;
+    }),
     SET_MUSIC_PLAYER: produce((state, { payload }) => {
       state.graphics.musicPlayer = payload;
     }),
     SET_BASIC: produce((state, { payload }) => {
       state.graphics.musicPlayer.basic = payload;
+    }),
+    SET_BASIC_VALUE: produce((state, { payload }) => {
+      state.graphics.musicPlayer.basic.value = payload;
     }),
   },
   initialState

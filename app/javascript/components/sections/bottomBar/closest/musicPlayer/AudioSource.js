@@ -14,7 +14,7 @@ const AudioSource = () => {
   const audioRef = useRef(null);
   const [track, setTrack] = useState();
 
-  const basic = useSelector(state => state.settings.graphics.musicPlayer.basic);
+  const basic = useSelector(state => state.settings.graphics.musicPlayer.basic.value);
 
   const currentSongId = useSelector(state => state.music.currentSongId);
   const src = useSelector(state => state.music.songs[currentSongId]?.src);

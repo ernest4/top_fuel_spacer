@@ -64,9 +64,9 @@ const CategorySettings = ({ categorySettings }) => {
 const SectionSettings = ({ sectionSettings }) => {
   return (
     <>
-      {Object.entries(sectionSettings).map(([setting, value]) => {
+      {Object.entries(sectionSettings).map(([setting, { value, info }]) => {
         return (
-          <Spacing horizontal align="center">
+          <Spacing horizontal align="center" hover={<Hover {...{ info }} />}>
             <Text
               small
               {...{ transform: "skew(-15deg, 0deg)", children: prettyPrintCamel(setting) }}
@@ -78,6 +78,10 @@ const SectionSettings = ({ sectionSettings }) => {
       })}
     </>
   );
+};
+
+const Hover = ({ info }) => {
+  return <Card right border {...{ body: info }} />;
 };
 
 const Control = ({ setting, value }) => {
@@ -97,7 +101,7 @@ const Control = ({ setting, value }) => {
 const Toggle = ({ setting, value }) => {
   const dispatch = useDispatch();
 
-  const onToggle = () => dispatch(settingsActions[`set${capitalize(setting)}`](!value));
+  const onToggle = () => dispatch(settingsActions[`set${capitalize(setting)}Value`](!value));
 
   return (
     <Button secondary right small {...{ hover: value, children: `${value}`, onClick: onToggle }} />
