@@ -85,10 +85,7 @@ const Control = ({ setting, value }) => {
 const Toggle = ({ setting, value }) => {
   const dispatch = useDispatch();
 
-  const onToggle = () => {
-    // debugger;
-    dispatch(settingsActions[`set${capitalize(setting)}`](!value));
-  };
+  const onToggle = () => dispatch(settingsActions[`set${capitalize(setting)}`](!value));
 
   return (
     <Button secondary right small {...{ hover: value, children: `${value}`, onClick: onToggle }} />
