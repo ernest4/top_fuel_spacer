@@ -16,17 +16,17 @@ const textToComponents = ({ text }) => {
 };
 
 const componentize = string => {
-  if (string.match(/^<p>([a-zA-Z0-9]+)<\/p>/)?.[1]) {
-    return <Text primary extraSmall bold children={string} />;
+  let match;
+
+  if ((match = string.match(/^<p>([a-zA-Z0-9]+)<\/p>/)?.[1])) {
+    return <Text primary extraSmall bold children={match} />;
   }
 
-  if (string.match(/^<s>([a-zA-Z0-9]+)<\/s>/)?.[1]) {
-    return <Text secondary extraSmall bold children={string} />;
+  if ((match = string.match(/^<s>([a-zA-Z0-9]+)<\/s>/)?.[1])) {
+    return <Text secondary extraSmall bold children={match} />;
   }
 
-  if (string.match(/^(<space \/>)/)?.[1]) {
-    return <Spacing top={1} />;
-  }
+  if ((match = string.match(/^(<space \/>)/)?.[1])) return <Spacing top={1} />;
 
   // TODO: if ... more
 

@@ -17,7 +17,8 @@ const Hover = () => {
           title: "Misc",
           subtitles: ["work in progress (wip)"],
         },
-        body: "You can access <s>miscellaneous</s> options and <p>settings</p> here. (wip)",
+        body:
+          "You can access miscellaneous <s>options</s> and <p>settings</p> here. <space />(wip)",
         footer: "Lots of dials and knobs.",
       }}
     />
