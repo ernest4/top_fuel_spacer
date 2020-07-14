@@ -6,10 +6,13 @@ import produce from "immer";
 const initialState = {
   graphics: {
     hover: {
-      followCursor: { value: true, info: "Set to false for 25% performance improvement." },
+      followCursor: {
+        value: true,
+        info: "Set to <p>false</p> for <s>25% performance</s> improvement.",
+      },
     },
     musicPlayer: {
-      basic: { value: false, info: "Set to false for 5% performance improvement." },
+      basic: { value: false, info: "Set to <p>true</p> for <s>5% performance</s> improvement." },
     },
   },
   audio: {},
