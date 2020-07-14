@@ -9,6 +9,10 @@ const initialState = {
       id: 0,
       name: "Settings",
     },
+    {
+      id: 1,
+      name: "Info",
+    },
   ],
 };
 
