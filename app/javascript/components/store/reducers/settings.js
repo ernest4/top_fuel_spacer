@@ -36,8 +36,14 @@ const graphicsReducer = handleActions(
     SET_HOVER: produce((state, { payload }) => {
       state.graphics.hover = payload;
     }),
+    SET_FOLLOW_CURSOR: produce((state, { payload }) => {
+      state.graphics.hover.followCursor = payload;
+    }),
     SET_MUSIC_PLAYER: produce((state, { payload }) => {
       state.graphics.musicPlayer = payload;
+    }),
+    SET_BASIC: produce((state, { payload }) => {
+      state.graphics.musicPlayer.basic = payload;
     }),
   },
   initialState

@@ -1,11 +1,11 @@
 import React from "react";
 import Card from "../../layout/Card";
-import { useSelector } from "react-redux";
-import { capitalize } from "lodash";
+import { useSelector, useDispatch } from "react-redux";
 import Text from "../../layout/Text";
 import Spacing from "../../layout/Spacing";
-import { prettyPrintCamel } from "../../utils/String";
+import { prettyPrintCamel, capitalize } from "../../utils/String";
 import Button from "../../misc/Button";
+import * as settingsActions from "../../store/actions/settings";
 
 const Settings = () => {
   const settings = useSelector(state => state.settings);
@@ -60,7 +60,7 @@ const SectionSettings = ({ sectionSettings }) => {
               {...{ transform: "skew(-15deg, 0deg)", children: prettyPrintCamel(setting) }}
             />
             <Spacing left={1} />
-            <Control {...{ value }} />
+            <Control {...{ setting, value }} />
           </Spacing>
         );
       })}
@@ -68,7 +68,7 @@ const SectionSettings = ({ sectionSettings }) => {
   );
 };
 
-const Control = ({ value }) => {
+const Control = ({ setting, value }) => {
   // TODO: auto determine control type from value type
 
   // typeof true => 'boolean'
@@ -77,13 +77,22 @@ const Control = ({ value }) => {
   // typeof {} => 'object'
   // typeof (() => {}) => 'function'
 
-  if (typeof value === "boolean") return <Toggle {...{ value }} />;
+  if (typeof value === "boolean") return <Toggle {...{ setting, value }} />;
 
   return <div>{`${value}`}</div>; // DEFAULT FOR TESTING
 };
 
-const Toggle = ({ value }) => {
-  return <Button secondary right small {...{ hover: value, children: `${value}` }} />;
+const Toggle = ({ setting, value }) => {
+  const dispatch = useDispatch();
+
+  const onToggle = () => {
+    // debugger;
+    dispatch(settingsActions[`set${capitalize(setting)}`](!value));
+  };
+
+  return (
+    <Button secondary right small {...{ hover: value, children: `${value}`, onClick: onToggle }} />
+  );
 };
 
 // const initialState = {
