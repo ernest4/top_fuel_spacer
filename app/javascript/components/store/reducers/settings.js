@@ -15,8 +15,12 @@ const initialState = {
       basic: { value: false, info: "Set to <p>true</p> for <s>5% performance</s> improvement." },
     },
   },
-  audio: {},
-  progress: {},
+  audio: {
+    wip: {},
+  },
+  progress: {
+    wip: {},
+  },
 };
 
 // const otherReducer = handleActions({
