@@ -11,8 +11,10 @@ const Info = () => {
         body: [
           <Card
             {...{
-              header: { subtitles: ["wip2"] },
-              body: "some text here wip2",
+              header: { subtitles: ["Contact"] },
+              body: `For any <s>feature requests</s>, <s>bug reports</s>, <s>queries</s> or <s>other reasons</s>, please contact the email below.
+              <space />
+              Email: <p>developer.ernest@gmail.com</p>`,
             }}
           />,
           <Card
