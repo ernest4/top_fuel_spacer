@@ -71,13 +71,43 @@ const Info = () => {
           <Card
             {...{
               header: { subtitles: ["Development Style / Tech"] },
-              body: "some text here wip2",
+              body: `The game is built with pure <s>HTML, CSS, JS</s> front end with no use of Canvas or WebGL. No game specific frameworks like Phaser3 or Babylon.js were used.
+              <space />
+              Nothing against those frameworks, they’re great at what they do. I’ve simply decided to simultaneously limit the tech capabilities to curb scope creep, while also seeing just how far I can push basic web tech into real time.
+              <space />
+              Not to mention that incremental idle games are largely primarily UI based, so web app frameworks suit them just fine.`,
             }}
           />,
           <Card
             {...{
               header: { subtitles: ["Goals / Personal"] },
-              body: "some text here wip2",
+              body: `First and foremost, I want to train my finishing muscles. 
+              <space />
+              I’ve intentionally chosen a more limiting tech stack to help with feature and scope creep. The limiting tech stack will either force me to rethink and simplify any feature or cut it all together.
+              <space />
+              With a more capable, game specific, framework where ‘anything is possible’ it’s easy to go down a rabbit hole of trying to do something exactly like you want it without compromise and wasting tonnes of time getting there.
+              <space />
+              That said, what constitutes a game like this ‘finished’ may not appear clear, since the development is ongoing. World of Warcraft is also a ‘finished’ game that is constantly getting updates. So ‘finished’ here means ‘shippable’, i.e. in a playable state with initial main gameplay elements present and ready for expansion.
+              <space />
+              <space />
+              Examples:
+              <space />
+              Main element: quest (task) system.
+              <space />
+              Expansion: adding more quests (tasks).
+              <space />
+              <space />
+              Main element: character system.
+              <space />
+              Expansion: adding more characters.
+              <space />
+              <space />
+              Main element: customization system.
+              <space />
+              Expansion: adding more customization options.
+              <space />
+              <space />
+              Etc.`,
             }}
           />,
         ],
