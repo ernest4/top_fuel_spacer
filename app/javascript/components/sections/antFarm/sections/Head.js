@@ -13,12 +13,8 @@ const Hover = () => {
     <Card
       border
       {...{
-        header: {
-          title: "Misc",
-          subtitles: ["work in progress (wip)"],
-        },
-        body:
-          "You can access miscellaneous <s>options</s> and <p>settings</p> here. <space />(wip)",
+        header: { title: "Misc" },
+        body: "You can access miscellaneous <s>options</s> and <p>settings</p> here. <space />",
         footer: "Lots of dials and knobs.",
       }}
     />

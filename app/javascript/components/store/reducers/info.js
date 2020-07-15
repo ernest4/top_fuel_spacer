@@ -17,6 +17,10 @@ const initialState = {
       id: 2,
       name: "Credits",
     },
+    {
+      id: 3,
+      name: "Development",
+    },
   ],
 };
 
