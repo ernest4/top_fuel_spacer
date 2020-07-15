@@ -13,6 +13,10 @@ const initialState = {
       id: 1,
       name: "Info",
     },
+    {
+      id: 2,
+      name: "Credits",
+    },
   ],
 };
 

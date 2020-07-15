@@ -1,8 +1,8 @@
 import React from "react";
-import Button from "../../../../misc/Button";
+import PageButton from "./PageButton";
 
 const Credits = () => {
-  return <Button secondary {...{ children: "Credits" }} />;
+  return <PageButton secondary {...{ pageId: 2, children: "Credits" }} />;
 };
 
 export default Credits;
