@@ -9,8 +9,11 @@ import { prettyPrintSnake } from "../../utils/String";
 const IndexPage = ({ reducerName }) => {
   const currentSectionId = useSelector(state => state.antFarm.currentSectionId);
   const name = useSelector(state => state.antFarm.sections[currentSectionId].name);
+  const sectionsLength = useSelector(state => state.antFarm.sections.length);
 
   const items = useSelector(state => state[reducerName][reducerName]);
+
+  if (currentSectionId === 0 || currentSectionId === sectionsLength - 1) return null;
 
   return (
     <Card
@@ -36,6 +39,8 @@ const ItemsProgress = () => {
   );
 };
 
+// TODO: locked tasks are muted, greyed out.
+// TODO: done tasks are primary color and say 'completed'.
 const getItemList = ({ items, currentSectionId }) => {
   return items
     .filter(({ sectionId }) => sectionId === currentSectionId)
