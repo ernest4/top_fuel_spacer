@@ -29,6 +29,10 @@ const initialState = {
       id: 5,
       name: "Collectibles",
     },
+    {
+      id: 6,
+      name: "Achievements",
+    },
   ],
 };
 

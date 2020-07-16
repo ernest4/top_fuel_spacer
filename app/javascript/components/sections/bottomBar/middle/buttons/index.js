@@ -12,6 +12,7 @@ import Settings from "./Settings";
 import Info from "./Info";
 import Credits from "./Credits";
 import Development from "./Development";
+import Achievements from "./Achievements";
 
 export default {
   Settings: <Settings />,
@@ -27,4 +28,5 @@ export default {
   Grow: <Grow />,
   Credits: <Credits />,
   Development: <Development />,
+  Achievements: <Achievements />,
 };

@@ -12,4 +12,5 @@ export default {
   Development: <Development />,
   Tasks: <IndexPage reducerName="tasks" />,
   Collectibles: <IndexPage reducerName="collectibles" />,
+  Achievements: <IndexPage reducerName="achievements" />,
 };

@@ -24,7 +24,7 @@ const initialState = {
       name: "command",
       characterId: 1,
       unlocked: true,
-      buttons: ["Chat", "Navigate", "Tasks", "Collectibles"],
+      buttons: ["Chat", "Navigate", "Tasks", "Collectibles", "Achievements"],
     },
     {
       id: 3,
