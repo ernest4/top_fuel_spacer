@@ -6,38 +6,49 @@ import { useSelector } from "react-redux";
 import { prettyPrintSnake } from "../../utils/String";
 
 // TODO: can probably extract this whole page into a generic component both Tasks, Collectibles, Achievmenets, etc can use
-const Tasks = () => {
+const IndexPage = ({ reducerName }) => {
   const currentSectionId = useSelector(state => state.antFarm.currentSectionId);
   const name = useSelector(state => state.antFarm.sections[currentSectionId].name);
+
+  const items = useSelector(state => state[reducerName][reducerName]);
 
   return (
     <Card
       split
       {...{
-        header: { title: "Tasks", subtitles: [prettyPrintSnake(name)] },
-        body: [<TasksProgress />, ...getTaskList()],
+        header: { title: reducerName, subtitles: [prettyPrintSnake(name)] },
+        body: [<ItemsProgress />, ...getItemList({ items, currentSectionId })],
       }}
     />
   );
 };
 
-export default Tasks;
+export default IndexPage;
 
-const TasksProgress = () => {
+const ItemsProgress = () => {
   return (
     <Card
-      {...{ header: { subtitles: ["Progress"] }, body: `Progress for all the tasks wip/wip, wip%` }}
+      {...{
+        header: { subtitles: ["Progress"] },
+        body: `Progress for all the tasks wip/wip, wip%`,
+      }}
     />
   );
 };
 
-const getTaskList = () => {
-  return [
-    <div>card testin1</div>,
-    <div>card testin2</div>,
-    <div>card testin3</div>,
-    <div>card testin4</div>,
-  ];
+const getItemList = ({ items, currentSectionId }) => {
+  return items
+    .filter(({ sectionId }) => sectionId === currentSectionId)
+    .map(({ name, description }, index) => {
+      return (
+        <Card
+          {...{
+            header: { subtitles: [name] },
+            body: description,
+          }}
+        />
+      );
+    });
 };
 
 {

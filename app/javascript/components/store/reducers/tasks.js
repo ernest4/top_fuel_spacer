@@ -8,7 +8,43 @@ const initialState = {
   tasks: [
     {
       id: 0,
+      name: "Task 0",
+      description: "testy description 0",
+      unlocked: true,
+      sectionId: 2,
+      done: false,
+    },
+    {
+      id: 1,
       name: "Task 1",
+      description: "testy description 1",
+      unlocked: true,
+      sectionId: 2,
+      done: false,
+    },
+    {
+      id: 2,
+      name: "Task 2",
+      description: "testy description 2",
+      unlocked: false,
+      sectionId: 2,
+      done: false,
+    },
+    {
+      id: 3,
+      name: "Task 3",
+      description: "testy description 3",
+      unlocked: false,
+      sectionId: 2,
+      done: false,
+    },
+    {
+      id: 4,
+      name: "Task 4",
+      description: "testy description 4",
+      unlocked: true,
+      sectionId: 3,
+      done: false,
     },
   ],
 };
