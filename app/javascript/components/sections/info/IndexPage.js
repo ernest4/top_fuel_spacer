@@ -20,7 +20,7 @@ const IndexPage = ({ reducerName }) => {
       split
       {...{
         header: { title: reducerName, subtitles: [prettyPrintSnake(name)] },
-        body: [<ItemsProgress />, ...getItemList({ items, currentSectionId })],
+        body: [<ItemsProgress {...{ reducerName }} />, ...getItemList({ items, currentSectionId })],
       }}
     />
   );
@@ -28,12 +28,12 @@ const IndexPage = ({ reducerName }) => {
 
 export default IndexPage;
 
-const ItemsProgress = () => {
+const ItemsProgress = ({ reducerName }) => {
   return (
     <Card
       {...{
         header: { subtitles: ["Progress"] },
-        body: `Progress for all the tasks wip/wip, wip%`,
+        body: `Progress for all the ${reducerName} wip/wip, wip%`,
       }}
     />
   );

@@ -11,4 +11,5 @@ export default {
   Credits: <Credits />,
   Development: <Development />,
   Tasks: <IndexPage reducerName="tasks" />,
+  Collectibles: <IndexPage reducerName="collectibles" />,
 };

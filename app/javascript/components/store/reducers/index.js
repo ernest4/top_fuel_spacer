@@ -14,6 +14,7 @@ import rocket from "./rocket";
 import launchSequence from "./launchSequence";
 import sounds from "./sounds";
 import info from "./info";
+import collectibles from "./collectibles";
 
 export default combineReducers({
   game,
@@ -31,9 +32,9 @@ export default combineReducers({
   launchSequence,
   sounds,
   info,
+  collectibles, // TODO: ... items counts?
   // TODO: think about further data structures below
   // research, // TODO: ... research tech tree. progress on items. completed items.
-  // collectibles, // TODO: ... items counts.
   // items, // TODO: ... items under construction / production form enginereing, life support etc ?
   // cargo, // TODO: ... all items and their counts
 });
