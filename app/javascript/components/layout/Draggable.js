@@ -144,7 +144,7 @@ const DraggableButton = forwardRef(({ ...props }, ref) => {
 
   const hover = (
     <Container border>
-      <Text extraSmall>Click and drag this button to move around the Debugger</Text>
+      <Text extraSmall>Click and drag this button to move around.</Text>
     </Container>
   );
 

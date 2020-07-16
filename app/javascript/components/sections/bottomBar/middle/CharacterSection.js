@@ -3,6 +3,7 @@ import Spacing, { SPACING } from "../../../layout/Spacing";
 import { useSelector } from "react-redux";
 import Text from "../../../layout/Text";
 import Container from "../../../layout/Container";
+import ChatBubble from "./characterSections/ChatBubble";
 
 const CharacterSection = () => {
   const currentThemeId = useSelector(state => state.theme.currentThemeId);
@@ -58,19 +59,22 @@ const Character = () => {
   if (characterId === null || characterId === undefined) return null;
 
   return (
-    <Spacing
-      {...{
-        width: "150px",
-        height: "150px",
-        background: "rgba(0, 128, 0, 0.48)",
-        position: "absolute",
-        absoluteLeft: `${32 * SPACING}px`,
-        absoluteBottom: `${6 * SPACING}px`,
-        z: "-1",
-        hover: <Container border children={<Text children={name} />} />,
-      }}
-    >
-      character
-    </Spacing>
+    <>
+      <Spacing
+        {...{
+          width: "150px",
+          height: "150px",
+          background: "rgba(0, 128, 0, 0.48)",
+          position: "absolute",
+          absoluteLeft: `${32 * SPACING}px`,
+          absoluteBottom: `${6 * SPACING}px`,
+          z: "-1",
+          hover: <Container border children={<Text children={name} />} />,
+        }}
+      >
+        character
+      </Spacing>
+      <ChatBubble />
+    </>
   );
 };
