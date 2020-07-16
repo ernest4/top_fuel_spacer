@@ -1,8 +1,8 @@
 import React from "react";
-import Button from "../../../../misc/Button";
+import PageButton from "./PageButton";
 
 const Collectibles = () => {
-  return <Button secondary {...{ children: "Collectibles" }} />;
+  return <PageButton secondary {...{ pageId: 5, children: "Collectibles" }} />;
 };
 
 export default Collectibles;

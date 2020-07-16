@@ -15,4 +15,11 @@ export const prettyPrintCamel = str => {
     .join(" ");
 };
 
+export const prettyPrintSnake = str => {
+  return str
+    .split("_")
+    .map(word => capitalize(word))
+    .join(" ");
+};
+
 export const capitalize = str => str.replace(/(^\w)/, w => w.toUpperCase());

@@ -21,6 +21,14 @@ const initialState = {
       id: 3,
       name: "Development",
     },
+    {
+      id: 4,
+      name: "Tasks",
+    },
+    {
+      id: 5,
+      name: "Collectibles",
+    },
   ],
 };
 

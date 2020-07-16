@@ -1,8 +1,8 @@
 import React from "react";
-import Button from "../../../../misc/Button";
+import PageButton from "./PageButton";
 
 const Tasks = () => {
-  return <Button secondary {...{ children: "Tasks" }} />;
+  return <PageButton secondary {...{ pageId: 4, children: "Tasks" }} />;
 };
 
 export default Tasks;
