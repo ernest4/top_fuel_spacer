@@ -3,6 +3,7 @@ import Spacing from "../../../layout/Spacing";
 import { useSelector } from "react-redux";
 import Text from "../../../layout/Text";
 import Character from "./characterSections/Character";
+import { prettyPrintSnake } from "../../../utils/String";
 
 const CharacterSection = () => {
   const currentThemeId = useSelector(state => state.theme.currentThemeId);
@@ -41,7 +42,10 @@ const CharacterSection = () => {
           borderWidth: "8px 16px 0px 0px",
         }}
       >
-        <Text large {...{ transform: "skewX(-30deg)", children: name }} />
+        <Text
+          large
+          {...{ transform: "skewX(-30deg)", children: name ? prettyPrintSnake(name) : null }}
+        />
       </Spacing>
     </Spacing>
   );

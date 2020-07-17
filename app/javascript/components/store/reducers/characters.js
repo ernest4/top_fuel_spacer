@@ -11,7 +11,7 @@ const initialState = {
       qualification: 'Communications Specialist',
       gender: "female",
       race: "african",
-      description: "wip",
+      description: "description wip",
     },
     {
       id: 1,
@@ -19,7 +19,7 @@ const initialState = {
       qualification: "Executive Officer",
       gender: "male",
       race: "caucasian",
-      description: "wip",
+      description: "description wip",
     },
     {
       id: 2,
@@ -27,7 +27,7 @@ const initialState = {
       qualification: null,
       gender: "male",
       race: "caucasian",
-      description: "wip",
+      description: "description wip",
     },
     {
       id: 3,
@@ -35,7 +35,7 @@ const initialState = {
       qualification: null,
       gender: "female",
       race: "caucasian",
-      description: "wip",
+      description: "description wip",
     },
     {
       id: 4,
@@ -43,7 +43,7 @@ const initialState = {
       qualification: "Officer",
       gender: "male",
       race: "asian",
-      description: "wip",
+      description: "description wip",
     },
     {
       id: 5,
@@ -51,7 +51,7 @@ const initialState = {
       qualification: "Botanist",
       gender: "female",
       race: "caucasian",
-      description: "wip",
+      description: "description wip",
     },
   ],
 };
