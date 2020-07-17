@@ -98,7 +98,7 @@ const achievementsReducer = handleActions(
       else {
         if (completed.some(item => item === newCompletedItem)) return;
 
-        newCompleted = [...completed, newCompletedItem];
+        newCompleted = [...completed, ...newCompletedItem];
       }
 
       state.achievements[id].completed = newCompleted;

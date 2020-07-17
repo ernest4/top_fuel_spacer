@@ -30,7 +30,7 @@ const Navigation = ({ direction }) => {
       dispatch(musicActions.setDuration(0));
       dispatch(musicActions.setCurrentTime(0));
       dispatch(musicActions.setSkipTime(0));
-      dispatch(updateAchievementById({ id: 0, completed: title }));
+      dispatch(updateAchievementById({ id: 0, completed: [title] }));
     });
   };
 

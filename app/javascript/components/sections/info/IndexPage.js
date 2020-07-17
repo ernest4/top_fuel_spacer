@@ -37,6 +37,7 @@ const ItemsProgress = ({ reducerName, itemsLength: required, doneCount: complete
   return (
     <Card
       {...{
+        primary: completed === required,
         header: {
           subtitles: [
             "Total Progress",
