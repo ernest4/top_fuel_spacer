@@ -7,6 +7,7 @@ const { initialState: musicInitialState } = require("./music");
 // Complete 1 Task: 'Beginner'
 // Complete 10 Tasks: 'Multitasker'
 // Complete 100 Tasks: 'Taskmaster'
+
 let initialState = {
   currentAchievementId: null,
   doneCount: 0,
