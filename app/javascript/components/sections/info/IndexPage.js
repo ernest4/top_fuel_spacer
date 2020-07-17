@@ -2,9 +2,9 @@ import React from "react";
 import Card from "../../layout/Card";
 import { useSelector } from "react-redux";
 import { prettyPrintSnake } from "../../utils/String";
-import ProgressBar from "../../misc/ProgressBar";
-import useTheme from "../../hooks/useTheme";
-import { isItemDone, normalizeRequiredCompleted } from "../../store/reducers/achievements";
+import { isItemDone } from "../../store/reducers/achievements";
+import TotalProgress from "./indexPage/TotalProgress";
+import Progress from "./indexPage/Progress";
 
 const IndexPage = ({ reducerName }) => {
   const currentSectionId = useSelector(state => state.antFarm.currentSectionId);
@@ -23,7 +23,7 @@ const IndexPage = ({ reducerName }) => {
       {...{
         header: { title: reducerName, subtitles: [prettyPrintSnake(name)] },
         body: [
-          <ItemsProgress {...{ reducerName, itemsLength, doneCount }} />,
+          <TotalProgress {...{ reducerName, itemsLength, doneCount }} />,
           ...getItemList({ items, currentSectionId }),
         ],
       }}
@@ -32,25 +32,6 @@ const IndexPage = ({ reducerName }) => {
 };
 
 export default IndexPage;
-
-const ItemsProgress = ({ reducerName, itemsLength: required, doneCount: completed }) => {
-  return (
-    <Card
-      {...{
-        primary: completed === required,
-        header: {
-          subtitles: [
-            "Total Progress",
-            `${completed}/${required}`,
-            `${Math.round((completed / required) * 100)}%`,
-          ],
-        },
-        body: `Progress for all the ${reducerName}.`,
-        footer: <Progress {...{ required, completed }} />,
-      }}
-    />
-  );
-};
 
 const getItemList = ({ items, currentSectionId }) => {
   return items
@@ -72,14 +53,4 @@ const getItemList = ({ items, currentSectionId }) => {
         />
       );
     });
-};
-
-const Progress = ({ required, completed }) => {
-  const { required: range, completed: value } = normalizeRequiredCompleted({ required, completed });
-
-  const { primary } = useTheme();
-
-  const barBackground = range === value ? primary : null;
-
-  return <ProgressBar {...{ barBackground, value, range }} />;
 };
