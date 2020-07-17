@@ -104,8 +104,6 @@ const achievementsReducer = handleActions(
 
         state.achievements[id].completed = newCompleted;
 
-        console.log(state.achievements[id].completed); // TESTING
-
         if (isItemDone({ required, completed: newCompleted })) state.doneCount += 1;
       }
     ),
