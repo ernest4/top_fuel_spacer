@@ -9,6 +9,7 @@ import Footer from "./pane/Footer";
 
 // TODO: react memo?
 const Card = ({
+  primary,
   children,
   header: defaultHeaderProps,
   customHeader,
@@ -24,7 +25,7 @@ const Card = ({
   const currentThemeId = useSelector(state => state.theme.currentThemeId);
   const closest = useSelector(state => state.theme.themes[currentThemeId]?.color.closest);
 
-  const header = customHeader || <Title {...defaultHeaderProps} />;
+  const header = customHeader || <Title {...{ primary, ...defaultHeaderProps }} />;
   const bodyComponent = typeof body === "string" ? <Body text={body} /> : body;
   const footerComponent = typeof footer === "string" ? <Footer text={footer} /> : footer;
 
@@ -33,7 +34,7 @@ const Card = ({
   if (body) {
     if (split) items.push(...bodyComponent);
     else {
-      if (!noDivider) items.push(<Divider />);
+      if (!noDivider) items.push(<Divider {...{ primary }} />);
       items.push(bodyComponent);
     }
   }
@@ -41,7 +42,7 @@ const Card = ({
   if (footer) {
     if (split) items.push(footerComponent);
     else {
-      if (!noDivider) items.push(<Divider />);
+      if (!noDivider) items.push(<Divider {...{ primary }} />);
       items.push(footerComponent);
     }
   }
@@ -60,4 +61,6 @@ const Card = ({
 
 export default Card;
 
-const Divider = () => <Spacing {...{ top: 0.5, bottom: 0.5, width: "100%", children: <Line /> }} />;
+const Divider = ({ primary }) => (
+  <Spacing {...{ top: 0.5, bottom: 0.5, width: "100%", children: <Line {...{ primary }} /> }} />
+);

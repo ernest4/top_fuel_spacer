@@ -2,7 +2,7 @@ import React from "react";
 import Spacing from "../Spacing";
 import Text from "../Text";
 
-const Title = ({ title, subtitles, icon, ...props }) => {
+const Title = ({ title, subtitles, icon, primary, ...props }) => {
   return (
     <Spacing horizontal {...{ ...props }}>
       <Text small>
@@ -10,7 +10,7 @@ const Title = ({ title, subtitles, icon, ...props }) => {
         {subtitles && subtitles.length !== 0 && (
           <>
             <Spacing top={0.5} />
-            <Subtitles {...{ subtitles }} />
+            <Subtitles {...{ primary, subtitles }} />
           </>
         )}
       </Text>
@@ -21,15 +21,15 @@ const Title = ({ title, subtitles, icon, ...props }) => {
 
 export default Title;
 
-const Subtitles = ({ subtitles }) => {
+const Subtitles = ({ primary, subtitles }) => {
   return subtitles.map((subtitle, key) => {
     return (
       <Text key={key}>
-        <Text bold extraSmall secondary children={subtitle} />
+        <Text bold extraSmall secondary children={subtitle} primary={primary} />
         {key < subtitles.length - 1 && (
           <>
             <Text extraSmall children=" " />
-            <Text extraSmall light secondary children="|" />
+            <Text extraSmall light secondary children="|" primary={primary} />
             <Text extraSmall children=" " />
           </>
         )}

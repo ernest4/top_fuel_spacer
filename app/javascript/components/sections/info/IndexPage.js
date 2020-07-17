@@ -4,6 +4,7 @@ import Button from "../../misc/Button";
 import Spacing from "../../layout/Spacing";
 import { useSelector } from "react-redux";
 import { prettyPrintSnake } from "../../utils/String";
+import ProgressBar from "../../misc/ProgressBar";
 
 // TODO: can probably extract this whole page into a generic component both Tasks, Collectibles, Achievmenets, etc can use
 const IndexPage = ({ reducerName }) => {
@@ -12,6 +13,8 @@ const IndexPage = ({ reducerName }) => {
   const sectionsLength = useSelector(state => state.antFarm.sections.length);
 
   const items = useSelector(state => state[reducerName][reducerName]);
+  const itemsLength = useSelector(state => state[reducerName][reducerName].length);
+  const doneCount = useSelector(state => state[reducerName].doneCount);
 
   if (currentSectionId === 0 || currentSectionId === sectionsLength - 1) return null;
 
@@ -20,7 +23,10 @@ const IndexPage = ({ reducerName }) => {
       split
       {...{
         header: { title: reducerName, subtitles: [prettyPrintSnake(name)] },
-        body: [<ItemsProgress {...{ reducerName }} />, ...getItemList({ items, currentSectionId })],
+        body: [
+          <ItemsProgress {...{ reducerName, itemsLength, doneCount }} />,
+          ...getItemList({ items, currentSectionId }),
+        ],
       }}
     />
   );
@@ -28,12 +34,19 @@ const IndexPage = ({ reducerName }) => {
 
 export default IndexPage;
 
-const ItemsProgress = ({ reducerName }) => {
+const ItemsProgress = ({ reducerName, itemsLength: required, doneCount: completed }) => {
   return (
     <Card
       {...{
-        header: { subtitles: ["Progress"] },
-        body: `Progress for all the ${reducerName} wip/wip, wip%`,
+        header: {
+          subtitles: [
+            "Total Progress",
+            `${completed}/${required}`,
+            `${Math.round((completed / required) * 100)}%`,
+          ],
+        },
+        body: `Progress for all the ${reducerName}.`,
+        footer: <Progress {...{ required, completed }} />,
       }}
     />
   );
@@ -44,39 +57,32 @@ const ItemsProgress = ({ reducerName }) => {
 const getItemList = ({ items, currentSectionId }) => {
   return items
     .filter(({ sectionId }) => sectionId === currentSectionId)
-    .map(({ name, description }, index) => {
+    .map(({ name, description, required, completed }, index) => {
+      let subtitles = [name];
+
+      if ("done") subtitles.push("DONE");
+
       return (
         <Card
+          // primary
           {...{
-            header: { subtitles: [name] },
+            // header: { subtitles: getSubtitles() },
+            header: { subtitles },
             body: description,
+            footer: <Progress {...{ required, completed }} />,
           }}
         />
       );
     });
 };
 
-{
-  /* <Card
-            {...{
-              header: { subtitles: ["Nihilore"] },
-              body: `This game uses music by Nihilore. His royalty free music is an outstanding resource for developers on a budget.
-              <space />
-              The soundtrack files in use were compressed. No other modifications were done on them beyond that.`,
-              footer: (
-                <Spacing top={1}>
-                  <Button
-                    right
-                    small
-                    tertiary
-                    {...{
-                      link: "http://www.nihilore.com/",
-                      children: "Nihilore",
-                      innerProps: { center: true },
-                    }}
-                  />
-                </Spacing>
-              ),
-            }}
-          /> */
-}
+const Progress = ({ required, completed }) => {
+  let range = typeof required === "number" ? required : required.length;
+  let value = typeof completed === "number" ? completed : completed.length;
+
+  return <ProgressBar {...{ value, range }} />;
+};
+
+// const getSubtitles = () => {
+
+// }

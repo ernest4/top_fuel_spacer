@@ -4,8 +4,12 @@ import produce from "immer";
 import debugFlag from "../../debugFlag";
 const { initialState: musicInitialState } = require("./music");
 
+// Complete 1 Task: 'Beginner'
+// Complete 10 Tasks: 'Multitasker'
+// Complete 100 Tasks: 'Taskmaster'
 let initialState = {
   currentAchievementId: null,
+  doneCount: 0,
   achievements: [
     {
       id: 0,
@@ -23,20 +27,29 @@ let initialState = {
       required: 1,
       completed: 0,
     },
+    // {
+    //   id: 2,
+    //   name: "Socialite",
+    //   description: "Chat to every member of your crew.",
+    //   sectionId: 2,
+    //   required: ....,
+    //   completed: [],
+    // },
   ],
 };
 
 if (debugFlag) {
   initialState = {
     currentAchievementId: null,
+    doneCount: 1,
     achievements: [
       {
         id: 0,
         name: "Audiophile",
         description: "Listen to every sound track in the game.",
         sectionId: 2,
-        required: 9,
-        completed: 4,
+        required: musicInitialState.songs.map(({ title }) => title),
+        completed: musicInitialState.songs.map(({ title }) => title).slice(0, 4),
       },
       {
         id: 1,
@@ -44,8 +57,16 @@ if (debugFlag) {
         description: "Launch into the cosmos.",
         sectionId: 2,
         required: 1,
-        completed: 0,
+        completed: 1,
       },
+      // {
+      //   id: 2,
+      //   name: "Socialite",
+      //   description: "Chat to every member of your crew.",
+      //   sectionId: 2,
+      //   required: ....,
+      //   completed: [],
+      // },
     ],
   };
 }

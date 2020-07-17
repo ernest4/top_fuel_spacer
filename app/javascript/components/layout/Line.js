@@ -1,16 +1,14 @@
 import React from "react";
 import Spacing from "./Spacing";
-import { useSelector } from "react-redux";
+import useTheme from "../hooks/useTheme";
 
-// TODO: vertical is buggy ???
-const Line = ({ size, vertical, ...props }) => {
-  const currentThemeId = useSelector(state => state.theme.currentThemeId);
-  const background = useSelector(state => state.theme.themes[currentThemeId]?.color.secondary);
+const Line = ({ size, vertical, primary, ...props }) => {
+  const { primary: primaryBackground, secondary: secondaryBackground } = useTheme();
 
   return (
     <Spacing
       {...{
-        background,
+        background: primary ? primaryBackground : secondaryBackground,
         height: vertical ? "auto" : `${size || 1}px`,
         width: vertical ? `${size || 1}px` : "100%",
         ...props,
