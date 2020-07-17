@@ -5,6 +5,7 @@ import Spacing from "../../layout/Spacing";
 import { useSelector } from "react-redux";
 import { prettyPrintSnake } from "../../utils/String";
 import ProgressBar from "../../misc/ProgressBar";
+import useTheme from "../../hooks/useTheme";
 
 // TODO: can probably extract this whole page into a generic component both Tasks, Collectibles, Achievmenets, etc can use
 const IndexPage = ({ reducerName }) => {
@@ -52,21 +53,20 @@ const ItemsProgress = ({ reducerName, itemsLength: required, doneCount: complete
   );
 };
 
-// TODO: locked tasks are muted, greyed out.
 // TODO: done tasks are primary color and say 'completed'.
 const getItemList = ({ items, currentSectionId }) => {
   return items
     .filter(({ sectionId }) => sectionId === currentSectionId)
     .map(({ name, description, required, completed }, index) => {
-      let subtitles = [name];
+      const done = isItemDone({ required, completed });
 
-      if ("done") subtitles.push("DONE");
+      let subtitles = [name];
+      if (done) subtitles.push("DONE");
 
       return (
         <Card
-          // primary
           {...{
-            // header: { subtitles: getSubtitles() },
+            primary: done,
             header: { subtitles },
             body: description,
             footer: <Progress {...{ required, completed }} />,
@@ -77,12 +77,24 @@ const getItemList = ({ items, currentSectionId }) => {
 };
 
 const Progress = ({ required, completed }) => {
+  const { required: range, completed: value } = normalizeRequiredCompleted({ required, completed });
+
+  const { primary } = useTheme();
+
+  const barBackground = range === value ? primary : null;
+
+  return <ProgressBar {...{ barBackground, value, range }} />;
+};
+
+const normalizeRequiredCompleted = ({ required, completed }) => {
   let range = typeof required === "number" ? required : required.length;
   let value = typeof completed === "number" ? completed : completed.length;
 
-  return <ProgressBar {...{ value, range }} />;
+  return { required: range, completed: value };
 };
 
-// const getSubtitles = () => {
+const isItemDone = ({ required, completed }) => {
+  const { required: range, completed: value } = normalizeRequiredCompleted({ required, completed });
 
-// }
+  return value === range;
+};

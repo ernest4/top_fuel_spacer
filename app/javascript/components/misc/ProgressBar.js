@@ -1,6 +1,7 @@
 import React, { memo, useMemo } from "react";
 import Spacing, { SPACING } from "../layout/Spacing";
 import { useSelector } from "react-redux";
+import useTheme from "../hooks/useTheme";
 
 const ProgressBar = ({
   value, // current value
@@ -21,9 +22,7 @@ const ProgressBar = ({
   barHover: BarHoverComponent, // This component needs to be able to accept 'index' prop for bar index !!!
   transform: transformOverride, // used in one specific case so far in morality rengedate bar...
 }) => {
-  const currentThemeId = useSelector(state => state.theme.currentThemeId);
-  const secondary = useSelector(state => state.theme.themes[currentThemeId]?.color.secondary);
-  const middle = useSelector(state => state.theme.themes[currentThemeId]?.color.middle);
+  const { secondary, middle } = useTheme();
 
   const progress = value / range;
 
