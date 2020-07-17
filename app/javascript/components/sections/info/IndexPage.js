@@ -1,13 +1,10 @@
 import React from "react";
 import Card from "../../layout/Card";
-import Button from "../../misc/Button";
-import Spacing from "../../layout/Spacing";
 import { useSelector } from "react-redux";
 import { prettyPrintSnake } from "../../utils/String";
 import ProgressBar from "../../misc/ProgressBar";
 import useTheme from "../../hooks/useTheme";
 
-// TODO: can probably extract this whole page into a generic component both Tasks, Collectibles, Achievmenets, etc can use
 const IndexPage = ({ reducerName }) => {
   const currentSectionId = useSelector(state => state.antFarm.currentSectionId);
   const name = useSelector(state => state.antFarm.sections[currentSectionId].name);
@@ -53,7 +50,6 @@ const ItemsProgress = ({ reducerName, itemsLength: required, doneCount: complete
   );
 };
 
-// TODO: done tasks are primary color and say 'completed'.
 const getItemList = ({ items, currentSectionId }) => {
   return items
     .filter(({ sectionId }) => sectionId === currentSectionId)
