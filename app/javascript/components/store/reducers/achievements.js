@@ -2,6 +2,7 @@ import { handleActions } from "redux-actions";
 import reduceReducers from "reduce-reducers";
 import produce from "immer";
 import debugFlag from "../../debugFlag";
+const { initialState: musicInitialState } = require("./music");
 
 let initialState = {
   currentAchievementId: null,
@@ -9,10 +10,10 @@ let initialState = {
     {
       id: 0,
       name: "Audiophile",
-      description: "Listen to every music track in the game.",
+      description: "Listen to every sound track in the game.",
       sectionId: 2,
-      required: 9,
-      completed: 0,
+      required: musicInitialState.songs.map(({ title }) => title),
+      completed: [],
     },
     {
       id: 1,
@@ -32,7 +33,7 @@ if (debugFlag) {
       {
         id: 0,
         name: "Audiophile",
-        description: "Listen to every music track in the game.",
+        description: "Listen to every sound track in the game.",
         sectionId: 2,
         required: 9,
         completed: 4,

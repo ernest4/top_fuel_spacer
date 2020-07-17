@@ -5,7 +5,7 @@ import produce from "immer";
 // NOTE: keep data as flat and normalized as possible. Since deep updates require new copies of
 // objects along the way, any components listening along the update path will need to rerender...
 // Also normalization is just more efficent as eveyrything is once source of truth.
-const initialState = {
+export const initialState = {
   dock: false,
   currentSongId: 0,
   duration: 0,
