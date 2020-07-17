@@ -2,18 +2,26 @@ import React from "react";
 import ChatBubble from "./ChatBubble";
 import Card from "../../../../layout/Card";
 import { getRandom } from "../../../../utils/Array";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Spacing, { SPACING } from "../../../../layout/Spacing";
+import { setConversationsShow } from "../../../../store/actions/conversations";
 
 const Character = () => {
+  const dispatch = useDispatch();
+
+  const conversationsShow = useSelector(state => state.conversations.show);
+
   const currentSectionId = useSelector(state => state.antFarm.currentSectionId);
   const characterId = useSelector(state => state.antFarm.sections[currentSectionId]?.characterId);
 
   if (characterId === null || characterId === undefined) return null;
 
+  const onToggle = () => dispatch(setConversationsShow(!conversationsShow));
+
   return (
     <>
       <Spacing
+        pointer
         {...{
           width: "150px",
           height: "150px",
@@ -23,9 +31,10 @@ const Character = () => {
           absoluteBottom: `${6 * SPACING}px`,
           z: "-1",
           hover: <Hover />,
+          onClick: onToggle,
         }}
       >
-        character
+        character wip
       </Spacing>
       <ChatBubble />
     </>
