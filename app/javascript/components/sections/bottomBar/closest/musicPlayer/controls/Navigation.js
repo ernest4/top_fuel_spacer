@@ -5,6 +5,7 @@ import Spacing from "../../../../../layout/Spacing";
 import SVG from "../../../../../svg/SVG";
 import { useSelector, useDispatch, batch } from "react-redux";
 import * as musicActions from "../../../../../store/actions/music";
+import { updateAchievementById } from "../../../../../store/actions/achievements";
 
 const Navigation = ({ direction }) => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const Navigation = ({ direction }) => {
   const fontDefault = useSelector(state => state.theme.themes[currentThemeId]?.color.fontDefault);
   const songsLength = useSelector(state => state.music.songs.length);
   const currentSongId = useSelector(state => state.music.currentSongId);
+  const title = useSelector(state => state.music.songs[currentSongId].title);
   const finished = useSelector(state => state.music.finished);
 
   const onSkipSong = () => {
@@ -28,6 +30,7 @@ const Navigation = ({ direction }) => {
       dispatch(musicActions.setDuration(0));
       dispatch(musicActions.setCurrentTime(0));
       dispatch(musicActions.setSkipTime(0));
+      dispatch(updateAchievementById({ id: 0, completed: title }));
     });
   };
 

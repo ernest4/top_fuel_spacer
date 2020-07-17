@@ -90,6 +90,21 @@ const achievementsReducer = handleActions(
       const { required, completed } = newAchievement;
       if (isItemDone({ required, completed })) state.doneCount += 1;
     }),
+    UPDATE_ACHIEVEMENT_BY_ID: produce((state, { payload: { id, completed: newCompletedItem } }) => {
+      const { completed, required } = state.achievements[id];
+      let newCompleted;
+
+      if (typeof completed === "number") newCompleted = completed + newCompletedItem;
+      else {
+        if (completed.some(item => item === newCompletedItem)) return;
+
+        newCompleted = [...completed, newCompletedItem];
+      }
+
+      state.achievements[id].completed = newCompleted;
+
+      if (isItemDone({ required, completed: newCompleted })) state.doneCount += 1;
+    }),
   },
   initialState
 );
