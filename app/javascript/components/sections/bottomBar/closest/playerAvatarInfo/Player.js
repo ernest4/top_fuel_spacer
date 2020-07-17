@@ -33,7 +33,7 @@ const Player = () => {
           borderRadius: "100%",
           background: "transparent",
           border: `6px solid ${secondary}`,
-          children: <div>player</div>,
+          children: <div>p. wip</div>,
           hover: <Hover />,
         }}
       />
