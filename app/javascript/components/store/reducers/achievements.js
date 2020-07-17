@@ -97,13 +97,7 @@ const achievementsReducer = handleActions(
 
         if (typeof completed === "number") newCompleted = completed + newCompletedItems;
         else {
-          if (
-            newCompletedItems.some(newCompletedItem =>
-              completed.some(item => item === newCompletedItem)
-            )
-          ) {
-            return;
-          }
+          if (newCompletedItems.some(newItem => completed.some(item => item === newItem))) return;
 
           newCompleted = [...completed, ...newCompletedItems];
         }
