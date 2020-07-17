@@ -82,9 +82,30 @@ const achievementsReducer = handleActions(
     SET_CURRENT_ACHIEVEMENT_ID: produce((state, { payload }) => {
       state.currentAchievementId = payload;
     }),
+    SET_ACHIEVEMENT_BY_ID: produce((state, { payload }) => {
+      const newAchievement = { ...state.achievements[payload.id], ...payload };
+
+      state.achievements[payload.id] = newAchievement;
+
+      const { required, completed } = newAchievement;
+      if (isItemDone({ required, completed })) state.doneCount += 1;
+    }),
   },
   initialState
 );
 
 // export default reduceReducers(achievementsReducer, otherReducer, someOtherReducer);
 export default reduceReducers(achievementsReducer);
+
+export const normalizeRequiredCompleted = ({ required, completed }) => {
+  let range = typeof required === "number" ? required : required.length;
+  let value = typeof completed === "number" ? completed : completed.length;
+
+  return { required: range, completed: value };
+};
+
+export const isItemDone = ({ required, completed }) => {
+  const { required: range, completed: value } = normalizeRequiredCompleted({ required, completed });
+
+  return value === range;
+};

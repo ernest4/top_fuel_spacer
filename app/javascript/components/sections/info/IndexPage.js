@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { prettyPrintSnake } from "../../utils/String";
 import ProgressBar from "../../misc/ProgressBar";
 import useTheme from "../../hooks/useTheme";
+import { isItemDone, normalizeRequiredCompleted } from "../../store/reducers/achievements";
 
 const IndexPage = ({ reducerName }) => {
   const currentSectionId = useSelector(state => state.antFarm.currentSectionId);
@@ -80,17 +81,4 @@ const Progress = ({ required, completed }) => {
   const barBackground = range === value ? primary : null;
 
   return <ProgressBar {...{ barBackground, value, range }} />;
-};
-
-const normalizeRequiredCompleted = ({ required, completed }) => {
-  let range = typeof required === "number" ? required : required.length;
-  let value = typeof completed === "number" ? completed : completed.length;
-
-  return { required: range, completed: value };
-};
-
-const isItemDone = ({ required, completed }) => {
-  const { required: range, completed: value } = normalizeRequiredCompleted({ required, completed });
-
-  return value === range;
 };

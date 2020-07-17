@@ -1,10 +1,11 @@
 import React from "react";
 import Button from "../../misc/Button";
 import Text from "../../layout/Text";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, batch } from "react-redux";
 import useTheme from "../../hooks/useTheme";
 // import * as gameActions from "../../store/actions/game";
 import { setCurrentStageId } from "../../store/actions/launchSequence";
+import { setAchievementById } from "../../store/actions/achievements";
 
 // TODO: add stripes animation to draw more attention!
 const LaunchButton = () => {
@@ -23,7 +24,11 @@ const LaunchButton = () => {
     ${primary} 20px )`;
 
   // const onLaunch = () => dispatch(gameActions.setRunning(true));
-  const onLaunch = () => dispatch(setCurrentStageId(1));
+  const onLaunch = () =>
+    batch(() => {
+      dispatch(setCurrentStageId(1));
+      dispatch(setAchievementById({ id: 1, completed: 1 }));
+    });
 
   return (
     <Button
