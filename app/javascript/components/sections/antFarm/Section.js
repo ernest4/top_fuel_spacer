@@ -11,12 +11,14 @@ const Section = ({ sectionId }) => {
 
   const { black } = useTheme();
 
-  const name = useSelector(state => state.antFarm.sections[sectionId]?.name);
-  const unlocked = useSelector(state => state.antFarm.sections[sectionId]?.unlocked);
+  const level = useSelector(state => state.player.level);
+
+  const component = useSelector(state => state.antFarm.sections[sectionId]?.component);
+  const levelRequired = useSelector(state => state.antFarm.sections[sectionId]?.levelRequired);
 
   const onSectionClick = () => dispatch(setCurrentSectionId(sectionId));
 
-  if (!unlocked) return null;
+  if (level < levelRequired) return null;
 
   return (
     <Spacing
@@ -25,7 +27,7 @@ const Section = ({ sectionId }) => {
         width: "100%",
         height: "300px",
         onClick: onSectionClick,
-        children: sectionComponents[toPascalCase(name)],
+        children: sectionComponents[toPascalCase(component)]({ sectionId }),
         border: `8px solid ${black}`,
         borderWidth: "0px 0px 8px 0px",
       }}

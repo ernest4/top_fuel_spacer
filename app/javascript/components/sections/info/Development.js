@@ -40,6 +40,7 @@ const Development = () => {
                     right
                     small
                     tertiary
+                    // TODOL add devlog link as soon as you have one of the threads going !!!
                     {...{
                       link: "wip",
                       children: "wip link comming soon",

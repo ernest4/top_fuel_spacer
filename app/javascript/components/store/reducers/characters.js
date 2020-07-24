@@ -53,6 +53,14 @@ const initialState = {
       race: "caucasian",
       description: "description wip",
     },
+    {
+      id: 6,
+      name: "Mike",
+      qualification: "Engineer",
+      gender: "male",
+      race: "caucasian",
+      description: "description wip",
+    },
   ],
 };
 
