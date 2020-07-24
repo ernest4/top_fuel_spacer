@@ -35,18 +35,32 @@ const Development = () => {
               header: { subtitles: ["Devlogs"] },
               body: `If you’re interested in following the development process, check out the links below.`,
               footer: (
-                <Spacing top={1}>
-                  <Button
-                    right
-                    small
-                    tertiary
-                    // TODOL add devlog link as soon as you have one of the threads going !!!
-                    {...{
-                      link: "wip",
-                      children: "wip link comming soon",
-                      innerProps: { center: true },
-                    }}
-                  />
+                <Spacing vertical>
+                  <Spacing top={1}>
+                    <Button
+                      right
+                      small
+                      tertiary
+                      {...{
+                        link: "https://discord.gg/ak3WBJ8",
+                        children: "Discord",
+                        innerProps: { center: true },
+                      }}
+                    />
+                  </Spacing>
+                  <Spacing top={1}>
+                    <Button
+                      right
+                      small
+                      tertiary
+                      {...{
+                        link:
+                          "https://forums.tigsource.com/index.php?topic=70506.msg1426374#msg1426374",
+                        children: "Tigsource",
+                        innerProps: { center: true },
+                      }}
+                    />
+                  </Spacing>
                 </Spacing>
               ),
             }}
