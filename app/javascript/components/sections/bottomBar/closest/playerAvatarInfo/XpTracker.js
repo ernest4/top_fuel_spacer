@@ -6,6 +6,9 @@ import * as playerActions from "../../../../store/actions/player";
 const XpTracker = () => {
   const dispatch = useDispatch();
   const distance = useSelector(state => state.score.distance);
+  const speed = useSelector(state => state.score.speed);
+
+  const kineticEnergy = useSelector(state => state.rocket.kineticEnergy);
 
   const xp = useSelector(state => state.player.xp);
   const levelUpXp = useSelector(state => state.player.levelUpXp);
@@ -14,13 +17,8 @@ const XpTracker = () => {
   useEffect(() => {
     if (!dispatch) return;
 
-    if (distance)
-      dispatch(
-        playerActions.setXp(
-          normalizeXp(distance) - getXpRequired({ level: level - 1, levelOneXp: 100 })
-        )
-      );
-  }, [distance, level, dispatch]);
+    if (distance) dispatch(playerActions.setXp(Math.floor(xp + speed + kineticEnergy)));
+  }, [distance, dispatch]);
 
   useEffect(() => {
     if (!dispatch) return;
@@ -36,6 +34,7 @@ const XpTracker = () => {
               getXpRequired({ level, levelOneXp: 100 })
           )
         );
+        dispatch(playerActions.setXp(0));
       });
     }
   }, [xp, levelUpXp, level, dispatch]);

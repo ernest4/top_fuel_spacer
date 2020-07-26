@@ -43,16 +43,13 @@ const Score = () => {
         // counter running fast. Internal game state can update at this speed of 5 updates per
         // second, but the counter will have to be done with raw refs (cookie clicker way?)
         if (UPDATE_INTERVAL < updateInterval.current) {
-          // console.log(updateInterval.current);
-          // console.log(updateInterval.current / 1000);
-          // console.log(speed * (updateInterval.current / 1000));
-
-          setDistance(
-            distance => distance + (speed + kineticEnergy) * (updateInterval.current / 1000)
-          );
+          setDistance(distance => distance + speed * (updateInterval.current / 1000));
 
           if (REDUX_UPDATE_INTERVAL < reduxUpdateInterval.current) {
-            disptach(scoreActions.setDistance(distance));
+            batch(() => {
+              disptach(scoreActions.setDistance(distance));
+              disptach(scoreActions.setSpeed(speed + kineticEnergy));
+            });
 
             reduxUpdateInterval.current = 0;
           }

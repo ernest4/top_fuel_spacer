@@ -23,8 +23,7 @@ const Rocket = () => {
 
   const kineticEnergy = useSelector(state => state.rocket.kineticEnergy);
   const kineticEnergyCapacity = useSelector(state => state.rocket.kineticEnergyCapacity);
-
-  const kineticEnergyAddition = 10;
+  const kineticEnergyAddition = useSelector(state => state.rocket.kineticEnergyAddition);
 
   const onAddKineticEnergy = () => {
     if (!running) return;
@@ -102,7 +101,7 @@ const Hover = () => {
           title: `"${name}"`,
           subtitles: [
             "KI boost",
-            `${Math.floor(kineticEnergy)}/${kineticEnergyCapacity} m/s`,
+            `${Math.floor(kineticEnergy)}/${kineticEnergyCapacity} m/s/s`,
             `${Math.floor((kineticEnergy / kineticEnergyCapacity) * 100)} %`,
           ],
         },
@@ -114,7 +113,7 @@ const Hover = () => {
             to convert your kinetic energy (<Text primary extraSmall bold children="KI" />) to
             electricity that can be used in{" "}
             <Text primary extraSmall bold children="ion thrusters" /> for a temporary{" "}
-            <Text secondary extraSmall bold children="speed boost" />.
+            <Text secondary extraSmall bold children="acceleration boost" />.
           </Text>
         ),
         footer: <Text extraSmall muted italics children={`"All systems nominal."`} />,
