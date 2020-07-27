@@ -3,14 +3,16 @@ import reduceReducers from "reduce-reducers";
 import produce from "immer";
 import debugFlag from "../../debugFlag";
 
+const VERSION = "0.1.1";
+
 let initialState = {
-  version: "0.1.0", // keep this value up to date as features and patches come !!
+  version: VERSION, // keep this value up to date as features and patches come !!
   running: false,
 };
 
 if (debugFlag) {
   initialState = {
-    version: "0.1.0", // keep this value up to date as features and patches come !!
+    version: VERSION, // keep this value up to date as features and patches come !!
     running: true,
   };
 }
