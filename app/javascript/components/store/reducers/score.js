@@ -8,13 +8,13 @@ import debugFlag from "../../debugFlag";
 // to track time and send signal to save game component.
 let initialState = {
   distance: 0, // m
-  speed: 100, // m/s
+  speed: 1000, // m/s
 };
 
 if (debugFlag) {
   initialState = {
     distance: 0,
-    speed: 100,
+    speed: 1000,
   };
 }
 

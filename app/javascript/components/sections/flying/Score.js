@@ -8,6 +8,7 @@ import useTheme from "../../hooks/useTheme";
 import Text from "../../layout/Text";
 import Spacing from "../../layout/Spacing";
 import { setFuel } from "../../store/actions/rocket";
+import { round } from "../../utils/Number";
 
 // Highly optimized custom component to deal with constant updates to progress
 const Score = () => {
@@ -70,10 +71,10 @@ const Score = () => {
 
   return (
     <Container>
-      <Distance children={`${formatNumberToSiUnit(distance)} meters`} />
+      <Distance children={`${nFormatter(distance, 3)} meters`} />
       <Speed
         secondary={secondary}
-        children={`${formatNumberToSiUnit(speed + kineticEnergy)} meters / s`}
+        children={`${nFormatter(speed + kineticEnergy, 3)} meters / s`}
       />
     </Container>
   );
@@ -107,35 +108,73 @@ const Speed = styled.div`
   transform: skewX(10deg);
 `;
 
-const formatNumberToSiUnit = number => {
-  // TODO: use light years once far enough
+const nFormatter = (num, digits) => {
+  let rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+  let i;
 
-  let wholePart = number;
-  let fractionalPart = 0;
-  let multipleName = "";
+  for (i = SI.length - 1; i > 0; i--) if (num >= SI[i].value) break;
 
-  if (999999 < number) {
-    for (const [multiplier, multiple] of MULTIPLE_NAME) {
-      const divisor = Math.pow(1000, multiplier);
-
-      if (1 < number / divisor) {
-        wholePart = number / divisor;
-        fractionalPart = number % divisor;
-
-        multipleName = multiple;
-
-        break;
-      }
-    }
-  }
-
-  return `${Math.floor(wholePart)}.${Math.floor(fractionalPart)} ${multipleName}`;
+  return `${(num / SI[i].value).toFixed(digits).replace(rx, "$1")} ${SI[i].symbol}`;
 };
 
-const MULTIPLE_NAME = [
-  [2, "million"],
-  [3, "billion"], // TODO: not working??
-  [4, "trillion"],
-  [5, "quadrillion"],
-  // [9.4607...wip, "light years"], // light year -> 9.4607×1015 m
+const SI = [
+  { value: 1, symbol: "" },
+  { value: 1e3, symbol: "kilo" },
+  { value: 1e6, symbol: "Million" },
+  { value: 1e9, symbol: "Billion" },
+  { value: 1e12, symbol: "Trillion" },
+  { value: 1e15, symbol: "Quadrillion" },
+  { value: 1e18, symbol: "Quintrillion" },
+  { value: 1e21, symbol: "Sextillion" },
+  { value: 1e24, symbol: "Septillion" },
+  { value: 1e27, symbol: "Octillion" },
+  { value: 1e30, symbol: "Nonillion" },
+  { value: 1e33, symbol: "Decillion" },
+  { value: 1e36, symbol: "Undecillion" },
+  { value: 1e39, symbol: "Duodecillion" },
+  { value: 1e42, symbol: "Tredecillion" },
+  { value: 1e45, symbol: "Quattuordecillion" },
+  { value: 1e48, symbol: "Quindecillion" },
+  { value: 1e51, symbol: "Sexdecillion" },
+  { value: 1e54, symbol: "Septemdecillion" },
+  { value: 1e57, symbol: "Octodecillion" },
+  { value: 1e60, symbol: "Novemdecillion" },
+  { value: 1e63, symbol: "Vigintillion" },
 ];
+
+// const formatNumberToSiUnit = number => {
+//   // TODO: use light years once far enough
+
+//   let wholePart = number;
+//   let fractionalPart = 0;
+//   let multipleName = "";
+
+//   // if (999999 < number) {
+//   // if (999 < number) {
+//   for (const [multiplier, multiple] of MULTIPLE_NAMES) {
+//     const divisor = Math.pow(1000, multiplier);
+
+//     if (1 <= number / divisor) {
+//       wholePart = number / divisor;
+//       // fractionalPart = number % divisor;
+
+//       multipleName = multiple;
+
+//       break;
+//     }
+//   }
+//   // }
+
+//   // return `${Math.floor(wholePart)}.${Math.floor(fractionalPart)} ${multipleName}`;
+//   return `${round(wholePart, 3)} ${multipleName}`;
+// };
+
+// const MULTIPLE_NAMES = [
+//   [0, ""],
+//   [1, "kilo"],
+//   [2, "million"],
+//   [3, "billion"], // TODO: not working??
+//   [4, "trillion"],
+//   [5, "quadrillion"],
+//   // [9.4607...wip, "light years"], // light year -> 9.4607×1015 m
+// ];
