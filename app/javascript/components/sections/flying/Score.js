@@ -83,7 +83,8 @@ const Score = () => {
 export default Score;
 
 export const REDUX_UPDATE_INTERVAL = 1000;
-const UPDATE_INTERVAL = 50; // 20fps
+// const UPDATE_INTERVAL = 50; // 20fps
+const UPDATE_INTERVAL = 75; // 15fps
 
 const Container = styled.div`
   display: flex;
