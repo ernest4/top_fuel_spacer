@@ -16,6 +16,7 @@ import sounds from "./sounds";
 import info from "./info";
 import collectibles from "./collectibles";
 import conversations from "./conversations";
+import items from "./items";
 
 export default combineReducers({
   game,
@@ -35,8 +36,8 @@ export default combineReducers({
   info,
   collectibles, // TODO: ... items counts?
   conversations,
+  items, // TODO: ... items under construction / production form enginereing, life support etc ?
   // TODO: think about further data structures below
   // research, // TODO: ... research tech tree. progress on items. completed items.
-  // items, // TODO: ... items under construction / production form enginereing, life support etc ?
   // cargo, // TODO: ... all items and their counts
 });

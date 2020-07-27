@@ -7,18 +7,13 @@ import { toPascalCase } from "../../utils/String";
 import useTheme from "../../hooks/useTheme";
 
 const Section = ({ sectionId }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const { black } = useTheme();
 
-  const level = useSelector(state => state.player.level);
-
   const component = useSelector(state => state.antFarm.sections[sectionId]?.component);
-  const levelRequired = useSelector(state => state.antFarm.sections[sectionId]?.levelRequired);
 
-  const onSectionClick = () => dispatch(setCurrentSectionId(sectionId));
-
-  if (level < levelRequired) return null;
+  // const onSectionClick = () => dispatch(setCurrentSectionId(sectionId));
 
   return (
     <Spacing
@@ -26,7 +21,7 @@ const Section = ({ sectionId }) => {
       {...{
         width: "100%",
         height: "300px",
-        onClick: onSectionClick,
+        // onClick: onSectionClick,
         children: sectionComponents[toPascalCase(component)]({ sectionId }),
         border: `8px solid ${black}`,
         borderWidth: "0px 0px 8px 0px",

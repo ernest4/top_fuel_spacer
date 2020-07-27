@@ -11,6 +11,8 @@ const initialState = {
       component: "head",
       characterId: null,
       levelRequired: 0,
+      buildCompletion: 0,
+      buildCompletionRequirement: 0, // distance requirement
       buttons: ["Settings", "Info", "Credits", "Development"],
       hover: {
         header: { title: "Misc" },
@@ -23,8 +25,10 @@ const initialState = {
       name: "comms",
       component: "item",
       characterId: 0,
-      levelRequired: 2000000,
-      buttons: ["Chat", "Contact", "Tasks", "Collectibles"],
+      levelRequired: 7,
+      buildCompletion: 0,
+      buildCompletionRequirement: 20000, // distance requirement
+      buttons: ["Chat", "Contact"],
       hover: {
         header: { title: "Comms", subtitles: ["work in progress (wip)"] },
         body: "This is your communications hub. (wip)",
@@ -37,7 +41,9 @@ const initialState = {
       component: "item",
       characterId: 1,
       levelRequired: 0,
-      buttons: ["Chat", "Navigate", "Tasks", "Collectibles", "Achievements"],
+      buildCompletion: 0,
+      buildCompletionRequirement: 0, // distance requirement
+      buttons: ["Chat", "Navigate", "Achievements"],
       hover: {
         header: { title: "Command", subtitles: ["work in progress (wip)"] },
         body: "Command the ship from here commander! (wip)",
@@ -50,7 +56,9 @@ const initialState = {
       component: "item",
       characterId: 2,
       levelRequired: 0,
-      buttons: ["Chat", "WIP", "Tasks", "Collectibles"],
+      buildCompletion: 0,
+      buildCompletionRequirement: 0, // distance requirement
+      buttons: ["Chat", "WIP"],
       hover: {
         header: { title: "Main Entrance", subtitles: ["work in progress (wip)"] },
         body:
@@ -63,8 +71,10 @@ const initialState = {
       name: "engineering",
       component: "item",
       characterId: 6,
-      levelRequired: 0,
-      buttons: ["Chat", "Contact", "Tasks", "Collectibles"],
+      levelRequired: 5,
+      buildCompletion: 0,
+      buildCompletionRequirement: 10000, // distance requirement
+      buttons: ["Chat", "Build"],
       hover: {
         header: { title: "Engineering", subtitles: ["work in progress (wip)"] },
         body: "Everything gets built here.",
@@ -76,8 +86,10 @@ const initialState = {
       name: "cargo",
       component: "item",
       characterId: 3,
-      levelRequired: 3000000,
-      buttons: ["Chat", "Inspect", "Tasks", "Collectibles"],
+      levelRequired: 0,
+      buildCompletion: 0,
+      buildCompletionRequirement: 0, // distance requirement
+      buttons: ["Chat", "Inspect"],
       hover: {
         header: { title: "Cargo", subtitles: ["work in progress (wip)"] },
         body:
@@ -90,8 +102,10 @@ const initialState = {
       name: "barracks",
       component: "item",
       characterId: 4,
-      levelRequired: 4000000,
-      buttons: ["Chat", "Orders", "Tasks", "Collectibles"],
+      levelRequired: 11,
+      buildCompletion: 0,
+      buildCompletionRequirement: 40000, // distance requirement
+      buttons: ["Chat", "Orders"],
       hover: {
         header: { title: "Barracks", subtitles: ["work in progress (wip)"] },
         body: "Your soldiers are stationed and train here. (wip)",
@@ -103,8 +117,10 @@ const initialState = {
       name: "life_support",
       component: "item",
       characterId: 5,
-      levelRequired: 5000000,
-      buttons: ["Chat", "Grow", "Tasks", "Collectibles"],
+      levelRequired: 9,
+      buildCompletion: 0,
+      buildCompletionRequirement: 50000, // distance requirement
+      buttons: ["Chat", "Grow"],
       hover: {
         header: { title: "Life Support", subtitles: ["work in progress (wip)"] },
         body:
@@ -118,6 +134,8 @@ const initialState = {
       component: "shaft",
       characterId: null,
       levelRequired: 0,
+      buildCompletion: 0,
+      buildCompletionRequirement: 0, // distance requirement
       buttons: [],
       hover: {},
     },
@@ -134,6 +152,9 @@ const antFarmReducer = handleActions(
   {
     SET_CURRENT_SECTION_ID: produce((state, { payload }) => {
       state.currentSectionId = payload;
+    }),
+    SET_SECTION_BUILD_COMPLETION: produce((state, { payload: { id, buildCompletion } }) => {
+      state.sections[id].buildCompletion = buildCompletion;
     }),
   },
   initialState

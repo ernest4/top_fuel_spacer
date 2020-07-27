@@ -116,8 +116,8 @@ const achievementsReducer = handleActions(
 export default reduceReducers(achievementsReducer);
 
 export const normalizeRequiredCompleted = ({ required, completed }) => {
-  let range = typeof required === "number" ? required : required.length;
-  let value = typeof completed === "number" ? completed : completed.length;
+  let range = typeof required === "number" ? required : required?.length;
+  let value = typeof completed === "number" ? completed : completed?.length;
 
   return { required: range, completed: value };
 };

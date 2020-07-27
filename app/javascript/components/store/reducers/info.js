@@ -33,6 +33,10 @@ const initialState = {
       id: 6,
       name: "Achievements",
     },
+    {
+      id: 7,
+      name: "Build",
+    },
   ],
 };
 
